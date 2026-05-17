@@ -3,134 +3,707 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tephra Studios | Social Recruiting für Handwerksbetriebe</title>
-  <meta name="description" content="Tephra Studios hilft Elektriker- und Handwerksbetrieben in Österreich, passende Mitarbeiter über Social Recruiting zu gewinnen." />
-  <link rel="stylesheet" href="style.css" />
+  <title>Tephra Studios | Moderne Systeme für Handwerk</title>
+  <meta name="description" content="Tephra Studios entwickelt moderne Recruiting-, Sichtbarkeits- und Automationssysteme für Handwerk, Bau und Industrie." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --black: #050505;
+      --charcoal: #090a08;
+      --panel: #10110d;
+      --panel-2: #151711;
+      --white: #f3eee1;
+      --muted: rgba(243, 238, 225, .67);
+      --soft: rgba(243, 238, 225, .42);
+      --line: rgba(243, 238, 225, .105);
+      --line-strong: rgba(243, 238, 225, .22);
+      --accent: #d7ff00;
+      --warm: #b96340;
+      --radius: 34px;
+      --ease: cubic-bezier(.16,.84,.28,1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; background: var(--black); }
+
+    body {
+      min-height: 100vh;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--white);
+      background: #050505;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      pointer-events: none;
+      opacity: .052;
+      background-image: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
+      background-size: 24px 24px;
+      mix-blend-mode: screen;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 61;
+      pointer-events: none;
+      background:
+        radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(215,255,0,.03), transparent 14%),
+        linear-gradient(90deg, rgba(255,255,255,.025), transparent 16%, transparent 84%, rgba(255,255,255,.018));
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1180px, calc(100% - 44px)); margin: 0 auto; }
+
+    .header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: 96px;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: rgba(5,5,5,.72);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
+    }
+
+    .nav {
+      height: 96px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 34px;
+    }
+
+    .logo {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1;
+      text-align: center;
+      filter: drop-shadow(0 0 8px rgba(243,238,225,.12));
+    }
+
+    .logo-main {
+      font-size: clamp(21px, 2vw, 32px);
+      font-weight: 500;
+      letter-spacing: .28em;
+      transform: translateX(.14em);
+    }
+
+    .logo-sub {
+      margin-top: 7px;
+      font-size: clamp(7px, .72vw, 10px);
+      font-weight: 700;
+      letter-spacing: .92em;
+      transform: translateX(.46em);
+      color: rgba(243,238,225,.78);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: clamp(28px, 3.3vw, 54px);
+      font-size: 14px;
+      font-weight: 650;
+      letter-spacing: .015em;
+      color: rgba(243,238,225,.7);
+    }
+
+    .nav-links a { position: relative; transition: color .28s ease; }
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -13px;
+      height: 1px;
+      width: 0;
+      background: var(--accent);
+      transition: width .55s var(--ease);
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-links a:hover::after { width: 100%; }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 999px;
+      padding: 15px 26px;
+      background: var(--white);
+      color: #11120e;
+      border: 1px solid rgba(255,255,255,.16);
+      font-size: 14px;
+      font-weight: 800;
+      box-shadow: 0 16px 42px rgba(243,238,225,.075);
+      transition: transform .55s var(--ease), box-shadow .55s var(--ease), background .55s ease;
+      white-space: nowrap;
+    }
+    .button:hover { transform: translateY(-2px); background: #fffdf4; box-shadow: 0 22px 54px rgba(243,238,225,.12); }
+    .button.outline { background: transparent; color: var(--white); border-color: var(--line-strong); box-shadow: none; }
+    .button.outline:hover { color: var(--accent); border-color: rgba(215,255,0,.42); background: rgba(215,255,0,.025); }
+
+    .hero {
+      position: relative;
+      min-height: 100svh;
+      padding-top: 96px;
+      overflow: hidden;
+      display: grid;
+      place-items: center;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, rgba(5,5,5,.96) 0%, rgba(5,5,5,.81) 42%, rgba(5,5,5,.62) 72%, rgba(5,5,5,.93) 100%),
+        linear-gradient(180deg, rgba(5,5,5,.16), rgba(5,5,5,.95)),
+        url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2400&q=88") center/cover no-repeat;
+      filter: grayscale(.2) saturate(.48) contrast(1.08) brightness(.43);
+      transform: translate3d(calc(var(--mx,0) * -8px), calc(var(--my,0) * -6px), 0) scale(1.055);
+      animation: lightStart 3.1s ease-out .08s both;
+    }
+
+    .hero-bg::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(115deg, transparent 0%, transparent 46%, rgba(243,238,225,.08) 51%, transparent 60%),
+        radial-gradient(circle at 70% 24%, rgba(243,238,225,.08), transparent 18%);
+      opacity: .54;
+    }
+
+    .material-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      opacity: .38;
+      background:
+        radial-gradient(ellipse at calc(55% + var(--mx,0) * 14%) calc(48% + var(--my,0) * 10%), rgba(215,255,0,.032), transparent 26%),
+        repeating-linear-gradient(90deg, rgba(243,238,225,.027) 0, rgba(243,238,225,.027) 1px, transparent 1px, transparent 126px);
+      mask-image: linear-gradient(180deg, transparent, black 18%, black 78%, transparent);
+    }
+
+    @keyframes lightStart {
+      0% { opacity: .18; filter: grayscale(.2) saturate(.35) contrast(1.06) brightness(.12); }
+      9% { opacity: .75; filter: grayscale(.2) saturate(.42) contrast(1.08) brightness(.52); }
+      16% { opacity: .44; filter: grayscale(.2) saturate(.38) contrast(1.08) brightness(.24); }
+      28%, 100% { opacity: 1; filter: grayscale(.2) saturate(.48) contrast(1.08) brightness(.43); }
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 104px 0 90px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      font-size: 12px;
+      font-weight: 900;
+      margin-bottom: 26px;
+    }
+
+    h1 {
+      font-size: clamp(62px, 10vw, 150px);
+      line-height: .82;
+      letter-spacing: -.083em;
+      font-weight: 900;
+      max-width: 980px;
+    }
+
+    .hero h1 span { display: block; }
+
+    h2 {
+      font-size: clamp(44px, 6.6vw, 92px);
+      line-height: .9;
+      letter-spacing: -.075em;
+      font-weight: 900;
+    }
+
+    .hero-copy {
+      margin-top: 34px;
+      max-width: 520px;
+      color: var(--muted);
+      font-size: clamp(16px, 1.55vw, 20px);
+      line-height: 1.7;
+    }
+
+    .hero-actions { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .signature {
+      position: absolute;
+      right: 0;
+      bottom: 95px;
+      width: min(360px, 32vw);
+      border-left: 1px solid var(--line-strong);
+      padding-left: 28px;
+      transform: translate3d(calc(var(--mx,0) * 6px), calc(var(--my,0) * 5px), 0);
+      opacity: .88;
+    }
+
+    .signature-line { width: 48px; height: 1px; background: var(--accent); margin-bottom: 34px; }
+    .signature strong { display: block; font-size: 26px; line-height: 1.08; letter-spacing: -.055em; margin-bottom: 16px; }
+    .signature p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+
+    section { position: relative; z-index: 2; }
+    .section-pad { padding: 136px 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 80px;
+      align-items: end;
+      margin-bottom: 62px;
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: clamp(17px, 1.75vw, 21px);
+      line-height: 1.7;
+      max-width: 650px;
+    }
+
+    .about {
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      background: #080908;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .text-panel {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: clamp(34px, 5vw, 62px);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.035), rgba(255,255,255,.006)),
+        rgba(16,17,13,.76);
+      backdrop-filter: blur(18px);
+      transform: translate3d(0, var(--wave-y, 0px), 0);
+    }
+
+    .text-panel p {
+      margin-top: 28px;
+      color: var(--muted);
+      font-size: 18px;
+      line-height: 1.82;
+    }
+
+    .photo-panel {
+      min-height: 560px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(5,5,5,.06), rgba(5,5,5,.82)),
+        url("https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1500&q=88") center/cover no-repeat;
+      filter: saturate(.58) contrast(1.08) brightness(.78);
+      transform: translate3d(calc(var(--mx,0) * 8px), calc(var(--my,0) * 7px), 0);
+    }
+
+    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; perspective: 1200px; }
+    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; perspective: 1200px; }
+
+    .wave-card {
+      min-height: 350px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 36px;
+      background:
+        linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.006)),
+        rgba(14,16,12,.86);
+      transform: translate3d(0, var(--wave-y, 0px), 0) scale(var(--scale, 1));
+      transition: transform .8s var(--ease), border-color .55s ease, background .55s ease, box-shadow .55s ease;
+      will-change: transform;
+    }
+
+    .wave-card::before {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(215,255,0,.085), transparent 36%);
+      opacity: 0;
+      transition: opacity .55s ease;
+    }
+
+    .wave-card:hover {
+      border-color: rgba(215,255,0,.25);
+      background:
+        linear-gradient(145deg, rgba(215,255,0,.024), rgba(255,255,255,.006)),
+        rgba(17,19,14,.94);
+      box-shadow: 0 26px 74px rgba(0,0,0,.23);
+    }
+    .wave-card:hover::before { opacity: 1; }
+
+    .num {
+      position: relative;
+      display: block;
+      color: var(--warm);
+      font-weight: 900;
+      font-size: 18px;
+      margin-bottom: 104px;
+    }
+
+    .big {
+      position: relative;
+      display: block;
+      font-size: clamp(72px, 7.2vw, 112px);
+      font-weight: 300;
+      line-height: .78;
+      letter-spacing: -.08em;
+      margin-bottom: 112px;
+      color: rgba(243,238,225,.9);
+    }
+
+    .wave-card h3 {
+      position: relative;
+      font-size: 31px;
+      line-height: 1.04;
+      letter-spacing: -.056em;
+      margin-bottom: 20px;
+    }
+
+    .wave-card p {
+      position: relative;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.72;
+    }
+
+    .process { border-top: 1px solid var(--line); background: #050505; }
+    .results { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #080908; }
+
+    .results-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: start; }
+    .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+
+    .metric {
+      min-height: 154px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      padding: 28px;
+      background: rgba(255,255,255,.023);
+      transition: transform .75s var(--ease), border-color .55s ease;
+    }
+    .metric:hover { transform: translateY(-4px); border-color: rgba(215,255,0,.24); }
+    .metric span { display: block; color: var(--accent); font-weight: 900; margin-bottom: 28px; }
+    .metric strong { display: block; font-size: 21px; line-height: 1.22; letter-spacing: -.04em; }
+
+    .contact {
+      min-height: 88vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    .contact-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,5,5,.18), rgba(5,5,5,.96)),
+        url("https://images.unsplash.com/photo-1604754742629-3e5728249d73?auto=format&fit=crop&w=2400&q=85") center/cover no-repeat;
+      filter: grayscale(.12) saturate(.46) brightness(.43);
+      transform: scale(1.05) translate3d(calc(var(--mx,0) * -6px), calc(var(--my,0) * -5px), 0);
+    }
+
+    .contact-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 960px;
+      padding: 136px 0;
+    }
+    .contact h2 { margin-bottom: 30px; }
+    .contact p { max-width: 650px; margin: 0 auto 40px; color: var(--muted); font-size: 20px; line-height: 1.7; }
+
+    .footer { border-top: 1px solid var(--line); padding: 38px 0; background: #050505; }
+    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--soft); font-size: 13px; }
+    .footer a:not(.logo) { color: var(--accent); }
+
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 980px) {
+      .header, .nav { height: 84px; }
+      .nav-links { display: none; }
+      .hero { padding-top: 84px; }
+      .hero-inner, .section-head, .about-grid, .results-grid { grid-template-columns: 1fr; }
+      .signature { position: relative; bottom: auto; width: min(440px, 100%); margin-top: 52px; }
+      .cards-grid, .process-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      .container { width: min(100% - 30px, 1180px); }
+      .section-pad { padding: 88px 0; }
+      .button { padding: 12px 18px; font-size: 13px; }
+      h1 { font-size: 56px; }
+      h2 { font-size: 42px; }
+      .cards-grid, .process-grid, .metric-grid { grid-template-columns: 1fr; }
+      .photo-panel { min-height: 360px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
 </head>
 <body>
-  <main class="page">
-    <nav class="nav">
-      <a href="#" class="logo">TEPHRA STUDIOS</a>
-      <div class="navLinks">
+  <header class="header">
+    <div class="container nav">
+      <a class="logo" href="#top" aria-label="Tephra Studios">
+        <span class="logo-main">TEPHRA</span>
+        <span class="logo-sub">STUDIOS</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Navigation">
+        <a href="#wer-wir-sind">Wer wir sind</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#ablauf">Ablauf</a>
-        <a href="#kontakt" class="navButton">Erstgespräch</a>
-      </div>
-    </nav>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
 
-    <section class="hero">
-      <div class="heroGrid">
-        <div>
-          <p class="kicker">Social Recruiting für Elektriker und Handwerk</p>
-          <h1>Gute Fachkräfte suchen nicht aktiv. Sie müssen sie erreichen.</h1>
-          <p class="heroText">
-            Tephra Studios hilft Elektriker- und Handwerksbetrieben in Österreich,
-            passende Mitarbeiter zu gewinnen — mit moderner Sichtbarkeit, klaren
-            Bewerbungswegen und gezielten Kampagnen über Social Media.
-          </p>
-          <div class="buttonRow">
-            <a href="#kontakt" class="primaryButton">Kostenloses Erstgespräch</a>
-            <a href="#leistungen" class="secondaryButton">Mehr erfahren</a>
+      <a class="button" href="#kontakt">Kostenloses Erstgespräch</a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero interactive-root">
+      <div class="hero-bg"></div>
+      <div class="material-layer"></div>
+      <div class="container hero-inner">
+        <div class="reveal">
+          <div class="eyebrow">Für Handwerk, Bau & Industrie</div>
+          <h1>
+            <span>Moderne</span>
+            <span>Mitarbeiter-</span>
+            <span>gewinnung</span>
+            <span>für Handwerk.</span>
+          </h1>
+          <p class="hero-copy">Sichtbarkeit, Systeme und digitale Abläufe für Betriebe, die nicht mehr vom Zufall abhängig sein wollen.</p>
+          <div class="hero-actions">
+            <a class="button" href="#kontakt">Kostenloses Erstgespräch</a>
+            <a class="button outline" href="#leistungen">Leistungen ansehen</a>
           </div>
         </div>
 
-        <div class="heroCard">
-          <div class="imagePlaceholder">
-            <span>Hier echtes Baustellenbild einfügen</span>
+        <aside class="signature reveal">
+          <div class="signature-line"></div>
+          <strong>Sichtbarkeit. Systeme. Mitarbeiter.</strong>
+          <p>Ruhige, klare Prozesse für modernes Handwerk.</p>
+        </aside>
+      </div>
+    </section>
+
+    <section id="wer-wir-sind" class="about section-pad interactive-root">
+      <div class="container about-grid">
+        <div class="text-panel reveal">
+          <div class="eyebrow">Wer wir sind</div>
+          <h2>Handwerk verstehen. Systeme bauen.</h2>
+          <p>Tephra Studios verbindet Branchenverständnis, moderne Kommunikation und digitale Struktur. Für Betriebe, die sichtbar werden und Prozesse einfacher machen wollen.</p>
+        </div>
+        <div class="photo-panel reveal" aria-label="Industrielle Arbeitsumgebung"></div>
+      </div>
+    </section>
+
+    <section id="leistungen" class="section-pad interactive-root">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Leistungen</div>
+            <h2>Klare Systeme statt lauter Versprechen.</h2>
           </div>
-          <div class="heroCardBottom">
-            <p class="cardKicker">Für Betriebe mit Verantwortung</p>
-            <h2>Mehr Bewerbungen. Weniger Zeitverlust. Ein Prozess, der entlastet.</h2>
+          <p class="lead">Weniger Komplexität. Mehr Struktur. Ein Auftritt, der zu modernen Betrieben passt.</p>
+        </div>
+
+        <div class="cards-grid wave-zone">
+          <article class="wave-card reveal">
+            <span class="num">01</span>
+            <h3>Mitarbeitergewinnung</h3>
+            <p>Social Recruiting und Bewerberstrecken für passende Anfragen.</p>
+          </article>
+          <article class="wave-card reveal">
+            <span class="num">02</span>
+            <h3>Sichtbarkeit</h3>
+            <p>Ein moderner Arbeitgeberauftritt, der Vertrauen aufbaut.</p>
+          </article>
+          <article class="wave-card reveal">
+            <span class="num">03</span>
+            <h3>Automationen</h3>
+            <p>Digitale Abläufe, die strukturieren und Zeit sparen.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="ablauf" class="process section-pad interactive-root">
+      <div class="container">
+        <div class="section-head reveal">
+          <div>
+            <div class="eyebrow">Ablauf</div>
+            <h2>Von Aufmerksamkeit zu echten Gesprächen.</h2>
           </div>
+          <p class="lead">Verstehen. Schärfen. Umsetzen. Verbessern.</p>
+        </div>
+
+        <div class="process-grid wave-zone">
+          <article class="wave-card reveal">
+            <span class="big">01</span>
+            <h3>Zielgruppe verstehen</h3>
+            <p>Wir analysieren, wen Ihr Betrieb wirklich erreichen muss.</p>
+          </article>
+          <article class="wave-card reveal">
+            <span class="big">02</span>
+            <h3>Auftritt schärfen</h3>
+            <p>Ihre Stärken werden klar sichtbar.</p>
+          </article>
+          <article class="wave-card reveal">
+            <span class="big">03</span>
+            <h3>System starten</h3>
+            <p>Kampagnen, Seiten und Abläufe gehen live.</p>
+          </article>
+          <article class="wave-card reveal">
+            <span class="big">04</span>
+            <h3>Optimieren</h3>
+            <p>Daten und Feedback machen das System stärker.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="section dark">
-      <div class="twoCol">
-        <div>
-          <p class="kicker">Das Problem</p>
-          <h2>Klassische Stellenanzeigen reichen heute nicht mehr aus.</h2>
+    <section class="results section-pad interactive-root">
+      <div class="container results-grid">
+        <div class="reveal">
+          <div class="eyebrow">Ergebnisse</div>
+          <h2>Mehr Klarheit. Mehr Sichtbarkeit. Mehr passende Anfragen.</h2>
         </div>
-        <div class="textStack">
-          <p>Viele gute Fachkräfte sind nicht aktiv auf Jobsuche. Sie scrollen nicht täglich durch Jobplattformen und warten nicht auf die nächste Anzeige.</p>
-          <p>Sie sind auf Instagram, Facebook oder TikTok unterwegs. Genau dort muss Ihr Betrieb sichtbar werden — professionell, glaubwürdig und ohne künstlich zu wirken.</p>
-          <p>Wer heute Mitarbeiter gewinnen will, braucht mehr als ein Inserat. Er braucht einen starken Auftritt und einen einfachen Weg zur Bewerbung.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section light">
-      <div class="twoCol center">
-        <div>
-          <p class="kicker">Wer wir sind</p>
-          <h2>Designverständnis trifft echtes Handwerkswissen.</h2>
-          <p class="lightText">
-            Wir sind Tina Jurcic und Peter Strbac. Tinas Background in Architektur und Design trifft auf Peters direkte Erfahrung aus dem Elektriker- und Handwerksbereich. Daraus ist Tephra Studios entstanden.
-          </p>
-        </div>
-        <div class="aboutBox">
-          <h3>Unser Ansatz</h3>
-          <p>Wir bauen keine lauten Kampagnen, die nach Marketing schreien. Wir entwickeln einen modernen Arbeitgeberauftritt, der Ihren Betrieb ehrlich, hochwertig und attraktiv zeigt.</p>
-          <strong>Klar. Bodenständig. Modern. Für Betriebe, die wachsen wollen.</strong>
+        <div class="metric-grid">
+          <div class="metric reveal"><span>01</span><strong>Planbarer Bewerberzufluss</strong></div>
+          <div class="metric reveal"><span>02</span><strong>Moderner Arbeitgeberauftritt</strong></div>
+          <div class="metric reveal"><span>03</span><strong>Weniger manuelle Arbeit</strong></div>
+          <div class="metric reveal"><span>04</span><strong>Klarere digitale Prozesse</strong></div>
         </div>
       </div>
     </section>
 
-    <section id="leistungen" class="section dark">
-      <div class="sectionHeader">
-        <p class="kicker">Unsere Leistungen</p>
-        <h2>Alles, was Ihr Betrieb braucht, um bessere Bewerbungen zu bekommen.</h2>
-        <p>Wir verbinden Strategie, Auftritt, Werbung und Bewerbungsprozess zu einem System, das Mitarbeitersuche planbarer macht.</p>
-      </div>
-
-      <div class="cardsGrid">
-        <div class="serviceCard"><span>01</span><h3>Zielgruppe verstehen</h3><p>Wir analysieren, welche Mitarbeiter Sie suchen, was ihnen wichtig ist und wie Ihr Betrieb für sie relevant wird.</p></div>
-        <div class="serviceCard"><span>02</span><h3>Arbeitgeberauftritt schärfen</h3><p>Wir bringen Ihre Stärken klar auf den Punkt: Team, Arbeitsweise, Vorteile und echte Gründe, warum man bei Ihnen arbeiten sollte.</p></div>
-        <div class="serviceCard"><span>03</span><h3>Social Media Kampagnen</h3><p>Wir schalten gezielte Anzeigen auf Instagram und Facebook, damit Ihr Angebot bei den richtigen Menschen ankommt.</p></div>
-        <div class="serviceCard"><span>04</span><h3>Einfacher Bewerbungsweg</h3><p>Wir erstellen einen klaren Bewerbungsprozess, der Hürden reduziert und Interessenten schneller zu echten Gesprächen bringt.</p></div>
+    <section id="kontakt" class="contact interactive-root">
+      <div class="contact-bg"></div>
+      <div class="container contact-inner reveal">
+        <div class="eyebrow">Kontakt</div>
+        <h2>Moderne Betriebe brauchen moderne Systeme.</h2>
+        <p>Für Handwerks-, Bau- und Industrieunternehmen, die Recruiting und Sichtbarkeit nicht dem Zufall überlassen wollen.</p>
+        <a class="button" href="mailto:studio@tephra.at">Kostenloses Erstgespräch vereinbaren</a>
       </div>
     </section>
-
-    <section class="results">
-      <div class="resultsGrid">
-        <div>
-          <p class="kicker">Was Sie erreichen</p>
-          <h2>Mehr Ruhe in der Mitarbeitersuche.</h2>
-        </div>
-        <div class="resultCards">
-          <div class="resultCard"><h3>Mehr passende Bewerbungen</h3><p>Sie erreichen auch Fachkräfte, die nicht aktiv suchen, aber offen für einen besseren Betrieb sind.</p></div>
-          <div class="resultCard"><h3>Moderner Außenauftritt</h3><p>Ihr Betrieb wirkt professionell, zeitgemäß und attraktiv — ohne seine Bodenständigkeit zu verlieren.</p></div>
-          <div class="resultCard"><h3>Weniger Zeitverlust</h3><p>Interessenten werden klar geführt, vorqualifiziert und schneller zu konkreten Gesprächen gebracht.</p></div>
-          <div class="resultCard"><h3>Planbarere Mitarbeitersuche</h3><p>Sie verlassen sich nicht nur auf Zufall, Empfehlungen oder alte Jobplattformen.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="ablauf" class="section dark">
-      <div class="sectionHeader">
-        <p class="kicker">Ablauf</p>
-        <h2>Klarer Prozess. Keine unnötige Komplexität.</h2>
-      </div>
-
-      <div class="processGrid">
-        <div class="processStep"><span>Schritt 1</span><h3>Betrieb verstehen</h3><p>Wir schauen uns an, wen Sie suchen, was Sie bieten und warum jemand bei Ihnen arbeiten sollte.</p></div>
-        <div class="processStep"><span>Schritt 2</span><h3>Kampagne aufbauen</h3><p>Wir entwickeln Botschaft, Anzeigen, Inhalte und Bewerbungsweg passend zu Ihrer Zielgruppe.</p></div>
-        <div class="processStep"><span>Schritt 3</span><h3>Bewerbungen gewinnen</h3><p>Die Kampagne geht live, wird laufend verbessert und bringt Interessenten in einen einfachen Bewerbungsprozess.</p></div>
-      </div>
-    </section>
-
-    <section id="kontakt" class="cta">
-      <p>Bereit für moderne Mitarbeitersuche?</p>
-      <h2>Machen Sie Ihren Betrieb sichtbar für die richtigen Fachkräfte.</h2>
-      <span>In einem kurzen Gespräch schauen wir uns an, ob Social Recruiting für Ihren Betrieb sinnvoll ist und welche nächsten Schritte sich wirklich lohnen.</span>
-      <a href="mailto:hello@tephrastudios.at">Erstgespräch anfragen</a>
-    </section>
-
-    <footer class="footer">
-      <p>© Tephra Studios</p>
-      <p>Social Recruiting für Elektriker- und Handwerksbetriebe in Österreich</p>
-    </footer>
   </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <a class="logo" href="#top">
+        <span class="logo-main">TEPHRA</span>
+        <span class="logo-sub">STUDIOS</span>
+      </a>
+      <span>Recruiting · Sichtbarkeit · Automationen</span>
+      <a href="mailto:studio@tephra.at">studio@tephra.at</a>
+    </div>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    window.addEventListener('mousemove', (event) => {
+      targetX = event.clientX / window.innerWidth - 0.5;
+      targetY = event.clientY / window.innerHeight - 0.5;
+      root.style.setProperty('--cursor-x', `${event.clientX}px`);
+      root.style.setProperty('--cursor-y', `${event.clientY}px`);
+    });
+
+    function renderMouse() {
+      currentX += (targetX - currentX) * 0.035;
+      currentY += (targetY - currentY) * 0.035;
+
+      document.querySelectorAll('.interactive-root').forEach((el) => {
+        el.style.setProperty('--mx', currentX.toFixed(4));
+        el.style.setProperty('--my', currentY.toFixed(4));
+      });
+
+      requestAnimationFrame(renderMouse);
+    }
+    renderMouse();
+
+    const revealItems = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach((item, index) => {
+      item.style.transitionDelay = `${Math.min(index * 38, 180)}ms`;
+      observer.observe(item);
+    });
+
+    document.querySelectorAll('.wave-card').forEach(card => {
+      card.addEventListener('mousemove', (event) => {
+        const rect = card.getBoundingClientRect();
+        const cx = ((event.clientX - rect.left) / rect.width) * 100;
+        const cy = ((event.clientY - rect.top) / rect.height) * 100;
+        card.style.setProperty('--cx', `${cx}%`);
+        card.style.setProperty('--cy', `${cy}%`);
+      });
+    });
+
+    document.querySelectorAll('.wave-zone').forEach(zone => {
+      const cards = [...zone.children];
+
+      zone.addEventListener('mousemove', (event) => {
+        const rect = zone.getBoundingClientRect();
+        const x = event.clientX - rect.left;
+
+        cards.forEach((card, index) => {
+          const cardRect = card.getBoundingClientRect();
+          const center = cardRect.left - rect.left + cardRect.width / 2;
+          const distance = Math.abs(x - center);
+          const influence = Math.max(0, 1 - distance / 520);
+          const wave = Math.sin((x / 160) + index * .85) * 3.5 * influence;
+          const y = -5 * influence + wave;
+          const scale = 1 + influence * .006;
+
+          card.style.setProperty('--wave-y', `${y}px`);
+          card.style.setProperty('--scale', scale.toFixed(3));
+        });
+      });
+
+      zone.addEventListener('mouseleave', () => {
+        cards.forEach(card => {
+          card.style.setProperty('--wave-y', `0px`);
+          card.style.setProperty('--scale', `1`);
+        });
+      });
+    });
+  </script>
 </body>
 </html>
