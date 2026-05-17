@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tephra Studios | Moderne Systeme für Handwerk</title>
-  <meta name="description" content="Tephra Studios entwickelt moderne Recruiting-, Sichtbarkeits- und Automationssysteme für Handwerk, Bau und Industrie." />
+  <title>Tephra Studios | Moderne Sichtbarkeit für modernes Handwerk</title>
+  <meta name="description" content="Tephra Studios entwickelt Recruiting-, Sichtbarkeits- und Automationssysteme für Handwerks-, Bau- und Industrieunternehmen." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,16 +14,17 @@
     :root {
       --black: #050505;
       --charcoal: #090a08;
-      --panel: #10110d;
-      --panel-2: #151711;
-      --white: #f3eee1;
-      --muted: rgba(243, 238, 225, .67);
-      --soft: rgba(243, 238, 225, .42);
-      --line: rgba(243, 238, 225, .105);
-      --line-strong: rgba(243, 238, 225, .22);
+      --panel: #10110e;
+      --panel-soft: rgba(16, 17, 14, .76);
+      --white: #f3eee2;
+      --muted: rgba(243, 238, 226, .68);
+      --soft: rgba(243, 238, 226, .42);
+      --line: rgba(243, 238, 226, .11);
+      --line-strong: rgba(243, 238, 226, .22);
       --accent: #d7ff00;
-      --warm: #b96340;
-      --radius: 34px;
+      --warm: #b8613e;
+      --radius-xl: 36px;
+      --radius-lg: 26px;
       --ease: cubic-bezier(.16,.84,.28,1);
     }
 
@@ -34,7 +35,7 @@
       min-height: 100vh;
       font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       color: var(--white);
-      background: #050505;
+      background: var(--black);
       overflow-x: hidden;
     }
 
@@ -42,7 +43,7 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: 60;
+      z-index: 80;
       pointer-events: none;
       opacity: .052;
       background-image: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
@@ -54,21 +55,28 @@
       content: "";
       position: fixed;
       inset: 0;
-      z-index: 61;
+      z-index: 81;
       pointer-events: none;
       background:
-        radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(215,255,0,.03), transparent 14%),
-        linear-gradient(90deg, rgba(255,255,255,.025), transparent 16%, transparent 84%, rgba(255,255,255,.018));
+        radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(215,255,0,.026), transparent 15%),
+        linear-gradient(90deg, rgba(255,255,255,.024), transparent 16%, transparent 84%, rgba(255,255,255,.018));
     }
 
     a { color: inherit; text-decoration: none; }
-    .container { width: min(1180px, calc(100% - 44px)); margin: 0 auto; }
+    img { display: block; max-width: 100%; }
+
+    .container {
+      width: min(1180px, calc(100% - 44px));
+      margin: 0 auto;
+    }
 
     .header {
       position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 96px;
-      z-index: 50;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 94px;
+      z-index: 60;
       border-bottom: 1px solid var(--line);
       background: rgba(5,5,5,.72);
       backdrop-filter: blur(22px);
@@ -76,7 +84,7 @@
     }
 
     .nav {
-      height: 96px;
+      height: 94px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -87,9 +95,9 @@
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      line-height: 1;
       text-align: center;
-      filter: drop-shadow(0 0 8px rgba(243,238,225,.12));
+      line-height: 1;
+      filter: drop-shadow(0 0 8px rgba(243,238,226,.12));
     }
 
     .logo-main {
@@ -105,17 +113,16 @@
       font-weight: 700;
       letter-spacing: .92em;
       transform: translateX(.46em);
-      color: rgba(243,238,225,.78);
+      color: rgba(243,238,226,.78);
     }
 
     .nav-links {
       display: flex;
       align-items: center;
-      gap: clamp(28px, 3.3vw, 54px);
+      gap: clamp(24px, 3vw, 48px);
       font-size: 14px;
       font-weight: 650;
-      letter-spacing: .015em;
-      color: rgba(243,238,225,.7);
+      color: rgba(243,238,226,.72);
     }
 
     .nav-links a { position: relative; transition: color .28s ease; }
@@ -124,8 +131,8 @@
       position: absolute;
       left: 0;
       bottom: -13px;
-      height: 1px;
       width: 0;
+      height: 1px;
       background: var(--accent);
       transition: width .55s var(--ease);
     }
@@ -136,41 +143,50 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      gap: 10px;
       border-radius: 999px;
-      padding: 15px 26px;
+      padding: 15px 25px;
       background: var(--white);
       color: #11120e;
       border: 1px solid rgba(255,255,255,.16);
       font-size: 14px;
       font-weight: 800;
-      box-shadow: 0 16px 42px rgba(243,238,225,.075);
-      transition: transform .55s var(--ease), box-shadow .55s var(--ease), background .55s ease;
+      box-shadow: 0 16px 42px rgba(243,238,226,.075);
+      transition: transform .55s var(--ease), box-shadow .55s var(--ease), background .55s ease, border-color .55s ease;
       white-space: nowrap;
     }
-    .button:hover { transform: translateY(-2px); background: #fffdf4; box-shadow: 0 22px 54px rgba(243,238,225,.12); }
-    .button.outline { background: transparent; color: var(--white); border-color: var(--line-strong); box-shadow: none; }
+
+    .button:hover { transform: translateY(-2px); background: #fffdf4; box-shadow: 0 22px 54px rgba(243,238,226,.12); }
+
+    .button.outline {
+      background: transparent;
+      color: var(--white);
+      border-color: var(--line-strong);
+      box-shadow: none;
+    }
     .button.outline:hover { color: var(--accent); border-color: rgba(215,255,0,.42); background: rgba(215,255,0,.025); }
 
     .hero {
       position: relative;
       min-height: 100svh;
-      padding-top: 96px;
+      padding-top: 94px;
       overflow: hidden;
       display: grid;
       place-items: center;
       border-bottom: 1px solid var(--line);
+      background: var(--black);
     }
 
     .hero-bg {
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(90deg, rgba(5,5,5,.96) 0%, rgba(5,5,5,.81) 42%, rgba(5,5,5,.62) 72%, rgba(5,5,5,.93) 100%),
-        linear-gradient(180deg, rgba(5,5,5,.16), rgba(5,5,5,.95)),
-        url("https://images.unsplash.com/photo-1494526585095-c41746248156?auto=format&fit=crop&w=2400&q=88") center/cover no-repeat;
-      filter: grayscale(.2) saturate(.48) contrast(1.08) brightness(.43);
-      transform: translate3d(calc(var(--mx,0) * -8px), calc(var(--my,0) * -6px), 0) scale(1.055);
-      animation: lightStart 3.1s ease-out .08s both;
+        linear-gradient(90deg, rgba(5,5,5,.96) 0%, rgba(5,5,5,.80) 43%, rgba(5,5,5,.56) 75%, rgba(5,5,5,.90) 100%),
+        linear-gradient(180deg, rgba(5,5,5,.15), rgba(5,5,5,.94)),
+        url("https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2400&q=88") center/cover no-repeat;
+      filter: grayscale(.22) saturate(.34) contrast(1.12) brightness(.38);
+      transform: translate3d(calc(var(--mx,0) * -7px), calc(var(--my,0) * -5px), 0) scale(1.055);
+      animation: lightStart 3.2s ease-out .08s both;
     }
 
     .hero-bg::after {
@@ -178,34 +194,76 @@
       position: absolute;
       inset: 0;
       background:
-        linear-gradient(115deg, transparent 0%, transparent 46%, rgba(243,238,225,.08) 51%, transparent 60%),
-        radial-gradient(circle at 70% 24%, rgba(243,238,225,.08), transparent 18%);
-      opacity: .54;
+        linear-gradient(115deg, transparent 0%, transparent 47%, rgba(243,238,226,.07) 51%, transparent 60%),
+        radial-gradient(circle at 78% 35%, rgba(243,238,226,.09), transparent 20%);
+      opacity: .48;
     }
 
     .material-layer {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      opacity: .38;
+      opacity: .42;
       background:
-        radial-gradient(ellipse at calc(55% + var(--mx,0) * 14%) calc(48% + var(--my,0) * 10%), rgba(215,255,0,.032), transparent 26%),
-        repeating-linear-gradient(90deg, rgba(243,238,225,.027) 0, rgba(243,238,225,.027) 1px, transparent 1px, transparent 126px);
+        radial-gradient(ellipse at calc(62% + var(--mx,0) * 13%) calc(47% + var(--my,0) * 10%), rgba(215,255,0,.024), transparent 27%),
+        repeating-linear-gradient(90deg, rgba(243,238,226,.025) 0, rgba(243,238,226,.025) 1px, transparent 1px, transparent 126px),
+        repeating-linear-gradient(0deg, rgba(243,238,226,.014) 0, rgba(243,238,226,.014) 1px, transparent 1px, transparent 126px);
       mask-image: linear-gradient(180deg, transparent, black 18%, black 78%, transparent);
     }
 
+    .industrial-plate {
+      position: relative;
+      min-height: 570px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(5,5,5,.05), rgba(5,5,5,.76)),
+        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1500&q=88") center/cover no-repeat;
+      filter: grayscale(.25) saturate(.34) contrast(1.12) brightness(.62);
+      box-shadow: 0 30px 90px rgba(0,0,0,.34);
+      transform: translate3d(calc(var(--mx,0) * 8px), calc(var(--my,0) * 6px), 0);
+    }
+
+    .industrial-plate::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 72% 25%, rgba(243,238,226,.12), transparent 22%),
+        linear-gradient(115deg, transparent 0%, transparent 42%, rgba(243,238,226,.08) 50%, transparent 61%),
+        repeating-linear-gradient(90deg, rgba(243,238,226,.04) 0, rgba(243,238,226,.04) 1px, transparent 1px, transparent 74px);
+      opacity: .72;
+    }
+
+    .industrial-plate::after {
+      content: "STAHLBETON / SYSTEM / SICHTBARKEIT";
+      position: absolute;
+      left: 30px;
+      bottom: 30px;
+      color: rgba(243,238,226,.52);
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
     @keyframes lightStart {
-      0% { opacity: .18; filter: grayscale(.2) saturate(.35) contrast(1.06) brightness(.12); }
-      9% { opacity: .75; filter: grayscale(.2) saturate(.42) contrast(1.08) brightness(.52); }
-      16% { opacity: .44; filter: grayscale(.2) saturate(.38) contrast(1.08) brightness(.24); }
-      28%, 100% { opacity: 1; filter: grayscale(.2) saturate(.48) contrast(1.08) brightness(.43); }
+      0% { opacity: .18; filter: grayscale(.22) saturate(.26) contrast(1.06) brightness(.12); }
+      9% { opacity: .75; filter: grayscale(.22) saturate(.32) contrast(1.08) brightness(.48); }
+      16% { opacity: .44; filter: grayscale(.22) saturate(.28) contrast(1.08) brightness(.22); }
+      28%, 100% { opacity: 1; filter: grayscale(.22) saturate(.34) contrast(1.12) brightness(.38); }
     }
 
     .hero-inner {
       position: relative;
       z-index: 2;
       width: 100%;
-      padding: 104px 0 90px;
+      padding: 108px 0 90px;
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: clamp(48px, 7vw, 92px);
+      align-items: center;
     }
 
     .eyebrow {
@@ -218,49 +276,32 @@
     }
 
     h1 {
-      font-size: clamp(62px, 10vw, 150px);
-      line-height: .82;
-      letter-spacing: -.083em;
+      font-size: clamp(50px, 6.6vw, 98px);
+      line-height: .92;
+      letter-spacing: -.075em;
       font-weight: 900;
-      max-width: 980px;
+      max-width: 660px;
     }
 
-    .hero h1 span { display: block; }
-
     h2 {
-      font-size: clamp(44px, 6.6vw, 92px);
+      font-size: clamp(42px, 6.2vw, 86px);
       line-height: .9;
       letter-spacing: -.075em;
       font-weight: 900;
     }
 
     .hero-copy {
-      margin-top: 34px;
+      margin-top: 28px;
       max-width: 520px;
       color: var(--muted);
-      font-size: clamp(16px, 1.55vw, 20px);
+      font-size: clamp(16px, 1.45vw, 19px);
       line-height: 1.7;
     }
 
-    .hero-actions { margin-top: 40px; display: flex; gap: 16px; flex-wrap: wrap; }
-
-    .signature {
-      position: absolute;
-      right: 0;
-      bottom: 95px;
-      width: min(360px, 32vw);
-      border-left: 1px solid var(--line-strong);
-      padding-left: 28px;
-      transform: translate3d(calc(var(--mx,0) * 6px), calc(var(--my,0) * 5px), 0);
-      opacity: .88;
-    }
-
-    .signature-line { width: 48px; height: 1px; background: var(--accent); margin-bottom: 34px; }
-    .signature strong { display: block; font-size: 26px; line-height: 1.08; letter-spacing: -.055em; margin-bottom: 16px; }
-    .signature p { color: var(--muted); font-size: 15px; line-height: 1.7; }
+    .hero-actions { margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap; }
 
     section { position: relative; z-index: 2; }
-    .section-pad { padding: 136px 0; }
+    .section-pad { padding: 132px 0; }
 
     .section-head {
       display: grid;
@@ -277,58 +318,120 @@
       max-width: 650px;
     }
 
-    .about {
+    .image-band {
+      position: relative;
+      min-height: 76vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      border-bottom: 1px solid var(--line);
       border-top: 1px solid var(--line);
+    }
+
+    .image-band-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(5,5,5,.2), rgba(5,5,5,.86)),
+        url("https://images.unsplash.com/photo-1607400201515-c2c41c07d307?auto=format&fit=crop&w=2400&q=86") center/cover no-repeat;
+      filter: grayscale(.15) saturate(.48) brightness(.48) contrast(1.08);
+      transform: scale(1.055) translate3d(calc(var(--mx,0) * -6px), calc(var(--my,0) * -5px), 0);
+    }
+
+    .image-band-content {
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      text-align: center;
+      padding: 120px 0;
+    }
+
+    .about {
       border-bottom: 1px solid var(--line);
       background: #080908;
     }
 
-    .about-grid {
+    .about-layout {
       display: grid;
-      grid-template-columns: 1.02fr .98fr;
-      gap: 72px;
+      grid-template-columns: 1.25fr .75fr;
+      gap: clamp(34px, 5vw, 64px);
       align-items: center;
     }
 
-    .text-panel {
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      padding: clamp(34px, 5vw, 62px);
-      background:
-        linear-gradient(135deg, rgba(255,255,255,.035), rgba(255,255,255,.006)),
-        rgba(16,17,13,.76);
-      backdrop-filter: blur(18px);
-      transform: translate3d(0, var(--wave-y, 0px), 0);
+    .founder-text {
+      max-width: 700px;
     }
 
-    .text-panel p {
-      margin-top: 28px;
+    .founder-text p {
       color: var(--muted);
-      font-size: 18px;
-      line-height: 1.82;
+      font-size: clamp(17px, 1.6vw, 20px);
+      line-height: 1.78;
+      margin-top: 26px;
     }
 
-    .photo-panel {
-      min-height: 560px;
+    .founder-mini-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+
+    .founder-mini {
+      position: relative;
+      min-height: 360px;
+      border-radius: var(--radius-lg);
       border: 1px solid var(--line);
-      border-radius: var(--radius);
       overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(5,5,5,.06), rgba(5,5,5,.82)),
-        url("https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1500&q=88") center/cover no-repeat;
-      filter: saturate(.58) contrast(1.08) brightness(.78);
-      transform: translate3d(calc(var(--mx,0) * 8px), calc(var(--my,0) * 7px), 0);
+      background: var(--panel);
+    }
+
+    .founder-mini img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(.72) contrast(1.04) brightness(.72);
+      transform: scale(1.02);
+    }
+
+    .founder-mini::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(5,5,5,.88));
+    }
+
+    .founder-label {
+      position: absolute;
+      left: 20px;
+      right: 20px;
+      bottom: 20px;
+      z-index: 2;
+    }
+
+    .founder-label span {
+      color: var(--accent);
+      display: block;
+      font-size: 10px;
+      font-weight: 900;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .founder-label strong {
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: -.055em;
     }
 
     .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; perspective: 1200px; }
     .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; perspective: 1200px; }
 
     .wave-card {
-      min-height: 350px;
+      min-height: 340px;
       position: relative;
       overflow: hidden;
       border: 1px solid var(--line);
-      border-radius: var(--radius);
+      border-radius: var(--radius-xl);
       padding: 36px;
       background:
         linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.006)),
@@ -342,17 +445,17 @@
       content: "";
       position: absolute;
       inset: -1px;
-      background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(215,255,0,.085), transparent 36%);
+      background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(215,255,0,.075), transparent 36%);
       opacity: 0;
       transition: opacity .55s ease;
     }
 
     .wave-card:hover {
-      border-color: rgba(215,255,0,.25);
+      border-color: rgba(215,255,0,.23);
       background:
-        linear-gradient(145deg, rgba(215,255,0,.024), rgba(255,255,255,.006)),
+        linear-gradient(145deg, rgba(215,255,0,.02), rgba(255,255,255,.006)),
         rgba(17,19,14,.94);
-      box-shadow: 0 26px 74px rgba(0,0,0,.23);
+      box-shadow: 0 24px 70px rgba(0,0,0,.22);
     }
     .wave-card:hover::before { opacity: 1; }
 
@@ -362,23 +465,23 @@
       color: var(--warm);
       font-weight: 900;
       font-size: 18px;
-      margin-bottom: 104px;
+      margin-bottom: 94px;
     }
 
     .big {
       position: relative;
       display: block;
-      font-size: clamp(72px, 7.2vw, 112px);
+      font-size: clamp(70px, 7vw, 108px);
       font-weight: 300;
       line-height: .78;
       letter-spacing: -.08em;
-      margin-bottom: 112px;
-      color: rgba(243,238,225,.9);
+      margin-bottom: 108px;
+      color: rgba(243,238,226,.9);
     }
 
     .wave-card h3 {
       position: relative;
-      font-size: 31px;
+      font-size: 30px;
       line-height: 1.04;
       letter-spacing: -.056em;
       margin-bottom: 20px;
@@ -390,6 +493,34 @@
       font-size: 15px;
       line-height: 1.72;
     }
+
+    .visual-row {
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .visual-tile {
+      min-height: 360px;
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--line);
+      overflow: hidden;
+      background-size: cover;
+      background-position: center;
+      filter: saturate(.58) brightness(.62) contrast(1.08);
+      position: relative;
+    }
+
+    .visual-tile::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(5,5,5,.08), rgba(5,5,5,.72));
+    }
+
+    .visual-1 { background-image: url("https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1400&q=86"); }
+    .visual-2 { background-image: url("https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=86"); }
 
     .process { border-top: 1px solid var(--line); background: #050505; }
     .results { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #080908; }
@@ -405,7 +536,7 @@
       background: rgba(255,255,255,.023);
       transition: transform .75s var(--ease), border-color .55s ease;
     }
-    .metric:hover { transform: translateY(-4px); border-color: rgba(215,255,0,.24); }
+    .metric:hover { transform: translateY(-4px); border-color: rgba(215,255,0,.22); }
     .metric span { display: block; color: var(--accent); font-weight: 900; margin-bottom: 28px; }
     .metric strong { display: block; font-size: 21px; line-height: 1.22; letter-spacing: -.04em; }
 
@@ -436,6 +567,23 @@
     .contact h2 { margin-bottom: 30px; }
     .contact p { max-width: 650px; margin: 0 auto 40px; color: var(--muted); font-size: 20px; line-height: 1.7; }
 
+    .mini-contact {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 55;
+      border: 1px solid var(--line-strong);
+      background: rgba(5,5,5,.72);
+      color: var(--white);
+      backdrop-filter: blur(18px);
+      border-radius: 999px;
+      padding: 13px 18px;
+      font-size: 13px;
+      font-weight: 800;
+      transition: border-color .35s ease, color .35s ease, transform .35s var(--ease);
+    }
+    .mini-contact:hover { border-color: rgba(215,255,0,.42); color: var(--accent); transform: translateY(-2px); }
+
     .footer { border-top: 1px solid var(--line); padding: 38px 0; background: #050505; }
     .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--soft); font-size: 13px; }
     .footer a:not(.logo) { color: var(--accent); }
@@ -447,20 +595,24 @@
       .header, .nav { height: 84px; }
       .nav-links { display: none; }
       .hero { padding-top: 84px; }
-      .hero-inner, .section-head, .about-grid, .results-grid { grid-template-columns: 1fr; }
-      .signature { position: relative; bottom: auto; width: min(440px, 100%); margin-top: 52px; }
+      .hero-inner, .section-head, .results-grid, .visual-row, .about-layout { grid-template-columns: 1fr; }
+      .industrial-plate { min-height: 420px; }
+      .founder-mini-grid { max-width: 620px; }
       .cards-grid, .process-grid { grid-template-columns: 1fr 1fr; }
+      .image-band { min-height: 62vh; }
     }
 
     @media (max-width: 640px) {
       .container { width: min(100% - 30px, 1180px); }
       .section-pad { padding: 88px 0; }
       .button { padding: 12px 18px; font-size: 13px; }
-      h1 { font-size: 56px; }
-      h2 { font-size: 42px; }
-      .cards-grid, .process-grid, .metric-grid { grid-template-columns: 1fr; }
-      .photo-panel { min-height: 360px; }
+      h1 { font-size: 44px; line-height: .95; }
+      h2 { font-size: 40px; }
+      .industrial-plate { min-height: 340px; }
+      .founder-mini-grid, .cards-grid, .process-grid, .metric-grid { grid-template-columns: 1fr; }
+      .founder-mini, .visual-tile { min-height: 350px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
+      .mini-contact { display: none; }
     }
   </style>
 </head>
@@ -476,6 +628,7 @@
         <a href="#wer-wir-sind">Wer wir sind</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#ablauf">Ablauf</a>
+        <a href="#ergebnisse">Ergebnisse</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
 
@@ -490,35 +643,44 @@
       <div class="container hero-inner">
         <div class="reveal">
           <div class="eyebrow">Für Handwerk, Bau & Industrie</div>
-          <h1>
-            <span>Moderne</span>
-            <span>Mitarbeiter-</span>
-            <span>gewinnung</span>
-            <span>für Handwerk.</span>
-          </h1>
-          <p class="hero-copy">Sichtbarkeit, Systeme und digitale Abläufe für Betriebe, die nicht mehr vom Zufall abhängig sein wollen.</p>
+          <h1>Moderne Sichtbarkeit für modernes Handwerk.</h1>
+          <p class="hero-copy">Tephra Studios entwickelt Recruiting-, Sichtbarkeits- und Automationssysteme für Betriebe, die nicht mehr vom Zufall abhängig sein wollen.</p>
           <div class="hero-actions">
             <a class="button" href="#kontakt">Kostenloses Erstgespräch</a>
             <a class="button outline" href="#leistungen">Leistungen ansehen</a>
           </div>
         </div>
 
-        <aside class="signature reveal">
-          <div class="signature-line"></div>
-          <strong>Sichtbarkeit. Systeme. Mitarbeiter.</strong>
-          <p>Ruhige, klare Prozesse für modernes Handwerk.</p>
-        </aside>
+        <div class="industrial-plate reveal" aria-label="Subtile Stahlbeton- und Industrieästhetik"></div>
+      </div>
+    </section>
+
+    <section class="image-band interactive-root">
+      <div class="image-band-bg"></div>
+      <div class="container image-band-content reveal">
+        <div class="eyebrow">Tephra Prinzip</div>
+        <h2>Moderne Betriebe entstehen nicht durch Zufall.</h2>
       </div>
     </section>
 
     <section id="wer-wir-sind" class="about section-pad interactive-root">
-      <div class="container about-grid">
-        <div class="text-panel reveal">
+      <div class="container about-layout">
+        <div class="founder-text reveal">
           <div class="eyebrow">Wer wir sind</div>
           <h2>Handwerk verstehen. Systeme bauen.</h2>
-          <p>Tephra Studios verbindet Branchenverständnis, moderne Kommunikation und digitale Struktur. Für Betriebe, die sichtbar werden und Prozesse einfacher machen wollen.</p>
+          <p>Peter bringt direkten Bezug zur Elektrikerbranche mit. Tina kennt als Architektin die Zusammenarbeit mit Handwerk und Bau aus der Praxis. Daraus entsteht ein Studio, das moderne Systeme mit echter Nähe zur Branche verbindet.</p>
         </div>
-        <div class="photo-panel reveal" aria-label="Industrielle Arbeitsumgebung"></div>
+
+        <div class="founder-mini-grid reveal">
+          <figure class="founder-mini">
+            <img src="tina.jpg" alt="Tina Jurcic von Tephra Studios">
+            <figcaption class="founder-label"><span>Strategie & Kommunikation</span><strong>Tina Jurcic</strong></figcaption>
+          </figure>
+          <figure class="founder-mini">
+            <img src="peter.jpg" alt="Peter Strbac von Tephra Studios">
+            <figcaption class="founder-label"><span>Recruiting & Systeme</span><strong>Peter Strbac</strong></figcaption>
+          </figure>
+        </div>
       </div>
     </section>
 
@@ -529,25 +691,30 @@
             <div class="eyebrow">Leistungen</div>
             <h2>Klare Systeme statt lauter Versprechen.</h2>
           </div>
-          <p class="lead">Weniger Komplexität. Mehr Struktur. Ein Auftritt, der zu modernen Betrieben passt.</p>
+          <p class="lead">Wir bauen digitale Strukturen, die sichtbar, verständlich und im Alltag nutzbar werden.</p>
         </div>
 
         <div class="cards-grid wave-zone">
           <article class="wave-card reveal">
             <span class="num">01</span>
             <h3>Mitarbeitergewinnung</h3>
-            <p>Social Recruiting und Bewerberstrecken für passende Anfragen.</p>
+            <p>Social Recruiting, Bewerberstrecken und Arbeitgeberauftritt für passende Anfragen.</p>
           </article>
           <article class="wave-card reveal">
             <span class="num">02</span>
             <h3>Sichtbarkeit</h3>
-            <p>Ein moderner Arbeitgeberauftritt, der Vertrauen aufbaut.</p>
+            <p>Ein moderner Außenauftritt, der Vertrauen schafft und professionell positioniert.</p>
           </article>
           <article class="wave-card reveal">
             <span class="num">03</span>
             <h3>Automationen</h3>
-            <p>Digitale Abläufe, die strukturieren und Zeit sparen.</p>
+            <p>Digitale Abläufe, die Anfragen strukturieren, Zeit sparen und Prozesse vereinfachen.</p>
           </article>
+        </div>
+
+        <div class="visual-row reveal">
+          <div class="visual-tile visual-1" aria-label="Technische Arbeitsumgebung"></div>
+          <div class="visual-tile visual-2" aria-label="Industrie und Handwerk"></div>
         </div>
       </div>
     </section>
@@ -559,42 +726,42 @@
             <div class="eyebrow">Ablauf</div>
             <h2>Von Aufmerksamkeit zu echten Gesprächen.</h2>
           </div>
-          <p class="lead">Verstehen. Schärfen. Umsetzen. Verbessern.</p>
+          <p class="lead">Verstehen. Positionieren. Umsetzen. Verbessern.</p>
         </div>
 
         <div class="process-grid wave-zone">
           <article class="wave-card reveal">
             <span class="big">01</span>
-            <h3>Zielgruppe verstehen</h3>
-            <p>Wir analysieren, wen Ihr Betrieb wirklich erreichen muss.</p>
+            <h3>Verstehen</h3>
+            <p>Wir analysieren Zielgruppe, Betrieb und aktuelle Situation.</p>
           </article>
           <article class="wave-card reveal">
             <span class="big">02</span>
-            <h3>Auftritt schärfen</h3>
-            <p>Ihre Stärken werden klar sichtbar.</p>
+            <h3>Positionieren</h3>
+            <p>Wir schärfen Arbeitgeberauftritt, Angebot und Kommunikation.</p>
           </article>
           <article class="wave-card reveal">
             <span class="big">03</span>
-            <h3>System starten</h3>
-            <p>Kampagnen, Seiten und Abläufe gehen live.</p>
+            <h3>Umsetzen</h3>
+            <p>Wir bauen Kampagnen, Seiten, Bewerberstrecken und Automationen.</p>
           </article>
           <article class="wave-card reveal">
             <span class="big">04</span>
-            <h3>Optimieren</h3>
-            <p>Daten und Feedback machen das System stärker.</p>
+            <h3>Verbessern</h3>
+            <p>Daten, Rückmeldungen und Ergebnisse machen das System stärker.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="results section-pad interactive-root">
+    <section id="ergebnisse" class="results section-pad interactive-root">
       <div class="container results-grid">
         <div class="reveal">
           <div class="eyebrow">Ergebnisse</div>
           <h2>Mehr Klarheit. Mehr Sichtbarkeit. Mehr passende Anfragen.</h2>
         </div>
         <div class="metric-grid">
-          <div class="metric reveal"><span>01</span><strong>Planbarer Bewerberzufluss</strong></div>
+          <div class="metric reveal"><span>01</span><strong>Mehr passende Anfragen</strong></div>
           <div class="metric reveal"><span>02</span><strong>Moderner Arbeitgeberauftritt</strong></div>
           <div class="metric reveal"><span>03</span><strong>Weniger manuelle Arbeit</strong></div>
           <div class="metric reveal"><span>04</span><strong>Klarere digitale Prozesse</strong></div>
@@ -606,12 +773,14 @@
       <div class="contact-bg"></div>
       <div class="container contact-inner reveal">
         <div class="eyebrow">Kontakt</div>
-        <h2>Moderne Betriebe brauchen moderne Systeme.</h2>
-        <p>Für Handwerks-, Bau- und Industrieunternehmen, die Recruiting und Sichtbarkeit nicht dem Zufall überlassen wollen.</p>
+        <h2>Wer sichtbar ist, gewinnt Vertrauen.</h2>
+        <p>Für Handwerks-, Bau- und Industrieunternehmen, die Recruiting, Sichtbarkeit und Automationen nicht dem Zufall überlassen wollen.</p>
         <a class="button" href="mailto:studio@tephra.at">Kostenloses Erstgespräch vereinbaren</a>
       </div>
     </section>
   </main>
+
+  <a href="mailto:studio@tephra.at" class="mini-contact">Kontakt</a>
 
   <footer class="footer">
     <div class="container footer-inner">
@@ -639,14 +808,12 @@
     });
 
     function renderMouse() {
-      currentX += (targetX - currentX) * 0.035;
-      currentY += (targetY - currentY) * 0.035;
-
+      currentX += (targetX - currentX) * 0.032;
+      currentY += (targetY - currentY) * 0.032;
       document.querySelectorAll('.interactive-root').forEach((el) => {
         el.style.setProperty('--mx', currentX.toFixed(4));
         el.style.setProperty('--my', currentY.toFixed(4));
       });
-
       requestAnimationFrame(renderMouse);
     }
     renderMouse();
@@ -662,7 +829,7 @@
     }, { threshold: 0.12 });
 
     revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index * 38, 180)}ms`;
+      item.style.transitionDelay = `${Math.min(index * 36, 170)}ms`;
       observer.observe(item);
     });
 
@@ -678,25 +845,21 @@
 
     document.querySelectorAll('.wave-zone').forEach(zone => {
       const cards = [...zone.children];
-
       zone.addEventListener('mousemove', (event) => {
         const rect = zone.getBoundingClientRect();
         const x = event.clientX - rect.left;
-
         cards.forEach((card, index) => {
           const cardRect = card.getBoundingClientRect();
           const center = cardRect.left - rect.left + cardRect.width / 2;
           const distance = Math.abs(x - center);
-          const influence = Math.max(0, 1 - distance / 520);
-          const wave = Math.sin((x / 160) + index * .85) * 3.5 * influence;
-          const y = -5 * influence + wave;
-          const scale = 1 + influence * .006;
-
+          const influence = Math.max(0, 1 - distance / 540);
+          const wave = Math.sin((x / 170) + index * .82) * 3.2 * influence;
+          const y = -4.5 * influence + wave;
+          const scale = 1 + influence * .005;
           card.style.setProperty('--wave-y', `${y}px`);
           card.style.setProperty('--scale', scale.toFixed(3));
         });
       });
-
       zone.addEventListener('mouseleave', () => {
         cards.forEach(card => {
           card.style.setProperty('--wave-y', `0px`);
