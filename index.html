@@ -3,627 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tephra Studios | Moderne Sichtbarkeit für modernes Handwerk</title>
-  <meta name="description" content="Tephra Studios entwickelt Recruiting-, Sichtbarkeits- und Automationssysteme für Handwerks-, Bau- und Industrieunternehmen." />
+  <title>Tephra Studios | Sichtbarkeit. Systeme. Mitarbeiter.</title>
+  <meta name="description" content="Tephra Studios entwickelt Sichtbarkeits-, Recruiting- und Bewerberprozess-Systeme für Handwerks-, Bau- und Industrieunternehmen." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --black: #050505;
-      --charcoal: #090a08;
-      --panel: #10110e;
-      --panel-soft: rgba(16, 17, 14, .76);
-      --white: #f3eee2;
-      --muted: rgba(243, 238, 226, .68);
-      --soft: rgba(243, 238, 226, .42);
-      --line: rgba(243, 238, 226, .11);
-      --line-strong: rgba(243, 238, 226, .22);
-      --accent: #d7ff00;
-      --warm: #b8613e;
-      --radius-xl: 36px;
-      --radius-lg: 26px;
-      --ease: cubic-bezier(.16,.84,.28,1);
+    :root{
+      --black:#050505;
+      --deep:#080908;
+      --panel:#10110e;
+      --panel2:#151611;
+      --white:#f3eee2;
+      --muted:rgba(243,238,226,.68);
+      --soft:rgba(243,238,226,.44);
+      --line:rgba(243,238,226,.11);
+      --line2:rgba(243,238,226,.22);
+      --accent:#d7ff00;
+      --warm:#b8613e;
+      --radius:34px;
+      --ease:cubic-bezier(.16,.84,.28,1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; background: var(--black); }
-
-    body {
-      min-height: 100vh;
-      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      color: var(--white);
-      background: var(--black);
-      overflow-x: hidden;
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;background:var(--black)}
+    body{
+      min-height:100vh;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--black);
+      color:var(--white);
+      overflow-x:hidden;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 80;
-      pointer-events: none;
-      opacity: .052;
-      background-image: radial-gradient(circle at 1px 1px, #fff 1px, transparent 0);
-      background-size: 24px 24px;
-      mix-blend-mode: screen;
+    body::before{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:90;
+      pointer-events:none;
+      opacity:.052;
+      background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);
+      background-size:24px 24px;
+      mix-blend-mode:screen;
     }
 
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 81;
-      pointer-events: none;
+    body::after{
+      content:"";
+      position:fixed;
+      inset:0;
+      z-index:91;
+      pointer-events:none;
+      background:radial-gradient(circle at var(--cursor-x,50%) var(--cursor-y,50%),rgba(215,255,0,.026),transparent 15%);
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .container{width:min(1180px,calc(100% - 44px));margin:0 auto}
+
+    .header{
+      position:fixed;
+      top:0;left:0;right:0;
+      height:94px;
+      z-index:70;
+      border-bottom:1px solid var(--line);
+      background:rgba(5,5,5,.72);
+      backdrop-filter:blur(22px);
+      -webkit-backdrop-filter:blur(22px);
+    }
+
+    .nav{height:94px;display:flex;align-items:center;justify-content:space-between;gap:34px}
+
+    .logo{display:inline-flex;flex-direction:column;align-items:center;text-align:center;line-height:1;filter:drop-shadow(0 0 8px rgba(243,238,226,.12))}
+    .logo-main{font-size:clamp(21px,2vw,32px);font-weight:500;letter-spacing:.28em;transform:translateX(.14em)}
+    .logo-sub{margin-top:7px;font-size:clamp(7px,.72vw,10px);font-weight:700;letter-spacing:.92em;transform:translateX(.46em);color:rgba(243,238,226,.78)}
+
+    .nav-links{display:flex;align-items:center;gap:clamp(24px,3vw,48px);font-size:14px;font-weight:650;color:rgba(243,238,226,.72)}
+    .nav-links a{position:relative;transition:color .28s ease}
+    .nav-links a::after{content:"";position:absolute;left:0;bottom:-13px;width:0;height:1px;background:var(--accent);transition:width .55s var(--ease)}
+    .nav-links a:hover{color:var(--white)}
+    .nav-links a:hover::after{width:100%}
+
+    .button{
+      display:inline-flex;align-items:center;justify-content:center;
+      border-radius:999px;padding:15px 25px;
+      background:var(--white);color:#11120e;
+      border:1px solid rgba(255,255,255,.16);
+      font-size:14px;font-weight:800;white-space:nowrap;
+      box-shadow:0 16px 42px rgba(243,238,226,.075);
+      transition:transform .55s var(--ease),box-shadow .55s var(--ease),background .55s ease,border-color .55s ease;
+    }
+    .button:hover{transform:translateY(-2px);background:#fffdf4;box-shadow:0 22px 54px rgba(243,238,226,.12)}
+
+    .hero{
+      min-height:100svh;
+      position:relative;
+      padding-top:94px;
+      display:grid;
+      place-items:center;
+      overflow:hidden;
+      border-bottom:1px solid var(--line);
+      background:var(--black);
+    }
+
+    .hero-bg{
+      position:absolute;inset:0;
       background:
-        radial-gradient(circle at var(--cursor-x, 50%) var(--cursor-y, 50%), rgba(215,255,0,.026), transparent 15%),
-        linear-gradient(90deg, rgba(255,255,255,.024), transparent 16%, transparent 84%, rgba(255,255,255,.018));
+        linear-gradient(90deg,rgba(5,5,5,.96) 0%,rgba(5,5,5,.72) 42%,rgba(5,5,5,.32) 78%,rgba(5,5,5,.62) 100%),
+        linear-gradient(180deg,rgba(5,5,5,.06),rgba(5,5,5,.93)),
+        url("wand.png") center/cover no-repeat;
+      filter:grayscale(.04) saturate(.42) contrast(1.12) brightness(.56);
+      transform:translate3d(calc(var(--mx,0) * -8px),calc(var(--my,0) * -5px),0) scale(1.045);
     }
 
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; }
-
-    .container {
-      width: min(1180px, calc(100% - 44px));
-      margin: 0 auto;
-    }
-
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 94px;
-      z-index: 60;
-      border-bottom: 1px solid var(--line);
-      background: rgba(5,5,5,.72);
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-    }
-
-    .nav {
-      height: 94px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 34px;
-    }
-
-    .logo {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      line-height: 1;
-      filter: drop-shadow(0 0 8px rgba(243,238,226,.12));
-    }
-
-    .logo-main {
-      font-size: clamp(21px, 2vw, 32px);
-      font-weight: 500;
-      letter-spacing: .28em;
-      transform: translateX(.14em);
-    }
-
-    .logo-sub {
-      margin-top: 7px;
-      font-size: clamp(7px, .72vw, 10px);
-      font-weight: 700;
-      letter-spacing: .92em;
-      transform: translateX(.46em);
-      color: rgba(243,238,226,.78);
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: clamp(24px, 3vw, 48px);
-      font-size: 14px;
-      font-weight: 650;
-      color: rgba(243,238,226,.72);
-    }
-
-    .nav-links a { position: relative; transition: color .28s ease; }
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -13px;
-      width: 0;
-      height: 1px;
-      background: var(--accent);
-      transition: width .55s var(--ease);
-    }
-    .nav-links a:hover { color: var(--white); }
-    .nav-links a:hover::after { width: 100%; }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border-radius: 999px;
-      padding: 15px 25px;
-      background: var(--white);
-      color: #11120e;
-      border: 1px solid rgba(255,255,255,.16);
-      font-size: 14px;
-      font-weight: 800;
-      box-shadow: 0 16px 42px rgba(243,238,226,.075);
-      transition: transform .55s var(--ease), box-shadow .55s var(--ease), background .55s ease, border-color .55s ease;
-      white-space: nowrap;
-    }
-
-    .button:hover { transform: translateY(-2px); background: #fffdf4; box-shadow: 0 22px 54px rgba(243,238,226,.12); }
-
-    .button.outline {
-      background: transparent;
-      color: var(--white);
-      border-color: var(--line-strong);
-      box-shadow: none;
-    }
-    .button.outline:hover { color: var(--accent); border-color: rgba(215,255,0,.42); background: rgba(215,255,0,.025); }
-
-    .hero {
-      position: relative;
-      min-height: 100svh;
-      padding-top: 94px;
-      overflow: hidden;
-      display: grid;
-      place-items: center;
-      border-bottom: 1px solid var(--line);
-      background: var(--black);
-    }
-
-    .hero-bg {
-      position: absolute;
-      inset: 0;
+    .hero-light{
+      position:absolute;inset:0;pointer-events:none;
       background:
-        linear-gradient(90deg, rgba(5,5,5,.96) 0%, rgba(5,5,5,.80) 43%, rgba(5,5,5,.56) 75%, rgba(5,5,5,.90) 100%),
-        linear-gradient(180deg, rgba(5,5,5,.15), rgba(5,5,5,.94)),
-        url("https://images.unsplash.com/photo-1487958449943-2429e8be8625?auto=format&fit=crop&w=2400&q=88") center/cover no-repeat;
-      filter: grayscale(.22) saturate(.34) contrast(1.12) brightness(.38);
-      transform: translate3d(calc(var(--mx,0) * -7px), calc(var(--my,0) * -5px), 0) scale(1.055);
-      animation: lightStart 3.2s ease-out .08s both;
+        linear-gradient(112deg,transparent 0%,transparent 49%,rgba(243,238,226,.075) 54%,transparent 63%),
+        radial-gradient(circle at 78% 34%,rgba(243,238,226,.11),transparent 20%);
+      mix-blend-mode:screen;
+      opacity:.5;
+      animation:slowFlicker 7.5s ease-in-out infinite;
     }
 
-    .hero-bg::after {
-      content: "";
-      position: absolute;
-      inset: 0;
+    @keyframes slowFlicker{
+      0%,100%{opacity:.43;filter:brightness(1)}
+      18%{opacity:.52;filter:brightness(1.06)}
+      31%{opacity:.39;filter:brightness(.96)}
+      53%{opacity:.56;filter:brightness(1.08)}
+      72%{opacity:.46;filter:brightness(1.01)}
+    }
+
+    .material-grid{
+      position:absolute;inset:0;opacity:.23;pointer-events:none;
       background:
-        linear-gradient(115deg, transparent 0%, transparent 47%, rgba(243,238,226,.07) 51%, transparent 60%),
-        radial-gradient(circle at 78% 35%, rgba(243,238,226,.09), transparent 20%);
-      opacity: .48;
+        repeating-linear-gradient(90deg,rgba(243,238,226,.025) 0,rgba(243,238,226,.025) 1px,transparent 1px,transparent 128px),
+        repeating-linear-gradient(0deg,rgba(243,238,226,.014) 0,rgba(243,238,226,.014) 1px,transparent 1px,transparent 128px);
+      mask-image:linear-gradient(180deg,transparent,black 18%,black 78%,transparent);
     }
 
-    .material-layer {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      opacity: .42;
-      background:
-        radial-gradient(ellipse at calc(62% + var(--mx,0) * 13%) calc(47% + var(--my,0) * 10%), rgba(215,255,0,.024), transparent 27%),
-        repeating-linear-gradient(90deg, rgba(243,238,226,.025) 0, rgba(243,238,226,.025) 1px, transparent 1px, transparent 126px),
-        repeating-linear-gradient(0deg, rgba(243,238,226,.014) 0, rgba(243,238,226,.014) 1px, transparent 1px, transparent 126px);
-      mask-image: linear-gradient(180deg, transparent, black 18%, black 78%, transparent);
-    }
+    .hero-inner{position:relative;z-index:2;width:100%;padding:108px 0 92px}
+    .eyebrow{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:900;margin-bottom:26px}
+    h1{font-size:clamp(52px,6.5vw,100px);line-height:.94;letter-spacing:-.072em;font-weight:900;max-width:740px}
+    h2{font-size:clamp(42px,6vw,84px);line-height:.9;letter-spacing:-.075em;font-weight:900}
+    .hero-copy{margin-top:30px;max-width:620px;color:var(--muted);font-size:clamp(16px,1.45vw,19px);line-height:1.72}
 
-    .industrial-plate {
-      position: relative;
-      min-height: 570px;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background:
-        linear-gradient(180deg, rgba(5,5,5,.05), rgba(5,5,5,.76)),
-        url("https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=1500&q=88") center/cover no-repeat;
-      filter: grayscale(.25) saturate(.34) contrast(1.12) brightness(.62);
-      box-shadow: 0 30px 90px rgba(0,0,0,.34);
-      transform: translate3d(calc(var(--mx,0) * 8px), calc(var(--my,0) * 6px), 0);
-    }
+    section{position:relative;z-index:2}.section-pad{padding:132px 0}
+    .section-head{display:grid;grid-template-columns:.95fr 1.05fr;gap:80px;align-items:end;margin-bottom:62px}
+    .lead{color:var(--muted);font-size:clamp(17px,1.75vw,21px);line-height:1.7;max-width:680px}
 
-    .industrial-plate::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 72% 25%, rgba(243,238,226,.12), transparent 22%),
-        linear-gradient(115deg, transparent 0%, transparent 42%, rgba(243,238,226,.08) 50%, transparent 61%),
-        repeating-linear-gradient(90deg, rgba(243,238,226,.04) 0, rgba(243,238,226,.04) 1px, transparent 1px, transparent 74px);
-      opacity: .72;
-    }
+    .pain{background:#080908;border-bottom:1px solid var(--line)}
+    .pain-layout{display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:start}
+    .pain-statement{border-left:1px solid var(--line2);padding-left:32px}
+    .pain-statement h2{max-width:640px}
+    .pain-statement p{margin-top:28px;color:var(--muted);font-size:19px;line-height:1.75;max-width:600px}
+    .pain-list{display:grid;gap:14px}
+    .pain-row{border-bottom:1px solid var(--line);padding:26px 0;display:grid;grid-template-columns:62px 1fr;gap:24px}
+    .pain-row span{color:var(--accent);font-weight:900}.pain-row strong{display:block;font-size:26px;line-height:1.13;letter-spacing:-.055em;margin-bottom:12px}.pain-row p{color:var(--muted);font-size:15px;line-height:1.65}
 
-    .industrial-plate::after {
-      content: "STAHLBETON / SYSTEM / SICHTBARKEIT";
-      position: absolute;
-      left: 30px;
-      bottom: 30px;
-      color: rgba(243,238,226,.52);
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
+    .about{background:var(--black);border-bottom:1px solid var(--line)}
+    .about-layout{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(34px,5vw,64px);align-items:center}
+    .founder-text p{color:var(--muted);font-size:clamp(17px,1.6vw,20px);line-height:1.78;margin-top:26px;max-width:760px}
+    .founder-note{margin-top:34px;border-left:1px solid var(--line2);padding-left:24px;max-width:620px;color:rgba(243,238,226,.8);font-size:16px;line-height:1.7}
+    .founder-mini-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .founder-mini{position:relative;min-height:330px;border-radius:26px;border:1px solid var(--line);overflow:hidden;background:var(--panel)}
+    .founder-mini img{width:100%;height:100%;object-fit:cover;filter:saturate(.72) contrast(1.04) brightness(.72);transform:scale(1.02)}
+    .founder-mini::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 28%,rgba(5,5,5,.88))}
+    .founder-label{position:absolute;left:20px;right:20px;bottom:20px;z-index:2}.founder-label span{color:var(--accent);display:block;font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}.founder-label strong{font-size:24px;line-height:1;letter-spacing:-.055em}
 
-    @keyframes lightStart {
-      0% { opacity: .18; filter: grayscale(.22) saturate(.26) contrast(1.06) brightness(.12); }
-      9% { opacity: .75; filter: grayscale(.22) saturate(.32) contrast(1.08) brightness(.48); }
-      16% { opacity: .44; filter: grayscale(.22) saturate(.28) contrast(1.08) brightness(.22); }
-      28%, 100% { opacity: 1; filter: grayscale(.22) saturate(.34) contrast(1.12) brightness(.38); }
-    }
+    .services{background:#080908}
+    .service-layout{display:grid;grid-template-columns:.78fr 1.22fr;gap:54px;align-items:stretch}
+    .service-visual{min-height:640px;border-radius:var(--radius);border:1px solid var(--line);overflow:hidden;position:relative;background:linear-gradient(180deg,rgba(5,5,5,.08),rgba(5,5,5,.86)),url("https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1400&q=86") center/cover no-repeat;filter:saturate(.5) brightness(.62) contrast(1.08)}
+    .service-visual::after{content:"SYSTEM / SICHTBARKEIT / PROZESS";position:absolute;left:28px;bottom:28px;font-size:11px;letter-spacing:.16em;font-weight:900;color:rgba(243,238,226,.52)}
+    .service-system{display:grid;grid-template-columns:1fr;gap:16px;align-content:center}.system-line{border:1px solid var(--line);border-radius:28px;padding:28px 30px;background:linear-gradient(135deg,rgba(255,255,255,.028),rgba(255,255,255,.006));transition:transform .55s var(--ease),border-color .55s ease}.system-line:hover{transform:translateX(8px);border-color:rgba(215,255,0,.32)}.system-line small{color:var(--accent);font-weight:900;letter-spacing:.12em}.system-line h3{font-size:30px;line-height:1;letter-spacing:-.055em;margin:18px 0 14px}.system-line p{color:var(--muted);font-size:15px;line-height:1.68}
 
-    .hero-inner {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      padding: 108px 0 90px;
-      display: grid;
-      grid-template-columns: .9fr 1.1fr;
-      gap: clamp(48px, 7vw, 92px);
-      align-items: center;
-    }
+    .process{background:var(--black);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .process-map{position:relative;margin-top:70px;padding:30px 0}.process-map::before{content:"";position:absolute;left:0;right:0;top:84px;height:1px;background:var(--line2)}.process-map::after{content:"";position:absolute;left:0;top:84px;height:1px;width:0;background:var(--accent);animation:lineMove 5.5s ease-in-out infinite}@keyframes lineMove{0%{width:0;opacity:.45}55%{width:100%;opacity:.9}100%{width:100%;opacity:.35}}
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:34px}.process-step{position:relative;padding-top:88px}.process-step::before{content:"";position:absolute;top:48px;left:0;width:13px;height:13px;border:1px solid var(--accent);border-radius:50%;background:#050505;z-index:2}.process-icon{width:42px;height:42px;margin-bottom:28px;color:var(--white);opacity:.86}.process-step span{display:block;color:var(--accent);font-size:14px;font-weight:900;margin-bottom:18px}.process-step strong{display:block;font-size:18px;text-transform:uppercase;letter-spacing:-.02em;margin-bottom:12px}.process-step p{color:var(--muted);font-size:14px;line-height:1.6;max-width:230px}
 
-    .eyebrow {
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: .14em;
-      font-size: 12px;
-      font-weight: 900;
-      margin-bottom: 26px;
-    }
+    .results{background:#080908;overflow:hidden}.impact-layout{display:grid;grid-template-columns:.92fr 1.08fr;gap:68px;align-items:center}.impact-copy p{margin-top:28px;color:var(--muted);font-size:19px;line-height:1.76;max-width:620px}.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.impact-card{min-height:190px;border:1px solid var(--line);border-radius:28px;padding:28px;background:rgba(255,255,255,.022)}.impact-card span{display:block;color:var(--accent);font-weight:900;margin-bottom:36px}.impact-card strong{display:block;font-size:24px;line-height:1.14;letter-spacing:-.05em;margin-bottom:14px}.impact-card p{color:var(--muted);font-size:14px;line-height:1.6}.review-strip{margin-top:52px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:30px 0;display:grid;grid-template-columns:.35fr 1fr;gap:34px;color:var(--muted)}.review-strip strong{color:var(--accent);font-size:12px;letter-spacing:.14em;text-transform:uppercase}.review-strip blockquote{font-size:24px;line-height:1.25;letter-spacing:-.045em;color:var(--white)}
 
-    h1 {
-      font-size: clamp(50px, 6.6vw, 98px);
-      line-height: .92;
-      letter-spacing: -.075em;
-      font-weight: 900;
-      max-width: 660px;
-    }
+    .contact{min-height:86vh;display:grid;place-items:center;overflow:hidden;background:#050505}.contact-inner{text-align:center;max-width:960px;padding:130px 0}.contact h2{margin-bottom:30px}.contact p{max-width:720px;margin:0 auto 40px;color:var(--muted);font-size:20px;line-height:1.7}.contact-meta{margin-top:40px;display:flex;justify-content:center;gap:34px;flex-wrap:wrap;color:var(--soft);font-size:14px}.contact-meta a{color:var(--white)}
 
-    h2 {
-      font-size: clamp(42px, 6.2vw, 86px);
-      line-height: .9;
-      letter-spacing: -.075em;
-      font-weight: 900;
-    }
+    .mini-contact{position:fixed;right:22px;bottom:22px;z-index:65;border:1px solid var(--line2);background:rgba(5,5,5,.72);color:var(--white);backdrop-filter:blur(18px);border-radius:999px;padding:13px 18px;font-size:13px;font-weight:800;transition:border-color .35s ease,color .35s ease,transform .35s var(--ease)}.mini-contact:hover{border-color:rgba(215,255,0,.42);color:var(--accent);transform:translateY(-2px)}
+    .footer{border-top:1px solid var(--line);padding:38px 0;background:#050505}.footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--soft);font-size:13px}.footer a:not(.logo){color:var(--accent)}
+    .reveal{opacity:0;transform:translateY(24px);transition:opacity 1s var(--ease),transform 1s var(--ease)}.reveal.visible{opacity:1;transform:translateY(0)}
 
-    .hero-copy {
-      margin-top: 28px;
-      max-width: 520px;
-      color: var(--muted);
-      font-size: clamp(16px, 1.45vw, 19px);
-      line-height: 1.7;
-    }
-
-    .hero-actions { margin-top: 36px; display: flex; gap: 16px; flex-wrap: wrap; }
-
-    section { position: relative; z-index: 2; }
-    .section-pad { padding: 132px 0; }
-
-    .section-head {
-      display: grid;
-      grid-template-columns: .95fr 1.05fr;
-      gap: 80px;
-      align-items: end;
-      margin-bottom: 62px;
-    }
-
-    .lead {
-      color: var(--muted);
-      font-size: clamp(17px, 1.75vw, 21px);
-      line-height: 1.7;
-      max-width: 650px;
-    }
-
-    .image-band {
-      position: relative;
-      min-height: 76vh;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      border-bottom: 1px solid var(--line);
-      border-top: 1px solid var(--line);
-    }
-
-    .image-band-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(5,5,5,.2), rgba(5,5,5,.86)),
-        url("https://images.unsplash.com/photo-1607400201515-c2c41c07d307?auto=format&fit=crop&w=2400&q=86") center/cover no-repeat;
-      filter: grayscale(.15) saturate(.48) brightness(.48) contrast(1.08);
-      transform: scale(1.055) translate3d(calc(var(--mx,0) * -6px), calc(var(--my,0) * -5px), 0);
-    }
-
-    .image-band-content {
-      position: relative;
-      z-index: 2;
-      max-width: 960px;
-      text-align: center;
-      padding: 120px 0;
-    }
-
-    .about {
-      border-bottom: 1px solid var(--line);
-      background: #080908;
-    }
-
-    .about-layout {
-      display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: clamp(34px, 5vw, 64px);
-      align-items: center;
-    }
-
-    .founder-text {
-      max-width: 700px;
-    }
-
-    .founder-text p {
-      color: var(--muted);
-      font-size: clamp(17px, 1.6vw, 20px);
-      line-height: 1.78;
-      margin-top: 26px;
-    }
-
-    .founder-mini-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .founder-mini {
-      position: relative;
-      min-height: 360px;
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background: var(--panel);
-    }
-
-    .founder-mini img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: saturate(.72) contrast(1.04) brightness(.72);
-      transform: scale(1.02);
-    }
-
-    .founder-mini::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 30%, rgba(5,5,5,.88));
-    }
-
-    .founder-label {
-      position: absolute;
-      left: 20px;
-      right: 20px;
-      bottom: 20px;
-      z-index: 2;
-    }
-
-    .founder-label span {
-      color: var(--accent);
-      display: block;
-      font-size: 10px;
-      font-weight: 900;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      margin-bottom: 10px;
-    }
-
-    .founder-label strong {
-      font-size: 24px;
-      line-height: 1;
-      letter-spacing: -.055em;
-    }
-
-    .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; perspective: 1200px; }
-    .process-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; perspective: 1200px; }
-
-    .wave-card {
-      min-height: 340px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius-xl);
-      padding: 36px;
-      background:
-        linear-gradient(145deg, rgba(255,255,255,.035), rgba(255,255,255,.006)),
-        rgba(14,16,12,.86);
-      transform: translate3d(0, var(--wave-y, 0px), 0) scale(var(--scale, 1));
-      transition: transform .8s var(--ease), border-color .55s ease, background .55s ease, box-shadow .55s ease;
-      will-change: transform;
-    }
-
-    .wave-card::before {
-      content: "";
-      position: absolute;
-      inset: -1px;
-      background: radial-gradient(circle at var(--cx, 50%) var(--cy, 50%), rgba(215,255,0,.075), transparent 36%);
-      opacity: 0;
-      transition: opacity .55s ease;
-    }
-
-    .wave-card:hover {
-      border-color: rgba(215,255,0,.23);
-      background:
-        linear-gradient(145deg, rgba(215,255,0,.02), rgba(255,255,255,.006)),
-        rgba(17,19,14,.94);
-      box-shadow: 0 24px 70px rgba(0,0,0,.22);
-    }
-    .wave-card:hover::before { opacity: 1; }
-
-    .num {
-      position: relative;
-      display: block;
-      color: var(--warm);
-      font-weight: 900;
-      font-size: 18px;
-      margin-bottom: 94px;
-    }
-
-    .big {
-      position: relative;
-      display: block;
-      font-size: clamp(70px, 7vw, 108px);
-      font-weight: 300;
-      line-height: .78;
-      letter-spacing: -.08em;
-      margin-bottom: 108px;
-      color: rgba(243,238,226,.9);
-    }
-
-    .wave-card h3 {
-      position: relative;
-      font-size: 30px;
-      line-height: 1.04;
-      letter-spacing: -.056em;
-      margin-bottom: 20px;
-    }
-
-    .wave-card p {
-      position: relative;
-      color: var(--muted);
-      font-size: 15px;
-      line-height: 1.72;
-    }
-
-    .visual-row {
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      margin-top: 18px;
-    }
-
-    .visual-tile {
-      min-height: 360px;
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--line);
-      overflow: hidden;
-      background-size: cover;
-      background-position: center;
-      filter: saturate(.58) brightness(.62) contrast(1.08);
-      position: relative;
-    }
-
-    .visual-tile::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(5,5,5,.08), rgba(5,5,5,.72));
-    }
-
-    .visual-1 { background-image: url("https://images.unsplash.com/photo-1581092162384-8987c1d64718?auto=format&fit=crop&w=1400&q=86"); }
-    .visual-2 { background-image: url("https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?auto=format&fit=crop&w=1200&q=86"); }
-
-    .process { border-top: 1px solid var(--line); background: #050505; }
-    .results { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: #080908; }
-
-    .results-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 60px; align-items: start; }
-    .metric-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
-
-    .metric {
-      min-height: 154px;
-      border-radius: 28px;
-      border: 1px solid var(--line);
-      padding: 28px;
-      background: rgba(255,255,255,.023);
-      transition: transform .75s var(--ease), border-color .55s ease;
-    }
-    .metric:hover { transform: translateY(-4px); border-color: rgba(215,255,0,.22); }
-    .metric span { display: block; color: var(--accent); font-weight: 900; margin-bottom: 28px; }
-    .metric strong { display: block; font-size: 21px; line-height: 1.22; letter-spacing: -.04em; }
-
-    .contact {
-      min-height: 88vh;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-
-    .contact-bg {
-      position: absolute;
-      inset: 0;
-      background:
-        linear-gradient(180deg, rgba(5,5,5,.18), rgba(5,5,5,.96)),
-        url("https://images.unsplash.com/photo-1604754742629-3e5728249d73?auto=format&fit=crop&w=2400&q=85") center/cover no-repeat;
-      filter: grayscale(.12) saturate(.46) brightness(.43);
-      transform: scale(1.05) translate3d(calc(var(--mx,0) * -6px), calc(var(--my,0) * -5px), 0);
-    }
-
-    .contact-inner {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 960px;
-      padding: 136px 0;
-    }
-    .contact h2 { margin-bottom: 30px; }
-    .contact p { max-width: 650px; margin: 0 auto 40px; color: var(--muted); font-size: 20px; line-height: 1.7; }
-
-    .mini-contact {
-      position: fixed;
-      right: 22px;
-      bottom: 22px;
-      z-index: 55;
-      border: 1px solid var(--line-strong);
-      background: rgba(5,5,5,.72);
-      color: var(--white);
-      backdrop-filter: blur(18px);
-      border-radius: 999px;
-      padding: 13px 18px;
-      font-size: 13px;
-      font-weight: 800;
-      transition: border-color .35s ease, color .35s ease, transform .35s var(--ease);
-    }
-    .mini-contact:hover { border-color: rgba(215,255,0,.42); color: var(--accent); transform: translateY(-2px); }
-
-    .footer { border-top: 1px solid var(--line); padding: 38px 0; background: #050505; }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; color: var(--soft); font-size: 13px; }
-    .footer a:not(.logo) { color: var(--accent); }
-
-    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 1s var(--ease), transform 1s var(--ease); }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (max-width: 980px) {
-      .header, .nav { height: 84px; }
-      .nav-links { display: none; }
-      .hero { padding-top: 84px; }
-      .hero-inner, .section-head, .results-grid, .visual-row, .about-layout { grid-template-columns: 1fr; }
-      .industrial-plate { min-height: 420px; }
-      .founder-mini-grid { max-width: 620px; }
-      .cards-grid, .process-grid { grid-template-columns: 1fr 1fr; }
-      .image-band { min-height: 62vh; }
-    }
-
-    @media (max-width: 640px) {
-      .container { width: min(100% - 30px, 1180px); }
-      .section-pad { padding: 88px 0; }
-      .button { padding: 12px 18px; font-size: 13px; }
-      h1 { font-size: 44px; line-height: .95; }
-      h2 { font-size: 40px; }
-      .industrial-plate { min-height: 340px; }
-      .founder-mini-grid, .cards-grid, .process-grid, .metric-grid { grid-template-columns: 1fr; }
-      .founder-mini, .visual-tile { min-height: 350px; }
-      .footer-inner { flex-direction: column; align-items: flex-start; }
-      .mini-contact { display: none; }
-    }
+    @media(max-width:980px){.header,.nav{height:84px}.nav-links{display:none}.hero{padding-top:84px}.section-head,.pain-layout,.about-layout,.service-layout,.impact-layout{grid-template-columns:1fr}.service-visual{min-height:420px}.process-grid,.impact-grid{grid-template-columns:1fr 1fr}.footer-inner{flex-direction:column;align-items:flex-start}}
+    @media(max-width:640px){.container{width:min(100% - 30px,1180px)}.section-pad{padding:88px 0}.button{padding:12px 18px;font-size:13px}h1{font-size:44px;line-height:.95}h2{font-size:40px}.founder-mini-grid,.process-grid,.impact-grid,.review-strip{grid-template-columns:1fr}.founder-mini{min-height:350px}.pain-row{grid-template-columns:1fr}.process-map::before,.process-map::after{display:none}.process-step{padding-top:20px}.process-step::before{top:0}.mini-contact{display:none}.contact-meta{flex-direction:column;gap:12px}}
   </style>
 </head>
 <body>
   <header class="header">
     <div class="container nav">
-      <a class="logo" href="#top" aria-label="Tephra Studios">
-        <span class="logo-main">TEPHRA</span>
-        <span class="logo-sub">STUDIOS</span>
-      </a>
-
+      <a class="logo" href="#top" aria-label="Tephra Studios"><span class="logo-main">TEPHRA</span><span class="logo-sub">STUDIOS</span></a>
       <nav class="nav-links" aria-label="Navigation">
         <a href="#wer-wir-sind">Wer wir sind</a>
         <a href="#leistungen">Leistungen</a>
@@ -631,7 +205,6 @@
         <a href="#ergebnisse">Ergebnisse</a>
         <a href="#kontakt">Kontakt</a>
       </nav>
-
       <a class="button" href="#kontakt">Kostenloses Erstgespräch</a>
     </div>
   </header>
@@ -639,27 +212,29 @@
   <main id="top">
     <section class="hero interactive-root">
       <div class="hero-bg"></div>
-      <div class="material-layer"></div>
+      <div class="hero-light"></div>
+      <div class="material-grid"></div>
       <div class="container hero-inner">
         <div class="reveal">
           <div class="eyebrow">Für Handwerk, Bau & Industrie</div>
-          <h1>Moderne Sichtbarkeit für modernes Handwerk.</h1>
-          <p class="hero-copy">Tephra Studios entwickelt Recruiting-, Sichtbarkeits- und Automationssysteme für Betriebe, die nicht mehr vom Zufall abhängig sein wollen.</p>
-          <div class="hero-actions">
-            <a class="button" href="#kontakt">Kostenloses Erstgespräch</a>
-            <a class="button outline" href="#leistungen">Leistungen ansehen</a>
-          </div>
+          <h1>Sichtbarkeit. Systeme. Mitarbeiter.</h1>
+          <p class="hero-copy">Tephra Studios hilft Betrieben, qualifizierte Fachkräfte zu erreichen, Bewerberprozesse zu vereinfachen und als moderner Arbeitgeber sichtbar zu werden.</p>
         </div>
-
-        <div class="industrial-plate reveal" aria-label="Subtile Stahlbeton- und Industrieästhetik"></div>
       </div>
     </section>
 
-    <section class="image-band interactive-root">
-      <div class="image-band-bg"></div>
-      <div class="container image-band-content reveal">
-        <div class="eyebrow">Tephra Prinzip</div>
-        <h2>Moderne Betriebe entstehen nicht durch Zufall.</h2>
+    <section class="pain section-pad interactive-root">
+      <div class="container pain-layout">
+        <div class="pain-statement reveal">
+          <div class="eyebrow">Das eigentliche Problem</div>
+          <h2>Fehlende Mitarbeiter kosten mehr als nur Zeit.</h2>
+          <p>Viele Betriebe verlieren Umsatz nicht wegen fehlender Arbeit, sondern wegen fehlender Kapazitäten. Gute Aufträge kommen rein — aber die richtigen Menschen fehlen, um sie sauber umzusetzen.</p>
+        </div>
+        <div class="pain-list reveal">
+          <div class="pain-row"><span>01</span><div><strong>Aufträge bleiben liegen.</strong><p>Wenn Schlüsselpositionen unbesetzt bleiben, verzögern sich Projekte und Chancen gehen verloren.</p></div></div>
+          <div class="pain-row"><span>02</span><div><strong>Der Druck landet beim Chef.</strong><p>Tagsüber Baustelle, abends Bewerbersuche: Genau dort entsteht der Stress, den viele Unternehmer dauerhaft mittragen.</p></div></div>
+          <div class="pain-row"><span>03</span><div><strong>Das Team wird überlastet.</strong><p>Fehlende Fachkräfte bedeuten mehr Druck auf bestehende Mitarbeiter, Qualität und Termine.</p></div></div>
+        </div>
       </div>
     </section>
 
@@ -667,54 +242,32 @@
       <div class="container about-layout">
         <div class="founder-text reveal">
           <div class="eyebrow">Wer wir sind</div>
-          <h2>Handwerk verstehen. Systeme bauen.</h2>
-          <p>Peter bringt direkten Bezug zur Elektrikerbranche mit. Tina kennt als Architektin die Zusammenarbeit mit Handwerk und Bau aus der Praxis. Daraus entsteht ein Studio, das moderne Systeme mit echter Nähe zur Branche verbindet.</p>
+          <h2>Aus Handwerk, Architektur und Kommunikation.</h2>
+          <p>Tephra Studios ist aus einer einfachen Beobachtung entstanden: Viele Handwerksbetriebe leisten starke Arbeit, wirken nach außen aber nicht so modern und professionell, wie sie eigentlich sind.</p>
+          <p>Peter kennt die Elektrikerbranche durch die Arbeit mit seinem Vater und den direkten Bezug zum Handwerk. Tina arbeitet als Architektin regelmäßig mit Handwerks- und Baubetrieben zusammen und versteht, wie wichtig klare Kommunikation, Vertrauen und professionelle Außenwirkung sind.</p>
+          <div class="founder-note">Wir bauen moderne Mitarbeitergewinnung, die nicht künstlich wirkt, sondern zu echten Betrieben passt.</div>
         </div>
-
         <div class="founder-mini-grid reveal">
-          <figure class="founder-mini">
-            <img src="tina.jpg" alt="Tina Jurcic von Tephra Studios">
-            <figcaption class="founder-label"><span>Strategie & Kommunikation</span><strong>Tina Jurcic</strong></figcaption>
-          </figure>
-          <figure class="founder-mini">
-            <img src="peter.jpg" alt="Peter Strbac von Tephra Studios">
-            <figcaption class="founder-label"><span>Recruiting & Systeme</span><strong>Peter Strbac</strong></figcaption>
-          </figure>
+          <figure class="founder-mini"><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios"><figcaption class="founder-label"><span>Strategie & Kommunikation</span><strong>Tina Jurcic</strong></figcaption></figure>
+          <figure class="founder-mini"><img src="peter.jpg" alt="Peter Strbac von Tephra Studios"><figcaption class="founder-label"><span>Recruiting & Systeme</span><strong>Peter Strbac</strong></figcaption></figure>
         </div>
       </div>
     </section>
 
-    <section id="leistungen" class="section-pad interactive-root">
+    <section id="leistungen" class="services section-pad interactive-root">
       <div class="container">
         <div class="section-head reveal">
-          <div>
-            <div class="eyebrow">Leistungen</div>
-            <h2>Klare Systeme statt lauter Versprechen.</h2>
+          <div><div class="eyebrow">Leistungen</div><h2>Was wir konkret aufbauen.</h2></div>
+          <p class="lead">Keine lose Werbung. Ein System aus Sichtbarkeit, Arbeitgeberpositionierung und einfachen Bewerberprozessen.</p>
+        </div>
+        <div class="service-layout">
+          <div class="service-visual reveal" aria-label="Industrielle Detailaufnahme"></div>
+          <div class="service-system reveal">
+            <article class="system-line"><small>01 / SOCIAL RECRUITING</small><h3>Fachkräfte erreichen</h3><p>Gezielte Kampagnen für Menschen, die nicht aktiv auf Jobportalen suchen, aber für bessere Perspektiven offen sind.</p></article>
+            <article class="system-line"><small>02 / SICHTBARKEIT</small><h3>Arbeitgeber sichtbar machen</h3><p>Ein Auftritt, der Vertrauen schafft und zeigt, warum gute Mitarbeiter bei Ihnen bleiben und wechseln sollten.</p></article>
+            <article class="system-line"><small>03 / BEWERBERPROZESS</small><h3>Bewerbung vereinfachen</h3><p>Kurze, mobile Bewerberstrecken mit Vorqualifizierung, damit nicht jede Anfrage bei Ihnen Zeit frisst.</p></article>
+            <article class="system-line"><small>04 / AUTOMATIONEN</small><h3>Abläufe ordnen</h3><p>Digitale Struktur für Kontaktaufnahme, Übersicht und Nachverfolgung — ohne komplizierte Technik im Alltag.</p></article>
           </div>
-          <p class="lead">Wir bauen digitale Strukturen, die sichtbar, verständlich und im Alltag nutzbar werden.</p>
-        </div>
-
-        <div class="cards-grid wave-zone">
-          <article class="wave-card reveal">
-            <span class="num">01</span>
-            <h3>Mitarbeitergewinnung</h3>
-            <p>Social Recruiting, Bewerberstrecken und Arbeitgeberauftritt für passende Anfragen.</p>
-          </article>
-          <article class="wave-card reveal">
-            <span class="num">02</span>
-            <h3>Sichtbarkeit</h3>
-            <p>Ein moderner Außenauftritt, der Vertrauen schafft und professionell positioniert.</p>
-          </article>
-          <article class="wave-card reveal">
-            <span class="num">03</span>
-            <h3>Automationen</h3>
-            <p>Digitale Abläufe, die Anfragen strukturieren, Zeit sparen und Prozesse vereinfachen.</p>
-          </article>
-        </div>
-
-        <div class="visual-row reveal">
-          <div class="visual-tile visual-1" aria-label="Technische Arbeitsumgebung"></div>
-          <div class="visual-tile visual-2" aria-label="Industrie und Handwerk"></div>
         </div>
       </div>
     </section>
@@ -722,151 +275,58 @@
     <section id="ablauf" class="process section-pad interactive-root">
       <div class="container">
         <div class="section-head reveal">
-          <div>
-            <div class="eyebrow">Ablauf</div>
-            <h2>Von Aufmerksamkeit zu echten Gesprächen.</h2>
-          </div>
-          <p class="lead">Verstehen. Positionieren. Umsetzen. Verbessern.</p>
+          <div><div class="eyebrow">Ablauf</div><h2>Ein Prozess, der im Alltag funktioniert.</h2></div>
+          <p class="lead">Wir starten bei Ihrer Realität und bauen daraus ein System, das nicht zusätzliche Arbeit erzeugt, sondern Struktur schafft.</p>
         </div>
-
-        <div class="process-grid wave-zone">
-          <article class="wave-card reveal">
-            <span class="big">01</span>
-            <h3>Verstehen</h3>
-            <p>Wir analysieren Zielgruppe, Betrieb und aktuelle Situation.</p>
-          </article>
-          <article class="wave-card reveal">
-            <span class="big">02</span>
-            <h3>Positionieren</h3>
-            <p>Wir schärfen Arbeitgeberauftritt, Angebot und Kommunikation.</p>
-          </article>
-          <article class="wave-card reveal">
-            <span class="big">03</span>
-            <h3>Umsetzen</h3>
-            <p>Wir bauen Kampagnen, Seiten, Bewerberstrecken und Automationen.</p>
-          </article>
-          <article class="wave-card reveal">
-            <span class="big">04</span>
-            <h3>Verbessern</h3>
-            <p>Daten, Rückmeldungen und Ergebnisse machen das System stärker.</p>
-          </article>
+        <div class="process-map reveal">
+          <div class="process-grid">
+            <article class="process-step"><span>01</span><svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.2-3.2"/></svg><strong>Verstehen</strong><p>Betrieb, Zielgruppe, offene Stellen und echte Engpässe analysieren.</p></article>
+            <article class="process-step"><span>02</span><svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 17V7l8-4 8 4v10l-8 4-8-4Z"/><path d="M12 3v18"/></svg><strong>Positionieren</strong><p>Arbeitgeberauftritt, Botschaft und Angebot für Fachkräfte schärfen.</p></article>
+            <article class="process-step"><span>03</span><svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 6h16M4 12h16M4 18h16"/><path d="M8 6v12M16 6v12"/></svg><strong>Aufbauen</strong><p>Kampagnen, Bewerberstrecke, Vorqualifizierung und Abläufe erstellen.</p></article>
+            <article class="process-step"><span>04</span><svg class="process-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 18c4-8 8 0 12-8"/><path d="M16 10h4v4"/></svg><strong>Verbessern</strong><p>Ergebnisse auswerten, Gespräche verbessern und das System schärfen.</p></article>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="ergebnisse" class="results section-pad interactive-root">
-      <div class="container results-grid">
-        <div class="reveal">
+      <div class="container impact-layout">
+        <div class="impact-copy reveal">
           <div class="eyebrow">Ergebnisse</div>
-          <h2>Mehr Klarheit. Mehr Sichtbarkeit. Mehr passende Anfragen.</h2>
+          <h2>Was sich im Betrieb verändert.</h2>
+          <p>Es geht nicht nur um Bewerbungen. Es geht um weniger Druck, bessere Gespräche, mehr Planungssicherheit und einen Arbeitgeberauftritt, der zu Ihrer tatsächlichen Qualität passt.</p>
+          <div class="review-strip"><strong>Später: Mini-Case</strong><blockquote>„Bessere Bewerber, weniger Aufwand, klarerer Prozess.“</blockquote></div>
         </div>
-        <div class="metric-grid">
-          <div class="metric reveal"><span>01</span><strong>Mehr passende Anfragen</strong></div>
-          <div class="metric reveal"><span>02</span><strong>Moderner Arbeitgeberauftritt</strong></div>
-          <div class="metric reveal"><span>03</span><strong>Weniger manuelle Arbeit</strong></div>
-          <div class="metric reveal"><span>04</span><strong>Klarere digitale Prozesse</strong></div>
+        <div class="impact-grid reveal">
+          <article class="impact-card"><span>01</span><strong>Weniger Chaos</strong><p>Mehr Struktur im Bewerberprozess und weniger spontanes Reagieren unter Druck.</p></article>
+          <article class="impact-card"><span>02</span><strong>Bessere Gespräche</strong><p>Mehr relevante Anfragen durch klare Ansprache und einfache Vorqualifizierung.</p></article>
+          <article class="impact-card"><span>03</span><strong>Mehr Ruhe</strong><p>Weniger manuelle Suche und weniger Stress, wenn offene Stellen länger unbesetzt sind.</p></article>
+          <article class="impact-card"><span>04</span><strong>Stärkerer Auftritt</strong><p>Ihr Betrieb wirkt online professioneller und moderner für kommende Fachkräfte.</p></article>
         </div>
       </div>
     </section>
 
     <section id="kontakt" class="contact interactive-root">
-      <div class="contact-bg"></div>
       <div class="container contact-inner reveal">
         <div class="eyebrow">Kontakt</div>
-        <h2>Wer sichtbar ist, gewinnt Vertrauen.</h2>
-        <p>Für Handwerks-, Bau- und Industrieunternehmen, die Recruiting, Sichtbarkeit und Automationen nicht dem Zufall überlassen wollen.</p>
+        <h2>Moderne Fachkräfte erreicht man nicht mit veralteten Methoden.</h2>
+        <p>Für Betriebe, die Mitarbeitergewinnung, Sichtbarkeit und digitale Abläufe nicht dem Zufall überlassen wollen.</p>
         <a class="button" href="mailto:studio@tephra.at">Kostenloses Erstgespräch vereinbaren</a>
+        <div class="contact-meta"><a href="mailto:studio@tephra.at">studio@tephra.at</a><a href="https://www.tephrastudios.at">www.tephrastudios.at</a><a href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener">@tephra.studios</a></div>
       </div>
     </section>
   </main>
 
   <a href="mailto:studio@tephra.at" class="mini-contact">Kontakt</a>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <a class="logo" href="#top">
-        <span class="logo-main">TEPHRA</span>
-        <span class="logo-sub">STUDIOS</span>
-      </a>
-      <span>Recruiting · Sichtbarkeit · Automationen</span>
-      <a href="mailto:studio@tephra.at">studio@tephra.at</a>
-    </div>
-  </footer>
+  <footer class="footer"><div class="container footer-inner"><a class="logo" href="#top"><span class="logo-main">TEPHRA</span><span class="logo-sub">STUDIOS</span></a><span>Recruiting · Sichtbarkeit · Automationen</span><a href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener">@tephra.studios</a></div></footer>
 
   <script>
-    const root = document.documentElement;
-    let targetX = 0;
-    let targetY = 0;
-    let currentX = 0;
-    let currentY = 0;
-
-    window.addEventListener('mousemove', (event) => {
-      targetX = event.clientX / window.innerWidth - 0.5;
-      targetY = event.clientY / window.innerHeight - 0.5;
-      root.style.setProperty('--cursor-x', `${event.clientX}px`);
-      root.style.setProperty('--cursor-y', `${event.clientY}px`);
-    });
-
-    function renderMouse() {
-      currentX += (targetX - currentX) * 0.032;
-      currentY += (targetY - currentY) * 0.032;
-      document.querySelectorAll('.interactive-root').forEach((el) => {
-        el.style.setProperty('--mx', currentX.toFixed(4));
-        el.style.setProperty('--my', currentY.toFixed(4));
-      });
-      requestAnimationFrame(renderMouse);
-    }
-    renderMouse();
-
-    const revealItems = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    revealItems.forEach((item, index) => {
-      item.style.transitionDelay = `${Math.min(index * 36, 170)}ms`;
-      observer.observe(item);
-    });
-
-    document.querySelectorAll('.wave-card').forEach(card => {
-      card.addEventListener('mousemove', (event) => {
-        const rect = card.getBoundingClientRect();
-        const cx = ((event.clientX - rect.left) / rect.width) * 100;
-        const cy = ((event.clientY - rect.top) / rect.height) * 100;
-        card.style.setProperty('--cx', `${cx}%`);
-        card.style.setProperty('--cy', `${cy}%`);
-      });
-    });
-
-    document.querySelectorAll('.wave-zone').forEach(zone => {
-      const cards = [...zone.children];
-      zone.addEventListener('mousemove', (event) => {
-        const rect = zone.getBoundingClientRect();
-        const x = event.clientX - rect.left;
-        cards.forEach((card, index) => {
-          const cardRect = card.getBoundingClientRect();
-          const center = cardRect.left - rect.left + cardRect.width / 2;
-          const distance = Math.abs(x - center);
-          const influence = Math.max(0, 1 - distance / 540);
-          const wave = Math.sin((x / 170) + index * .82) * 3.2 * influence;
-          const y = -4.5 * influence + wave;
-          const scale = 1 + influence * .005;
-          card.style.setProperty('--wave-y', `${y}px`);
-          card.style.setProperty('--scale', scale.toFixed(3));
-        });
-      });
-      zone.addEventListener('mouseleave', () => {
-        cards.forEach(card => {
-          card.style.setProperty('--wave-y', `0px`);
-          card.style.setProperty('--scale', `1`);
-        });
-      });
-    });
+    const root=document.documentElement;let targetX=0,targetY=0,currentX=0,currentY=0;
+    window.addEventListener('mousemove',e=>{targetX=e.clientX/window.innerWidth-.5;targetY=e.clientY/window.innerHeight-.5;root.style.setProperty('--cursor-x',e.clientX+'px');root.style.setProperty('--cursor-y',e.clientY+'px')});
+    function renderMouse(){currentX+=(targetX-currentX)*.032;currentY+=(targetY-currentY)*.032;document.querySelectorAll('.interactive-root').forEach(el=>{el.style.setProperty('--mx',currentX.toFixed(4));el.style.setProperty('--my',currentY.toFixed(4))});requestAnimationFrame(renderMouse)}renderMouse();
+    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}})},{threshold:.12});
+    document.querySelectorAll('.reveal').forEach((item,index)=>{item.style.transitionDelay=`${Math.min(index*36,170)}ms`;observer.observe(item)});
   </script>
 </body>
 </html>
