@@ -624,18 +624,19 @@
     }
     .proof-copy{
       align-self:center;
+      margin-top:clamp(78px,7.5vw,116px);
       text-align:left;
       display:flex;
       flex-direction:column;
       justify-content:center;
-      gap:18px;
+      gap:16px;
     }
     .proof-copy p,
     .quote{
       margin:0;
       color:rgba(244,239,227,.82);
-      font-size:18px;
-      line-height:1.72;
+      font-size:16px;
+      line-height:1.62;
       letter-spacing:-.015em;
     }
     .quote{
@@ -853,9 +854,17 @@
     .legal-card strong{color:var(--white)}
     .privacy-card{grid-column:1 / -1}
 
-    .footer{border-top:1px solid var(--line);padding:36px 0;background:#050505}
+    .footer{border-top:1px solid var(--line);padding:34px 0 26px;background:#050505}
     .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--soft);font-size:13px}
     .footer-links{display:flex;gap:18px;flex-wrap:wrap}
+    .footer-tagline{
+      margin-top:26px;
+      text-align:center;
+      color:var(--soft);
+      font-size:14px;
+      font-weight:700;
+      letter-spacing:-.01em;
+    }
     .footer a:not(.logo){color:var(--accent)}
     .footer-icon-link{display:inline-flex;align-items:center;gap:7px}
     .footer-icon-link svg{width:15px;height:15px;stroke:currentColor;flex:0 0 auto}
@@ -918,6 +927,7 @@
       .legal-grid{grid-template-columns:1fr 1fr}
       .process-stack{grid-template-columns:1fr 1fr}
       .footer-inner{align-items:flex-start;flex-direction:column}
+      .footer-tagline{text-align:left}
     }
 
     @media(max-width:640px){
@@ -934,7 +944,7 @@
       .social-proof{align-items:center;text-align:left}
       .section-pad{padding:66px 0}
       .pain-copy{padding-left:0}
-      .proof-copy{text-align:left;gap:18px}
+      .proof-copy{text-align:left;gap:16px;margin-top:0}
       .position-panel{padding:22px 20px;border-radius:22px}
       .position-image{min-height:220px;border-radius:22px}
       .position-image img{min-height:220px}
@@ -943,7 +953,7 @@
       .system::before{width:280px;height:210px;right:-150px;top:46px}
       .system::after{display:none}
       .pain-copy p,.booking-panel p{font-size:16px;line-height:1.66}
-      .proof-copy p,.proof-copy .quote{font-size:16px;line-height:1.68}
+      .proof-copy p,.proof-copy .quote{font-size:15.5px;line-height:1.62}
       .legal-grid{grid-template-columns:1fr}
       .system-grid{grid-template-columns:1fr}
       .system-card{min-height:auto}
@@ -967,6 +977,7 @@
         grid-template-columns:auto auto;
         gap:12px 18px;
       }
+      .footer-tagline{text-align:center;margin-top:28px}
       .footer-icon-link{white-space:nowrap}
       .sticky-cta{
         display:flex;
@@ -1058,7 +1069,7 @@
       <div class="container pain-grid">
         <div class="pain-copy reveal">
           <div class="eyebrow">Außenwirkung</div>
-          <h2>Viele Betriebe<br>wirken schlechter,<br>als sie sind.</h2>
+          <h2><span class="hero-line">Viele Betriebe</span><span class="hero-line">wirken schlechter,</span><span class="hero-line">als sie sind.</span></h2>
           <p>Fachkräfte entscheiden heute oft innerhalb weniger Sekunden, wie professionell ein Betrieb wirkt.</p>
         </div>
         <div class="position-side reveal">
@@ -1108,7 +1119,7 @@
       <div class="container proof-layout">
         <div class="proof-intro reveal">
           <div class="eyebrow">Wer wir sind</div>
-          <h2>Wir sind Tina und Peter.</h2>
+          <h2>Wir sind Tina<br>und Peter.</h2>
           <div class="proof-media">
             <div class="founder-gallery" data-founder-gallery>
                 <div class="founder-grid">
@@ -1204,7 +1215,6 @@
       <a class="logo" href="#top" aria-label="Tephra Studios">
         <img src="tephra-logo-exact.svg" alt="Tephra Studios">
       </a>
-      <span>Recruiting · Sichtbarkeit · Bewerberprozesse</span>
       <div class="footer-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
@@ -1225,6 +1235,7 @@
         </a>
       </div>
     </div>
+    <div class="container footer-tagline">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
   </footer>
 
   <script>
