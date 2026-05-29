@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tephra Studios | Mitarbeiter gewinnen mit System</title>
   <meta name="description" content="Tephra Studios baut Sichtbarkeit, Recruiting-Kampagnen und einfache Bewerberprozesse für Handwerks-, Bau- und Industrieunternehmen." />
-  <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
   <style>
     :root{
       --black:#050505;
@@ -278,6 +277,23 @@
     .hero-founders p span{display:block;color:rgba(244,239,227,.88)}
     .hero-founders p small{display:block;color:var(--muted);font-size:14px;font-weight:700}
     .hero-founders .avatar{width:42px;height:42px}
+    .hero-founders .avatar::after{
+      content:"";
+      position:absolute;
+      inset:-35%;
+      background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.36) 48%,transparent 66%);
+      transform:translateX(-130%) rotate(8deg);
+      transition:transform .7s var(--ease);
+      pointer-events:none;
+      mix-blend-mode:screen;
+    }
+    .hero-founders .avatar:hover{
+      transform:translateY(-5px) scale(1.09) rotate(-2deg);
+      box-shadow:0 0 0 1px rgba(215,255,0,.34),0 10px 28px rgba(215,255,0,.1);
+      z-index:3;
+    }
+    .hero-founders .avatar:nth-child(2):hover{transform:translateY(-5px) scale(1.09) rotate(2deg)}
+    .hero-founders .avatar:hover::after{transform:translateX(130%) rotate(8deg)}
     .hero-actions{
       margin-top:34px;
       display:flex;
@@ -316,6 +332,7 @@
     }
     .avatars{display:flex;align-items:center}
     .avatar{
+      position:relative;
       width:46px;
       height:46px;
       border-radius:50%;
@@ -323,6 +340,7 @@
       border:2px solid var(--black);
       background:var(--panel2);
       box-shadow:0 0 0 1px var(--line2);
+      transition:transform .38s var(--ease),box-shadow .38s ease;
     }
     .avatar + .avatar{margin-left:-13px}
     .avatar img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.04) brightness(.9)}
@@ -336,6 +354,33 @@
     .pain-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:64px;align-items:center}
     .pain-copy{padding-left:0}
     .pain-copy p{margin-top:26px;color:var(--muted);font-size:18px;line-height:1.72}
+    .position-side{display:grid;gap:16px}
+    .position-image{
+      position:relative;
+      min-height:260px;
+      border:1px solid var(--line);
+      border-radius:24px;
+      overflow:hidden;
+      background:var(--panel);
+    }
+    .position-image img{
+      width:100%;
+      height:100%;
+      min-height:260px;
+      object-fit:cover;
+      object-position:42% center;
+      filter:grayscale(1) saturate(.08) contrast(1.08) brightness(.62);
+      transform:scale(1.02);
+    }
+    .position-image::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(5,5,5,.28),rgba(5,5,5,.05) 44%,rgba(5,5,5,.42)),
+        linear-gradient(180deg,transparent 20%,rgba(5,5,5,.68) 100%);
+      pointer-events:none;
+    }
     .position-panel{
       border:1px solid var(--line);
       border-radius:24px;
@@ -487,6 +532,7 @@
     .proof{background:#080908;border-bottom:1px solid var(--line)}
     .proof-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(54px,7vw,88px);align-items:start}
     .proof-media{display:block;padding-top:8px;min-width:0}
+    .proof-intro .proof-media{margin-top:34px}
     .founder-gallery{position:relative;min-width:0}
     .founder-grid{
       display:grid;
@@ -599,6 +645,7 @@
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:14px;
+      align-items:stretch;
       perspective:1000px;
     }
     .process-card{
@@ -611,6 +658,7 @@
       display:flex;
       flex-direction:column;
       justify-content:space-between;
+      height:100%;
       border:1px solid var(--line);
       border-radius:24px;
       padding:28px;
@@ -665,26 +713,14 @@
 
     .booking{background:#080908;border-bottom:1px solid var(--line)}
     .booking-panel{
-      display:grid;
-      grid-template-columns:1fr .82fr;
-      gap:42px;
-      align-items:center;
+      display:block;
+      max-width:900px;
       border:1px solid var(--line);
       border-radius:var(--radius);
-      padding:44px;
+      padding:34px;
       background:linear-gradient(135deg,rgba(215,255,0,.075),rgba(255,255,255,.02) 42%,rgba(193,102,66,.08));
     }
     .booking-panel p{margin-top:22px;color:var(--muted);font-size:18px;line-height:1.7}
-    .calendly-embed{
-      min-height:520px;
-      border:1px dashed rgba(215,255,0,.42);
-      border-radius:22px;
-      background:rgba(5,5,5,.38);
-      overflow:hidden;
-    }
-    .calendly-inline-widget{min-width:320px;height:520px}
-    .calendly-fallback{margin-top:14px;color:var(--muted);font-size:13px;line-height:1.5}
-    .calendly-fallback a{color:var(--accent);font-weight:850}
 
     .legal{background:var(--black)}
     .legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -705,8 +741,8 @@
     .footer-inner{display:flex;align-items:center;justify-content:space-between;gap:24px;color:var(--soft);font-size:13px}
     .footer-links{display:flex;gap:18px;flex-wrap:wrap}
     .footer a:not(.logo){color:var(--accent)}
-    .footer-social{display:inline-flex;align-items:center;gap:7px}
-    .footer-social svg{width:15px;height:15px;stroke:currentColor}
+    .footer-icon-link{display:inline-flex;align-items:center;gap:7px}
+    .footer-icon-link svg{width:15px;height:15px;stroke:currentColor;flex:0 0 auto}
     .sticky-cta{display:none}
 
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
@@ -761,7 +797,7 @@
       .mobile-panel a{display:flex;justify-content:space-between;padding:15px 6px;border-bottom:1px solid var(--line);font-weight:750;color:rgba(244,239,227,.86)}
       .hero{padding-top:78px;min-height:86svh}
       .hero-inner{min-height:calc(86svh - 78px);padding:106px 0 64px;gap:32px}
-      .section-head,.pain-grid,.proof-layout,.booking-panel{grid-template-columns:1fr;gap:34px}
+      .section-head,.pain-grid,.proof-layout{grid-template-columns:1fr;gap:34px}
       .system-grid{grid-template-columns:1fr 1fr}
       .legal-grid{grid-template-columns:1fr 1fr}
       .process-stack{grid-template-columns:1fr 1fr}
@@ -783,6 +819,8 @@
       .section-pad{padding:78px 0}
       .pain-copy{padding-left:0}
       .position-panel{padding:22px 20px;border-radius:22px}
+      .position-image{min-height:220px;border-radius:22px}
+      .position-image img{min-height:220px}
       .position-close{grid-template-columns:1fr;gap:8px}
       .system-head h2{font-size:clamp(43px,12.4vw,58px);line-height:.96}
       .system::before{width:280px;height:210px;right:-150px;top:46px}
@@ -804,9 +842,13 @@
       .founder-info{padding:22px}
       .quote{font-size:19px}
       .booking-panel{padding:24px;border-radius:22px}
-      .calendly-embed{min-height:620px}
-      .calendly-inline-widget{height:620px}
       .footer{padding-bottom:92px}
+      .footer-links{
+        display:grid;
+        grid-template-columns:auto auto;
+        gap:12px 18px;
+      }
+      .footer-icon-link{white-space:nowrap}
       .sticky-cta{
         display:flex;
         position:fixed;
@@ -845,7 +887,6 @@
         <a href="#system">System</a>
         <a href="#wer-wir-sind">Wer wir sind</a>
         <a href="#ablauf">Ablauf</a>
-        <a href="#calendly">Termin</a>
       </nav>
       <a class="button" href="#calendly">Kostenlose Analyse sichern</a>
       <button class="mobile-toggle" type="button" aria-label="Menü öffnen"><span></span></button>
@@ -856,7 +897,6 @@
     <a href="#system">System <span>01</span></a>
     <a href="#wer-wir-sind">Wer wir sind <span>02</span></a>
     <a href="#ablauf">Ablauf <span>03</span></a>
-    <a href="#calendly">Termin <span>04</span></a>
   </nav>
 
   <main id="top">
@@ -909,16 +949,21 @@
           <h2>Viele Handwerksbetriebe wirken schlechter, als sie sind.</h2>
           <p>Heute entscheiden viele Fachkräfte innerhalb weniger Sekunden, welcher Betrieb professionell wirkt.</p>
         </div>
-        <div class="position-panel reveal">
-          <div class="position-label">Was viele Betriebe dabei ausbremst:</div>
-          <ul class="position-list">
-            <li>veraltete Außendarstellung</li>
-            <li>fehlende Sichtbarkeit</li>
-            <li>unklare Kommunikation</li>
-            <li>komplizierte Bewerbungen</li>
-          </ul>
-          <p class="position-note"><strong>Genau dort setzen wir an.</strong> Wir helfen Handwerksbetrieben dabei, professioneller aufzutreten, sichtbarer zu werden und einfacher passende Mitarbeiter zu erreichen.</p>
-          <div class="position-close"><span>Direkt.</span><span>Modern.</span><span>Glaubwürdig.</span></div>
+        <div class="position-side reveal">
+          <figure class="position-image" aria-hidden="true">
+            <img src="baustelle.png" alt="">
+          </figure>
+          <div class="position-panel">
+            <div class="position-label">Was viele Betriebe dabei ausbremst:</div>
+            <ul class="position-list">
+              <li>veraltete Außendarstellung</li>
+              <li>fehlende Sichtbarkeit</li>
+              <li>unklare Kommunikation</li>
+              <li>komplizierte Bewerbungen</li>
+            </ul>
+            <p class="position-note"><strong>Genau dort setzen wir an.</strong> Wir helfen Handwerksbetrieben dabei, professioneller aufzutreten, sichtbarer zu werden und einfacher passende Mitarbeiter zu erreichen.</p>
+            <div class="position-close"><span>Direkt.</span><span>Modern.</span><span>Glaubwürdig.</span></div>
+          </div>
         </div>
       </div>
     </section>
@@ -927,23 +972,23 @@
       <div class="container">
         <div class="system-head reveal">
           <div class="eyebrow">Was wir aufbauen</div>
-          <h2>Kein Kampagnen-Zufall. Ein Recruiting-System.</h2>
+          <h2>Kein Zufall. Ein System.</h2>
         </div>
         <div class="system-grid reveal">
           <article class="system-card positioning">
-            <div class="system-card-content"><small>01</small><strong>Positionierung</strong><p>Wir schärfen, warum ein guter Mitarbeiter bei euch anfangen oder wechseln sollte.</p></div>
+            <div class="system-card-content"><small>01</small><strong>Positionierung</strong><p>Warum gute Leute bei euch anfangen und bleiben.</p></div>
             <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
           </article>
           <article class="system-card visibility">
-            <div class="system-card-content"><small>02</small><strong>Sichtbarkeit</strong><p>Content und Kampagnen machen den Betrieb dort sichtbar, wo Fachkräfte wirklich Aufmerksamkeit haben.</p></div>
+            <div class="system-card-content"><small>02</small><strong>Sichtbarkeit</strong><p>Sichtbar dort, wo Fachkräfte wirklich hinschauen.</p></div>
             <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="3"/></svg>
           </article>
           <article class="system-card application">
-            <div class="system-card-content"><small>03</small><strong>Bewerberweg</strong><p>Kurze mobile Strecke mit Vorqualifizierung, damit Interessenten nicht in Formularen abspringen.</p></div>
+            <div class="system-card-content"><small>03</small><strong>Bewerberweg</strong><p>Kurze Wege. Weniger Absprünge.</p></div>
             <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M10 7h4M10 11h4M10 15h2"/></svg>
           </article>
           <article class="system-card followup">
-            <div class="system-card-content"><small>04</small><strong>Nachverfolgung</strong><p>Mehr Struktur für Kontaktaufnahme, Übersicht und nächste Schritte im Alltag.</p></div>
+            <div class="system-card-content"><small>04</small><strong>Nachverfolgung</strong><p>Klare Abläufe nach der Anfrage.</p></div>
             <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h9a4 4 0 0 1 4 4v1"/><path d="m14 9 3 3 3-3"/><path d="M20 17h-9a4 4 0 0 1-4-4v-1"/><path d="m10 15-3-3-3 3"/></svg>
           </article>
         </div>
@@ -952,9 +997,34 @@
 
     <section id="wer-wir-sind" class="proof section-pad">
       <div class="container proof-layout">
-        <div class="proof-copy reveal">
+        <div class="proof-intro reveal">
           <div class="eyebrow">Wer wir sind</div>
           <h2>Wir sind Tina und Peter.</h2>
+          <div class="proof-media">
+            <div class="founder-gallery" data-founder-gallery>
+                <div class="founder-grid">
+                  <article class="founder-slide" tabindex="0">
+                    <img src="tina.jpg" alt="Tina Jurcic">
+                    <div class="founder-info">
+                      <span>Strategie & Gestaltung</span>
+                      <h3>Tina Jurcic</h3>
+                      <p class="founder-more">Tina bringt den technischen und gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt nicht künstlich, sondern ruhig, modern und professionell.</p>
+                    </div>
+                  </article>
+                  <article class="founder-slide peter" tabindex="0">
+                    <img src="peter.jpg" alt="Peter Strbac">
+                    <div class="founder-info">
+                      <span>Recruiting & Systeme</span>
+                      <h3>Peter Strbac</h3>
+                      <p class="founder-more">Peter kennt den Alltag im Handwerk aus der Praxis: Baustellen, Organisation, Mitarbeitersuche und den Druck, gute Leute zu finden. Genau daraus entstehen Systeme, die im Betrieb funktionieren.</p>
+                    </div>
+                  </article>
+                </div>
+            </div>
+            <p class="proof-media-note">Direkt mit den Menschen, die euren Auftritt, eure Ansprache und euren Bewerberweg wirklich aufbauen.</p>
+          </div>
+        </div>
+        <div class="proof-copy reveal">
           <p>Ich, Peter, habe mehrere Jahre gemeinsam mit meinem Vater auf Baustellen gearbeitet. Mein Vater ist selbstständiger Elektriker.</p>
           <p>Dadurch habe ich früh gesehen, wie viel hinter einem Handwerksbetrieb wirklich steckt. Nicht nur die Arbeit selbst, sondern auch der tägliche Druck rund um Mitarbeiter, Organisation und Baustellen.</p>
           <p>Vor allem gute Mitarbeiter zu finden war oft schwierig.</p>
@@ -962,56 +1032,33 @@
           <p>Tina bringt zusätzlich den technischen und gestalterischen Blick aus dem Architekturbereich mit.</p>
           <blockquote class="quote">Nicht künstlich. Nicht kompliziert. Sondern so, dass es im echten Arbeitsalltag funktioniert.</blockquote>
         </div>
-        <div class="proof-media reveal">
-          <div class="founder-gallery" data-founder-gallery>
-              <div class="founder-grid">
-                <article class="founder-slide" tabindex="0">
-                  <img src="tina.jpg" alt="Tina Jurcic">
-                  <div class="founder-info">
-                    <span>Strategie & Gestaltung</span>
-                    <h3>Tina Jurcic</h3>
-                    <p class="founder-more">Tina bringt den technischen und gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt nicht künstlich, sondern ruhig, modern und professionell.</p>
-                  </div>
-                </article>
-                <article class="founder-slide peter" tabindex="0">
-                  <img src="peter.jpg" alt="Peter Strbac">
-                  <div class="founder-info">
-                    <span>Recruiting & Systeme</span>
-                    <h3>Peter Strbac</h3>
-                    <p class="founder-more">Peter kennt den Alltag im Handwerk aus der Praxis: Baustellen, Organisation, Mitarbeitersuche und den Druck, gute Leute zu finden. Genau daraus entstehen Systeme, die im Betrieb funktionieren.</p>
-                  </div>
-                </article>
-              </div>
-          </div>
-          <p class="proof-media-note">Direkt mit den Menschen, die euren Auftritt, eure Ansprache und euren Bewerberweg wirklich aufbauen.</p>
-        </div>
       </div>
     </section>
 
     <section id="ablauf" class="process section-pad">
       <div class="container">
         <div class="section-head reveal">
-          <div><div class="eyebrow">Ablauf</div><h2>Ein klarer Weg von Engpass zu Bewerberprozess.</h2></div>
+          <div><div class="eyebrow">Ablauf</div><h2>Weniger Chaos.<br>Mehr Struktur<br>im Recruiting.</h2></div>
         </div>
-        <div class="process-stack">
-          <article class="process-card reveal">
+        <div class="process-stack reveal">
+          <article class="process-card">
             <span class="process-number">01</span>
-            <div class="process-card-content"><strong>Verstehen</strong><p>Betrieb, offene Rollen, Zielgruppe und echte Engpässe analysieren.</p></div>
+            <div class="process-card-content"><strong>Verstehen</strong><p>Verstehen,<br>wo Bewerber<br>verloren gehen.</p></div>
             <div class="holo-glow"></div>
           </article>
-          <article class="process-card reveal">
+          <article class="process-card">
             <span class="process-number">02</span>
-            <div class="process-card-content"><strong>Positionieren</strong><p>Botschaft, Arbeitgeberangebot und Ansprache für Fachkräfte schärfen.</p></div>
+            <div class="process-card-content"><strong>Positionieren</strong><p>Klar machen,<br>warum man<br>bei euch arbeiten sollte.</p></div>
             <div class="holo-glow"></div>
           </article>
-          <article class="process-card reveal">
+          <article class="process-card">
             <span class="process-number">03</span>
-            <div class="process-card-content"><strong>Aufbauen</strong><p>Kampagnen, Landingpage, Bewerberstrecke und Vorqualifizierung erstellen.</p></div>
+            <div class="process-card-content"><strong>Aufbauen</strong><p>Kurze Wege<br>statt komplizierter<br>Bewerbungen.</p></div>
             <div class="holo-glow"></div>
           </article>
-          <article class="process-card reveal">
+          <article class="process-card">
             <span class="process-number">04</span>
-            <div class="process-card-content"><strong>Verbessern</strong><p>Gespräche, Qualität und Nachverfolgung anhand echter Daten nachschärfen.</p></div>
+            <div class="process-card-content"><strong>Verbessern</strong><p>Schritt für Schritt<br>verbessern,<br>was funktioniert.</p></div>
             <div class="holo-glow"></div>
           </article>
         </div>
@@ -1026,14 +1073,7 @@
           <p>Buche direkt einen passenden Termin für eine kostenlose Analyse eures aktuellen Auftritts, eurer offenen Stellen und eures Bewerberwegs.</p>
           <div class="hero-actions">
             <a class="button" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Termin in Calendly öffnen</a>
-            <a class="button secondary" href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener">Instagram ansehen</a>
           </div>
-        </div>
-        <div>
-          <div class="calendly-embed" aria-label="Calendly Terminbuchung">
-            <div class="calendly-inline-widget" data-url="https://calendly.com/studio-tephra?hide_gdpr_banner=1"></div>
-          </div>
-          <p class="calendly-fallback">Falls Calendly in der lokalen Vorschau nicht lädt: <a href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Termin direkt bei Calendly öffnen</a>.</p>
         </div>
       </div>
     </section>
@@ -1051,7 +1091,7 @@
       <div class="footer-links">
         <a href="impressum.html">Impressum</a>
         <a href="datenschutz.html">Datenschutz</a>
-        <a class="footer-social" href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener" aria-label="Tephra Studios auf Instagram">
+        <a class="footer-icon-link" href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener" aria-label="Tephra Studios auf Instagram">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
             <rect x="3" y="3" width="18" height="18" rx="5"></rect>
             <circle cx="12" cy="12" r="4"></circle>
@@ -1059,7 +1099,13 @@
           </svg>
           <span>@tephra.studios</span>
         </a>
-        <a href="mailto:studio@tephra.at">studio@tephra.at</a>
+        <a class="footer-icon-link" href="mailto:studio@tephra.at" aria-label="E-Mail an Tephra Studios">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2"></rect>
+            <path d="m4 7 8 6 8-6"></path>
+          </svg>
+          <span>studio@tephra.at</span>
+        </a>
       </div>
     </div>
   </footer>
@@ -1118,7 +1164,6 @@
       });
     }
   </script>
-  <script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 </body>
 </html>
 
