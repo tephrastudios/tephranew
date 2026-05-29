@@ -239,12 +239,16 @@
     .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(215,255,0,.4)}
     .hero .eyebrow::before{display:none}
     h1{
-      font-size:clamp(48px,7.2vw,104px);
+      font-size:clamp(40px,6.35vw,88px);
       line-height:.9;
       letter-spacing:-.064em;
       font-weight:920;
       text-wrap:balance;
       color:#f5efe2;
+    }
+    .hero-line{display:block}
+    @media (min-width:700px){
+      .hero-line{white-space:nowrap}
     }
     .subtitle{
       margin-top:34px;
@@ -514,23 +518,25 @@
     .system-card p{color:rgba(244,239,227,.78);font-size:13.5px;line-height:1.58}
     .system-icon{
       position:absolute;
-      right:-22px;
-      bottom:-24px;
-      width:128px;
-      height:128px;
-      color:rgba(215,255,0,.16);
-      opacity:.88;
-      transition:transform .42s var(--ease),opacity .35s ease,color .35s ease;
+      right:-34px;
+      bottom:-38px;
+      width:156px;
+      height:156px;
+      object-fit:cover;
+      opacity:.44;
+      filter:saturate(1.08) contrast(1.06) brightness(.95);
+      mix-blend-mode:screen;
+      transition:transform .42s var(--ease),opacity .35s ease,filter .35s ease;
       z-index:1;
     }
-    .system-card:hover .system-icon{transform:scale(1.08) rotate(3deg) translateX(6px);opacity:1;color:rgba(215,255,0,.24)}
+    .system-card:hover .system-icon{transform:scale(1.08) rotate(3deg) translateX(6px);opacity:.68;filter:saturate(1.12) contrast(1.1) brightness(1)}
     .system-card.positioning{background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(215,255,0,.022))}
     .system-card.visibility{background:linear-gradient(135deg,rgba(255,255,255,.042),rgba(193,102,66,.035))}
     .system-card.application{background:linear-gradient(135deg,rgba(255,255,255,.042),rgba(255,255,255,.012))}
     .system-card.followup{background:linear-gradient(135deg,rgba(255,255,255,.038),rgba(215,255,0,.035))}
 
     .proof{background:#0a0b0a;border-bottom:1px solid var(--line)}
-    .proof-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(54px,7vw,88px);align-items:start}
+    .proof-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(54px,7vw,88px);align-items:center}
     .proof-media{display:block;padding-top:8px;min-width:0}
     .proof-intro .proof-media{margin-top:34px}
     .founder-gallery{position:relative;min-width:0}
@@ -616,25 +622,24 @@
       opacity:1;
       margin-top:12px;
     }
-    .proof-media-note{
-      grid-column:1 / -1;
-      margin-top:10px;
-      padding-top:18px;
-      border-top:1px solid var(--line);
-      color:rgba(244,239,227,.68);
-      font-size:15px;
-      line-height:1.58;
+    .proof-copy{
+      align-self:center;
+      text-align:left;
+      display:flex;
+      flex-direction:column;
+      gap:24px;
     }
-    .proof-copy p{margin-top:24px;color:var(--muted);font-size:18px;line-height:1.72}
+    .proof-copy p,
     .quote{
-      margin-top:30px;
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-      padding:22px 0;
-      color:var(--white);
-      font-size:24px;
-      line-height:1.26;
+      margin:0;
+      color:rgba(244,239,227,.82);
+      font-size:clamp(20px,2vw,28px);
+      line-height:1.28;
       letter-spacing:-.045em;
+    }
+    .quote{
+      padding-top:0;
+      border-top:0;
     }
 
     .process{background:var(--black);border-bottom:1px solid var(--line);overflow:hidden}
@@ -718,12 +723,14 @@
       left:0;
       right:0;
       bottom:0;
-      height:62%;
+      height:68%;
       z-index:1;
       overflow:hidden;
       pointer-events:none;
-      opacity:.82;
+      opacity:.78;
       transform:translateZ(0);
+      -webkit-mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.06) 8%,rgba(0,0,0,.42) 25%,#000 48%);
+      mask-image:linear-gradient(to bottom,transparent 0%,rgba(0,0,0,.06) 8%,rgba(0,0,0,.42) 25%,#000 48%);
     }
     .process-card-image img{
       width:100%;
@@ -739,7 +746,7 @@
       inset:-1px;
       z-index:2;
       background:
-        linear-gradient(to bottom,#0a0b0a 0%,rgba(10,11,10,.72) 18%,rgba(10,11,10,.16) 48%,rgba(0,0,0,.46) 100%),
+        linear-gradient(to bottom,#0a0b0a 0%,rgba(10,11,10,.88) 12%,rgba(10,11,10,.42) 34%,rgba(10,11,10,.1) 56%,rgba(0,0,0,.46) 100%),
         radial-gradient(circle at 74% 82%,rgba(215,255,0,.12),transparent 42%),
         radial-gradient(circle at 50% 100%,rgba(0,0,0,.01),rgba(0,0,0,.44) 78%);
     }
@@ -760,14 +767,75 @@
 
     .booking{background:#0a0b0a;border-bottom:1px solid var(--line)}
     .booking-panel{
+      position:relative;
       display:block;
       max-width:900px;
       border:1px solid var(--line);
       border-radius:var(--radius);
       padding:34px;
-      background:linear-gradient(135deg,rgba(215,255,0,.075),rgba(255,255,255,.02) 42%,rgba(193,102,66,.08));
+      overflow:hidden;
+      background:linear-gradient(135deg,rgba(215,255,0,.07),rgba(255,255,255,.024) 42%,rgba(193,102,66,.072));
+      box-shadow:0 30px 90px rgba(0,0,0,.22);
     }
-    .booking-panel p{margin-top:22px;color:var(--muted);font-size:18px;line-height:1.7}
+    .booking-panel::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(ellipse at 46% 0%,rgba(244,239,227,.14),transparent 42%),
+        radial-gradient(circle at 82% 86%,rgba(215,255,0,.08),transparent 34%),
+        linear-gradient(180deg,rgba(255,255,255,.026),transparent 54%);
+      opacity:.72;
+    }
+    .booking-panel::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        linear-gradient(135deg,rgba(10,11,10,.2),rgba(10,11,10,.78)),
+        url("baustelle.png") right bottom/46% auto no-repeat,
+        radial-gradient(circle at 1px 1px,rgba(255,255,255,.18) 1px,transparent 0);
+      background-size:auto,46% auto,5px 5px;
+      filter:grayscale(1) saturate(.05) contrast(1.04) brightness(.72);
+      opacity:.095;
+      mix-blend-mode:screen;
+    }
+    .booking-panel > div{position:relative;z-index:2}
+    .booking-panel .eyebrow,
+    .booking-panel h2{
+      justify-content:center;
+      text-align:center;
+    }
+    .booking-panel p{
+      margin-top:22px;
+      max-width:760px;
+      margin-left:auto;
+      margin-right:auto;
+      color:var(--muted);
+      font-size:18px;
+      line-height:1.62;
+      text-align:center;
+    }
+    .booking-panel .hero-actions{
+      justify-content:center;
+      margin-top:30px;
+    }
+    .booking-trust{
+      margin-top:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .booking-founders{
+      margin-top:0;
+      justify-content:center;
+    }
+    .booking-founders .avatar{width:38px;height:38px}
+    .booking-founders p{margin:0;max-width:none;font-size:13px;line-height:1.35}
+    .booking-founders p span{font-size:14px}
+    .booking-founders p small{font-size:12.5px}
 
     .legal{background:var(--black)}
     .legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
@@ -865,6 +933,7 @@
       .social-proof{align-items:center;text-align:left}
       .section-pad{padding:78px 0}
       .pain-copy{padding-left:0}
+      .proof-copy{text-align:left;gap:18px}
       .position-panel{padding:22px 20px;border-radius:22px}
       .position-image{min-height:220px;border-radius:22px}
       .position-image img{min-height:220px}
@@ -872,7 +941,8 @@
       .system-head h2{font-size:clamp(43px,12.4vw,58px);line-height:.96}
       .system::before{width:280px;height:210px;right:-150px;top:46px}
       .system::after{display:none}
-      .pain-copy p,.proof-copy p,.booking-panel p{font-size:16px;line-height:1.66}
+      .pain-copy p,.booking-panel p{font-size:16px;line-height:1.66}
+      .proof-copy p,.proof-copy .quote{font-size:20px;line-height:1.34}
       .legal-grid{grid-template-columns:1fr}
       .system-grid{grid-template-columns:1fr}
       .system-card{min-height:auto}
@@ -884,10 +954,12 @@
       }
       .process-stack{grid-template-columns:1fr}
       .founder-grid{grid-template-columns:1fr;gap:12px}
-      .founder-slide{min-height:430px;border-radius:20px}
+      .founder-slide{min-height:320px;border-radius:20px}
       .founder-info{padding:22px}
       .quote{font-size:19px}
       .booking-panel{padding:24px;border-radius:22px}
+      .booking-panel .hero-actions{align-items:center}
+      .booking-trust{align-items:center}
       .footer{padding-bottom:92px}
       .footer-links{
         display:grid;
@@ -930,6 +1002,7 @@
         <img src="tephra-logo-exact.svg" alt="Tephra Studios">
       </a>
       <nav class="nav-links" aria-label="Navigation">
+        <a href="#aussenwirkung">Außenwirkung</a>
         <a href="#system">System</a>
         <a href="#wer-wir-sind">Wer wir sind</a>
         <a href="#ablauf">Ablauf</a>
@@ -939,9 +1012,10 @@
   </header>
 
   <nav class="mobile-panel" aria-label="Mobile Navigation">
-    <a href="#system">System <span>01</span></a>
-    <a href="#wer-wir-sind">Wer wir sind <span>02</span></a>
-    <a href="#ablauf">Ablauf <span>03</span></a>
+    <a href="#aussenwirkung">Außenwirkung <span>01</span></a>
+    <a href="#system">System <span>02</span></a>
+    <a href="#wer-wir-sind">Wer wir sind <span>03</span></a>
+    <a href="#ablauf">Ablauf <span>04</span></a>
   </nav>
 
   <main id="top">
@@ -958,9 +1032,9 @@
       <div class="container hero-inner">
         <div class="hero-copy reveal">
           <h1>
-            Gute Betriebe verlieren<br>
-            oft Bewerber,<br>
-            bevor jemand anruft.
+            <span class="hero-line">Gute Betriebe</span>
+            <span class="hero-line">verlieren oft Bewerber,</span>
+            <span class="hero-line">bevor jemand anruft.</span>
           </h1>
           <p class="subtitle">Wir helfen Handwerksbetrieben dabei, moderner aufzutreten, bessere Fachkräfte zu erreichen und professioneller wahrgenommen zu werden.</p>
           <div class="hero-points" aria-label="Was Tephra Studios vermeidet">
@@ -973,31 +1047,20 @@
               <div class="hero-actions">
                 <a class="button" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren</a>
               </div>
-              <div class="info-badge"><span>30 Min.</span> Kostenlose Analyse: Engpass, Auftritt, Bewerberweg</div>
-            </div>
-            <div class="social-proof hero-founders" aria-label="Tephra Studios Team">
-              <div class="avatars">
-                <span class="avatar"><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios"></span>
-                <span class="avatar"><img src="peter.jpg" alt="Peter Strbac von Tephra Studios"></span>
-              </div>
-              <p><span>Direkt mit Tina & Peter.</span><small>Keine anonyme Agenturstruktur.</small></p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="pain section-pad">
+    <section id="aussenwirkung" class="pain section-pad">
       <div class="container pain-grid">
         <div class="pain-copy reveal">
-          <div class="eyebrow">Positionierung</div>
-          <h2>Viele Handwerksbetriebe wirken schlechter, als sie sind.</h2>
-          <p>Heute entscheiden viele Fachkräfte innerhalb weniger Sekunden, welcher Betrieb professionell wirkt.</p>
+          <div class="eyebrow">Außenwirkung</div>
+          <h2>Viele Betriebe<br>wirken schlechter,<br>als sie sind.</h2>
+          <p>Fachkräfte entscheiden heute oft innerhalb weniger Sekunden, wie professionell ein Betrieb wirkt.</p>
         </div>
         <div class="position-side reveal">
-          <figure class="position-image" aria-hidden="true">
-            <img src="baustelle.png" alt="">
-          </figure>
           <div class="position-panel">
             <div class="position-label">Was viele Betriebe dabei ausbremst:</div>
             <ul class="position-list">
@@ -1022,19 +1085,19 @@
         <div class="system-grid reveal">
           <article class="system-card positioning">
             <div class="system-card-content"><small>01</small><strong>Positionierung</strong><p>Warum gute Leute bei euch anfangen und bleiben.</p></div>
-            <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg>
+            <img class="system-icon" src="01positionierung.png" alt="">
           </article>
           <article class="system-card visibility">
             <div class="system-card-content"><small>02</small><strong>Sichtbarkeit</strong><p>Sichtbar dort, wo Fachkräfte wirklich hinschauen.</p></div>
-            <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 12s3.6-6 10-6 10 6 10 6-3.6 6-10 6-10-6-10-6Z"/><circle cx="12" cy="12" r="3"/></svg>
+            <img class="system-icon" src="02sichtbarkeit.png" alt="">
           </article>
           <article class="system-card application">
             <div class="system-card-content"><small>03</small><strong>Bewerberweg</strong><p>Kurze Wege. Weniger Absprünge.</p></div>
-            <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="7" y="2.5" width="10" height="19" rx="2.2"/><path d="M10 7h4M10 11h4M10 15h2"/></svg>
+            <img class="system-icon" src="03bewerberweg.png" alt="">
           </article>
           <article class="system-card followup">
             <div class="system-card-content"><small>04</small><strong>Nachverfolgung</strong><p>Klare Abläufe nach der Anfrage.</p></div>
-            <svg class="system-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 7h9a4 4 0 0 1 4 4v1"/><path d="m14 9 3 3 3-3"/><path d="M20 17h-9a4 4 0 0 1-4-4v-1"/><path d="m10 15-3-3-3 3"/></svg>
+            <img class="system-icon" src="04nachverfolgung.png" alt="">
           </article>
         </div>
       </div>
@@ -1066,16 +1129,13 @@
                   </article>
                 </div>
             </div>
-            <p class="proof-media-note">Direkt mit den Menschen, die euren Auftritt, eure Ansprache und euren Bewerberweg wirklich aufbauen.</p>
           </div>
         </div>
         <div class="proof-copy reveal">
-          <p>Ich, Peter, habe mehrere Jahre gemeinsam mit meinem Vater auf Baustellen gearbeitet. Mein Vater ist selbstständiger Elektriker.</p>
-          <p>Dadurch habe ich früh gesehen, wie viel hinter einem Handwerksbetrieb wirklich steckt. Nicht nur die Arbeit selbst, sondern auch der tägliche Druck rund um Mitarbeiter, Organisation und Baustellen.</p>
-          <p>Vor allem gute Mitarbeiter zu finden war oft schwierig.</p>
-          <p>Genau deshalb helfen wir heute Handwerksbetrieben dabei, sichtbarer zu werden, professioneller aufzutreten und einfacher passende Mitarbeiter zu erreichen.</p>
-          <p>Tina bringt zusätzlich den technischen und gestalterischen Blick aus dem Architekturbereich mit.</p>
-          <blockquote class="quote">Nicht künstlich. Nicht kompliziert. Sondern so, dass es im echten Arbeitsalltag funktioniert.</blockquote>
+          <p>Wir sind keine klassische Agentur,<br>sondern ein Partner, der die Realität<br>im Handwerk wirklich versteht.</p>
+          <p>Wir sprechen täglich mit Geschäftsführern<br>und kennen die Herausforderungen,<br>die den Arbeitsalltag bestimmen.</p>
+          <p>Genau dieses Verständnis nutzen wir,<br>um klare Kommunikation, moderne<br>Außendarstellung und planbare<br>Bewerberwege aufzubauen.</p>
+          <blockquote class="quote">Nicht künstlich. Nicht kompliziert.<br>Sondern so, dass es im echten<br>Arbeitsalltag funktioniert.</blockquote>
         </div>
       </div>
     </section>
@@ -1119,9 +1179,18 @@
         <div>
           <div class="eyebrow">Nächster Schritt</div>
           <h2>Kostenlose Recruiting-Analyse buchen.</h2>
-          <p>Buche direkt einen passenden Termin für eine kostenlose Analyse eures aktuellen Auftritts, eurer offenen Stellen und eures Bewerberwegs.</p>
+          <p>Keine Verkaufspräsentation. Sondern eine ehrliche Analyse eures aktuellen Auftritts, Bewerberwegs und Recruitings.</p>
           <div class="hero-actions">
-            <a class="button" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Termin in Calendly öffnen</a>
+            <a class="button" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren</a>
+          </div>
+          <div class="booking-trust">
+            <div class="social-proof hero-founders booking-founders" aria-label="Tephra Studios Team">
+              <div class="avatars">
+                <span class="avatar"><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios"></span>
+                <span class="avatar"><img src="peter.jpg" alt="Peter Strbac von Tephra Studios"></span>
+              </div>
+              <p><span>Direkt mit Tina & Peter.</span><small>Keine anonyme Agenturstruktur.</small></p>
+            </div>
           </div>
         </div>
       </div>
@@ -1144,7 +1213,7 @@
             <circle cx="12" cy="12" r="4"></circle>
             <circle cx="17.5" cy="6.5" r="1"></circle>
           </svg>
-          <span>@tephra.studios</span>
+          <span>tephra.studios</span>
         </a>
         <a class="footer-icon-link" href="mailto:studio@tephra.at" aria-label="E-Mail an Tephra Studios">
           <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
