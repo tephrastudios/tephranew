@@ -478,7 +478,7 @@
       opacity:.09;
     }
     .system-head{
-      max-width:540px;
+      max-width:none;
       margin-bottom:42px;
     }
     .system-head h2{
@@ -487,6 +487,7 @@
       letter-spacing:-.075em;
       color:#f5efe2;
     }
+    .system-head h2{white-space:nowrap}
     .system-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
     .system-card{
       position:relative;
@@ -523,9 +524,8 @@
       width:156px;
       height:156px;
       object-fit:cover;
-      opacity:.44;
+      opacity:.5;
       filter:saturate(1.08) contrast(1.06) brightness(.95);
-      mix-blend-mode:screen;
       transition:transform .42s var(--ease),opacity .35s ease,filter .35s ease;
       z-index:1;
     }
@@ -536,7 +536,7 @@
     .system-card.followup{background:linear-gradient(135deg,rgba(255,255,255,.038),rgba(215,255,0,.035))}
 
     .proof{background:#0a0b0a;border-bottom:1px solid var(--line)}
-    .proof-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(54px,7vw,88px);align-items:center}
+    .proof-layout{display:grid;grid-template-columns:1.04fr .96fr;gap:clamp(44px,5.8vw,72px);align-items:center}
     .proof-media{display:block;padding-top:8px;min-width:0}
     .proof-intro .proof-media{margin-top:34px}
     .founder-gallery{position:relative;min-width:0}
@@ -624,7 +624,8 @@
     }
     .proof-copy{
       align-self:center;
-      margin-top:clamp(78px,7.5vw,116px);
+      margin-top:clamp(104px,9.5vw,146px);
+      max-width:620px;
       text-align:left;
       display:flex;
       flex-direction:column;
@@ -636,7 +637,7 @@
       margin:0;
       color:rgba(244,239,227,.82);
       font-size:16px;
-      line-height:1.62;
+      line-height:1.68;
       letter-spacing:-.015em;
     }
     .quote{
@@ -661,7 +662,7 @@
       --bg-x:50%;
       --bg-y:50%;
       position:relative;
-      min-height:368px;
+      min-height:328px;
       display:flex;
       flex-direction:column;
       justify-content:flex-start;
@@ -669,7 +670,7 @@
       height:100%;
       border:1px solid var(--line);
       border-radius:24px;
-      padding:30px 28px 200px;
+      padding:26px 24px 168px;
       overflow:hidden;
       background:
         radial-gradient(circle at var(--bg-x) var(--bg-y),rgba(255,255,255,.055),transparent 32%),
@@ -725,7 +726,7 @@
       left:0;
       right:0;
       bottom:0;
-      height:68%;
+      height:62%;
       z-index:1;
       overflow:hidden;
       pointer-events:none;
@@ -810,6 +811,7 @@
       justify-content:center;
       text-align:center;
     }
+    .booking-title-line{display:inline}
     .booking-panel p{
       margin-top:22px;
       max-width:760px;
@@ -959,9 +961,9 @@
       .system-card{min-height:auto}
       .process-stack{margin-top:36px;padding-bottom:18px}
       .process-card{
-        min-height:330px;
-        padding:24px 22px 176px;
-        border-radius:22px;
+        min-height:286px;
+        padding:22px 20px 146px;
+        border-radius:20px;
       }
       .process-stack{grid-template-columns:1fr}
       .founder-grid{grid-template-columns:1fr;gap:12px}
@@ -969,6 +971,7 @@
       .founder-info{padding:22px}
       .quote{font-size:16px}
       .booking-panel{padding:24px;border-radius:22px}
+      .booking-title-line{display:block}
       .booking-panel .hero-actions{align-items:center}
       .booking-trust{align-items:center}
       .footer{padding-bottom:92px}
@@ -1097,19 +1100,19 @@
         <div class="system-grid reveal">
           <article class="system-card positioning">
             <div class="system-card-content"><small>01</small><strong>Positionierung</strong><p>Warum gute Leute bei euch anfangen und bleiben.</p></div>
-            <img class="system-icon" src="01positionierung.png" alt="">
+            <img class="system-icon" src="01positionierung-transparent.png" alt="">
           </article>
           <article class="system-card visibility">
             <div class="system-card-content"><small>02</small><strong>Sichtbarkeit</strong><p>Sichtbar dort, wo Fachkräfte wirklich hinschauen.</p></div>
-            <img class="system-icon" src="02sichtbarkeit.png" alt="">
+            <img class="system-icon" src="02sichtbarkeit-transparent.png" alt="">
           </article>
           <article class="system-card application">
             <div class="system-card-content"><small>03</small><strong>Bewerberweg</strong><p>Kurze Wege. Weniger Absprünge.</p></div>
-            <img class="system-icon" src="03bewerberweg.png" alt="">
+            <img class="system-icon" src="03bewerberweg-transparent.png" alt="">
           </article>
           <article class="system-card followup">
             <div class="system-card-content"><small>04</small><strong>Nachverfolgung</strong><p>Klare Abläufe nach der Anfrage.</p></div>
-            <img class="system-icon" src="04nachverfolgung.png" alt="">
+            <img class="system-icon" src="04nachverfolgung-transparent.png" alt="">
           </article>
         </div>
       </div>
@@ -1119,7 +1122,7 @@
       <div class="container proof-layout">
         <div class="proof-intro reveal">
           <div class="eyebrow">Wer wir sind</div>
-          <h2>Wir sind Tina<br>und Peter.</h2>
+          <h2>Wir sind Tina &amp; Peter</h2>
           <div class="proof-media">
             <div class="founder-gallery" data-founder-gallery>
                 <div class="founder-grid">
@@ -1144,10 +1147,10 @@
           </div>
         </div>
         <div class="proof-copy reveal">
-          <p>Wir sind keine klassische Agentur,<br>sondern ein Partner, der die Realität<br>im Handwerk wirklich versteht.</p>
-          <p>Wir sprechen täglich mit Geschäftsführern<br>und kennen die Herausforderungen,<br>die den Arbeitsalltag bestimmen.</p>
-          <p>Genau dieses Verständnis nutzen wir,<br>um klare Kommunikation, moderne<br>Außendarstellung und planbare<br>Bewerberwege aufzubauen.</p>
-          <blockquote class="quote">Nicht künstlich. Nicht kompliziert.<br>Sondern so, dass es im echten<br>Arbeitsalltag funktioniert.</blockquote>
+          <p>Wir sind keine klassische Agentur, sondern ein Partner, der die Realität im Handwerk wirklich versteht.</p>
+          <p>Wir sprechen täglich mit Geschäftsführern und kennen die Herausforderungen, die den Arbeitsalltag bestimmen.</p>
+          <p>Genau dieses Verständnis nutzen wir, um klare Kommunikation, moderne Außendarstellung und planbare Bewerberwege aufzubauen.</p>
+          <blockquote class="quote">Nicht künstlich. Nicht kompliziert. Sondern so, dass es im echten Arbeitsalltag funktioniert.</blockquote>
         </div>
       </div>
     </section>
@@ -1190,7 +1193,7 @@
       <div class="container booking-panel reveal">
         <div>
           <div class="eyebrow">Nächster Schritt</div>
-          <h2>Kostenlose Recruiting-Analyse buchen.</h2>
+          <h2><span class="booking-title-line">Kostenlose Recruiting-</span><span class="booking-title-line">Analyse buchen.</span></h2>
           <p>Keine Verkaufspräsentation. Sondern eine ehrliche Analyse eures aktuellen Auftritts, Bewerberwegs und Recruitings.</p>
           <div class="hero-actions">
             <a class="button" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren</a>
