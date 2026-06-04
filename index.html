@@ -889,7 +889,7 @@
       text-align:center;
     }
     .footer-legal-links{justify-self:end;display:flex;gap:18px;flex-wrap:wrap;align-items:center}
-    .footer-contact-links{display:flex;gap:14px;align-items:center;justify-content:center}
+    .footer-contact-links{position:relative;display:flex;gap:14px;align-items:center;justify-content:center}
     .footer-tagline{
       margin-top:0;
       text-align:center;
@@ -899,8 +899,36 @@
       letter-spacing:-.01em;
     }
     .footer a:not(.logo){color:var(--accent)}
-    .footer-icon-link{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid rgba(215,255,0,.18);border-radius:999px;background:rgba(255,255,255,.025)}
+    .footer-icon-link{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border:1px solid rgba(215,255,0,.18);border-radius:999px;background:rgba(255,255,255,.025);color:var(--accent);cursor:pointer;font:inherit;padding:0}
     .footer-icon-link svg{width:15px;height:15px;stroke:currentColor;flex:0 0 auto}
+    .phone-mobile{display:none}
+    .phone-popover{
+      position:absolute;
+      left:50%;
+      bottom:42px;
+      transform:translate(-50%,8px);
+      min-width:190px;
+      padding:10px 12px;
+      border:1px solid rgba(244,239,227,.16);
+      border-radius:12px;
+      background:rgba(5,5,5,.94);
+      color:var(--white);
+      font-size:12px;
+      font-weight:800;
+      line-height:1.35;
+      text-align:center;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .22s ease,transform .22s ease;
+      box-shadow:0 18px 40px rgba(0,0,0,.3);
+    }
+    .phone-popover small{display:block;color:var(--accent);font-size:11px;margin-top:2px}
+    .phone-desktop:hover + .phone-mobile + .phone-popover,
+    .phone-desktop:focus-visible + .phone-mobile + .phone-popover{
+      opacity:1;
+      transform:translate(-50%,0);
+    }
+    .phone-popover.active{opacity:1;transform:translate(-50%,0)}
     .sticky-cta{display:none}
 
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
@@ -1067,6 +1095,9 @@
       }
       .footer-tagline{display:none}
       .footer-icon-link{white-space:nowrap}
+      .phone-desktop{display:none}
+      .phone-mobile{display:inline-flex}
+      .phone-popover{display:none}
       .sticky-cta{
         display:flex;
         position:fixed;
@@ -1305,15 +1336,21 @@
       </a>
       <div class="footer-center">
         <div class="footer-contact-links">
-          <a class="footer-icon-link" href="tel:+4368181315304" aria-label="Tephra Studios anrufen">
+          <button class="footer-icon-link phone-desktop" type="button" data-phone="+43 681 81315304" aria-label="Telefonnummer anzeigen">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"></path>
+            </svg>
+          </button>
+          <a class="footer-icon-link phone-mobile" href="tel:+4368181315304" aria-label="Tephra Studios anrufen">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"></path>
             </svg>
           </a>
+          <div class="phone-popover" aria-live="polite">+43 681 81315304<small>klicken kopiert</small></div>
           <a class="footer-icon-link" href="https://wa.me/4368181315304" target="_blank" rel="noopener" aria-label="Tephra Studios auf WhatsApp kontaktieren">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-              <path d="M20.5 11.9a8.4 8.4 0 0 1-12.4 7.4L3 20.7l1.4-5a8.4 8.4 0 1 1 16.1-3.8Z"></path>
-              <path d="M8.6 8.5c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.7 1.6c.1.2.1.4-.1.6l-.4.5c-.1.2-.2.3-.1.5.5 1 1.4 1.8 2.5 2.4.2.1.4.1.5-.1l.7-.8c.2-.2.4-.2.6-.1l1.6.8c.2.1.4.3.4.5 0 .5-.3 1.2-.7 1.5-.6.5-1.7.5-3.1-.1-2.5-1-4.5-3.1-5.4-5.5-.4-1-.4-1.8.1-2.4Z"></path>
+              <path d="M19.4 12a7.4 7.4 0 0 1-11 6.45L5 19.45l1-3.35A7.4 7.4 0 1 1 19.4 12Z"></path>
+              <path d="M9.2 8.7c.35-.35.8-.35 1.1-.08l.65.58c.28.24.34.64.14.95l-.34.54c.47.97 1.18 1.68 2.14 2.14l.55-.34c.3-.2.7-.14.94.14l.58.65c.27.3.27.75-.08 1.1-.52.47-1.43.5-2.42.05-1.76-.78-3.03-2.05-3.82-3.82-.45-.98-.42-1.9-.14-2.42Z"></path>
             </svg>
           </a>
           <a class="footer-icon-link" href="mailto:studio@tephra.at" aria-label="E-Mail an Tephra Studios">
@@ -1324,7 +1361,7 @@
           </a>
           <a class="footer-icon-link" href="https://www.facebook.com/profile.php?id=61590430296117" target="_blank" rel="noopener" aria-label="Tephra Studios auf Facebook">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path fill="currentColor" stroke="none" d="M14 8.1h2V5h-2.4c-2.8 0-4.3 1.6-4.3 4.1v2H7v3.2h2.3V21h3.4v-6.7h2.8l.5-3.2h-3.3V9.5c0-.9.4-1.4 1.3-1.4Z"></path>
+              <path fill="currentColor" stroke="none" d="M13.35 8.3h1.9V5.45h-2.28c-2.25 0-3.52 1.28-3.52 3.55v1.65H7.35v2.9h2.1V19h3.08v-5.45h2.25l.42-2.9h-2.67V9.38c0-.72.3-1.08.82-1.08Z"></path>
             </svg>
           </a>
           <a class="footer-icon-link" href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener" aria-label="Tephra Studios auf Instagram">
@@ -1332,6 +1369,11 @@
               <rect x="3" y="3" width="18" height="18" rx="5"></rect>
               <circle cx="12" cy="12" r="4"></circle>
               <circle cx="17.5" cy="6.5" r="1"></circle>
+            </svg>
+          </a>
+          <a class="footer-icon-link" href="https://www.linkedin.com/in/peter-strbac-a05355414/" target="_blank" rel="noopener" aria-label="Peter Strbac auf LinkedIn">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path fill="currentColor" stroke="none" d="M6.7 8.8H3.8V20h2.9V8.8ZM5.25 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM20.2 13.7c0-3-1.6-5.1-4.3-5.1-1.7 0-2.7.9-3.2 1.8V8.8H9.9V20h2.9v-5.9c0-1.6.8-2.7 2.2-2.7 1.3 0 2.1 1 2.1 2.7V20h3.1v-6.3Z"></path>
             </svg>
           </a>
         </div>
@@ -1356,6 +1398,25 @@
     mobileLinks.forEach(link => link.addEventListener("click", () => {
       document.body.classList.remove("menu-open");
     }));
+
+    const phoneButton = document.querySelector(".phone-desktop");
+    const phonePopover = document.querySelector(".phone-popover");
+    if(phoneButton && phonePopover){
+      phoneButton.addEventListener("click", async event => {
+        event.stopPropagation();
+        const phone = phoneButton.dataset.phone || "+43 681 81315304";
+        phonePopover.innerHTML = `${phone}<small>Nummer kopiert</small>`;
+        phonePopover.classList.add("active");
+        try{
+          await navigator.clipboard.writeText(phone);
+        }catch(error){
+          phonePopover.innerHTML = `${phone}<small>Telefonnummer</small>`;
+        }
+      });
+      document.addEventListener("click", () => {
+        phonePopover.classList.remove("active");
+      });
+    }
 
     const observer = new IntersectionObserver(entries => {
       entries.forEach(entry => {
