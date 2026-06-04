@@ -905,24 +905,23 @@
     .phone-popover{
       position:absolute;
       left:50%;
-      bottom:42px;
+      bottom:36px;
       transform:translate(-50%,8px);
-      min-width:190px;
-      padding:10px 12px;
+      min-width:176px;
+      padding:8px 12px;
       border:1px solid rgba(244,239,227,.16);
       border-radius:12px;
       background:rgba(5,5,5,.94);
       color:var(--white);
       font-size:12px;
       font-weight:800;
-      line-height:1.35;
+      line-height:1;
       text-align:center;
       opacity:0;
       pointer-events:none;
       transition:opacity .22s ease,transform .22s ease;
       box-shadow:0 18px 40px rgba(0,0,0,.3);
     }
-    .phone-popover small{display:block;color:var(--accent);font-size:11px;margin-top:2px}
     .phone-desktop:hover + .phone-mobile + .phone-popover,
     .phone-desktop:focus-visible + .phone-mobile + .phone-popover{
       opacity:1;
@@ -1346,7 +1345,7 @@
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"></path>
             </svg>
           </a>
-          <div class="phone-popover" aria-live="polite">+43 681 81315304<small>klicken kopiert</small></div>
+          <div class="phone-popover" aria-live="polite">+43 681 81315304</div>
           <a class="footer-icon-link" href="https://wa.me/4368181315304" target="_blank" rel="noopener" aria-label="Tephra Studios auf WhatsApp kontaktieren">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
               <path d="M19.4 12a7.4 7.4 0 0 1-11 6.45L5 19.45l1-3.35A7.4 7.4 0 1 1 19.4 12Z"></path>
@@ -1405,12 +1404,12 @@
       phoneButton.addEventListener("click", async event => {
         event.stopPropagation();
         const phone = phoneButton.dataset.phone || "+43 681 81315304";
-        phonePopover.innerHTML = `${phone}<small>Nummer kopiert</small>`;
+        phonePopover.textContent = phone;
         phonePopover.classList.add("active");
         try{
           await navigator.clipboard.writeText(phone);
         }catch(error){
-          phonePopover.innerHTML = `${phone}<small>Telefonnummer</small>`;
+          phonePopover.textContent = phone;
         }
       });
       document.addEventListener("click", () => {
