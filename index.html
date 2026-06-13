@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tephra Studios | Mitarbeiter gewinnen mit System</title>
   <meta name="description" content="Tephra Studios baut Sichtbarkeit, Recruiting-Kampagnen und einfache Bewerberprozesse für Handwerks-, Bau- und Industrieunternehmen." />
+  <link rel="canonical" href="https://tephrastudios.at/" />
+
+  <!-- Social-Sharing (Open Graph) – sorgt für eine schöne Vorschau bei WhatsApp, Facebook, LinkedIn.
+       TIPP: Für ein optimales Vorschaubild ein eigenes 1200x630px-Bild erstellen und unten bei og:image eintragen. -->
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_AT" />
+  <meta property="og:site_name" content="Tephra Studios" />
+  <meta property="og:title" content="Tephra Studios | Mitarbeiter gewinnen mit System" />
+  <meta property="og:description" content="Moderne Recruiting- und Markenauftritte für Handwerks-, Bau- und Industrieunternehmen. Direkt. Modern. Glaubwürdig." />
+  <meta property="og:url" content="https://tephrastudios.at/" />
+  <meta property="og:image" content="https://tephrastudios.at/wand.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Tephra Studios | Mitarbeiter gewinnen mit System" />
+  <meta name="twitter:description" content="Moderne Recruiting- und Markenauftritte für Handwerks-, Bau- und Industrieunternehmen." />
+  <meta name="twitter:image" content="https://tephrastudios.at/wand.png" />
   <style>
     :root{
       --black:#070807;
@@ -930,6 +945,84 @@
     .phone-popover.active{opacity:1;transform:translate(-50%,0)}
     .sticky-cta{display:none}
 
+    /* ===== Leistungen / Was ihr bekommt ===== */
+    .deliver{background:var(--black);border-bottom:1px solid var(--line)}
+    .deliver-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:46px}
+    .deliver-card{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:26px 24px;
+      background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.012));
+      transition:transform .35s var(--ease),border-color .35s ease,box-shadow .35s ease;
+    }
+    .deliver-card:hover{transform:translateY(-4px);border-color:rgba(255,242,0,.3);box-shadow:0 22px 60px rgba(0,0,0,.24)}
+    .deliver-card .check{
+      display:inline-flex;align-items:center;justify-content:center;
+      width:34px;height:34px;border-radius:10px;margin-bottom:18px;
+      background:rgba(255,242,0,.1);border:1px solid rgba(255,242,0,.28);
+      color:var(--accent);font-weight:900;font-size:16px;
+    }
+    .deliver-card strong{display:block;font-size:20px;line-height:1.12;letter-spacing:-.04em;margin-bottom:10px}
+    .deliver-card p{color:rgba(244,239,227,.78);font-size:14.5px;line-height:1.62}
+
+    /* ===== Referenzen / Stimmen ===== */
+    .refs{background:#0a0b0a;border-bottom:1px solid var(--line)}
+    .refs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:46px}
+    .ref-card{
+      display:flex;flex-direction:column;gap:18px;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:28px 26px;
+      background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.012));
+    }
+    .ref-card .stars{color:var(--accent);font-size:15px;letter-spacing:3px}
+    .ref-card blockquote{margin:0;color:rgba(244,239,227,.9);font-size:16px;line-height:1.62;letter-spacing:-.01em}
+    .ref-author{margin-top:auto;display:flex;flex-direction:column;gap:3px}
+    .ref-author strong{font-size:14.5px;color:var(--white)}
+    .ref-author small{font-size:13px;color:var(--muted);font-weight:700}
+
+    /* ===== FAQ ===== */
+    .faq{background:var(--black);border-bottom:1px solid var(--line)}
+    .faq-list{margin-top:42px;display:grid;gap:12px;max-width:860px}
+    .faq-item{
+      border:1px solid var(--line);
+      border-radius:16px;
+      background:rgba(255,255,255,.024);
+      overflow:hidden;
+      transition:border-color .3s ease;
+    }
+    .faq-item[open]{border-color:rgba(255,242,0,.28)}
+    .faq-item summary{
+      list-style:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:space-between;gap:18px;
+      padding:22px 24px;
+      font-size:17px;font-weight:800;letter-spacing:-.02em;color:var(--white);
+    }
+    .faq-item summary::-webkit-details-marker{display:none}
+    .faq-item summary .plus{
+      flex:0 0 auto;width:24px;height:24px;position:relative;transition:transform .3s var(--ease);
+    }
+    .faq-item summary .plus::before,
+    .faq-item summary .plus::after{
+      content:"";position:absolute;top:50%;left:50%;background:var(--accent);
+      transform:translate(-50%,-50%);transition:transform .3s var(--ease);
+    }
+    .faq-item summary .plus::before{width:13px;height:2px}
+    .faq-item summary .plus::after{width:2px;height:13px}
+    .faq-item[open] summary .plus::after{transform:translate(-50%,-50%) scaleY(0)}
+    .faq-item .faq-answer{padding:0 24px 24px;color:var(--muted);font-size:15px;line-height:1.7}
+
+    @media(max-width:980px){
+      .deliver-grid{grid-template-columns:1fr 1fr}
+      .refs-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:640px){
+      .deliver-grid{grid-template-columns:1fr}
+      .faq-item summary{font-size:16px;padding:18px 20px}
+      .faq-item .faq-answer{padding:0 20px 20px}
+    }
+
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .85s var(--ease),transform .85s var(--ease)}
     .reveal.visible{opacity:1;transform:translateY(0)}
 
@@ -1134,8 +1227,10 @@
       <nav class="nav-links" aria-label="Navigation">
         <a href="#aussenwirkung">Außenwirkung</a>
         <a href="#system">System</a>
+        <a href="#leistungen">Leistungen</a>
         <a href="#wer-wir-sind">Wer wir sind</a>
         <a href="#ablauf">Ablauf</a>
+        <a href="#faq">Fragen</a>
       </nav>
       <button class="mobile-toggle" type="button" aria-label="Menü öffnen"><span></span></button>
     </div>
@@ -1144,8 +1239,10 @@
   <nav class="mobile-panel" aria-label="Mobile Navigation">
     <a href="#aussenwirkung">Außenwirkung <span>01</span></a>
     <a href="#system">System <span>02</span></a>
-    <a href="#wer-wir-sind">Wer wir sind <span>03</span></a>
-    <a href="#ablauf">Ablauf <span>04</span></a>
+    <a href="#leistungen">Leistungen <span>03</span></a>
+    <a href="#wer-wir-sind">Wer wir sind <span>04</span></a>
+    <a href="#ablauf">Ablauf <span>05</span></a>
+    <a href="#faq">Fragen <span>06</span></a>
   </nav>
 
   <main id="top">
@@ -1233,6 +1330,37 @@
       </div>
     </section>
 
+    <section id="leistungen" class="deliver section-pad">
+      <div class="container">
+        <div class="system-head reveal">
+          <div class="eyebrow">Was ihr bekommt</div>
+          <h2>Am Ende habt ihr etwas in der Hand.</h2>
+        </div>
+        <div class="deliver-grid reveal">
+          <div class="deliver-card">
+            <span class="check">✓</span>
+            <strong>Moderne Karriere-Seite</strong>
+            <p>Eine eigene Seite, auf der sich Fachkräfte in Sekunden ein Bild von euch machen – und sich direkt bewerben.</p>
+          </div>
+          <div class="deliver-card">
+            <span class="check">✓</span>
+            <strong>Fertige Stellenanzeigen</strong>
+            <p>Anzeigen, die klar sagen, warum man bei euch arbeiten sollte. Ohne Floskeln, ohne Agentur-Sprech.</p>
+          </div>
+          <div class="deliver-card">
+            <span class="check">✓</span>
+            <strong>Einfacher Bewerberweg</strong>
+            <p>Bewerbung in wenigen Schritten, mobil und ohne Hürden. Das sorgt für weniger Absprünge.</p>
+          </div>
+          <div class="deliver-card">
+            <span class="check">✓</span>
+            <strong>Klare Nachfass-Prozesse</strong>
+            <p>Ein einfacher Ablauf, damit keine Anfrage liegen bleibt und ihr schnell reagieren könnt.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="wer-wir-sind" class="proof section-pad">
       <div class="container proof-layout">
         <div class="proof-intro reveal">
@@ -1300,6 +1428,38 @@
             <div class="process-card-image" aria-hidden="true"><img src="verbessernneu04.png" alt=""></div>
             <div class="holo-glow"></div>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="faq section-pad">
+      <div class="container">
+        <div class="system-head reveal">
+          <div class="eyebrow">Häufige Fragen</div>
+          <h2>Was Betriebe oft wissen wollen.</h2>
+        </div>
+        <div class="faq-list reveal">
+          <!-- TIPP: Antworten gern an eure echten Konditionen anpassen. -->
+          <details class="faq-item" open>
+            <summary>Was kostet die Zusammenarbeit? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-answer">Das hängt vom Umfang ab – je nachdem, was ihr braucht. Im kostenlosen Erstgespräch schauen wir uns eure Situation an und nennen euch einen klaren, fairen Preis. Keine versteckten Kosten, keine langen Knebelverträge.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Wie viel Aufwand bedeutet das für mich? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-answer">So wenig wie möglich. Wir holen einmal die nötigen Infos von euch ab und übernehmen dann den Aufbau. Ihr müsst euch nicht mit Technik herumschlagen – das ist genau unser Job.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Wie lange dauert es, bis ich erste Ergebnisse sehe? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-answer">Der Auftritt steht meist innerhalb weniger Wochen. Wie schnell sich die ersten Bewerbungen verbessern, hängt von Region und Stelle ab – wir setzen aber von Anfang an auf einen klaren, messbaren Bewerberweg.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Für welche Betriebe ist das geeignet? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-answer">Vor allem für Handwerks-, Bau- und Industriebetriebe, die gute Leute suchen und nach außen so wirken wollen, wie sie wirklich sind. Vom kleinen Team bis zum mittelständischen Betrieb.</div>
+          </details>
+          <details class="faq-item">
+            <summary>Müssen wir uns mit Technik oder Marketing auskennen? <span class="plus" aria-hidden="true"></span></summary>
+            <div class="faq-answer">Nein. Wir erklären alles in normaler Sprache und bauen die Abläufe so, dass sie im echten Arbeitsalltag funktionieren – ohne Fachchinesisch.</div>
+          </details>
         </div>
       </div>
     </section>
