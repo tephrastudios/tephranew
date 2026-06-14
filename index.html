@@ -256,7 +256,8 @@
     .bpanel h2{font-size:clamp(30px,4vw,48px)}
     .bpanel p{max-width:540px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
     .bpanel .hero-cta{margin-top:30px}
-    .bpanel .hero-trust{margin-top:24px}
+    .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:700;letter-spacing:.01em}
+    .bpanel .hero-trust{margin-top:22px}
 
     /* FOOTER */
     .footer{border-top:1px solid var(--line);background:#050505;padding:38px 0 34px}
@@ -286,10 +287,13 @@
       .flow{display:none}
     }
     @media(max-width:640px){
-      .hero-in{padding:120px 0 80px}
-      h1{font-size:clamp(30px,9vw,42px)}
+      .hero{min-height:auto}
+      .hero-in{padding:110px 0 64px}
+      h1{font-size:clamp(29px,8.4vw,40px);line-height:1.04}
       h1 .hl{white-space:normal}
-      .hero-cta{flex-direction:column;align-items:stretch}
+      .subtitle{margin-top:20px}
+      .hero-points{margin-top:20px;gap:8px 14px}
+      .hero-cta{margin-top:26px;flex-direction:column;align-items:stretch}
       .btn{width:100%}
       .grid4,.dgrid,.pstack,.founders,.pgrid{grid-template-columns:1fr}
       .card{min-height:auto}
@@ -496,7 +500,7 @@
             <div class="fans">Vor allem für Handwerks-, Bau- und Industriebetriebe, die gute Leute suchen und nach außen so wirken wollen, wie sie wirklich sind. Vom kleinen Team bis zum mittelständischen Betrieb.</div>
           </details>
           <details class="fitem">
-            <summary>Müssen wir uns mit Technik auskennen? <span class="pls" aria-hidden="true"></span></summary>
+            <summary>Muss ich mich mit Technik auskennen? <span class="pls" aria-hidden="true"></span></summary>
             <div class="fans">Nein. Wir erklären alles in normaler Sprache und bauen die Abläufe so, dass sie im echten Arbeitsalltag funktionieren, ganz ohne Fachchinesisch.</div>
           </details>
         </div>
@@ -513,6 +517,7 @@
           <div class="hero-cta" style="justify-content:center">
             <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
           </div>
+          <div class="bnote">Unverbindlich · ca. 20 Minuten · ihr entscheidet danach in Ruhe.</div>
           <div class="hero-trust" style="justify-content:center">
             <div class="av">
               <span><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios"></span>
@@ -560,10 +565,13 @@
   <script>
     // sticky header style on scroll
     const head = document.getElementById("head");
+    const bg = document.getElementById("heroBg");
+    // Parallax only on larger pointer-precise screens — avoids scroll jank on phones
+    const allowParallax = window.matchMedia("(min-width:768px) and (hover:hover) and (pointer:fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
     const onScroll = () => {
       head.classList.toggle("scrolled", window.scrollY > 30);
-      const bg = document.getElementById("heroBg");
-      if(bg && window.scrollY < window.innerHeight){
+      if(allowParallax && bg && window.scrollY < window.innerHeight){
         bg.style.transform = "scale(1.06) translateY(" + (window.scrollY * 0.18) + "px)";
       }
     };
