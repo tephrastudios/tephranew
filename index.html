@@ -105,7 +105,7 @@
       filter:blur(20px);
       opacity:.85;
     }
-    .hero-in{position:relative;z-index:2;padding:140px 0 90px;text-align:center}
+    .hero-in{position:relative;z-index:2;min-width:0;padding:140px 0 90px;text-align:center}
     .eyebrow{
       display:inline-flex;align-items:center;gap:9px;color:var(--accent);
       text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:900;margin-bottom:26px;
@@ -117,7 +117,7 @@
     }
     h1 .hl{position:relative;color:var(--accent);white-space:nowrap}
     .subtitle{margin:30px auto 0;max-width:620px;color:var(--muted);font-size:clamp(16px,1.4vw,19px);line-height:1.7}
-    .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;width:max-content;max-width:100%}
+    .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;max-width:100%}
     .hero-points span{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:720;color:rgba(244,239,227,.78)}
     .hero-points span::before{content:"✓";color:var(--accent);font-weight:900;font-size:12px}
     .hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
@@ -134,10 +134,6 @@
     .hero-trust p b{display:block;font-size:14px;color:rgba(244,239,227,.9);font-weight:800}
     .hero-trust p small{font-size:13px;color:var(--muted)}
 
-    /* ---------------- STRIP ---------------- */
-    .strip{border-bottom:1px solid var(--line);background:var(--deep);padding:22px 0;display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:22px}
-    .strip span{display:flex;align-items:center;gap:22px;font-size:13px;font-weight:850;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,239,227,.5)}
-    .strip span:not(:last-child)::after{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
 
     /* ---------------- SECTIONS ---------------- */
     section{position:relative;z-index:2}
@@ -351,11 +347,6 @@
         </div>
       </div>
     </section>
-
-    <!-- STRIP -->
-    <div class="strip">
-      <span>Recruiting</span><span>Sichtbarkeit</span><span>Bewerberprozesse</span>
-    </div>
 
     <!-- AUSSENWIRKUNG -->
     <section id="aussenwirkung" class="pain pad">
