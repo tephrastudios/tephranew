@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tephra Studios | Mitarbeiter gewinnen</title>
+  <meta name="description" content="Tephra Studios entwickelt Recruiting-Auftritte für Betriebe, die passende Mitarbeiter erreichen wollen: klar in der Ansprache und kurz im Bewerbungsweg." />
+  <style>
+    :root{
+      --black:#070807;
+      --deep:#0e100d;
+      --panel:#141610;
+      --white:#f4efe3;
+      --muted:rgba(244,239,227,.72);
+      --soft:rgba(244,239,227,.46);
+      --line:rgba(244,239,227,.14);
+      --line2:rgba(244,239,227,.26);
+      --accent:#fff200;
+      --ease:cubic-bezier(.16,.84,.28,1);
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;background:var(--black)}
+    body{
+      min-height:100vh;background:
+        radial-gradient(circle at 50% -10%,rgba(255,242,0,.11),transparent 34%),
+        linear-gradient(180deg,#080907 0%,#060706 100%);
+      color:var(--white);
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      font-size:16px;line-height:1.5;overflow-x:hidden;
+    }
+    body::before{
+      content:"";position:fixed;inset:0;z-index:80;pointer-events:none;opacity:.034;
+      background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);
+      background-size:24px 24px;mix-blend-mode:screen;
+    }
+    body::after{
+      content:"";position:fixed;inset:0;z-index:79;pointer-events:none;opacity:.16;
+      background:
+        linear-gradient(rgba(244,239,227,.05) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(244,239,227,.045) 1px,transparent 1px);
+      background-size:120px 120px;
+      mask-image:linear-gradient(to bottom,black,transparent 80%);
+    }
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(1120px,calc(100% - 44px));margin:0 auto}
+    .head{position:sticky;top:0;z-index:70;border-bottom:1px solid var(--line);background:rgba(7,8,7,.75);backdrop-filter:blur(20px)}
+    .head-in{height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .logo img{width:clamp(140px,13vw,196px);height:auto;display:block}
+    .hero{position:relative;z-index:2;min-height:calc(100vh - 78px);display:grid;place-items:center;padding:64px 0 72px}
+    .hero-inner{text-align:center;max-width:850px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;margin-bottom:24px}
+    .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px rgba(255,242,0,.58)}
+    h1{font-size:clamp(38px,6.4vw,82px);line-height:.94;letter-spacing:-.055em;font-weight:920;text-wrap:balance}
+    h1 span{color:var(--accent)}
+    .lead{max-width:580px;margin:24px auto 0;color:var(--muted);font-size:clamp(16px,1.55vw,20px);line-height:1.72}
+    .choice-grid{margin-top:46px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;perspective:900px}
+    .choice-card{
+      --mx:20%;--my:20%;
+      position:relative;min-height:330px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;
+      border:1px solid var(--line);border-radius:24px;padding:28px;text-align:left;color:var(--white);
+      background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .22s ease,opacity .22s ease,border-color .34s ease,box-shadow .34s ease;
+    }
+    .choice-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 18% 18%,rgba(255,242,0,.12),transparent 64%)}
+    .choice-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at var(--mx) var(--my),rgba(255,242,0,.24),transparent 62%);transition:opacity .25s ease}
+    .choice-card:hover{border-color:rgba(255,242,0,.34);box-shadow:0 28px 78px rgba(0,0,0,.38)}
+    .choice-card:hover::after{opacity:1}
+    .choice-card.is-dimmed{opacity:.48;transform:scale(.97)}
+    .choice-card.featured{background:linear-gradient(145deg,rgba(255,242,0,.12),rgba(255,255,255,.018))}
+    .card-mark{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:16px;background:rgba(255,242,0,.09);border:1px solid rgba(255,242,0,.25);color:var(--accent)}
+    .card-mark svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+    .card-copy{position:relative;z-index:2;margin-top:auto}
+    .card-label{color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
+    .choice-card h2{font-size:clamp(25px,3vw,36px);line-height:1;letter-spacing:-.05em;margin-bottom:14px}
+    .choice-card p{color:var(--muted);font-size:15px;line-height:1.66;max-width:29rem}
+    .card-cta{margin-top:24px;display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:14px;font-weight:850}
+    .card-cta span{transition:transform .35s var(--ease)}
+    .choice-card:hover .card-cta span{transform:translateX(5px)}
+    .footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:38px 0 34px;background:#050505}
+    .foot-in{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+    .foot-links{display:flex;gap:13px;align-items:center}
+    .iclink{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,242,0,.18);border-radius:999px;background:rgba(255,255,255,.025);color:var(--accent);cursor:pointer;transition:transform .3s var(--ease),background .3s ease}
+    .iclink:hover{transform:translateY(-3px);background:rgba(255,242,0,.1)}
+    .iclink svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .foot-tag{font-size:13px;color:var(--soft);font-weight:700;letter-spacing:-.01em}
+    .foot-legal{display:flex;gap:22px;font-size:13px;color:var(--soft)}
+    .foot-legal a{transition:color .2s ease}
+    .foot-legal a:hover{color:var(--accent)}
+    .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
+    .reveal.in{opacity:1;transform:translateY(0)}
+    @media(max-width:760px){
+      .head-in{height:72px}.nav-meta span:first-child{display:none}
+      .hero{padding:46px 0 56px;min-height:auto}
+      .choice-grid{grid-template-columns:1fr;margin-top:34px}
+      .choice-card{min-height:280px;padding:24px}
+      .foot-in{flex-direction:column;text-align:center}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+    }
+  </style>
+</head>
+<body>
+  <header class="head">
+    <div class="wrap head-in">
+      <a class="logo" href="https://tephrastudios.at/"><img src="../../../../Tephra Studio Website/github-ready/tephra-logo-exact.svg" alt="Tephra Studios"></a>
+    </div>
+  </header>
+
+  <main class="hero">
+    <div class="wrap hero-inner">
+      <div class="reveal">
+        <p class="eyebrow">Recruiting für österreichisches Handwerk</p>
+        <h1>Für welchen Betrieb sucht ihr <span>Mitarbeiter?</span></h1>
+        <p class="lead">Wählt euren Bereich. Dann seht ihr, wie Tephra euren Auftritt, die Ansprache und den Bewerberweg zusammenbringt.</p>
+      </div>
+
+      <section class="choice-grid reveal" data-focus-grid>
+        <a href="https://tephrastudios.at/" class="choice-card" data-tilt>
+          <div class="card-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7z"/></svg>
+          </div>
+          <div class="card-copy">
+            <div class="card-label">Handwerk, Bau & Industrie</div>
+            <h2>Für Handwerksbetriebe</h2>
+            <p>Elektriker, Gebäudetechnik, Bau und verwandte Gewerke. Sichtbar als Arbeitgeber, klar in der Stellenkommunikation und am Handy schnell verständlich.</p>
+            <div class="card-cta">Zum Handwerk <span>→</span></div>
+          </div>
+        </a>
+
+        <a href="gastronomie.html" class="choice-card featured" data-tilt>
+          <div class="card-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 2v20M4 2v6a3 3 0 0 0 6 0V2M17 2v20M17 2c2.2 1.8 3 4 3 7 0 2.2-1 4-3 4"/></svg>
+          </div>
+          <div class="card-copy">
+            <div class="card-label">Gastronomie & Service</div>
+            <h2>Für Gastrobetriebe</h2>
+            <p>Restaurants, Cafés, Hotels und Catering. Wir machen sichtbar, warum jemand bei euch arbeiten sollte, und halten die Bewerbung kurz.</p>
+            <div class="card-cta">Zur Gastronomie <span>→</span></div>
+          </div>
+        </a>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot-in">
+      <a class="logo" href="https://tephrastudios.at/"><img src="../../../../Tephra Studio Website/github-ready/tephra-logo-exact.svg" alt="Tephra Studios"></a>
+      <div class="foot-links">
+        <a class="iclink" href="tel:+4368181315304" aria-label="Tephra Studios anrufen">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"/></svg>
+        </a>
+        <a class="iclink" href="https://wa.me/4368181315304" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.4 12a7.4 7.4 0 0 1-11 6.45L5 19.45l1-3.35A7.4 7.4 0 1 1 19.4 12Z"/><path d="M9.2 8.7c.35-.35.8-.35 1.1-.08l.65.58c.28.24.34.64.14.95l-.34.54c.47.97 1.18 1.68 2.14 2.14l.55-.34c.3-.2.7-.14.94.14l.58.65c.27.3.27.75-.08 1.1-.52.47-1.43.5-2.42.05-1.76-.78-3.03-2.05-3.82-3.82-.45-.98-.42-1.9-.14-2.42Z"/></svg>
+        </a>
+        <a class="iclink" href="mailto:studio@tephra.at" aria-label="E-Mail">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+        </a>
+        <a class="iclink" href="https://www.facebook.com/profile.php?id=61590430296117" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M13.35 8.3h1.9V5.45h-2.28c-2.25 0-3.52 1.28-3.52 3.55v1.65H7.35v2.9h2.1V19h3.08v-5.45h2.25l.42-2.9h-2.67V9.38c0-.72.3-1.08.82-1.08Z"/></svg>
+        </a>
+        <a class="iclink" href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+        </a>
+        <a class="iclink" href="https://www.linkedin.com/in/peter-strbac-a05355414/" target="_blank" rel="noopener" aria-label="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M6.7 8.8H3.8V20h2.9V8.8ZM5.25 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM20.2 13.7c0-3-1.6-5.1-4.3-5.1-1.7 0-2.7.9-3.2 1.8V8.8H9.9V20h2.9v-5.9c0-1.6.8-2.7 2.2-2.7 1.3 0 2.1 1 2.1 2.7V20h3.1v-6.3Z"/></svg>
+        </a>
+      </div>
+      <div class="foot-tag">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
+      <div class="foot-legal">
+        <a href="../../../../Tephra Studio Website/github-ready/impressum.html">Impressum</a>
+        <a href="../../../../Tephra Studio Website/github-ready/datenschutz.html">Datenschutz</a>
+        <a href="../../../../Tephra Studio Website/github-ready/agb.html">AGB</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const canMove = window.matchMedia("(hover:hover) and (pointer:fine)").matches && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    document.querySelectorAll("[data-focus-grid]").forEach(grid => {
+      const cards = Array.from(grid.querySelectorAll("[data-tilt]"));
+      cards.forEach(card => {
+        card.addEventListener("mouseenter", () => cards.forEach(other => { if(other !== card) other.classList.add("is-dimmed"); }));
+        card.addEventListener("mouseleave", () => {
+          cards.forEach(other => other.classList.remove("is-dimmed"));
+          card.style.transform = "";
+          card.style.setProperty("--mx","20%");
+          card.style.setProperty("--my","20%");
+        });
+        card.addEventListener("mousemove", ev => {
+          if(!canMove) return;
+          const r = card.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width;
+          const y = (ev.clientY - r.top) / r.height;
+          card.style.setProperty("--mx",(x * 100) + "%");
+          card.style.setProperty("--my",(y * 100) + "%");
+          card.style.transform = "perspective(900px) rotateX(" + ((y - .5) * -8) + "deg) rotateY(" + ((x - .5) * 8) + "deg)";
+        });
+      });
+    });
+    const io = new IntersectionObserver(entries => entries.forEach(entry => {
+      if(entry.isIntersecting){ entry.target.classList.add("in"); io.unobserve(entry.target); }
+    }), {threshold:.14});
+    document.querySelectorAll(".reveal").forEach((el,i) => {
+      el.style.transitionDelay = Math.min(i * 90, 220) + "ms";
+      io.observe(el);
+    });
+  </script>
+</body>
+</html>
