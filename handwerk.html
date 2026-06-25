@@ -14,7 +14,6 @@
   <meta property="og:url" content="https://tephrastudios.at/" />
   <meta property="og:image" content="https://tephrastudios.at/wand.png" />
   <meta name="twitter:card" content="summary_large_image" />
-
   <style>
     :root{
       --black:#070807;
@@ -59,9 +58,9 @@
       transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease;
     }
     .head.scrolled{background:rgba(7,8,7,.72);backdrop-filter:blur(20px);border-color:var(--line)}
-    .head-in{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .head-in{position:relative;height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .logo img{width:clamp(140px,13vw,196px);height:auto}
-    .menu{display:flex;gap:clamp(16px,2.4vw,34px);font-size:14px;font-weight:700;color:rgba(244,239,227,.7)}
+    .menu{position:absolute;left:50%;transform:translateX(-50%);display:flex;justify-content:center;gap:clamp(16px,2.4vw,34px);font-size:14px;font-weight:850;color:rgba(244,239,227,.7)}
     .menu a{position:relative;transition:color .25s ease}
     .menu a::after{content:"";position:absolute;left:0;bottom:-9px;height:1px;width:0;background:var(--accent);transition:width .45s var(--ease)}
     .menu a:hover{color:var(--white)}
@@ -70,11 +69,11 @@
     .btn{
       display:inline-flex;align-items:center;justify-content:center;gap:9px;
       min-height:48px;padding:14px 24px;border-radius:999px;
-      border:1px solid rgba(255,255,255,.18);background:var(--white);color:#11120e;
+      border:1px solid transparent;background:#fff200;color:#0a0b0a;
       font-size:14px;font-weight:850;white-space:nowrap;cursor:pointer;
-      transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .3s ease;
+      transition:transform .4s var(--ease),box-shadow .4s var(--ease),filter .3s ease;
     }
-    .btn:hover{transform:translateY(-2px);background:#fffdf5;box-shadow:0 22px 56px rgba(244,239,227,.12)}
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 18px 48px rgba(255,242,0,.22)}
     .btn .arr{transition:transform .35s var(--ease)}
     .btn:hover .arr{transform:translateX(4px)}
     .btn.ghost{background:transparent;color:var(--white);border-color:var(--line2)}
@@ -131,7 +130,7 @@
     .av span:hover::after{transform:translateX(130%) rotate(8deg)}
     .av img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.04) brightness(.9)}
     .hero-trust p{text-align:left;line-height:1.4}
-    .hero-trust p b{display:block;font-size:14px;color:rgba(244,239,227,.9);font-weight:800}
+    .hero-trust p b{display:block;font-size:14px;color:rgba(244,239,227,.9);font-weight:920}
     .hero-trust p small{font-size:13px;color:var(--muted)}
 
 
@@ -147,14 +146,24 @@
 
     /* PAIN */
     .pain{background:#0a0b0a;border-bottom:1px solid var(--line)}
-    .pain-center{max-width:680px;margin:18px auto 0;text-align:center}
-    .pain-center .lead{margin-left:auto;margin-right:auto}
-    .pcap{max-width:780px;margin:46px auto 18px;text-align:center;color:var(--soft);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:900}
-    .pgrid{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
-    .pitem{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:rgba(255,255,255,.022);transition:border-color .35s ease,transform .35s var(--ease)}
-    .pitem:hover{border-color:var(--line2);transform:translateY(-3px)}
-    .pitem .x{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:rgba(244,239,227,.05);border:1px solid var(--line2);color:var(--soft);font-size:17px;line-height:1}
-    .pitem strong{font-size:16px;font-weight:760;letter-spacing:-.02em;color:rgba(244,239,227,.9)}
+    .pain-center{max-width:760px;margin:18px 0 0;text-align:left}
+    .pain-center .lead{margin-left:0;margin-right:0}
+    .pcap{max-width:780px;margin:46px 0 18px;text-align:left;color:var(--soft);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:900}
+    .pgrid{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;perspective:900px}
+    .pitem{
+      --mx:20%;--my:20%;
+      position:relative;display:flex;align-items:center;gap:14px;overflow:hidden;
+      border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:rgba(255,255,255,.022);
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:border-color .35s ease,box-shadow .35s ease,opacity .22s ease,transform .22s ease;
+    }
+    .pitem::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.8;background:radial-gradient(ellipse at 20% 20%,rgba(255,242,0,.09),transparent 64%)}
+    .pitem::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at var(--mx) var(--my),rgba(255,242,0,.18),transparent 62%);transition:opacity .25s ease}
+    .pitem:hover{border-color:rgba(255,242,0,.32);box-shadow:0 18px 48px rgba(0,0,0,.25)}
+    .pitem:hover::after{opacity:1}
+    .pitem.is-dimmed{opacity:.5;transform:scale(.97)}
+    .pitem .x{position:relative;z-index:2;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:rgba(255,242,0,.08);border:1px solid rgba(255,242,0,.24);color:var(--accent);font-size:17px;line-height:1}
+    .pitem strong{position:relative;z-index:2;font-size:16px;font-weight:760;letter-spacing:-.02em;color:rgba(244,239,227,.9)}
     .psolution{max-width:680px;margin:34px auto 0;text-align:center}
     .psolution .pnote{color:var(--muted);font-size:16px;line-height:1.7}
     .psolution .pnote b{color:var(--white);font-weight:850}
@@ -162,18 +171,21 @@
     .chips span{border:1px solid rgba(255,242,0,.24);background:rgba(255,242,0,.05);color:var(--accent);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:900}
 
     /* SYSTEM / cards grid (shared) */
-    .grid4{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+    .grid4{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px;perspective:1000px}
     .flow{position:absolute;inset:0;pointer-events:none;z-index:6}
     .flow span{position:absolute;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--black);border:1px solid var(--line2);color:var(--accent);font-size:12px;font-weight:900}
     .flow span::before{content:"→"}
     .card{
+      --card-glow-x:50%;--card-glow-y:50%;--card-glow-intensity:0;
       position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;
       border:1px solid var(--line);border-radius:16px;padding:24px 22px;overflow:hidden;
       background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
-      transition:transform .4s var(--ease),border-color .35s ease,box-shadow .35s ease;
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .38s var(--ease),opacity .28s ease,border-color .35s ease,box-shadow .35s ease;
     }
     .card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 86% 88%,rgba(255,242,0,.13),transparent 36%);opacity:.7;transition:opacity .35s ease}
-    .card:hover{transform:translateY(-6px);border-color:rgba(255,242,0,.32);box-shadow:0 26px 70px rgba(0,0,0,.32)}
+    .card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(230px circle at var(--card-glow-x) var(--card-glow-y),rgba(255,242,0,calc(var(--card-glow-intensity)*.14)),transparent 66%);opacity:.9;z-index:1}
+    .card:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(255,242,0,.32);box-shadow:0 26px 70px rgba(0,0,0,.32)}
     .card:hover::before{opacity:1}
     .card .cc{position:relative;z-index:2}
     .card small{display:block;color:var(--accent);font-weight:900;letter-spacing:.12em;margin-bottom:20px}
@@ -186,35 +198,146 @@
 
     /* DELIVERABLES */
     .deliver{background:var(--black);border-bottom:1px solid var(--line)}
-    .dgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:48px}
-    .dcard{border:1px solid var(--line);border-radius:16px;padding:28px 26px;background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:transform .4s var(--ease),border-color .35s ease,box-shadow .35s ease}
-    .dcard:hover{transform:translateY(-5px);border-color:rgba(255,242,0,.3);box-shadow:0 24px 64px rgba(0,0,0,.26)}
-    .dcard .tick{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;margin-bottom:18px;background:rgba(255,242,0,.1);border:1px solid rgba(255,242,0,.28);color:var(--accent)}
-    .dcard .tick svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-    .dcard strong{display:block;font-size:20px;letter-spacing:-.035em;margin-bottom:10px}
-    .dcard p{color:rgba(244,239,227,.78);font-size:14.5px;line-height:1.62}
+    .spot-wrap{
+      position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;margin-top:48px;
+      padding:28px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.014));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+    }
+    .spot-wrap::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
+      background-image:radial-gradient(circle,rgba(255,255,255,.18) 1px,transparent 1px);
+      background-size:22px 22px;
+    }
+    .spot-wrap::after{
+      content:"";position:absolute;inset:auto -12% -40% auto;width:520px;height:520px;pointer-events:none;
+      background:radial-gradient(circle,rgba(255,242,0,.11),transparent 62%);filter:blur(22px);opacity:.75;
+    }
+    .spot-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;perspective:1000px}
+    .spot-card{
+      --spot-color:var(--accent);
+      position:relative;min-height:214px;display:flex;flex-direction:column;gap:20px;overflow:hidden;
+      border:1px solid var(--line);border-radius:18px;padding:24px;background:rgba(255,255,255,.028);
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .22s ease,opacity .22s ease,border-color .32s ease,box-shadow .32s ease;
+    }
+    .spot-card.is-dimmed{opacity:.68;transform:scale(.985)}
+    .spot-card:hover{border-color:color-mix(in srgb,var(--spot-color) 36%,transparent);box-shadow:0 26px 70px rgba(0,0,0,.3)}
+    #leistungen .spot-card:hover{transform:translateY(-6px) scale(1.01)}
+    .spot-card::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.82;
+      background:radial-gradient(ellipse at 20% 20%,color-mix(in srgb,var(--spot-color) 14%,transparent),transparent 66%);
+    }
+    .spot-card::after{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+      background:radial-gradient(ellipse at var(--mx,20%) var(--my,20%),color-mix(in srgb,var(--spot-color) 23%,transparent),transparent 62%);
+      transition:opacity .25s ease;
+    }
+    .spot-card:hover::after{opacity:1}
+    .spot-sweep{
+      position:absolute;inset:0 auto 0 -60%;width:55%;pointer-events:none;transform:skewX(-12deg);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.055),transparent);
+      transition:translate .75s var(--ease);z-index:3;
+    }
+    .spot-card:hover .spot-sweep{translate:280% 0}
+    .spot-ico{
+      position:relative;z-index:4;display:flex;align-items:center;justify-content:center;width:44px;height:44px;
+      border-radius:14px;background:color-mix(in srgb,var(--spot-color) 11%,transparent);
+      box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--spot-color) 27%,transparent);
+      color:var(--spot-color);
+    }
+    .spot-ico svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+    .spot-copy{position:relative;z-index:4;display:flex;flex-direction:column;gap:9px;margin-top:auto}
+    .spot-copy strong{font-size:20px;line-height:1.1;letter-spacing:-.04em}
+    .spot-copy p{color:rgba(244,239,227,.72);font-size:14px;line-height:1.62;max-width:34rem}
+    .spot-line{position:absolute;left:0;bottom:0;width:0;height:2px;border-radius:999px;background:linear-gradient(90deg,var(--spot-color),transparent);transition:width .48s var(--ease);z-index:4}
+    .spot-card:hover .spot-line{width:100%}
 
     /* PROCESS */
     .proc{background:#0a0b0a;border-bottom:1px solid var(--line);overflow:hidden}
-    .pstack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+    .pstack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px;perspective:1000px}
     .pcard{
       position:relative;min-height:330px;display:flex;flex-direction:column;gap:24px;
       border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px 160px;overflow:hidden;
       background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
-      transition:transform .4s var(--ease),border-color .35s ease,box-shadow .35s ease;
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .38s var(--ease),opacity .28s ease,border-color .35s ease,box-shadow .35s ease;
     }
-    .pcard:hover{transform:translateY(-6px);border-color:rgba(255,242,0,.34);box-shadow:0 30px 80px rgba(0,0,0,.36)}
+    .pcard{--pc-glow-x:50%;--pc-glow-y:50%;--pc-intensity:0}
+    .pcard::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;background:radial-gradient(220px circle at var(--pc-glow-x) var(--pc-glow-y),rgba(255,242,0,calc(var(--pc-intensity)*.18)),transparent 66%)}
+    .pcard:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(255,242,0,.34);box-shadow:0 30px 80px rgba(0,0,0,.36)}
     .pcard .pno{color:var(--accent);font-size:40px;line-height:.8;font-weight:920;letter-spacing:-.08em;position:relative;z-index:3}
     .pcard .pcc{position:relative;z-index:3}
     .pcard strong{display:block;font-size:24px;letter-spacing:-.045em;margin-bottom:12px}
     .pcard p{color:var(--muted);font-size:14px;line-height:1.6}
     .pcard .pimg{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
-    .pcard .pimg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) saturate(.05) contrast(1.05) brightness(1.15);transform:scale(1.08)}
+    .pcard .pimg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) saturate(.12) contrast(1.08) brightness(1.55);transform:scale(1.06)}
     .pcard .pimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,10,.97) 22%,rgba(10,11,10,.7) 48%,rgba(10,11,10,.3) 72%,transparent)}
+
+    /* MAGIC BENTO */
+    .magic-bento-grid{
+      --bento-glow:255,242,0;
+      position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:48px;padding:12px;
+      border:1px solid var(--line);border-radius:24px;overflow:hidden;isolation:isolate;user-select:none;
+      background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+    }
+    .magic-bento-grid::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.13;z-index:0;
+      background-image:radial-gradient(circle,rgba(255,255,255,.2) 1px,transparent 1px);
+      background-size:22px 22px;
+    }
+    .magic-bento-grid::after{
+      content:"";position:absolute;width:720px;height:720px;left:var(--bento-x,50%);top:var(--bento-y,50%);
+      transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:1;opacity:var(--bento-o,0);
+      background:radial-gradient(circle,rgba(var(--bento-glow),.16) 0%,rgba(var(--bento-glow),.075) 18%,rgba(var(--bento-glow),.025) 42%,transparent 70%);
+      mix-blend-mode:screen;transition:opacity .25s ease;
+    }
+    .magic-bento-card{
+      --glow-x:50%;--glow-y:50%;--glow-intensity:0;--glow-radius:220px;
+      position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;min-height:230px;
+      border:1px solid rgba(244,239,227,.16);border-radius:20px;padding:22px;overflow:hidden;
+      background:#11130f;transform-style:preserve-3d;will-change:transform;
+      transition:border-color .28s ease,box-shadow .28s ease,opacity .25s ease,transform .18s ease;
+    }
+    .magic-bento-card:nth-child(3){grid-column:auto;grid-row:auto;min-height:230px}
+    .magic-bento-card:nth-child(4){grid-column:auto}
+    .magic-bento-card::before{
+      content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),rgba(var(--bento-glow),calc(var(--glow-intensity) * .22)) 0%,rgba(var(--bento-glow),calc(var(--glow-intensity) * .09)) 32%,transparent 66%);
+      opacity:.95;
+    }
+    .magic-bento-card::after{
+      content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;z-index:4;pointer-events:none;
+      background:radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),rgba(var(--bento-glow),calc(var(--glow-intensity) * .82)) 0%,rgba(var(--bento-glow),calc(var(--glow-intensity) * .28)) 34%,transparent 62%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;
+    }
+    .magic-bento-card:hover{border-color:rgba(255,242,0,.34);box-shadow:0 24px 70px rgba(0,0,0,.34),0 0 30px rgba(255,242,0,.08)}
+    .magic-bento-grid.has-hover .magic-bento-card:not(.is-hovered){opacity:.58}
+    .magic-bento-card__header,.magic-bento-card__content{position:relative;z-index:5}
+    .magic-bento-card__label{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+    .magic-bento-card__title{font-size:clamp(21px,2vw,28px);line-height:1.02;letter-spacing:-.05em;font-weight:920;margin:0 0 10px}
+    .magic-bento-card__description{color:rgba(244,239,227,.72);font-size:14px;line-height:1.58;max-width:25rem}
+    .magic-bento-card__photo{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.94}
+    .magic-bento-card__photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(.35) saturate(.22) contrast(1.08) brightness(1.9);transform:scale(1.03)}
+    .magic-bento-card__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,19,15,.78) 0%,rgba(17,19,15,.36) 44%,rgba(17,19,15,.04) 100%)}
+    .bento-process .magic-bento-card:nth-child(4) .magic-bento-card__photo img{object-position:center 76%;filter:grayscale(.3) saturate(.25) contrast(1.1) brightness(2.05);transform:scale(1.01)}
+    .mbc-icon{position:absolute;right:-22px;bottom:-26px;width:132px;height:132px;color:var(--accent);opacity:.34;transition:transform .45s var(--ease),opacity .35s ease;z-index:1;pointer-events:none}
+    .mbc-icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+    .mbc-icon svg *{vector-effect:non-scaling-stroke}
+    .magic-bento-card:hover .mbc-icon{transform:scale(1.08) rotate(3deg) translateX(5px);opacity:.6}
+    .bento-system .magic-bento-card:nth-child(1){background:linear-gradient(145deg,#11130f,#16180f)}
+    .bento-system .magic-bento-card:nth-child(2){background:linear-gradient(145deg,#10120f,#171713)}
+    .bento-system .magic-bento-card:nth-child(3){background:linear-gradient(145deg,#12130f,#181a11)}
+    .bento-system .magic-bento-card:nth-child(4){background:linear-gradient(145deg,#10120e,#171a12)}
+    .magic-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(var(--bento-glow),1);box-shadow:0 0 8px rgba(var(--bento-glow),.7);pointer-events:none;z-index:20;animation:magicFloat 1.4s ease-out forwards}
+    @keyframes magicFloat{0%{opacity:0;transform:translate(0,0) scale(.3)}20%{opacity:1}100%{opacity:0;transform:translate(var(--px),var(--py)) scale(1)}}
 
     /* TEAM */
     .team{background:var(--black);border-bottom:1px solid var(--line)}
-    .team-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,5vw,64px);align-items:center;margin-top:18px}
+    .team-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,5vw,64px);align-items:center;margin-top:0}
+    .team-intro h2{font-size:clamp(28px,3.4vw,42px)}
+    .team-intro .founders{margin-top:32px}
     .founders{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .founder{position:relative;min-height:380px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel)}
     .founder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.04) brightness(.84);transition:transform .5s var(--ease)}
@@ -229,13 +352,16 @@
     .team-copy{display:flex;flex-direction:column;gap:16px}
     .team-copy p{color:rgba(244,239,227,.84);font-size:16px;line-height:1.7}
     .team-copy .quote{border-left:2px solid var(--accent);padding-left:18px;color:var(--white);font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
+    .grid4.has-card-hover .card:not(.is-hovered),
+    #leistungen .spot-grid.has-card-hover .spot-card:not(.is-hovered),
+    .pstack.has-card-hover .pcard:not(.is-hovered){opacity:.68;transform:scale(.985)}
 
     /* FAQ */
     .faq{background:#0a0b0a;border-bottom:1px solid var(--line)}
     .faq-list{margin-top:44px;display:grid;gap:12px;max-width:880px}
     .fitem{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.024);overflow:hidden;transition:border-color .3s ease}
     .fitem[open]{border-color:rgba(255,242,0,.28)}
-    .fitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;font-size:17px;font-weight:800;letter-spacing:-.02em}
+    .fitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;font-size:17px;font-weight:920;letter-spacing:-.02em}
     .fitem summary::-webkit-details-marker{display:none}
     .fitem .pls{flex:0 0 auto;width:22px;height:22px;position:relative}
     .fitem .pls::before,.fitem .pls::after{content:"";position:absolute;top:50%;left:50%;background:var(--accent);transform:translate(-50%,-50%);transition:transform .3s var(--ease)}
@@ -252,7 +378,7 @@
     .bpanel h2{font-size:clamp(30px,4vw,48px)}
     .bpanel p{max-width:540px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
     .bpanel .hero-cta{margin-top:30px}
-    .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:700;letter-spacing:.01em}
+    .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:850;letter-spacing:.01em}
     .bpanel .hero-trust{margin-top:22px}
 
     /* FOOTER */
@@ -264,7 +390,14 @@
     .iclink svg{width:15px;height:15px;stroke:currentColor}
     .foot-legal{display:flex;gap:22px;font-size:13px;color:var(--soft)}
     .foot-legal a:hover{color:var(--accent)}
-    .foot-tag{font-size:13px;color:var(--soft);font-weight:700;letter-spacing:-.01em}
+    .foot-tag{font-size:13px;color:var(--soft);font-weight:850;letter-spacing:-.01em}
+
+    /* accent highlight */
+    .accent{color:#fff200}
+
+    /* chips glow on hover */
+    .chips span{transition:border-color .3s ease,background .3s ease,box-shadow .3s ease,transform .3s var(--ease)}
+    .chips span:hover{border-color:rgba(255,242,0,.7);background:rgba(255,242,0,.14);box-shadow:0 0 18px rgba(255,242,0,.22),0 0 6px rgba(255,242,0,.14);transform:translateY(-2px);cursor:default}
 
     /* reveal animation */
     .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
@@ -279,7 +412,8 @@
       .mpanel a{display:flex;justify-content:space-between;padding:14px 6px;border-bottom:1px solid var(--line);font-weight:750;color:rgba(244,239,227,.86)}
       .mpanel a span{color:var(--accent)}
       .pain-grid,.team-grid{grid-template-columns:1fr;gap:28px}
-      .grid4,.dgrid,.pstack{grid-template-columns:1fr 1fr}
+      .grid4,.spot-grid,.pstack,.magic-bento-grid{grid-template-columns:1fr 1fr}
+      .magic-bento-card:nth-child(3),.magic-bento-card:nth-child(4){grid-column:auto;grid-row:auto;min-height:230px}
       .flow{display:none}
     }
     @media(max-width:640px){
@@ -291,8 +425,12 @@
       .hero-points{margin-top:20px;gap:8px 14px}
       .hero-cta{margin-top:26px;flex-direction:column;align-items:stretch}
       .btn{width:100%}
-      .grid4,.dgrid,.pstack,.founders,.pgrid{grid-template-columns:1fr}
+      .grid4,.spot-grid,.pstack,.founders,.pgrid,.magic-bento-grid{grid-template-columns:1fr}
       .card{min-height:auto}
+      .spot-wrap{padding:14px}
+      .spot-card{min-height:190px;padding:22px}
+      .magic-bento-grid{padding:10px;gap:10px}
+      .magic-bento-card,.magic-bento-card:nth-child(3),.magic-bento-card:nth-child(4){grid-column:auto;grid-row:auto;min-height:185px;padding:20px}
       .bpanel{padding:34px 22px}
       .foot-legal{gap:16px}
     }
@@ -334,8 +472,8 @@
       <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="wrap hero-in rv">
-        <span class="eyebrow">Recruiting für österreichisches Handwerk.</span>
-        <h1>Eure Außendarstellung entscheidet, <span class="hl">wer sich bewirbt.</span></h1>
+        <span class="eyebrow">Recruiting mit System</span>
+        <h1>Eure Außendarstellung <span class="accent">entscheidet,</span> wer sich bewirbt.</h1>
         <p class="subtitle">Wir bauen Recruiting-Seiten und Stellenanzeigen für Handwerksbetriebe,<br>bei denen gute Leute wirklich durchklicken und sich bewerben.</p>
         <div class="hero-points">
           <span>Kein Agentur-Schwindel</span>
@@ -352,15 +490,37 @@
       <div class="wrap">
         <div class="marker rv"><span class="no">01</span><span class="lbl">Außenwirkung</span><span class="ln"></span></div>
         <div class="pain-center rv">
-          <h2>Viele Betriebe wirken schlechter, als sie sind.</h2>
+          <h2>Viele Betriebe wirken <span class="accent">schlechter,</span> als sie sind.</h2>
           <p class="lead">Fachkräfte entscheiden oft in wenigen Sekunden, ob sie weiterlesen. Wer da mit einer veralteten Seite und vagen Anzeigen auftritt, verliert diese Leute, bevor das Gespräch überhaupt anfängt.</p>
         </div>
         <div class="pcap rv">Was viele Betriebe ausbremst</div>
-        <div class="pgrid rv">
-          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Veraltete Außendarstellung</strong></div>
-          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Fehlende Sichtbarkeit</strong></div>
-          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Unklare Kommunikation</strong></div>
-          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Komplizierte Bewerbungen</strong></div>
+        <div class="spot-wrap rv" style="--spot-color:#ff6b6b">
+          <div class="spot-grid" aria-label="Probleme im Recruiting">
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+              <div class="spot-copy"><strong>Veraltete Außendarstellung</strong><p>Ein veralteter Auftritt kostet euch Bewerber, bevor das Gespräch überhaupt beginnt.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M3 3l18 18"/></svg></span>
+              <div class="spot-copy"><strong>Fehlende Sichtbarkeit</strong><p>Wer euch nicht findet, kann sich auch nicht bewerben. Sichtbarkeit ist kein Zufall.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9 10h6M9 14h4"/></svg></span>
+              <div class="spot-copy"><strong>Unklare Kommunikation</strong><p>Vage Stellenanzeigen ohne echten Mehrwert sprechen niemanden an.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 12l2 2 4-4"/></svg></span>
+              <div class="spot-copy"><strong>Komplizierte Bewerbungen</strong><p>Lange Formulare und Hürden schrecken gute Leute ab, bevor sie fertig sind.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+          </div>
         </div>
         <div class="psolution rv">
           <p class="pnote"><b>Genau da setzen wir an:</b> Wir helfen euch, so aufzutreten wie ihr wirklich seid.</p>
@@ -373,7 +533,7 @@
     <section id="system" class="pad">
       <div class="wrap">
         <div class="marker rv"><span class="no">02</span><span class="lbl">Das System</span><span class="ln"></span></div>
-        <h2 class="rv">Dahinter steckt kein Zufall.</h2>
+        <h2 class="rv">Dahinter steckt kein <span class="accent">Zufall.</span></h2>
         <p class="lead rv">Vier Bausteine, die aufeinander aufbauen, von der Sichtbarkeit bis zur Bewerbung.</p>
         <div class="grid4 rv">
           <article class="card">
@@ -390,7 +550,7 @@
           </article>
           <article class="card">
             <div class="cc"><small>04</small><strong>Nachverfolgung</strong><p>Schnelle Rückmeldung statt langem Warten.</p></div>
-            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M8 11l1.3 1.3L11.7 10"/><path d="M8 16l1.3 1.3L11.7 14"/><path d="M14 11h2.5M14 16h2.5"/></svg></span>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M8 11l1.3 1.3L11.7 10M8 16l1.3 1.3L11.7 14M14 11h2.5M14 16h2.5"/></svg></span>
           </article>
           <div class="flow" aria-hidden="true"><span style="left:25%"></span><span style="left:50%"></span><span style="left:75%"></span></div>
         </div>
@@ -401,13 +561,35 @@
     <section id="leistungen" class="deliver pad">
       <div class="wrap">
         <div class="marker rv"><span class="no">03</span><span class="lbl">Leistungen</span><span class="ln"></span></div>
-        <h2 class="rv">Am Ende habt ihr etwas in der Hand.</h2>
+        <h2 class="rv">Am Ende habt ihr etwas in der <span class="accent">Hand.</span></h2>
         <p class="lead rv">Was ihr konkret von uns bekommt:</p>
-        <div class="dgrid rv">
-          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 20h8M12 17v3"/></svg></span><strong>Moderne Karriere-Seite</strong><p>Eine eigene Seite, auf der sich Fachkräfte in Sekunden ein Bild von euch machen und sich direkt bewerben.</p></div>
-          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><strong>Fertige Stellenanzeigen</strong><p>Anzeigen, die klar sagen, warum man bei euch arbeiten sollte. Ohne Floskeln.</p></div>
-          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 15.5h5"/><path d="M14.5 5.5l3 3L9 17H6v-3z"/></svg></span><strong>Schnelles Bewerbungs-Formular</strong><p>Bewerbung in wenigen Schritten, mobil und ohne Hürden. Weniger Absprünge.</p></div>
-          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><strong>Fertige Nachfass-Vorlagen</strong><p>Vorformulierte Antworten, damit keine Anfrage liegen bleibt und ihr sofort reagieren könnt.</p></div>
+        <div class="spot-wrap rv">
+          <div class="spot-grid" aria-label="Leistungen">
+            <article class="spot-card" style="--spot-color:#fff200">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 20h8M12 17v3"/></svg></span>
+              <div class="spot-copy"><strong>Moderne Karriere-Seite</strong><p>Eine eigene Seite, auf der sich Fachkräfte in Sekunden ein Bild von euch machen und sich direkt bewerben.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ffd84d">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span>
+              <div class="spot-copy"><strong>Fertige Stellenanzeigen</strong><p>Anzeigen, die klar sagen, warum man bei euch arbeiten sollte. Ohne Floskeln.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ffef85">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 20h16"/><path d="M6 15.5h5"/><path d="M14.5 5.5l3 3L9 17H6v-3z"/></svg></span>
+              <div class="spot-copy"><strong>Schnelles Bewerbungs-Formular</strong><p>Bewerbung in wenigen Schritten, mobil und ohne Hürden. Weniger Absprünge.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#fff200">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span>
+              <div class="spot-copy"><strong>Fertige Nachfass-Vorlagen</strong><p>Vorformulierte Antworten, damit keine Anfrage liegen bleibt und ihr sofort reagieren könnt.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+          </div>
         </div>
       </div>
     </section>
@@ -416,27 +598,27 @@
     <section id="ablauf" class="proc pad">
       <div class="wrap">
         <div class="marker rv"><span class="no">04</span><span class="lbl">Ablauf</span><span class="ln"></span></div>
-        <h2 class="rv">Vier Schritte, die eurem Recruiting eine klare Struktur geben.</h2>
-        <div class="pstack rv">
+        <h2 class="rv">Vier Schritte, die eurem Recruiting eine <span class="accent">klare Struktur</span> geben.</h2>
+        <div class="pstack rv" data-bento-proc>
           <article class="pcard">
             <span class="pno">01</span>
             <div class="pcc"><strong>Verstehen</strong><p>Wir analysieren, wo Bewerber bei euch abspringen.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="verstehenneu01.png" alt=""></div>
+            <div class="pimg" aria-hidden="true"><img src="verstehenneu01.png" alt="" style="object-position:center 30%"></div>
           </article>
           <article class="pcard">
             <span class="pno">02</span>
             <div class="pcc"><strong>Positionieren</strong><p>Wir schärfen, was euch als Arbeitgeber stark macht.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="02positonieren.png" alt=""></div>
+            <div class="pimg" aria-hidden="true"><img src="02positonieren.png" alt="" style="object-position:center 55%"></div>
           </article>
           <article class="pcard">
             <span class="pno">03</span>
             <div class="pcc"><strong>Aufbauen</strong><p>Wir bauen Auftritt und Bewerbung auf.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="aufbauen03.png" alt=""></div>
+            <div class="pimg" aria-hidden="true"><img src="aufbauen03.png" alt="" style="object-position:center 25%"></div>
           </article>
           <article class="pcard">
             <span class="pno">04</span>
             <div class="pcc"><strong>Verbessern</strong><p>Wir messen die Ergebnisse und legen nach.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="verbessernneu04.png" alt=""></div>
+            <div class="pimg" aria-hidden="true"><img src="verbessernneu04.png" alt="" style="object-position:center top"></div>
           </article>
         </div>
       </div>
@@ -445,20 +627,22 @@
     <!-- TEAM -->
     <section id="team" class="team pad">
       <div class="wrap">
-        <div class="marker rv"><span class="no">05</span><span class="lbl">Wer wir sind</span><span class="ln"></span></div>
         <div class="team-grid">
-          <div class="founders rv">
-            <article class="founder" tabindex="0">
-              <img src="tina.jpg" alt="Tina Jurcic">
-              <div class="fi"><span>Strategie &amp; Gestaltung</span><h3>Tina Jurcic</h3><p>Tina bringt den gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt klar und professionell.</p></div>
-            </article>
-            <article class="founder" tabindex="0">
-              <img src="peter.jpg" alt="Peter Strbac">
-              <div class="fi"><span>Recruiting &amp; Systeme</span><h3>Peter Strbac</h3><p>Peter kennt den Handwerksalltag aus der Praxis. Was er baut, funktioniert im echten Betrieb.</p></div>
-            </article>
+          <div class="team-intro rv">
+            <div class="marker"><span class="no">05</span><span class="lbl">Wer wir sind</span><span class="ln"></span></div>
+            <h2>Wir sind <span class="accent">Tina</span> und <span class="accent">Peter</span>.</h2>
+            <div class="founders">
+              <article class="founder" tabindex="0">
+                <img src="tina.jpg" alt="Tina Jurcic">
+                <div class="fi"><span>Strategie &amp; Gestaltung</span><h3>Tina Jurcic</h3><p>Tina bringt den gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt klar und professionell.</p></div>
+              </article>
+              <article class="founder" tabindex="0">
+                <img src="peter.jpg" alt="Peter Strbac">
+                <div class="fi"><span>Recruiting &amp; Systeme</span><h3>Peter Strbac</h3><p>Peter kennt den Handwerksalltag aus der Praxis. Was er baut, funktioniert im echten Betrieb.</p></div>
+              </article>
+            </div>
           </div>
           <div class="team-copy rv">
-            <h2 style="font-size:clamp(28px,3.4vw,42px)">Wir sind Tina &amp; Peter.</h2>
             <p>Wir kennen die Realität im Handwerk, weil wir direkt mit Betrieben zusammenarbeiten.</p>
             <p>Wir sprechen regelmäßig mit Geschäftsführern und wissen, was im Arbeitsalltag wirklich zählt.</p>
             <blockquote class="quote">So, dass es im echten Arbeitsalltag funktioniert.</blockquote>
@@ -471,7 +655,7 @@
     <section id="faq" class="faq pad">
       <div class="wrap">
         <div class="marker rv"><span class="no">06</span><span class="lbl">Häufige Fragen</span><span class="ln"></span></div>
-        <h2 class="rv">Was Betriebe oft wissen wollen.</h2>
+        <h2 class="rv">Was Betriebe oft <span class="accent">wissen</span> wollen.</h2>
         <div class="faq-list rv">
           <details class="fitem">
             <summary>Was kostet die Zusammenarbeit? <span class="pls" aria-hidden="true"></span></summary>
@@ -502,7 +686,7 @@
       <div class="wrap">
         <div class="bpanel rv">
           <span class="eyebrow">Nächster Schritt</span>
-          <h2>Kostenlose Recruiting-Analyse buchen.</h2>
+          <h2><span class="accent">Kostenlose</span> Recruiting-Analyse buchen.</h2>
           <p>Wir schauen uns zusammen an, wo euer Recruiting gerade steht, und sagen euch ehrlich, was wir sehen.</p>
           <div class="hero-cta" style="justify-content:center">
             <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
@@ -583,6 +767,158 @@
       });
     });
 
+    // Premium card motion for the requested card groups only.
+    const canAnimatePremiumCards = window.matchMedia("(hover:hover) and (pointer:fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+    function attachPremiumCardMotion(gridSelector, cardSelector, settings){
+      const grid = document.querySelector(gridSelector);
+      if(!grid) return;
+      const cards = Array.from(grid.querySelectorAll(cardSelector));
+      if(!cards.length) return;
+
+      const lift = settings.lift || 6;
+      const tilt = settings.tilt || 7;
+      const scale = settings.scale || 1.01;
+      const perspective = settings.perspective || 950;
+      const baseTransform = "perspective(" + perspective + "px) translateY(-" + lift + "px) scale(" + scale + ")";
+
+      const resetCard = card => {
+        card.classList.remove("is-hovered");
+        card.style.transform = "";
+        if(settings.glowX) card.style.setProperty(settings.glowX, settings.resetX || "50%");
+        if(settings.glowY) card.style.setProperty(settings.glowY, settings.resetY || "50%");
+        if(settings.intensity) card.style.setProperty(settings.intensity, "0");
+      };
+
+      grid.addEventListener("mouseleave", () => {
+        grid.classList.remove("has-card-hover");
+        cards.forEach(resetCard);
+      });
+
+      cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+          if(!canAnimatePremiumCards) return;
+          grid.classList.add("has-card-hover");
+          card.classList.add("is-hovered");
+          card.style.transform = baseTransform;
+          if(settings.intensity) card.style.setProperty(settings.intensity, "1");
+        });
+
+        card.addEventListener("mouseleave", () => {
+          if(!canAnimatePremiumCards) return;
+          grid.classList.remove("has-card-hover");
+          resetCard(card);
+        });
+
+        card.addEventListener("mousemove", ev => {
+          if(!canAnimatePremiumCards) return;
+          const r = card.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width;
+          const y = (ev.clientY - r.top) / r.height;
+          const rx = (y - .5) * -tilt;
+          const ry = (x - .5) * tilt;
+          if(settings.glowX) card.style.setProperty(settings.glowX, (x * 100) + "%");
+          if(settings.glowY) card.style.setProperty(settings.glowY, (y * 100) + "%");
+          if(settings.intensity) card.style.setProperty(settings.intensity, "1");
+          card.style.transform = baseTransform + " rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+        });
+      });
+    }
+
+    attachPremiumCardMotion("#system .grid4", ".card", {
+      glowX:"--card-glow-x",
+      glowY:"--card-glow-y",
+      intensity:"--card-glow-intensity",
+      tilt:7,
+      scale:1.012
+    });
+    attachPremiumCardMotion("#leistungen .spot-grid", ".spot-card", {
+      glowX:"--mx",
+      glowY:"--my",
+      resetX:"20%",
+      resetY:"20%",
+      tilt:7,
+      scale:1.012
+    });
+    attachPremiumCardMotion("#ablauf .pstack", ".pcard", {
+      glowX:"--pc-glow-x",
+      glowY:"--pc-glow-y",
+      intensity:"--pc-intensity",
+      tilt:6,
+      scale:1.01
+    });
+
+    // Magic Bento: cursor spotlight, border glow, tilt, magnetism and small click particles
+    const canAnimateCards = window.matchMedia("(hover:hover) and (pointer:fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    document.querySelectorAll("[data-bento]").forEach(grid => {
+      const cards = Array.from(grid.querySelectorAll(".magic-bento-card"));
+      grid.addEventListener("mousemove", ev => {
+        const gr = grid.getBoundingClientRect();
+        grid.style.setProperty("--bento-x", (ev.clientX - gr.left) + "px");
+        grid.style.setProperty("--bento-y", (ev.clientY - gr.top) + "px");
+        grid.style.setProperty("--bento-o", "1");
+        cards.forEach(card => {
+          const r = card.getBoundingClientRect();
+          const x = ev.clientX - r.left;
+          const y = ev.clientY - r.top;
+          const inside = x >= 0 && x <= r.width && y >= 0 && y <= r.height;
+          const cx = r.left + r.width / 2;
+          const cy = r.top + r.height / 2;
+          const distance = Math.hypot(ev.clientX - cx, ev.clientY - cy);
+          const intensity = inside ? 1 : Math.max(0, 1 - distance / 430);
+          card.style.setProperty("--glow-x", (x / r.width * 100) + "%");
+          card.style.setProperty("--glow-y", (y / r.height * 100) + "%");
+          card.style.setProperty("--glow-intensity", intensity.toFixed(2));
+        });
+      });
+      grid.addEventListener("mouseleave", () => {
+        grid.style.setProperty("--bento-o", "0");
+        grid.classList.remove("has-hover");
+        cards.forEach(card => {
+          card.classList.remove("is-hovered");
+          card.style.transform = "";
+          card.style.setProperty("--glow-intensity", "0");
+        });
+      });
+      cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+          grid.classList.add("has-hover");
+          card.classList.add("is-hovered");
+        });
+        card.addEventListener("mouseleave", () => {
+          card.classList.remove("is-hovered");
+          card.style.transform = "";
+        });
+        card.addEventListener("mousemove", ev => {
+          if(!canAnimateCards) return;
+          const r = card.getBoundingClientRect();
+          const x = ev.clientX - r.left;
+          const y = ev.clientY - r.top;
+          const rx = ((y / r.height) - .5) * -10;
+          const ry = ((x / r.width) - .5) * 10;
+          const mx = (x - r.width / 2) * .035;
+          const my = (y - r.height / 2) * .035;
+          card.style.transform = "perspective(1000px) translate(" + mx + "px," + my + "px) rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
+        });
+        card.addEventListener("click", ev => {
+          if(window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+          const r = card.getBoundingClientRect();
+          for(let i = 0; i < 10; i++){
+            const p = document.createElement("span");
+            p.className = "magic-particle";
+            p.style.left = (ev.clientX - r.left) + "px";
+            p.style.top = (ev.clientY - r.top) + "px";
+            p.style.setProperty("--px", ((Math.random() - .5) * 120) + "px");
+            p.style.setProperty("--py", ((Math.random() - .5) * 120) + "px");
+            card.appendChild(p);
+            setTimeout(() => p.remove(), 1500);
+          }
+        });
+      });
+    });
+
     // reveal on scroll
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
@@ -592,18 +928,6 @@
       io.observe(el);
     });
 
-    // card tilt (desktop only)
-    if(window.matchMedia("(hover:hover) and (pointer:fine)").matches){
-      document.querySelectorAll(".pcard,.card").forEach(card => {
-        card.addEventListener("mousemove", ev => {
-          const r = card.getBoundingClientRect();
-          const rx = ((ev.clientY - r.top) / r.height - .5) * -8;
-          const ry = ((ev.clientX - r.left) / r.width - .5) * 8;
-          card.style.transform = "perspective(900px) rotateX(" + rx + "deg) rotateY(" + ry + "deg) translateY(-6px)";
-        });
-        card.addEventListener("mouseleave", () => card.style.transform = "");
-      });
-    }
   </script>
 </body>
 </html>
