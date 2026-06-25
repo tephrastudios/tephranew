@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="de-AT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tephra Studios | Mitarbeiter gewinnen mit System</title>
+  <meta name="description" content="Tephra Studios baut moderne Recruiting- und Markenauftritte für Handwerks-, Bau- und Industriebetriebe. Direkt. Modern. Glaubwürdig." />
+  <link rel="canonical" href="https://tephrastudios.at/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_AT" />
+  <meta property="og:site_name" content="Tephra Studios" />
+  <meta property="og:title" content="Tephra Studios | Mitarbeiter gewinnen mit System" />
+  <meta property="og:description" content="Moderne Recruiting- und Markenauftritte für Handwerksbetriebe. Damit gute Leute sich bewerben und nicht abspringen." />
+  <meta property="og:url" content="https://tephrastudios.at/" />
+  <meta property="og:image" content="https://tephrastudios.at/wand.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --black:#070807;
+      --deep:#0e100d;
+      --panel:#151710;
+      --panel2:#1c1f17;
+      --white:#f4efe3;
+      --muted:rgba(244,239,227,.74);
+      --soft:rgba(244,239,227,.5);
+      --line:rgba(244,239,227,.14);
+      --line2:rgba(244,239,227,.26);
+      --accent:#fff200;
+      --warm:#c16642;
+      --radius:24px;
+      --ease:cubic-bezier(.16,.84,.28,1);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;background:var(--black)}
+    body{
+      font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      background:var(--black);
+      color:var(--white);
+      overflow-x:hidden;
+      line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .wrap{width:min(1180px,calc(100% - 44px));margin:0 auto}
+
+    /* fine dotted grain over everything */
+    body::before{
+      content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.03;
+      background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);
+      background-size:24px 24px;mix-blend-mode:screen;
+    }
+
+    /* ---------------- HEADER ---------------- */
+    .head{
+      position:fixed;top:0;left:0;right:0;z-index:80;
+      border-bottom:1px solid transparent;
+      transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease;
+    }
+    .head.scrolled{background:rgba(7,8,7,.72);backdrop-filter:blur(20px);border-color:var(--line)}
+    .head-in{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .logo img{width:clamp(140px,13vw,196px);height:auto}
+    .menu{display:flex;gap:clamp(16px,2.4vw,34px);font-size:14px;font-weight:700;color:rgba(244,239,227,.7)}
+    .menu a{position:relative;transition:color .25s ease}
+    .menu a::after{content:"";position:absolute;left:0;bottom:-9px;height:1px;width:0;background:var(--accent);transition:width .45s var(--ease)}
+    .menu a:hover{color:var(--white)}
+    .menu a:hover::after{width:100%}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:48px;padding:14px 24px;border-radius:999px;
+      border:1px solid rgba(255,255,255,.18);background:var(--white);color:#11120e;
+      font-size:14px;font-weight:850;white-space:nowrap;cursor:pointer;
+      transition:transform .4s var(--ease),box-shadow .4s var(--ease),background .3s ease;
+    }
+    .btn:hover{transform:translateY(-2px);background:#fffdf5;box-shadow:0 22px 56px rgba(244,239,227,.12)}
+    .btn .arr{transition:transform .35s var(--ease)}
+    .btn:hover .arr{transform:translateX(4px)}
+    .btn.ghost{background:transparent;color:var(--white);border-color:var(--line2)}
+    .btn.ghost:hover{border-color:rgba(255,242,0,.4);color:var(--accent);box-shadow:none}
+
+    .burger{display:none;width:42px;height:42px;border:1px solid var(--line2);border-radius:50%;background:rgba(5,5,5,.4);color:var(--white);align-items:center;justify-content:center;cursor:pointer}
+    .burger span,.burger span::before,.burger span::after{display:block;width:17px;height:1.5px;background:var(--white);position:relative;transition:.28s var(--ease)}
+    .burger span::before,.burger span::after{content:"";position:absolute;left:0}
+    .burger span::before{top:-6px}.burger span::after{top:6px}
+    body.nav-open .burger span{background:transparent}
+    body.nav-open .burger span::before{top:0;transform:rotate(45deg)}
+    body.nav-open .burger span::after{top:0;transform:rotate(-45deg)}
+    .mpanel{display:none}
+
+    /* ---------------- HERO ---------------- */
+    .hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
+    .hero-bg{
+      position:absolute;inset:0;z-index:0;
+      background:linear-gradient(180deg,rgba(7,8,7,.5),rgba(7,8,7,.93) 74%),url("wand.png") center/cover no-repeat;
+      filter:grayscale(.1) saturate(.4) contrast(1.05) brightness(.36);
+      transform:scale(1.06);
+      will-change:transform;
+    }
+    .hero-glow{
+      position:absolute;top:-120px;left:50%;transform:translateX(-50%);z-index:1;
+      width:min(640px,90vw);height:520px;pointer-events:none;
+      background:radial-gradient(ellipse at center,rgba(255,242,0,.14),transparent 62%);
+      filter:blur(20px);
+      opacity:.85;
+    }
+    .hero-in{position:relative;z-index:2;min-width:0;padding:140px 0 90px;text-align:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;color:var(--accent);
+      text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:900;margin-bottom:26px;
+    }
+    .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(255,242,0,.5)}
+    h1{
+      font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:920;
+      max-width:1040px;margin:0 auto;text-wrap:balance;
+    }
+    h1 .hl{position:relative;color:var(--accent);white-space:nowrap}
+    .subtitle{margin:30px auto 0;max-width:780px;color:var(--muted);font-size:clamp(16px,1.4vw,19px);line-height:1.7}
+    .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;max-width:100%}
+    .hero-points span{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:720;color:rgba(244,239,227,.78)}
+    .hero-points span::before{content:"✓";color:var(--accent);font-weight:900;font-size:12px}
+    .hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .hero-trust{margin-top:34px;display:inline-flex;align-items:center;gap:13px}
+    .av{display:flex}
+    .av span{position:relative;width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--black);box-shadow:0 0 0 1px var(--line2);background:var(--panel2);cursor:pointer;transition:transform .38s var(--ease),box-shadow .38s ease}
+    .av span+span{margin-left:-12px}
+    .av span::after{content:"";position:absolute;inset:-35%;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.36) 48%,transparent 66%);transform:translateX(-130%) rotate(8deg);transition:transform .7s var(--ease);pointer-events:none;mix-blend-mode:screen}
+    .av span:hover{transform:translateY(-5px) scale(1.1) rotate(-2deg);box-shadow:0 0 0 1px rgba(255,242,0,.34),0 10px 28px rgba(255,242,0,.12);z-index:3}
+    .av span:nth-child(2):hover{transform:translateY(-5px) scale(1.1) rotate(2deg)}
+    .av span:hover::after{transform:translateX(130%) rotate(8deg)}
+    .av img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.04) brightness(.9)}
+    .hero-trust p{text-align:left;line-height:1.4}
+    .hero-trust p b{display:block;font-size:14px;color:rgba(244,239,227,.9);font-weight:800}
+    .hero-trust p small{font-size:13px;color:var(--muted)}
+
+
+    /* ---------------- SECTIONS ---------------- */
+    section{position:relative;z-index:2}
+    .pad{padding:clamp(72px,9vw,120px) 0}
+    .marker{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+    .marker .no{color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.1em}
+    .marker .lbl{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+    .marker .ln{flex:1;height:1px;background:var(--line)}
+    h2{font-size:clamp(32px,4.6vw,58px);line-height:.98;letter-spacing:-.05em;font-weight:920;text-wrap:balance}
+    .lead{max-width:620px;color:var(--muted);font-size:clamp(16px,1.5vw,19px);line-height:1.7;margin-top:20px}
+
+    /* PAIN */
+    .pain{background:#0a0b0a;border-bottom:1px solid var(--line)}
+    .pain-center{max-width:680px;margin:18px auto 0;text-align:center}
+    .pain-center .lead{margin-left:auto;margin-right:auto}
+    .pcap{max-width:780px;margin:46px auto 18px;text-align:center;color:var(--soft);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:900}
+    .pgrid{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .pitem{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:rgba(255,255,255,.022);transition:border-color .35s ease,transform .35s var(--ease)}
+    .pitem:hover{border-color:var(--line2);transform:translateY(-3px)}
+    .pitem .x{flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:rgba(244,239,227,.05);border:1px solid var(--line2);color:var(--soft);font-size:17px;line-height:1}
+    .pitem strong{font-size:16px;font-weight:760;letter-spacing:-.02em;color:rgba(244,239,227,.9)}
+    .psolution{max-width:680px;margin:34px auto 0;text-align:center}
+    .psolution .pnote{color:var(--muted);font-size:16px;line-height:1.7}
+    .psolution .pnote b{color:var(--white);font-weight:850}
+    .chips{margin-top:22px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+    .chips span{border:1px solid rgba(255,242,0,.24);background:rgba(255,242,0,.05);color:var(--accent);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:900}
+
+    /* SYSTEM / cards grid (shared) */
+    .grid4{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px}
+    .flow{position:absolute;inset:0;pointer-events:none;z-index:6}
+    .flow span{position:absolute;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--black);border:1px solid var(--line2);color:var(--accent);font-size:12px;font-weight:900}
+    .flow span::before{content:"→"}
+    .card{
+      position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;
+      border:1px solid var(--line);border-radius:16px;padding:24px 22px;overflow:hidden;
+      background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+      transition:transform .4s var(--ease),border-color .35s ease,box-shadow .35s ease;
+    }
+    .card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 86% 88%,rgba(255,242,0,.13),transparent 36%);opacity:.7;transition:opacity .35s ease}
+    .card:hover{transform:translateY(-6px);border-color:rgba(255,242,0,.32);box-shadow:0 26px 70px rgba(0,0,0,.32)}
+    .card:hover::before{opacity:1}
+    .card .cc{position:relative;z-index:2}
+    .card small{display:block;color:var(--accent);font-weight:900;letter-spacing:.12em;margin-bottom:20px}
+    .card strong{display:block;font-size:22px;line-height:1.1;letter-spacing:-.045em;margin-bottom:12px}
+    .card p{color:rgba(244,239,227,.78);font-size:13.5px;line-height:1.58}
+    .card .ico{position:absolute;right:-22px;bottom:-26px;width:132px;height:132px;color:var(--accent);opacity:.34;transition:transform .45s var(--ease),opacity .35s ease;z-index:1}
+    .card .ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+    .card .ico svg *{vector-effect:non-scaling-stroke}
+    .card:hover .ico{transform:scale(1.08) rotate(3deg) translateX(5px);opacity:.6}
+
+    /* DELIVERABLES */
+    .deliver{background:var(--black);border-bottom:1px solid var(--line)}
+    .dgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:48px}
+    .dcard{border:1px solid var(--line);border-radius:16px;padding:28px 26px;background:linear-gradient(135deg,rgba(255,255,255,.04),rgba(255,255,255,.012));transition:transform .4s var(--ease),border-color .35s ease,box-shadow .35s ease}
+    .dcard:hover{transform:translateY(-5px);border-color:rgba(255,242,0,.3);box-shadow:0 24px 64px rgba(0,0,0,.26)}
+    .dcard .tick{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:12px;margin-bottom:18px;background:rgba(255,242,0,.1);border:1px solid rgba(255,242,0,.28);color:var(--accent)}
+    .dcard .tick svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .dcard strong{display:block;font-size:20px;letter-spacing:-.035em;margin-bottom:10px}
+    .dcard p{color:rgba(244,239,227,.78);font-size:14.5px;line-height:1.62}
+
+    /* PROCESS */
+    .proc{background:#0a0b0a;border-bottom:1px solid var(--line);overflow:hidden}
+    .pstack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px}
+    .pcard{
+      position:relative;min-height:330px;display:flex;flex-direction:column;gap:24px;
+      border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px 160px;overflow:hidden;
+      background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+      transition:transform .4s var(--ease),border-color .35s ease,box-shadow .35s ease;
+    }
+    .pcard:hover{transform:translateY(-6px);border-color:rgba(255,242,0,.34);box-shadow:0 30px 80px rgba(0,0,0,.36)}
+    .pcard .pno{color:var(--accent);font-size:40px;line-height:.8;font-weight:920;letter-spacing:-.08em;position:relative;z-index:3}
+    .pcard .pcc{position:relative;z-index:3}
+    .pcard strong{display:block;font-size:24px;letter-spacing:-.045em;margin-bottom:12px}
+    .pcard p{color:var(--muted);font-size:14px;line-height:1.6}
+    .pcard .pimg{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+    .pcard .pimg img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) saturate(.05) contrast(1.05) brightness(1.15);transform:scale(1.08)}
+    .pcard .pimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,10,.97) 22%,rgba(10,11,10,.7) 48%,rgba(10,11,10,.3) 72%,transparent)}
+
+    /* TEAM */
+    .team{background:var(--black);border-bottom:1px solid var(--line)}
+    .team-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,5vw,64px);align-items:center;margin-top:18px}
+    .founders{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .founder{position:relative;min-height:380px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel)}
+    .founder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.04) brightness(.84);transition:transform .5s var(--ease)}
+    .founder:hover img{transform:scale(1.04)}
+    .founder::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(5,5,5,.92))}
+    .founder .fi{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px}
+    .founder .fi span{display:block;color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}
+    .founder .fi h3{font-size:25px;line-height:1;letter-spacing:-.05em}
+    .founder .fi p{margin-top:12px;font-size:13.5px;line-height:1.5;color:rgba(244,239,227,.76);max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .35s ease,margin-top .35s ease}
+    .founder{cursor:pointer}
+    .founder:hover .fi p,.founder:focus .fi p,.founder.open .fi p{max-height:200px;opacity:1}
+    .team-copy{display:flex;flex-direction:column;gap:16px}
+    .team-copy p{color:rgba(244,239,227,.84);font-size:16px;line-height:1.7}
+    .team-copy .quote{border-left:2px solid var(--accent);padding-left:18px;color:var(--white);font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
+
+    /* FAQ */
+    .faq{background:#0a0b0a;border-bottom:1px solid var(--line)}
+    .faq-list{margin-top:44px;display:grid;gap:12px;max-width:880px}
+    .fitem{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.024);overflow:hidden;transition:border-color .3s ease}
+    .fitem[open]{border-color:rgba(255,242,0,.28)}
+    .fitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;font-size:17px;font-weight:800;letter-spacing:-.02em}
+    .fitem summary::-webkit-details-marker{display:none}
+    .fitem .pls{flex:0 0 auto;width:22px;height:22px;position:relative}
+    .fitem .pls::before,.fitem .pls::after{content:"";position:absolute;top:50%;left:50%;background:var(--accent);transform:translate(-50%,-50%);transition:transform .3s var(--ease)}
+    .fitem .pls::before{width:12px;height:2px}
+    .fitem .pls::after{width:2px;height:12px}
+    .fitem[open] .pls::after{transform:translate(-50%,-50%) scaleY(0)}
+    .fans{padding:0 24px 24px;color:var(--muted);font-size:15px;line-height:1.7}
+
+    /* BOOKING */
+    .booking{background:var(--black);border-bottom:1px solid var(--line)}
+    .bpanel{position:relative;max-width:920px;margin:0 auto;border:1px solid var(--line);border-radius:var(--radius);padding:48px 38px;overflow:hidden;text-align:center;background:linear-gradient(135deg,rgba(255,242,0,.07),rgba(255,255,255,.02) 44%,rgba(193,102,66,.07))}
+    .bpanel::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,11,10,.2),rgba(10,11,10,.8)),url("baustelle.png") right bottom/44% auto no-repeat;filter:grayscale(1) brightness(.7);opacity:.1;mix-blend-mode:screen;pointer-events:none}
+    .bpanel>*{position:relative;z-index:2}
+    .bpanel h2{font-size:clamp(30px,4vw,48px)}
+    .bpanel p{max-width:540px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
+    .bpanel .hero-cta{margin-top:30px}
+    .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:700;letter-spacing:.01em}
+    .bpanel .hero-trust{margin-top:22px}
+
+    /* FOOTER */
+    .footer{border-top:1px solid var(--line);background:#050505;padding:38px 0 34px}
+    .foot-in{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
+    .foot-links{display:flex;gap:13px;align-items:center}
+    .iclink{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,242,0,.18);border-radius:999px;background:rgba(255,255,255,.025);color:var(--accent);cursor:pointer;transition:transform .3s var(--ease),background .3s ease}
+    .iclink:hover{transform:translateY(-3px);background:rgba(255,242,0,.1)}
+    .iclink svg{width:15px;height:15px;stroke:currentColor}
+    .foot-legal{display:flex;gap:22px;font-size:13px;color:var(--soft)}
+    .foot-legal a:hover{color:var(--accent)}
+    .foot-tag{font-size:13px;color:var(--soft);font-weight:700;letter-spacing:-.01em}
+
+    /* reveal animation */
+    .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rv.in{opacity:1;transform:translateY(0)}
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media(max-width:980px){
+      .menu,.head .btn{display:none}
+      .burger{display:inline-flex}
+      .mpanel{display:block;position:fixed;top:84px;left:16px;right:16px;z-index:79;padding:14px;border:1px solid var(--line);border-radius:20px;background:rgba(5,5,5,.92);backdrop-filter:blur(20px);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+      body.nav-open .mpanel{opacity:1;pointer-events:auto;transform:translateY(0)}
+      .mpanel a{display:flex;justify-content:space-between;padding:14px 6px;border-bottom:1px solid var(--line);font-weight:750;color:rgba(244,239,227,.86)}
+      .mpanel a span{color:var(--accent)}
+      .pain-grid,.team-grid{grid-template-columns:1fr;gap:28px}
+      .grid4,.dgrid,.pstack{grid-template-columns:1fr 1fr}
+      .flow{display:none}
+    }
+    @media(max-width:640px){
+      .hero{min-height:auto}
+      .hero-in{padding:110px 0 64px}
+      h1{font-size:clamp(29px,8.4vw,40px);line-height:1.04}
+      h1 .hl{white-space:normal}
+      .subtitle{margin-top:20px}
+      .hero-points{margin-top:20px;gap:8px 14px}
+      .hero-cta{margin-top:26px;flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+      .grid4,.dgrid,.pstack,.founders,.pgrid{grid-template-columns:1fr}
+      .card{min-height:auto}
+      .bpanel{padding:34px 22px}
+      .foot-legal{gap:16px}
+    }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}
+      *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+    }
+  </style>
+</head>
+<body id="top">
+
+  <header class="head" id="head">
+    <div class="wrap head-in">
+      <a class="logo" href="#top" aria-label="Tephra Studios"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
+      <nav class="menu" aria-label="Navigation">
+        <a href="#aussenwirkung">Außenwirkung</a>
+        <a href="#system">System</a>
+        <a href="#leistungen">Leistungen</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#team">Wer wir sind</a>
+        <a href="#faq">Fragen</a>
+      </nav>
+      <button class="burger" type="button" aria-label="Menü öffnen"><span></span></button>
+    </div>
+  </header>
+
+  <nav class="mpanel" aria-label="Mobile Navigation">
+    <a href="#aussenwirkung">Außenwirkung <span>01</span></a>
+    <a href="#system">System <span>02</span></a>
+    <a href="#leistungen">Leistungen <span>03</span></a>
+    <a href="#team">Wer wir sind <span>04</span></a>
+    <a href="#ablauf">Ablauf <span>05</span></a>
+    <a href="#faq">Fragen <span>06</span></a>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap hero-in rv">
+        <span class="eyebrow">Recruiting für österreichisches Handwerk.</span>
+        <h1>Eure Außendarstellung entscheidet, <span class="hl">wer sich bewirbt.</span></h1>
+        <p class="subtitle">Wir bauen Recruiting-Seiten und Stellenanzeigen für Handwerksbetriebe,<br>bei denen gute Leute wirklich durchklicken und sich bewerben.</p>
+        <div class="hero-points">
+          <span>Kein Agentur-Schwindel</span>
+          <span>Keine Technik-Kopfschmerzen</span>
+        </div>
+        <div class="hero-cta">
+          <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- AUSSENWIRKUNG -->
+    <section id="aussenwirkung" class="pain pad">
+      <div class="wrap">
+        <div class="marker rv"><span class="no">01</span><span class="lbl">Außenwirkung</span><span class="ln"></span></div>
+        <div class="pain-center rv">
+          <h2>Viele Betriebe wirken schlechter, als sie sind.</h2>
+          <p class="lead">Fachkräfte entscheiden oft in wenigen Sekunden, ob sie weiterlesen. Wer da mit einer veralteten Seite und vagen Anzeigen auftritt, verliert diese Leute, bevor das Gespräch überhaupt anfängt.</p>
+        </div>
+        <div class="pcap rv">Was viele Betriebe ausbremst</div>
+        <div class="pgrid rv">
+          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Veraltete Außendarstellung</strong></div>
+          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Fehlende Sichtbarkeit</strong></div>
+          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Unklare Kommunikation</strong></div>
+          <div class="pitem"><span class="x" aria-hidden="true">×</span><strong>Komplizierte Bewerbungen</strong></div>
+        </div>
+        <div class="psolution rv">
+          <p class="pnote"><b>Genau da setzen wir an:</b> Wir helfen euch, so aufzutreten wie ihr wirklich seid.</p>
+          <div class="chips"><span>Direkt.</span><span>Modern.</span><span>Glaubwürdig.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SYSTEM -->
+    <section id="system" class="pad">
+      <div class="wrap">
+        <div class="marker rv"><span class="no">02</span><span class="lbl">Das System</span><span class="ln"></span></div>
+        <h2 class="rv">Dahinter steckt kein Zufall.</h2>
+        <p class="lead rv">Vier Bausteine, die aufeinander aufbauen, von der Sichtbarkeit bis zur Bewerbung.</p>
+        <div class="grid4 rv">
+          <article class="card">
+            <div class="cc"><small>01</small><strong>Positionierung</strong><p>Warum gute Leute bei euch anfangen und bleiben.</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="1.6"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg></span>
+          </article>
+          <article class="card">
+            <div class="cc"><small>02</small><strong>Sichtbarkeit</strong><p>Sichtbar dort, wo Fachkräfte wirklich hinschauen.</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M2 12s3.6-6.5 10-6.5S22 12 22 12s-3.6 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></svg></span>
+          </article>
+          <article class="card">
+            <div class="cc"><small>03</small><strong>Bewerberweg</strong><p>Kurze Wege, damit Bewerber nicht abspringen.</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="5" cy="5" r="2"/><circle cx="19" cy="19" r="2"/><circle cx="12" cy="12" r="1.4"/><path d="M5 7c0 4 3 5 7 5s7 1 7 5"/></svg></span>
+          </article>
+          <article class="card">
+            <div class="cc"><small>04</small><strong>Nachverfolgung</strong><p>Schnelle Rückmeldung statt langem Warten.</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><rect x="9" y="2.5" width="6" height="3" rx="1"/><path d="M8 11l1.3 1.3L11.7 10"/><path d="M8 16l1.3 1.3L11.7 14"/><path d="M14 11h2.5M14 16h2.5"/></svg></span>
+          </article>
+          <div class="flow" aria-hidden="true"><span style="left:25%"></span><span style="left:50%"></span><span style="left:75%"></span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LEISTUNGEN -->
+    <section id="leistungen" class="deliver pad">
+      <div class="wrap">
+        <div class="marker rv"><span class="no">03</span><span class="lbl">Leistungen</span><span class="ln"></span></div>
+        <h2 class="rv">Am Ende habt ihr etwas in der Hand.</h2>
+        <p class="lead rv">Was ihr konkret von uns bekommt:</p>
+        <div class="dgrid rv">
+          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 20h8M12 17v3"/></svg></span><strong>Moderne Karriere-Seite</strong><p>Eine eigene Seite, auf der sich Fachkräfte in Sekunden ein Bild von euch machen und sich direkt bewerben.</p></div>
+          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/></svg></span><strong>Fertige Stellenanzeigen</strong><p>Anzeigen, die klar sagen, warum man bei euch arbeiten sollte. Ohne Floskeln.</p></div>
+          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 15.5h5"/><path d="M14.5 5.5l3 3L9 17H6v-3z"/></svg></span><strong>Schnelles Bewerbungs-Formular</strong><p>Bewerbung in wenigen Schritten, mobil und ohne Hürden. Weniger Absprünge.</p></div>
+          <div class="dcard"><span class="tick"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg></span><strong>Fertige Nachfass-Vorlagen</strong><p>Vorformulierte Antworten, damit keine Anfrage liegen bleibt und ihr sofort reagieren könnt.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABLAUF -->
+    <section id="ablauf" class="proc pad">
+      <div class="wrap">
+        <div class="marker rv"><span class="no">04</span><span class="lbl">Ablauf</span><span class="ln"></span></div>
+        <h2 class="rv">Vier Schritte, die eurem Recruiting eine klare Struktur geben.</h2>
+        <div class="pstack rv">
+          <article class="pcard">
+            <span class="pno">01</span>
+            <div class="pcc"><strong>Verstehen</strong><p>Wir analysieren, wo Bewerber bei euch abspringen.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="verstehenneu01.png" alt=""></div>
+          </article>
+          <article class="pcard">
+            <span class="pno">02</span>
+            <div class="pcc"><strong>Positionieren</strong><p>Wir schärfen, was euch als Arbeitgeber stark macht.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="02positonieren.png" alt=""></div>
+          </article>
+          <article class="pcard">
+            <span class="pno">03</span>
+            <div class="pcc"><strong>Aufbauen</strong><p>Wir bauen Auftritt und Bewerbung auf.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="aufbauen03.png" alt=""></div>
+          </article>
+          <article class="pcard">
+            <span class="pno">04</span>
+            <div class="pcc"><strong>Verbessern</strong><p>Wir messen die Ergebnisse und legen nach.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="verbessernneu04.png" alt=""></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- TEAM -->
+    <section id="team" class="team pad">
+      <div class="wrap">
+        <div class="marker rv"><span class="no">05</span><span class="lbl">Wer wir sind</span><span class="ln"></span></div>
+        <div class="team-grid">
+          <div class="founders rv">
+            <article class="founder" tabindex="0">
+              <img src="tina.jpg" alt="Tina Jurcic">
+              <div class="fi"><span>Strategie &amp; Gestaltung</span><h3>Tina Jurcic</h3><p>Tina bringt den gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt klar und professionell.</p></div>
+            </article>
+            <article class="founder" tabindex="0">
+              <img src="peter.jpg" alt="Peter Strbac">
+              <div class="fi"><span>Recruiting &amp; Systeme</span><h3>Peter Strbac</h3><p>Peter kennt den Handwerksalltag aus der Praxis. Was er baut, funktioniert im echten Betrieb.</p></div>
+            </article>
+          </div>
+          <div class="team-copy rv">
+            <h2 style="font-size:clamp(28px,3.4vw,42px)">Wir sind Tina &amp; Peter.</h2>
+            <p>Wir kennen die Realität im Handwerk, weil wir direkt mit Betrieben zusammenarbeiten.</p>
+            <p>Wir sprechen regelmäßig mit Geschäftsführern und wissen, was im Arbeitsalltag wirklich zählt.</p>
+            <blockquote class="quote">So, dass es im echten Arbeitsalltag funktioniert.</blockquote>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="faq pad">
+      <div class="wrap">
+        <div class="marker rv"><span class="no">06</span><span class="lbl">Häufige Fragen</span><span class="ln"></span></div>
+        <h2 class="rv">Was Betriebe oft wissen wollen.</h2>
+        <div class="faq-list rv">
+          <details class="fitem">
+            <summary>Was kostet die Zusammenarbeit? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Das hängt vom Umfang ab. Im Erstgespräch schauen wir uns eure Situation an und nennen euch einen klaren Preis. Kein Kleingedrucktes.</div>
+          </details>
+          <details class="fitem">
+            <summary>Wie viel Aufwand bedeutet das für mich? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">So wenig wie möglich. Wir holen die nötigen Infos bei euch ab und kümmern uns dann um den Rest. Technik ist unser Problem, nicht eures.</div>
+          </details>
+          <details class="fitem">
+            <summary>Wann sehe ich erste Ergebnisse? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Der Auftritt steht meist innerhalb weniger Wochen. Wann sich das auf die Bewerbungszahlen auswirkt, hängt von Region und Stelle ab. Das können wir nicht versprechen, aber wir schauen gemeinsam, was funktioniert.</div>
+          </details>
+          <details class="fitem">
+            <summary>Für welche Betriebe ist das geeignet? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Hauptsächlich für Handwerks-, Bau- und Industriebetriebe. Ob kleines Team oder mittelständischer Betrieb spielt dabei weniger eine Rolle als die Frage, ob ihr euren Auftritt wirklich verbessern wollt.</div>
+          </details>
+          <details class="fitem">
+            <summary>Muss ich mich mit Technik auskennen? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Nein. Wir erklären alles in normaler Sprache und bauen die Abläufe so auf, dass sie im Alltag funktionieren.</div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOKING -->
+    <section id="calendly" class="booking pad">
+      <div class="wrap">
+        <div class="bpanel rv">
+          <span class="eyebrow">Nächster Schritt</span>
+          <h2>Kostenlose Recruiting-Analyse buchen.</h2>
+          <p>Wir schauen uns zusammen an, wo euer Recruiting gerade steht, und sagen euch ehrlich, was wir sehen.</p>
+          <div class="hero-cta" style="justify-content:center">
+            <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
+          </div>
+          <div class="bnote">Unverbindlich · ca. 30 Minuten · ihr entscheidet danach in Ruhe.</div>
+          <div class="hero-trust" style="justify-content:center">
+            <div class="av">
+              <span><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios"></span>
+              <span><img src="peter.jpg" alt="Peter Strbac von Tephra Studios"></span>
+            </div>
+            <p><b>Direkt mit Tina &amp; Peter,</b><small>nicht mit einem anonymen Account-Manager.</small></p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap foot-in">
+      <a class="logo" href="#top" aria-label="Tephra Studios"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
+      <div class="foot-links">
+        <a class="iclink" href="tel:+4368181315304" aria-label="Tephra Studios anrufen">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"></path></svg>
+        </a>
+        <a class="iclink" href="https://wa.me/4368181315304" target="_blank" rel="noopener" aria-label="Tephra Studios auf WhatsApp">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.4 12a7.4 7.4 0 0 1-11 6.45L5 19.45l1-3.35A7.4 7.4 0 1 1 19.4 12Z"></path><path d="M9.2 8.7c.35-.35.8-.35 1.1-.08l.65.58c.28.24.34.64.14.95l-.34.54c.47.97 1.18 1.68 2.14 2.14l.55-.34c.3-.2.7-.14.94.14l.58.65c.27.3.27.75-.08 1.1-.52.47-1.43.5-2.42.05-1.76-.78-3.03-2.05-3.82-3.82-.45-.98-.42-1.9-.14-2.42Z"></path></svg>
+        </a>
+        <a class="iclink" href="mailto:studio@tephra.at" aria-label="E-Mail an Tephra Studios">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
+        </a>
+        <a class="iclink" href="https://www.facebook.com/profile.php?id=61590430296117" target="_blank" rel="noopener" aria-label="Tephra Studios auf Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M13.35 8.3h1.9V5.45h-2.28c-2.25 0-3.52 1.28-3.52 3.55v1.65H7.35v2.9h2.1V19h3.08v-5.45h2.25l.42-2.9h-2.67V9.38c0-.72.3-1.08.82-1.08Z"></path></svg>
+        </a>
+        <a class="iclink" href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener" aria-label="Tephra Studios auf Instagram">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
+        </a>
+        <a class="iclink" href="https://www.linkedin.com/in/peter-strbac-a05355414/" target="_blank" rel="noopener" aria-label="Peter Strbac auf LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M6.7 8.8H3.8V20h2.9V8.8ZM5.25 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM20.2 13.7c0-3-1.6-5.1-4.3-5.1-1.7 0-2.7.9-3.2 1.8V8.8H9.9V20h2.9v-5.9c0-1.6.8-2.7 2.2-2.7 1.3 0 2.1 1 2.1 2.7V20h3.1v-6.3Z"></path></svg>
+        </a>
+      </div>
+      <div class="foot-tag">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
+      <div class="foot-legal">
+        <a href="impressum.html">Impressum</a>
+        <a href="datenschutz.html">Datenschutz</a>
+        <a href="agb.html">AGB</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // sticky header style on scroll
+    const head = document.getElementById("head");
+    const bg = document.getElementById("heroBg");
+    // Parallax only on larger pointer-precise screens — avoids scroll jank on phones
+    const allowParallax = window.matchMedia("(min-width:768px) and (hover:hover) and (pointer:fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    const onScroll = () => {
+      head.classList.toggle("scrolled", window.scrollY > 30);
+      if(allowParallax && bg && window.scrollY < window.innerHeight){
+        bg.style.transform = "scale(1.06) translateY(" + (window.scrollY * 0.18) + "px)";
+      }
+    };
+    window.addEventListener("scroll", onScroll, {passive:true});
+    onScroll();
+
+    // mobile menu
+    const burger = document.querySelector(".burger");
+    if(burger){
+      burger.addEventListener("click", () => document.body.classList.toggle("nav-open"));
+      document.querySelectorAll(".mpanel a").forEach(a => a.addEventListener("click", () => document.body.classList.remove("nav-open")));
+    }
+
+    // founder bio: tap/click (and keyboard) toggle, important for touch devices without hover
+    document.querySelectorAll(".founder").forEach(card => {
+      card.addEventListener("click", () => card.classList.toggle("open"));
+      card.addEventListener("keydown", e => {
+        if(e.key === "Enter" || e.key === " "){ e.preventDefault(); card.classList.toggle("open"); }
+      });
+    });
+
+    // reveal on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:.14});
+    document.querySelectorAll(".rv").forEach((el,i) => {
+      el.style.transitionDelay = Math.min(i*40,200) + "ms";
+      io.observe(el);
+    });
+
+    // card tilt (desktop only)
+    if(window.matchMedia("(hover:hover) and (pointer:fine)").matches){
+      document.querySelectorAll(".pcard,.card").forEach(card => {
+        card.addEventListener("mousemove", ev => {
+          const r = card.getBoundingClientRect();
+          const rx = ((ev.clientY - r.top) / r.height - .5) * -8;
+          const ry = ((ev.clientX - r.left) / r.width - .5) * 8;
+          card.style.transform = "perspective(900px) rotateX(" + rx + "deg) rotateY(" + ry + "deg) translateY(-6px)";
+        });
+        card.addEventListener("mouseleave", () => card.style.transform = "");
+      });
+    }
+  </script>
+</body>
+</html>
