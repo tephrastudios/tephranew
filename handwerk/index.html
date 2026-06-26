@@ -12,7 +12,7 @@
   <meta property="og:title" content="Tephra Studios | Mitarbeiter gewinnen mit System" />
   <meta property="og:description" content="Moderne Recruiting- und Markenauftritte für Handwerksbetriebe. Damit gute Leute sich bewerben und nicht abspringen." />
   <meta property="og:url" content="https://tephrastudios.at/" />
-  <meta property="og:image" content="https://tephrastudios.at/wand.png" />
+  <meta property="og:image" content="https://tephrastudios.at/handwerk/handwerk2.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root{
@@ -89,22 +89,11 @@
     .mpanel{display:none}
 
     /* ---------------- HERO ---------------- */
-    .hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line)}
-    .hero-bg{
-      position:absolute;inset:0;z-index:0;
-      background:linear-gradient(180deg,rgba(7,8,7,.5),rgba(7,8,7,.93) 74%),url("wand.png") center/cover no-repeat;
-      filter:grayscale(.1) saturate(.4) contrast(1.05) brightness(.36);
-      transform:scale(1.06);
-      will-change:transform;
-    }
-    .hero-glow{
-      position:absolute;top:-120px;left:50%;transform:translateX(-50%);z-index:1;
-      width:min(640px,90vw);height:520px;pointer-events:none;
-      background:radial-gradient(ellipse at center,rgba(255,242,0,.14),transparent 62%);
-      filter:blur(20px);
-      opacity:.85;
-    }
-    .hero-in{position:relative;z-index:2;min-width:0;padding:140px 0 90px;text-align:center}
+    .hero{position:relative;z-index:1;min-height:100svh;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);background:#070807}
+    .hero::after{content:"";position:absolute;inset:0;z-index:0;background:url("handwerk2.jpg") center 52%/cover no-repeat;opacity:.68;filter:saturate(.92) contrast(1.06) brightness(.92);transform:scale(1.015);pointer-events:none}
+    .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,8,7,.58) 0%,rgba(7,8,7,.38) 38%,rgba(7,8,7,.78) 100%),radial-gradient(circle at 50% 0%,rgba(255,242,0,.16),transparent 36%),radial-gradient(circle at 78% 36%,rgba(193,102,66,.15),transparent 32%),linear-gradient(120deg,transparent 0 58%,rgba(255,255,255,.045) 58.1%,transparent 58.4%);pointer-events:none}
+    .hero-bg,.hero-glow{display:none}
+    .hero-in{position:relative;z-index:2;min-width:0;padding:142px 0 86px;text-align:center}
     .eyebrow{
       display:inline-flex;align-items:center;gap:9px;color:var(--accent);
       text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:900;margin-bottom:26px;
@@ -119,7 +108,7 @@
     .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;max-width:100%}
     .hero-points span{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:720;color:rgba(244,239,227,.78)}
     .hero-points span::before{content:"✓";color:var(--accent);font-weight:900;font-size:12px}
-    .hero-cta{margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .hero-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
     .hero-trust{margin-top:34px;display:inline-flex;align-items:center;gap:13px}
     .av{display:flex}
     .av span{position:relative;width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--black);box-shadow:0 0 0 1px var(--line2);background:var(--panel2);cursor:pointer;transition:transform .38s var(--ease),box-shadow .38s ease}
@@ -143,12 +132,13 @@
     .marker .ln{flex:1;height:1px;background:var(--line)}
     h2{font-size:clamp(32px,4.6vw,58px);line-height:.98;letter-spacing:-.05em;font-weight:920;text-wrap:balance}
     .lead{max-width:620px;color:var(--muted);font-size:clamp(16px,1.5vw,19px);line-height:1.7;margin-top:20px}
+    .system-lead{max-width:1040px}
 
     /* PAIN */
     .pain{background:#0a0b0a;border-bottom:1px solid var(--line)}
-    .pain-center{max-width:760px;margin:18px 0 0;text-align:left}
-    .pain-center .lead{margin-left:0;margin-right:0}
-    .pcap{max-width:780px;margin:46px 0 18px;text-align:left;color:var(--soft);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:900}
+    .pain-center{max-width:1120px;margin:18px 0 0;text-align:left}
+    .pain-center h2{max-width:1120px}
+    .pain-center .lead{max-width:1040px;margin-left:0;margin-right:0}
     .pgrid{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;perspective:900px}
     .pitem{
       --mx:20%;--my:20%;
@@ -203,6 +193,7 @@
       padding:28px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.014));
       box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
     }
+    .problem-wrap{margin-top:34px}
     .spot-wrap::before{
       content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
       background-image:radial-gradient(circle,rgba(255,255,255,.18) 1px,transparent 1px);
@@ -335,7 +326,8 @@
 
     /* TEAM */
     .team{background:var(--black);border-bottom:1px solid var(--line)}
-    .team-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(34px,5vw,64px);align-items:center;margin-top:0}
+    .team-grid{display:block;margin-top:0}
+    .team-intro{max-width:660px;margin:0}
     .team-intro h2{font-size:clamp(28px,3.4vw,42px)}
     .team-intro .founders{margin-top:32px}
     .founders{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -349,7 +341,7 @@
     .founder .fi p{margin-top:12px;font-size:13.5px;line-height:1.5;color:rgba(244,239,227,.76);max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .35s ease,margin-top .35s ease}
     .founder{cursor:pointer}
     .founder:hover .fi p,.founder:focus .fi p,.founder.open .fi p{max-height:200px;opacity:1}
-    .team-copy{display:flex;flex-direction:column;gap:16px}
+    .team-copy{display:none}
     .team-copy p{color:rgba(244,239,227,.84);font-size:16px;line-height:1.7}
     .team-copy .quote{border-left:2px solid var(--accent);padding-left:18px;color:var(--white);font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
     .grid4.has-card-hover .card:not(.is-hovered),
@@ -373,9 +365,11 @@
     /* BOOKING */
     .booking{background:var(--black);border-bottom:1px solid var(--line)}
     .bpanel{position:relative;max-width:920px;margin:0 auto;border:1px solid var(--line);border-radius:var(--radius);padding:48px 38px;overflow:hidden;text-align:center;background:linear-gradient(135deg,rgba(255,242,0,.07),rgba(255,255,255,.02) 44%,rgba(193,102,66,.07))}
-    .bpanel::after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,11,10,.2),rgba(10,11,10,.8)),url("baustelle.png") right bottom/44% auto no-repeat;filter:grayscale(1) brightness(.7);opacity:.1;mix-blend-mode:screen;pointer-events:none}
+    .bpanel::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,11,10,.2),rgba(10,11,10,.8)),radial-gradient(circle at 84% 86%,rgba(255,242,0,.14),transparent 42%);opacity:.9;pointer-events:none}
     .bpanel>*{position:relative;z-index:2}
-    .bpanel h2{font-size:clamp(30px,4vw,48px)}
+    .bpanel .eyebrow{font-size:10px;letter-spacing:.18em;margin-bottom:18px;color:var(--accent);text-shadow:0 0 18px rgba(255,242,0,.28)}
+    .bpanel h2{font-size:clamp(30px,3.8vw,48px);white-space:nowrap}
+    .bpanel h2 span{color:var(--accent)}
     .bpanel p{max-width:540px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
     .bpanel .hero-cta{margin-top:30px}
     .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:850;letter-spacing:.01em}
@@ -418,7 +412,10 @@
     }
     @media(max-width:640px){
       .hero{min-height:auto}
-      .hero-in{padding:110px 0 64px}
+      .hero::after{background-position:58% center;opacity:.62}
+      .hero-in{padding:112px 0 64px}
+      .hero .eyebrow{display:inline-flex;align-items:flex-start;justify-content:center;gap:9px;width:auto;max-width:100%;text-align:center;margin-left:auto;margin-right:auto}
+      .hero .eyebrow::before{flex:0 0 auto;margin-top:.52em;transform:translateX(clamp(30px,10vw,48px))}
       h1{font-size:clamp(29px,8.4vw,40px);line-height:1.04}
       h1 .hl{white-space:normal}
       .subtitle{margin-top:20px}
@@ -432,6 +429,9 @@
       .magic-bento-grid{padding:10px;gap:10px}
       .magic-bento-card,.magic-bento-card:nth-child(3),.magic-bento-card:nth-child(4){grid-column:auto;grid-row:auto;min-height:185px;padding:20px}
       .bpanel{padding:34px 22px}
+      .bpanel h2{white-space:normal}
+      .hero-trust{flex-direction:column;gap:10px}
+      .hero-trust p{text-align:center}
       .foot-legal{gap:16px}
     }
     @media(prefers-reduced-motion:reduce){
@@ -446,7 +446,7 @@
     <div class="wrap head-in">
       <a class="logo" href="#top" aria-label="Tephra Studios"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
       <nav class="menu" aria-label="Navigation">
-        <a href="#aussenwirkung">Außenwirkung</a>
+        <a href="#problem">Das Problem</a>
         <a href="#system">System</a>
         <a href="#leistungen">Leistungen</a>
         <a href="#ablauf">Ablauf</a>
@@ -458,7 +458,7 @@
   </header>
 
   <nav class="mpanel" aria-label="Mobile Navigation">
-    <a href="#aussenwirkung">Außenwirkung <span>01</span></a>
+    <a href="#problem">Das Problem <span>01</span></a>
     <a href="#system">System <span>02</span></a>
     <a href="#leistungen">Leistungen <span>03</span></a>
     <a href="#team">Wer wir sind <span>04</span></a>
@@ -472,7 +472,7 @@
       <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
       <div class="hero-glow" aria-hidden="true"></div>
       <div class="wrap hero-in rv">
-        <span class="eyebrow">Recruiting mit System</span>
+        <span class="eyebrow">Recruiting für österreichische Handwerksbetriebe</span>
         <h1>Eure Außendarstellung <span class="accent">entscheidet,</span> wer sich bewirbt.</h1>
         <p class="subtitle">Wir bauen Recruiting-Seiten und Stellenanzeigen für Handwerksbetriebe,<br>bei denen gute Leute wirklich durchklicken und sich bewerben.</p>
         <div class="hero-points">
@@ -485,16 +485,15 @@
       </div>
     </section>
 
-    <!-- AUSSENWIRKUNG -->
-    <section id="aussenwirkung" class="pain pad">
+    <!-- DAS PROBLEM -->
+    <section id="problem" class="pain pad">
       <div class="wrap">
-        <div class="marker rv"><span class="no">01</span><span class="lbl">Außenwirkung</span><span class="ln"></span></div>
+        <div class="marker rv"><span class="no">01</span><span class="lbl">Das Problem</span><span class="ln"></span></div>
         <div class="pain-center rv">
           <h2>Viele Betriebe wirken <span class="accent">schlechter,</span> als sie sind.</h2>
           <p class="lead">Fachkräfte entscheiden oft in wenigen Sekunden, ob sie weiterlesen. Wer da mit einer veralteten Seite und vagen Anzeigen auftritt, verliert diese Leute, bevor das Gespräch überhaupt anfängt.</p>
         </div>
-        <div class="pcap rv">Was viele Betriebe ausbremst</div>
-        <div class="spot-wrap rv" style="--spot-color:#ff6b6b">
+        <div class="spot-wrap problem-wrap rv" style="--spot-color:#ff6b6b">
           <div class="spot-grid" aria-label="Probleme im Recruiting">
             <article class="spot-card" style="--spot-color:#ff6b6b">
               <span class="spot-sweep" aria-hidden="true"></span>
@@ -534,7 +533,7 @@
       <div class="wrap">
         <div class="marker rv"><span class="no">02</span><span class="lbl">Das System</span><span class="ln"></span></div>
         <h2 class="rv">Dahinter steckt kein <span class="accent">Zufall.</span></h2>
-        <p class="lead rv">Vier Bausteine, die aufeinander aufbauen, von der Sichtbarkeit bis zur Bewerbung.</p>
+        <p class="lead system-lead rv">Vier Bausteine, die aufeinander aufbauen, von der Sichtbarkeit bis zur Bewerbung.</p>
         <div class="grid4 rv">
           <article class="card">
             <div class="cc"><small>01</small><strong>Positionierung</strong><p>Warum gute Leute bei euch anfangen und bleiben.</p></div>
@@ -642,11 +641,6 @@
               </article>
             </div>
           </div>
-          <div class="team-copy rv">
-            <p>Wir kennen die Realität im Handwerk, weil wir direkt mit Betrieben zusammenarbeiten.</p>
-            <p>Wir sprechen regelmäßig mit Geschäftsführern und wissen, was im Arbeitsalltag wirklich zählt.</p>
-            <blockquote class="quote">So, dass es im echten Arbeitsalltag funktioniert.</blockquote>
-          </div>
         </div>
       </div>
     </section>
@@ -697,7 +691,7 @@
               <span><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios"></span>
               <span><img src="peter.jpg" alt="Peter Strbac von Tephra Studios"></span>
             </div>
-            <p><b>Direkt mit Tina &amp; Peter,</b><small>nicht mit einem anonymen Account-Manager.</small></p>
+            <p><b>Direkt mit Tina &amp; Peter</b></p>
           </div>
         </div>
       </div>
