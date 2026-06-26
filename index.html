@@ -42,11 +42,11 @@
       mask-image:linear-gradient(to bottom,black,transparent 80%);
     }
     a{color:inherit;text-decoration:none}
-    .wrap{width:min(1120px,calc(100% - 44px));margin:0 auto}
+    .wrap{width:min(1180px,calc(100% - 44px));margin:0 auto}
     .head{position:sticky;top:0;z-index:70;border-bottom:1px solid var(--line);background:rgba(7,8,7,.75);backdrop-filter:blur(20px)}
-    .head-in{height:78px;display:flex;align-items:center;justify-content:space-between;gap:22px}
+    .head-in{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .logo img{width:clamp(140px,13vw,196px);height:auto;display:block}
-    .hero{position:relative;z-index:2;min-height:calc(100vh - 78px);display:grid;place-items:center;padding:64px 0 72px}
+    .hero{position:relative;z-index:2;min-height:calc(100vh - 80px);display:grid;place-items:center;padding:64px 0 72px}
     .hero-inner{text-align:center;max-width:850px}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;margin-bottom:24px}
     .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px rgba(255,242,0,.58)}
@@ -56,7 +56,7 @@
     .choice-grid{margin-top:46px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;perspective:900px}
     .choice-card{
       --mx:20%;--my:20%;
-      position:relative;min-height:330px;display:flex;flex-direction:column;justify-content:space-between;overflow:hidden;
+      position:relative;min-height:330px;display:grid;grid-template-rows:auto 1fr;align-content:start;gap:28px;overflow:hidden;
       border:1px solid var(--line);border-radius:24px;padding:28px;text-align:left;color:var(--white);
       background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
       transform-style:preserve-3d;will-change:transform,opacity;
@@ -70,11 +70,11 @@
     .choice-card.featured{background:linear-gradient(145deg,rgba(255,242,0,.12),rgba(255,255,255,.018))}
     .card-mark{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:16px;background:rgba(255,242,0,.09);border:1px solid rgba(255,242,0,.25);color:var(--accent)}
     .card-mark svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
-    .card-copy{position:relative;z-index:2;margin-top:auto}
+    .card-copy{position:relative;z-index:2;display:flex;min-height:0;flex-direction:column;align-items:flex-start}
     .card-label{color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
     .choice-card h2{font-size:clamp(25px,3vw,36px);line-height:1;letter-spacing:-.05em;margin-bottom:14px}
     .choice-card p{color:var(--muted);font-size:15px;line-height:1.66;max-width:29rem}
-    .card-cta{margin-top:24px;display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:14px;font-weight:850}
+    .card-cta{margin-top:auto;padding-top:24px;display:inline-flex;align-items:center;gap:8px;color:var(--accent);font-size:14px;font-weight:850}
     .card-cta span{transition:transform .35s var(--ease)}
     .choice-card:hover .card-cta span{transform:translateX(5px)}
     .footer{position:relative;z-index:2;border-top:1px solid var(--line);padding:38px 0 34px;background:#050505}
@@ -90,10 +90,10 @@
     .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
     .reveal.in{opacity:1;transform:translateY(0)}
     @media(max-width:760px){
-      .head-in{height:72px}.nav-meta span:first-child{display:none}
+      .head-in{height:80px}.nav-meta span:first-child{display:none}
       .hero{padding:46px 0 56px;min-height:auto}
       .choice-grid{grid-template-columns:1fr;margin-top:34px}
-      .choice-card{min-height:280px;padding:24px}
+      .choice-card{min-height:280px;padding:24px;gap:24px}
       .foot-in{flex-direction:column;text-align:center}
     }
     @media(prefers-reduced-motion:reduce){
@@ -105,39 +105,41 @@
 <body>
   <header class="head">
     <div class="wrap head-in">
-      <a class="logo" href="https://tephrastudios.at/"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
+      <a class="logo" href="/"><img src="/tephra-logo-exact.svg" alt="Tephra Studios"></a>
     </div>
   </header>
 
   <main class="hero">
     <div class="wrap hero-inner">
       <div class="reveal">
-        <p class="eyebrow">Recruiting für österreichisches Handwerk</p>
-        <h1>Für welchen Betrieb sucht ihr <span>Mitarbeiter?</span></h1>
-        <p class="lead">Wählt euren Bereich. Dann seht ihr, wie Tephra euren Auftritt, die Ansprache und den Bewerberweg zusammenbringt.</p>
+        <p class="eyebrow">Recruiting für österreichische Betriebe</p>
+        <h1>Handwerk oder Gastronomie: Wo <span>fehlen</span> euch die Leute?</h1>
+        <p class="lead">Wählt euren Bereich. Wir zeigen euch, wie euer Betrieb auf Bewerber wirkt und was wir konkret ändern.</p>
       </div>
 
       <section class="choice-grid reveal" data-focus-grid>
-        <a href="handwerk.html" class="choice-card" data-tilt>
+        <a href="/handwerk/" class="choice-card" data-tilt>
           <div class="card-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7z"/></svg>
           </div>
           <div class="card-copy">
             <div class="card-label">Handwerk, Bau & Industrie</div>
             <h2>Für Handwerksbetriebe</h2>
-            <p>Elektriker, Gebäudetechnik, Bau und verwandte Gewerke. Sichtbar als Arbeitgeber, klar in der Stellenkommunikation und am Handy schnell verständlich.</p>
+            <p>Elektriker, Gebäudetechnik, Bau.</p>
+            <p>Gute Fachkräfte wechseln, wenn sie einen konkreten Grund sehen. Den erarbeiten wir mit euch.</p>
             <div class="card-cta">Zum Handwerk <span>→</span></div>
           </div>
         </a>
 
-        <a href="gastronomie.html" class="choice-card featured" data-tilt>
+        <a href="/gastronomie/" class="choice-card featured" data-tilt>
           <div class="card-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M7 2v20M4 2v6a3 3 0 0 0 6 0V2M17 2v20M17 2c2.2 1.8 3 4 3 7 0 2.2-1 4-3 4"/></svg>
           </div>
           <div class="card-copy">
             <div class="card-label">Gastronomie & Service</div>
             <h2>Für Gastrobetriebe</h2>
-            <p>Restaurants, Cafés, Hotels und Catering. Wir machen sichtbar, warum jemand bei euch arbeiten sollte, und halten die Bewerbung kurz.</p>
+            <p>Restaurants, Cafés, Hotels und Catering.</p>
+            <p>Wir machen deutlich, warum jemand bei euch anfangen sollte, und halten den Weg zur Bewerbung kurz.</p>
             <div class="card-cta">Zur Gastronomie <span>→</span></div>
           </div>
         </a>
@@ -147,7 +149,7 @@
 
   <footer class="footer">
     <div class="wrap foot-in">
-      <a class="logo" href="https://tephrastudios.at/"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
+      <a class="logo" href="/"><img src="/tephra-logo-exact.svg" alt="Tephra Studios"></a>
       <div class="foot-links">
         <a class="iclink" href="tel:+4368181315304" aria-label="Tephra Studios anrufen">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"/></svg>
@@ -170,9 +172,9 @@
       </div>
       <div class="foot-tag">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
       <div class="foot-legal">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="agb.html">AGB</a>
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+        <a href="/agb/">AGB</a>
       </div>
     </div>
   </footer>
