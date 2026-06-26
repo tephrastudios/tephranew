@@ -3,13 +3,23 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tephra Studios | Recruiting für Gastronomie</title>
-  <meta name="description" content="Tephra Studios hilft Restaurants, Cafés, Hotels und Cateringbetrieben, passende Mitarbeiter zu erreichen und den Bewerbungsweg kurz zu halten." />
+  <title>Tephra Studios | Mitarbeiter gewinnen mit System</title>
+  <meta name="description" content="Tephra Studios baut moderne Recruiting- und Markenauftritte für Handwerks-, Bau- und Industriebetriebe. Direkt. Modern. Glaubwürdig." />
+  <link rel="canonical" href="https://tephrastudios.at/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="de_AT" />
+  <meta property="og:site_name" content="Tephra Studios" />
+  <meta property="og:title" content="Tephra Studios | Mitarbeiter gewinnen mit System" />
+  <meta property="og:description" content="Moderne Recruiting- und Markenauftritte für Handwerksbetriebe. Damit gute Leute sich bewerben und nicht abspringen." />
+  <meta property="og:url" content="https://tephrastudios.at/" />
+  <meta property="og:image" content="https://tephrastudios.at/handwerk/handwerk2.jpg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
     :root{
       --black:#070807;
       --deep:#0e100d;
       --panel:#151710;
+      --panel2:#1c1f17;
       --white:#f4efe3;
       --muted:rgba(244,239,227,.74);
       --soft:rgba(244,239,227,.5);
@@ -20,38 +30,55 @@
       --radius:24px;
       --ease:cubic-bezier(.16,.84,.28,1);
     }
+
     *{box-sizing:border-box;margin:0;padding:0}
     html{scroll-behavior:smooth;background:var(--black)}
     body{
-      background:var(--black);color:var(--white);
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      font-size:16px;line-height:1.5;overflow-x:hidden;
+      background:var(--black);
+      color:var(--white);
+      overflow-x:hidden;
+      line-height:1.5;
     }
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    .wrap{width:min(1180px,calc(100% - 44px));margin:0 auto}
+
+    /* fine dotted grain over everything */
     body::before{
-      content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.032;
+      content:"";position:fixed;inset:0;z-index:90;pointer-events:none;opacity:.03;
       background-image:radial-gradient(circle at 1px 1px,#fff 1px,transparent 0);
       background-size:24px 24px;mix-blend-mode:screen;
     }
-    body::after{
-      content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.12;
-      background:
-        linear-gradient(rgba(244,239,227,.055) 1px,transparent 1px),
-        linear-gradient(90deg,rgba(244,239,227,.045) 1px,transparent 1px);
-      background-size:120px 120px;
-      mask-image:linear-gradient(to bottom,black,transparent 70%);
+
+    /* ---------------- HEADER ---------------- */
+    .head{
+      position:fixed;top:0;left:0;right:0;z-index:80;
+      border-bottom:1px solid transparent;
+      transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease;
     }
-    a{color:inherit;text-decoration:none}
-    .wrap{width:min(1180px,calc(100% - 44px));margin:0 auto}
-    .head{position:fixed;top:0;left:0;right:0;z-index:80;border-bottom:1px solid transparent;transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease}
     .head.scrolled{background:rgba(7,8,7,.72);backdrop-filter:blur(20px);border-color:var(--line)}
     .head-in{position:relative;height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .logo img{width:clamp(140px,13vw,196px);height:auto;display:block}
-    .menu{position:absolute;left:50%;transform:translateX(-50%);display:flex;align-items:center;justify-content:center;gap:clamp(16px,2.4vw,34px);color:rgba(244,239,227,.7);font-size:14px;font-weight:700}
+    .logo img{width:clamp(140px,13vw,196px);height:auto}
+    .menu{position:absolute;left:50%;transform:translateX(-50%);display:flex;justify-content:center;gap:clamp(16px,2.4vw,34px);font-size:14px;font-weight:850;color:rgba(244,239,227,.7)}
     .menu a{position:relative;transition:color .25s ease}
-    .menu a::after{content:"";position:absolute;left:0;bottom:-9px;width:0;height:1px;background:var(--accent);transition:width .45s var(--ease)}
+    .menu a::after{content:"";position:absolute;left:0;bottom:-9px;height:1px;width:0;background:var(--accent);transition:width .45s var(--ease)}
     .menu a:hover{color:var(--white)}
     .menu a:hover::after{width:100%}
-    .pill{border:1px solid rgba(255,242,0,.24);background:rgba(255,242,0,.07);color:var(--accent);border-radius:999px;padding:9px 14px;text-transform:uppercase;letter-spacing:.16em;font-size:10px;font-weight:900}
+
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      min-height:48px;padding:14px 24px;border-radius:999px;
+      border:1px solid transparent;background:#fff200;color:#0a0b0a;
+      font-size:14px;font-weight:850;white-space:nowrap;cursor:pointer;
+      transition:transform .4s var(--ease),box-shadow .4s var(--ease),filter .3s ease;
+    }
+    .btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 18px 48px rgba(255,242,0,.22)}
+    .btn .arr{transition:transform .35s var(--ease)}
+    .btn:hover .arr{transform:translateX(4px)}
+    .btn.ghost{background:transparent;color:var(--white);border-color:var(--line2)}
+    .btn.ghost:hover{border-color:rgba(255,242,0,.4);color:var(--accent);box-shadow:none}
+
     .burger{display:none;width:42px;height:42px;border:1px solid var(--line2);border-radius:50%;background:rgba(5,5,5,.4);color:var(--white);align-items:center;justify-content:center;cursor:pointer}
     .burger span,.burger span::before,.burger span::after{display:block;width:17px;height:1.5px;background:var(--white);position:relative;transition:.28s var(--ease)}
     .burger span::before,.burger span::after{content:"";position:absolute;left:0}
@@ -60,359 +87,607 @@
     body.nav-open .burger span::before{top:0;transform:rotate(45deg)}
     body.nav-open .burger span::after{top:0;transform:rotate(-45deg)}
     .mpanel{display:none}
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:48px;padding:14px 24px;border-radius:999px;border:1px solid transparent;background:var(--accent);color:#0a0b0a;font-size:14px;font-weight:850;white-space:nowrap;transition:transform .35s var(--ease),box-shadow .35s ease,filter .25s ease}
-    .btn:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 18px 48px rgba(255,242,0,.22)}
-    .btn.ghost{background:transparent;color:var(--white);border-color:var(--line2)}
-    .btn.ghost:hover{color:var(--accent);border-color:rgba(255,242,0,.4);box-shadow:none}
+
+    /* ---------------- HERO ---------------- */
     .hero{position:relative;z-index:1;min-height:100svh;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);background:#070807}
-    .hero::after{content:"";position:absolute;inset:0;z-index:0;background:url("/gastronomie/hero-serve.jpg") center 52%/cover no-repeat;opacity:.68;filter:saturate(.92) contrast(1.06) brightness(.92);transform:scale(1.015);pointer-events:none}
+    .hero::after{content:"";position:absolute;inset:0;z-index:0;background:url("handwerk2.jpg") center 52%/cover no-repeat;opacity:.68;filter:saturate(.92) contrast(1.06) brightness(.92);transform:scale(1.015);pointer-events:none}
     .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,8,7,.58) 0%,rgba(7,8,7,.38) 38%,rgba(7,8,7,.78) 100%),radial-gradient(circle at 50% 0%,rgba(255,242,0,.16),transparent 36%),radial-gradient(circle at 78% 36%,rgba(193,102,66,.15),transparent 32%),linear-gradient(120deg,transparent 0 58%,rgba(255,255,255,.045) 58.1%,transparent 58.4%);pointer-events:none}
-    .hero-in{position:relative;z-index:2;padding:142px 0 86px;text-align:center}
-    .eyebrow{display:inline-flex;align-items:center;gap:9px;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase;margin-bottom:24px}
-    .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 16px rgba(255,242,0,.58)}
-    h1{font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:920;text-wrap:balance;max-width:1080px;margin:0 auto}
-    h1 span{color:var(--accent)}
-    .accent{color:var(--accent)}
-    .subtitle{max-width:720px;margin:28px auto 0;color:var(--muted);font-size:clamp(16px,1.45vw,20px);line-height:1.72}
-    .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center}
-    .hero-points span{display:inline-flex;align-items:center;gap:7px;color:rgba(244,239,227,.78);font-size:13.5px;font-weight:760}
-    .hero-points span::before{content:"✓";color:var(--accent);font-weight:900}
-    .hero-cta{margin-top:34px;display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
-    .pad{position:relative;z-index:2;padding:clamp(74px,9vw,118px) 0;border-bottom:1px solid var(--line)}
-    .marker{display:flex;align-items:center;gap:12px;margin-bottom:22px}
-    .marker .no{color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.1em}
-    .marker .lbl{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
-    .marker .ln{flex:1;height:1px;background:var(--line)}
-    h2{font-size:clamp(32px,4.6vw,58px);line-height:.98;letter-spacing:-.05em;font-weight:920;text-wrap:balance}
-    .lead{max-width:650px;color:var(--muted);font-size:clamp(16px,1.45vw,19px);line-height:1.72;margin-top:20px}
-    .system-lead{max-width:1040px}
-    .dark-band{background:#0a0b0a}
-    .two-col{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,5vw,64px);align-items:start}
-    .problem-layout{display:block}
-    .problem-intro{max-width:none}
-    .problem-intro .lead{max-width:none;white-space:nowrap}
-    .problem-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
-    .problem-item{--mx:20%;--my:20%;position:relative;overflow:hidden;min-height:184px;border:1px solid var(--line);border-radius:18px;padding:24px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transform-style:preserve-3d;transition:transform .22s ease,opacity .22s ease,border-color .32s ease,box-shadow .32s ease}
-    .problem-item::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 18% 18%,rgba(255,242,0,.1),transparent 64%)}
-    .problem-item::after{content:"";position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at var(--mx) var(--my),rgba(255,242,0,.2),transparent 62%);transition:opacity .25s ease}
-    .problem-item:hover{border-color:rgba(255,242,0,.32);box-shadow:0 22px 58px rgba(0,0,0,.28)}
-    .problem-item:hover::after{opacity:1}
-    .problem-item.is-dimmed{opacity:.5;transform:scale(.97)}
-    .problem-item strong{position:relative;z-index:2;display:block;font-size:18px;letter-spacing:-.03em;margin-bottom:8px;padding-right:58px}
-    .problem-item p{position:relative;z-index:2;color:var(--muted);font-size:14.5px;line-height:1.64}
-    .bento{--bento-glow:255,242,0;position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:48px;padding:12px;border:1px solid var(--line);border-radius:24px;overflow:hidden;isolation:isolate;background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012))}
-    .bento::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.13;background-image:radial-gradient(circle,rgba(255,255,255,.2) 1px,transparent 1px);background-size:22px 22px}
-    .bento::after{content:"";position:absolute;width:720px;height:720px;left:var(--bento-x,50%);top:var(--bento-y,50%);transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:1;opacity:var(--bento-o,0);background:radial-gradient(circle,rgba(var(--bento-glow),.16),rgba(var(--bento-glow),.04) 45%,transparent 70%);mix-blend-mode:screen;transition:opacity .25s ease}
-    .bento-card{--glow-x:50%;--glow-y:50%;--glow-intensity:0;--glow-radius:220px;position:relative;z-index:2;min-height:245px;display:flex;flex-direction:column;justify-content:flex-start;gap:clamp(28px,2.8vw,42px);border:1px solid rgba(244,239,227,.16);border-radius:20px;padding:24px 22px;overflow:hidden;background:#11130f;transform-style:preserve-3d;transition:border-color .28s ease,box-shadow .28s ease,opacity .25s ease,transform .18s ease}
-    .bento-card::before{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),rgba(var(--bento-glow),calc(var(--glow-intensity)*.2)),transparent 66%)}
-    .bento-card:hover{border-color:rgba(255,242,0,.34);box-shadow:0 24px 70px rgba(0,0,0,.34),0 0 30px rgba(255,242,0,.08)}
-    .bento.has-hover .bento-card:not(.is-hovered){opacity:.58}
-    .bento-label,.bento-content,.bento-icon{position:relative;z-index:3}
-    .bento-label{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
-    .bento-icon{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;margin-top:-8px;margin-bottom:-16px;border:1px solid rgba(255,242,0,.22);border-radius:14px;background:rgba(255,242,0,.07);color:var(--accent);box-shadow:0 0 22px rgba(255,242,0,.08)}
-    .bento-icon svg{width:21px;height:21px;stroke:currentColor}
-    .bento-card h3{font-size:clamp(19px,1.25vw,22px);line-height:1.04;letter-spacing:-.045em;margin-bottom:10px;overflow-wrap:break-word}
-    .bento-card p{color:rgba(244,239,227,.72);font-size:14px;line-height:1.58}
-    .audience-grid,.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
-    .why-grid{grid-template-columns:repeat(2,1fr)}
-    .spot-card{--mx:20%;--my:20%;position:relative;overflow:hidden;min-height:230px;border:1px solid var(--line);border-radius:20px;padding:24px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:transform .22s ease,opacity .22s ease,border-color .32s ease,box-shadow .32s ease}
-    .spot-card::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 20% 20%,rgba(255,242,0,.1),transparent 64%)}
-    .spot-card::after{content:"";position:absolute;inset:0;opacity:0;background:radial-gradient(ellipse at var(--mx) var(--my),rgba(255,242,0,.2),transparent 62%);transition:opacity .25s ease}
-    .spot-card:hover{border-color:rgba(255,242,0,.34);box-shadow:0 22px 58px rgba(0,0,0,.28)}
-    .spot-card:hover::after{opacity:1}
-    .spot-card.is-dimmed{opacity:.5;transform:scale(.97)}
-    .spot-icon{position:absolute;top:22px;right:22px;z-index:2;display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(255,242,0,.22);border-radius:14px;background:rgba(255,242,0,.07);color:var(--accent);box-shadow:0 0 22px rgba(255,242,0,.08)}
-    .spot-icon svg{width:21px;height:21px;stroke:currentColor}
-    .problem-item .spot-icon{top:22px;right:22px}
-    .why-grid .spot-card .kicker{padding-right:58px}
-    .spot-card.has-image{min-height:260px;background:#11130f}
-    .spot-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.54;filter:saturate(.9) contrast(1.04) brightness(.82);transform:scale(1.02);transition:opacity .35s ease,transform .5s var(--ease)}
-    .spot-card.has-image::before{z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.28),rgba(0,0,0,.58)),radial-gradient(ellipse at 16% 18%,rgba(255,242,0,.14),transparent 62%)}
-    .spot-card.has-image::after{z-index:1}
-    .spot-card.has-image:hover .spot-bg{opacity:.64;transform:scale(1.06)}
-    .spot-card .kicker{position:relative;z-index:2;color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}
-    .spot-card h3{position:relative;z-index:2;font-size:24px;line-height:1.02;letter-spacing:-.045em;margin-bottom:12px}
-    .spot-card p{position:relative;z-index:2;color:var(--muted);font-size:14.5px;line-height:1.64}
-    .team-title span{color:var(--accent)}
-    .team{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:660px;margin-top:34px}
-    .team-card{position:relative;overflow:hidden;min-height:426px;display:flex;align-items:flex-end;border:1px solid var(--line);border-radius:20px;padding:28px;background:#11130f;transition:transform .35s var(--ease),border-color .35s ease,box-shadow .35s ease}
-    .team-card::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(0,0,0,.02) 34%,rgba(0,0,0,.72) 100%);transition:background .35s ease}
-    .team-card:hover,.team-card:focus-within{transform:translateY(-3px);border-color:rgba(255,242,0,.34);box-shadow:0 24px 70px rgba(0,0,0,.34)}
-    .team-card:hover::before,.team-card:focus-within::before{background:linear-gradient(180deg,rgba(0,0,0,.04) 20%,rgba(0,0,0,.84) 100%)}
-    .team-avatar{position:absolute;inset:0;width:100%;height:100%;border:0;border-radius:0;box-shadow:none;overflow:hidden}
-    .team-avatar img{width:100%;height:100%;object-fit:cover;filter:saturate(.82) contrast(1.04) brightness(.72)}
-    .team-card>div:not(.team-avatar),.team-copy{position:relative;z-index:2}
-    .team-card .role{color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:9px}
-    .team-card h3{font-size:clamp(24px,2vw,30px);line-height:1;letter-spacing:-.045em}
-    .team-card p{max-width:300px;margin-top:14px;color:rgba(244,239,227,.72);font-size:14px;line-height:1.55;opacity:0;max-height:0;overflow:hidden;transform:translateY(8px);transition:opacity .35s var(--ease),transform .35s var(--ease),max-height .35s var(--ease)}
-    .team-card:hover p,.team-card:focus-within p{opacity:1;max-height:150px;transform:translateY(0)}
-    .booking{background:var(--black);border-bottom:1px solid var(--line)}
-    .bpanel{position:relative;overflow:hidden;max-width:920px;margin:0 auto;border:1px solid var(--line);border-radius:var(--radius);padding:48px 38px;text-align:center;background:linear-gradient(135deg,rgba(255,242,0,.07),rgba(255,255,255,.02) 44%,rgba(193,102,66,.07))}
-    .bpanel::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,11,10,.2),rgba(10,11,10,.8)),radial-gradient(circle at 84% 86%,rgba(255,242,0,.14),transparent 42%);opacity:.9;pointer-events:none}
-    .bpanel>*{position:relative;z-index:2}
-    .bpanel .eyebrow{font-size:10px;letter-spacing:.18em;margin-bottom:18px;color:var(--accent);text-shadow:0 0 18px rgba(255,242,0,.28)}
-    .bpanel h2{font-size:clamp(30px,3.8vw,48px);white-space:nowrap}
-    .bpanel h2 span{color:var(--accent)}
-    .bpanel p{max-width:540px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
-    .bpanel .hero-cta{margin-top:30px}
-    .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:850;letter-spacing:.01em}
-    .bpanel .hero-trust{margin-top:22px}
-    .hero-trust{display:inline-flex;align-items:center;justify-content:center;gap:13px}
+    .hero-bg,.hero-glow{display:none}
+    .hero-in{position:relative;z-index:2;min-width:0;padding:142px 0 86px;text-align:center}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:9px;color:var(--accent);
+      text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:900;margin-bottom:26px;
+    }
+    .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(255,242,0,.5)}
+    h1{
+      font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:920;
+      max-width:1040px;margin:0 auto;text-wrap:balance;
+    }
+    h1 .hl{position:relative;color:var(--accent);white-space:nowrap}
+    .subtitle{margin:30px auto 0;max-width:780px;color:var(--muted);font-size:clamp(16px,1.4vw,19px);line-height:1.7}
+    .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;max-width:100%}
+    .hero-points span{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:720;color:rgba(244,239,227,.78)}
+    .hero-points span::before{content:"✓";color:var(--accent);font-weight:900;font-size:12px}
+    .hero-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .hero-trust{margin-top:34px;display:inline-flex;align-items:center;gap:13px}
     .av{display:flex}
-    .av span{position:relative;width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--black);box-shadow:0 0 0 1px var(--line2);background:var(--panel);cursor:pointer;transition:transform .38s var(--ease),box-shadow .38s ease}
+    .av span{position:relative;width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--black);box-shadow:0 0 0 1px var(--line2);background:var(--panel2);cursor:pointer;transition:transform .38s var(--ease),box-shadow .38s ease}
     .av span+span{margin-left:-12px}
     .av span::after{content:"";position:absolute;inset:-35%;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.36) 48%,transparent 66%);transform:translateX(-130%) rotate(8deg);transition:transform .7s var(--ease);pointer-events:none;mix-blend-mode:screen}
     .av span:hover{transform:translateY(-5px) scale(1.1) rotate(-2deg);box-shadow:0 0 0 1px rgba(255,242,0,.34),0 10px 28px rgba(255,242,0,.12);z-index:3}
     .av span:nth-child(2):hover{transform:translateY(-5px) scale(1.1) rotate(2deg)}
     .av span:hover::after{transform:translateX(130%) rotate(8deg)}
     .av img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.04) brightness(.9)}
-    .hero-trust p{text-align:left;line-height:1.4;margin:0;color:var(--muted);font-size:13px}
+    .hero-trust p{text-align:left;line-height:1.4}
     .hero-trust p b{display:block;font-size:14px;color:rgba(244,239,227,.9);font-weight:920}
+    .hero-trust p small{font-size:13px;color:var(--muted)}
+
+
+    /* ---------------- SECTIONS ---------------- */
+    section{position:relative;z-index:2}
+    .pad{padding:clamp(72px,9vw,120px) 0}
+    .marker{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+    .marker .no{color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.1em}
+    .marker .lbl{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
+    .marker .ln{flex:1;height:1px;background:var(--line)}
+    h2{font-size:clamp(32px,4.6vw,58px);line-height:.98;letter-spacing:-.05em;font-weight:920;text-wrap:balance}
+    .lead{max-width:620px;color:var(--muted);font-size:clamp(16px,1.5vw,19px);line-height:1.7;margin-top:20px}
+    .system-lead{max-width:1040px}
+
+    /* PAIN */
+    .pain{background:#0a0b0a;border-bottom:1px solid var(--line)}
+    .pain-center{max-width:1120px;margin:18px 0 0;text-align:left}
+    .pain-center h2{max-width:1120px}
+    .pain-center .lead{max-width:1040px;margin-left:0;margin-right:0}
+    .pgrid{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;perspective:900px}
+    .pitem{
+      --mx:20%;--my:20%;
+      position:relative;display:flex;align-items:center;gap:14px;overflow:hidden;
+      border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:rgba(255,255,255,.022);
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:border-color .35s ease,box-shadow .35s ease,opacity .22s ease,transform .22s ease;
+    }
+    .pitem::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.8;background:radial-gradient(ellipse at 20% 20%,rgba(255,242,0,.09),transparent 64%)}
+    .pitem::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at var(--mx) var(--my),rgba(255,242,0,.18),transparent 62%);transition:opacity .25s ease}
+    .pitem:hover{border-color:rgba(255,242,0,.32);box-shadow:0 18px 48px rgba(0,0,0,.25)}
+    .pitem:hover::after{opacity:1}
+    .pitem.is-dimmed{opacity:.5;transform:scale(.97)}
+    .pitem .x{position:relative;z-index:2;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:rgba(255,242,0,.08);border:1px solid rgba(255,242,0,.24);color:var(--accent);font-size:17px;line-height:1}
+    .pitem strong{position:relative;z-index:2;font-size:16px;font-weight:760;letter-spacing:-.02em;color:rgba(244,239,227,.9)}
+    .psolution{max-width:680px;margin:34px auto 0;text-align:center}
+    .psolution .pnote{color:var(--muted);font-size:16px;line-height:1.7}
+    .psolution .pnote b{color:var(--white);font-weight:850}
+    .chips{margin-top:22px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
+    .chips span{border:1px solid rgba(255,242,0,.24);background:rgba(255,242,0,.05);color:var(--accent);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:900}
+
+    /* SYSTEM / cards grid (shared) */
+    .grid4{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px;perspective:1000px}
+    .flow{position:absolute;inset:0;pointer-events:none;z-index:6}
+    .flow span{position:absolute;top:50%;transform:translate(-50%,-50%);display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:var(--black);border:1px solid var(--line2);color:var(--accent);font-size:12px;font-weight:900}
+    .flow span::before{content:"→"}
+    .card{
+      --card-glow-x:50%;--card-glow-y:50%;--card-glow-intensity:0;
+      position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;
+      border:1px solid var(--line);border-radius:16px;padding:24px 22px;overflow:hidden;
+      background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .38s var(--ease),opacity .28s ease,border-color .35s ease,box-shadow .35s ease;
+    }
+    .card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 86% 88%,rgba(255,242,0,.13),transparent 36%);opacity:.7;transition:opacity .35s ease}
+    .card::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(230px circle at var(--card-glow-x) var(--card-glow-y),rgba(255,242,0,calc(var(--card-glow-intensity)*.14)),transparent 66%);opacity:.9;z-index:1}
+    .card:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(255,242,0,.32);box-shadow:0 26px 70px rgba(0,0,0,.32)}
+    .card:hover::before{opacity:1}
+    .card .cc{position:relative;z-index:2}
+    .card small{display:block;color:var(--accent);font-weight:900;letter-spacing:.12em;margin-bottom:20px}
+    .card strong{display:block;font-size:22px;line-height:1.1;letter-spacing:-.045em;margin-bottom:12px}
+    .card p{color:rgba(244,239,227,.78);font-size:13.5px;line-height:1.58}
+    .card .ico{position:absolute;right:-22px;bottom:-26px;width:132px;height:132px;color:var(--accent);opacity:.34;transition:transform .45s var(--ease),opacity .35s ease;z-index:1}
+    .card .ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+    .card .ico svg *{vector-effect:non-scaling-stroke}
+    .card:hover .ico{transform:scale(1.08) rotate(3deg) translateX(5px);opacity:.6}
+
+    /* DELIVERABLES */
+    .deliver{background:var(--black);border-bottom:1px solid var(--line)}
+    .spot-wrap{
+      position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;margin-top:48px;
+      padding:28px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.014));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+    }
+    .problem-wrap{margin-top:34px}
+    .problem-grid{grid-template-columns:repeat(2,1fr)}
+    .spot-wrap::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
+      background-image:radial-gradient(circle,rgba(255,255,255,.18) 1px,transparent 1px);
+      background-size:22px 22px;
+    }
+    .spot-wrap::after{
+      content:"";position:absolute;inset:auto -12% -40% auto;width:520px;height:520px;pointer-events:none;
+      background:radial-gradient(circle,rgba(255,242,0,.11),transparent 62%);filter:blur(22px);opacity:.75;
+    }
+    .spot-grid{position:relative;z-index:2;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;perspective:1000px}
+    .spot-card{
+      --spot-color:var(--accent);
+      position:relative;min-height:214px;display:flex;flex-direction:column;gap:20px;overflow:hidden;
+      border:1px solid var(--line);border-radius:18px;padding:24px;background:rgba(255,255,255,.028);
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .22s ease,opacity .22s ease,border-color .32s ease,box-shadow .32s ease;
+    }
+    .spot-card.is-dimmed{opacity:.68;transform:scale(.985)}
+    .spot-card:hover{border-color:color-mix(in srgb,var(--spot-color) 36%,transparent);box-shadow:0 26px 70px rgba(0,0,0,.3)}
+    #warum .spot-card:hover{transform:translateY(-6px) scale(1.01)}
+    .spot-card::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.82;
+      background:radial-gradient(ellipse at 20% 20%,color-mix(in srgb,var(--spot-color) 14%,transparent),transparent 66%);
+    }
+    .spot-card::after{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:0;
+      background:radial-gradient(ellipse at var(--mx,20%) var(--my,20%),color-mix(in srgb,var(--spot-color) 23%,transparent),transparent 62%);
+      transition:opacity .25s ease;
+    }
+    .spot-card:hover::after{opacity:1}
+    .spot-sweep{
+      position:absolute;inset:0 auto 0 -60%;width:55%;pointer-events:none;transform:skewX(-12deg);
+      background:linear-gradient(90deg,transparent,rgba(255,255,255,.055),transparent);
+      transition:translate .75s var(--ease);z-index:3;
+    }
+    .spot-card:hover .spot-sweep{translate:280% 0}
+    .spot-ico{
+      position:relative;z-index:4;display:flex;align-items:center;justify-content:center;width:44px;height:44px;
+      border-radius:14px;background:color-mix(in srgb,var(--spot-color) 11%,transparent);
+      box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--spot-color) 27%,transparent);
+      color:var(--spot-color);
+    }
+    .spot-ico svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
+    .spot-copy{position:relative;z-index:4;display:flex;flex-direction:column;gap:9px;margin-top:auto}
+    .spot-copy strong{font-size:20px;line-height:1.1;letter-spacing:-.04em}
+    .spot-copy p{color:rgba(244,239,227,.72);font-size:14px;line-height:1.62;max-width:34rem}
+    .spot-line{position:absolute;left:0;bottom:0;width:0;height:2px;border-radius:999px;background:linear-gradient(90deg,var(--spot-color),transparent);transition:width .48s var(--ease);z-index:4}
+    .spot-card:hover .spot-line{width:100%}
+
+    /* PROCESS */
+    .proc{background:#0a0b0a;border-bottom:1px solid var(--line);overflow:hidden}
+    .pstack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px;perspective:1000px}
+    .pcard{
+      position:relative;min-height:330px;display:flex;flex-direction:column;gap:24px;
+      border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px 160px;overflow:hidden;
+      background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .38s var(--ease),opacity .28s ease,border-color .35s ease,box-shadow .35s ease;
+    }
+    .pcard{--pc-glow-x:50%;--pc-glow-y:50%;--pc-intensity:0}
+    .pcard::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;background:radial-gradient(220px circle at var(--pc-glow-x) var(--pc-glow-y),rgba(255,242,0,calc(var(--pc-intensity)*.18)),transparent 66%)}
+    .pcard:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(255,242,0,.34);box-shadow:0 30px 80px rgba(0,0,0,.36)}
+    .pcard .pno{color:var(--accent);font-size:40px;line-height:.8;font-weight:920;letter-spacing:-.08em;position:relative;z-index:3}
+    .pcard .pcc{position:relative;z-index:3}
+    .pcard strong{display:block;font-size:24px;letter-spacing:-.045em;margin-bottom:12px}
+    .pcard p{color:var(--muted);font-size:14px;line-height:1.6}
+    .pcard .pimg{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+    .pcard .pimg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) saturate(.12) contrast(1.08) brightness(1.55);transform:scale(1.06)}
+    .pcard .pimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(10,11,10,.97) 22%,rgba(10,11,10,.7) 48%,rgba(10,11,10,.3) 72%,transparent)}
+
+    /* MAGIC BENTO */
+    .magic-bento-grid{
+      --bento-glow:255,242,0;
+      position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:48px;padding:12px;
+      border:1px solid var(--line);border-radius:24px;overflow:hidden;isolation:isolate;user-select:none;
+      background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
+      box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+    }
+    .magic-bento-grid::before{
+      content:"";position:absolute;inset:0;pointer-events:none;opacity:.13;z-index:0;
+      background-image:radial-gradient(circle,rgba(255,255,255,.2) 1px,transparent 1px);
+      background-size:22px 22px;
+    }
+    .magic-bento-grid::after{
+      content:"";position:absolute;width:720px;height:720px;left:var(--bento-x,50%);top:var(--bento-y,50%);
+      transform:translate(-50%,-50%);border-radius:50%;pointer-events:none;z-index:1;opacity:var(--bento-o,0);
+      background:radial-gradient(circle,rgba(var(--bento-glow),.16) 0%,rgba(var(--bento-glow),.075) 18%,rgba(var(--bento-glow),.025) 42%,transparent 70%);
+      mix-blend-mode:screen;transition:opacity .25s ease;
+    }
+    .magic-bento-card{
+      --glow-x:50%;--glow-y:50%;--glow-intensity:0;--glow-radius:220px;
+      position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;min-height:230px;
+      border:1px solid rgba(244,239,227,.16);border-radius:20px;padding:22px;overflow:hidden;
+      background:#11130f;transform-style:preserve-3d;will-change:transform;
+      transition:border-color .28s ease,box-shadow .28s ease,opacity .25s ease,transform .18s ease;
+    }
+    .magic-bento-card:nth-child(3){grid-column:auto;grid-row:auto;min-height:230px}
+    .magic-bento-card:nth-child(4){grid-column:auto}
+    .magic-bento-card::before{
+      content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+      background:radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),rgba(var(--bento-glow),calc(var(--glow-intensity) * .22)) 0%,rgba(var(--bento-glow),calc(var(--glow-intensity) * .09)) 32%,transparent 66%);
+      opacity:.95;
+    }
+    .magic-bento-card::after{
+      content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;z-index:4;pointer-events:none;
+      background:radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),rgba(var(--bento-glow),calc(var(--glow-intensity) * .82)) 0%,rgba(var(--bento-glow),calc(var(--glow-intensity) * .28)) 34%,transparent 62%);
+      -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+      -webkit-mask-composite:xor;mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);mask-composite:exclude;
+    }
+    .magic-bento-card:hover{border-color:rgba(255,242,0,.34);box-shadow:0 24px 70px rgba(0,0,0,.34),0 0 30px rgba(255,242,0,.08)}
+    .magic-bento-grid.has-hover .magic-bento-card:not(.is-hovered){opacity:.58}
+    .magic-bento-card__header,.magic-bento-card__content{position:relative;z-index:5}
+    .magic-bento-card__label{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+    .magic-bento-card__title{font-size:clamp(21px,2vw,28px);line-height:1.02;letter-spacing:-.05em;font-weight:920;margin:0 0 10px}
+    .magic-bento-card__description{color:rgba(244,239,227,.72);font-size:14px;line-height:1.58;max-width:25rem}
+    .magic-bento-card__photo{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.94}
+    .magic-bento-card__photo img{width:100%;height:100%;object-fit:cover;object-position:center top;filter:grayscale(.35) saturate(.22) contrast(1.08) brightness(1.9);transform:scale(1.03)}
+    .magic-bento-card__photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,19,15,.78) 0%,rgba(17,19,15,.36) 44%,rgba(17,19,15,.04) 100%)}
+    .bento-process .magic-bento-card:nth-child(4) .magic-bento-card__photo img{object-position:center 76%;filter:grayscale(.3) saturate(.25) contrast(1.1) brightness(2.05);transform:scale(1.01)}
+    .mbc-icon{position:absolute;right:-22px;bottom:-26px;width:132px;height:132px;color:var(--accent);opacity:.34;transition:transform .45s var(--ease),opacity .35s ease;z-index:1;pointer-events:none}
+    .mbc-icon svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.3;stroke-linecap:round;stroke-linejoin:round}
+    .mbc-icon svg *{vector-effect:non-scaling-stroke}
+    .magic-bento-card:hover .mbc-icon{transform:scale(1.08) rotate(3deg) translateX(5px);opacity:.6}
+    .bento-system .magic-bento-card:nth-child(1){background:linear-gradient(145deg,#11130f,#16180f)}
+    .bento-system .magic-bento-card:nth-child(2){background:linear-gradient(145deg,#10120f,#171713)}
+    .bento-system .magic-bento-card:nth-child(3){background:linear-gradient(145deg,#12130f,#181a11)}
+    .bento-system .magic-bento-card:nth-child(4){background:linear-gradient(145deg,#10120e,#171a12)}
+    .magic-particle{position:absolute;width:4px;height:4px;border-radius:50%;background:rgba(var(--bento-glow),1);box-shadow:0 0 8px rgba(var(--bento-glow),.7);pointer-events:none;z-index:20;animation:magicFloat 1.4s ease-out forwards}
+    @keyframes magicFloat{0%{opacity:0;transform:translate(0,0) scale(.3)}20%{opacity:1}100%{opacity:0;transform:translate(var(--px),var(--py)) scale(1)}}
+
+    /* TEAM */
+    .team{background:var(--black);border-bottom:1px solid var(--line)}
+    .team-grid{display:block;margin-top:0}
+    .team-intro{max-width:660px;margin:0}
+    .team-intro h2{font-size:clamp(28px,3.4vw,42px)}
+    .team-note{max-width:760px;margin:22px 0 0;color:var(--muted);font-size:16px;line-height:1.7}
+    .team-note p + p{margin-top:12px}
+    .team-intro .founders{margin-top:32px}
+    .founders{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .founder{position:relative;min-height:380px;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--panel)}
+    .founder img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:saturate(.78) contrast(1.04) brightness(.84);transition:transform .5s var(--ease)}
+    .founder:hover img{transform:scale(1.04)}
+    .founder::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(5,5,5,.92))}
+    .founder .fi{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px}
+    .founder .fi span{display:block;color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}
+    .founder .fi h3{font-size:25px;line-height:1;letter-spacing:-.05em}
+    .founder .fi p{margin-top:12px;font-size:13.5px;line-height:1.5;color:rgba(244,239,227,.76);max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .35s ease,margin-top .35s ease}
+    .founder{cursor:pointer}
+    .founder:hover .fi p,.founder:focus .fi p,.founder.open .fi p{max-height:200px;opacity:1}
+    .team-copy{display:none}
+    .team-copy p{color:rgba(244,239,227,.84);font-size:16px;line-height:1.7}
+    .team-copy .quote{border-left:2px solid var(--accent);padding-left:18px;color:var(--white);font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
+    .grid4.has-card-hover .card:not(.is-hovered),
+    #warum .spot-grid.has-card-hover .spot-card:not(.is-hovered),
+    .pstack.has-card-hover .pcard:not(.is-hovered){opacity:.68;transform:scale(.985)}
+
+    /* FAQ */
     .faq{background:#0a0b0a;border-bottom:1px solid var(--line)}
     .faq-list{margin-top:44px;display:grid;gap:12px;max-width:880px}
-    .fitem{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.024);overflow:hidden}
+    .fitem{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.024);overflow:hidden;transition:border-color .3s ease}
     .fitem[open]{border-color:rgba(255,242,0,.28)}
-    .fitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;font-weight:850;letter-spacing:-.02em}
+    .fitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;font-size:17px;font-weight:920;letter-spacing:-.02em}
     .fitem summary::-webkit-details-marker{display:none}
     .fitem .pls{flex:0 0 auto;width:22px;height:22px;position:relative}
-    .fitem .pls::before,.fitem .pls::after{content:"";position:absolute;top:50%;left:50%;background:var(--accent);transform:translate(-50%,-50%);transition:transform .28s var(--ease)}
+    .fitem .pls::before,.fitem .pls::after{content:"";position:absolute;top:50%;left:50%;background:var(--accent);transform:translate(-50%,-50%);transition:transform .3s var(--ease)}
     .fitem .pls::before{width:12px;height:2px}
     .fitem .pls::after{width:2px;height:12px}
     .fitem[open] .pls::after{transform:translate(-50%,-50%) scaleY(0)}
     .fans{padding:0 24px 24px;color:var(--muted);font-size:15px;line-height:1.7}
+
+    /* BOOKING */
+    .booking{background:var(--black);border-bottom:1px solid var(--line)}
+    .bpanel{position:relative;max-width:920px;margin:0 auto;border:1px solid var(--line);border-radius:var(--radius);padding:48px 38px;overflow:hidden;text-align:center;background:linear-gradient(135deg,rgba(255,242,0,.07),rgba(255,255,255,.02) 44%,rgba(193,102,66,.07))}
+    .bpanel::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,11,10,.2),rgba(10,11,10,.8)),radial-gradient(circle at 84% 86%,rgba(255,242,0,.14),transparent 42%);opacity:.9;pointer-events:none}
+    .bpanel>*{position:relative;z-index:2}
+    .bpanel .eyebrow{font-size:10px;letter-spacing:.18em;margin-bottom:18px;color:var(--accent);text-shadow:0 0 18px rgba(255,242,0,.28)}
+    .bpanel h2{font-size:clamp(30px,3.8vw,48px);white-space:normal}
+    .bpanel h2 span{color:var(--accent)}
+    .bpanel p{max-width:540px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
+    .bpanel .hero-cta{margin-top:30px}
+    .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:850;letter-spacing:.01em}
+    .bpanel .hero-trust{margin-top:22px}
+    .bpanel .hero-trust p{margin:0;max-width:none;text-align:left;color:var(--muted);font-size:13px;line-height:1.4}
+    .bpanel .hero-trust p b{font-size:14px;color:rgba(244,239,227,.9);font-weight:920}
+
+    /* FOOTER */
     .footer{border-top:1px solid var(--line);background:#050505;padding:38px 0 34px}
-    .foot-in{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center;color:var(--soft)}
+    .foot-in{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
     .foot-links{display:flex;gap:13px;align-items:center}
     .iclink{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,242,0,.18);border-radius:999px;background:rgba(255,255,255,.025);color:var(--accent);cursor:pointer;transition:transform .3s var(--ease),background .3s ease}
     .iclink:hover{transform:translateY(-3px);background:rgba(255,242,0,.1)}
-    .iclink svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-    .iclink .brand-icon{fill:currentColor;stroke:none}
-    .foot-tag{font-size:13px;color:var(--soft);font-weight:700;letter-spacing:-.01em}
-    .foot-legal{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;font-size:13px;color:var(--soft)}
+    .iclink svg{width:15px;height:15px;stroke:currentColor}
+    .foot-legal{display:flex;gap:22px;font-size:13px;color:var(--soft)}
     .foot-legal a:hover{color:var(--accent)}
-    .reveal{opacity:0;transform:translateY(22px);transition:opacity .75s var(--ease),transform .75s var(--ease)}
-    .reveal.in{opacity:1;transform:translateY(0)}
-    @media(max-width:940px){
-      .menu{display:none}
+    .foot-tag{font-size:13px;color:var(--soft);font-weight:850;letter-spacing:-.01em}
+
+    /* accent highlight */
+    .accent{color:#fff200}
+
+    /* chips glow on hover */
+    .chips span{transition:border-color .3s ease,background .3s ease,box-shadow .3s ease,transform .3s var(--ease)}
+    .chips span:hover{border-color:rgba(255,242,0,.7);background:rgba(255,242,0,.14);box-shadow:0 0 18px rgba(255,242,0,.22),0 0 6px rgba(255,242,0,.14);transform:translateY(-2px);cursor:default}
+
+    /* reveal animation */
+    .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rv.in{opacity:1;transform:translateY(0)}
+
+    /* ---------------- RESPONSIVE ---------------- */
+    @media(max-width:980px){
+      .menu,.head .btn{display:none}
       .burger{display:inline-flex}
       .mpanel{display:block;position:fixed;top:84px;left:16px;right:16px;z-index:79;padding:14px;border:1px solid var(--line);border-radius:20px;background:rgba(5,5,5,.92);backdrop-filter:blur(20px);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
       body.nav-open .mpanel{opacity:1;pointer-events:auto;transform:translateY(0)}
-      .mpanel a{display:flex;justify-content:space-between;padding:14px 6px;border-bottom:1px solid var(--line);font-weight:700;color:rgba(244,239,227,.86)}
-      .mpanel a:last-child{border-bottom:none}
+      .mpanel a{display:flex;justify-content:space-between;padding:14px 6px;border-bottom:1px solid var(--line);font-weight:750;color:rgba(244,239,227,.86)}
       .mpanel a span{color:var(--accent)}
-      .two-col{grid-template-columns:1fr}
-      .problem-intro .lead{white-space:normal}
-      .problem-list{grid-template-columns:1fr}
-      .bento,.audience-grid,.why-grid,.team{grid-template-columns:1fr 1fr}
-      .bento-card{gap:30px}
-      .bpanel h2{white-space:normal}
+      .pain-grid,.team-grid{grid-template-columns:1fr;gap:28px}
+      .grid4,.spot-grid,.pstack,.magic-bento-grid{grid-template-columns:1fr 1fr}
+      .magic-bento-card:nth-child(3),.magic-bento-card:nth-child(4){grid-column:auto;grid-row:auto;min-height:230px}
+      .flow{display:none}
     }
     @media(max-width:640px){
-      .wrap{width:min(100% - 32px,1180px)}
-      .head-in{height:80px}.pill{display:none}
-      .hero-in{padding:112px 0 64px}
+      .hero{min-height:auto}
       .hero::after{background-position:58% center;opacity:.62}
+      .hero-in{padding:112px 0 64px}
       .hero .eyebrow{display:inline-flex;align-items:flex-start;justify-content:center;gap:9px;width:auto;max-width:100%;text-align:center;margin-left:auto;margin-right:auto}
       .hero .eyebrow::before{flex:0 0 auto;margin-top:.52em;transform:translateX(clamp(30px,10vw,48px))}
       h1{font-size:clamp(29px,8.4vw,40px);line-height:1.04}
-      .hero-cta{flex-direction:column}.btn{width:100%}
-      .bento,.audience-grid,.why-grid,.team{grid-template-columns:1fr}
-      .bento-card{min-height:210px;gap:18px;padding:24px 22px}
-      .bento-card .bento-label{padding-right:62px}
-      .bento-card .bento-icon{position:absolute;top:22px;right:18px;width:38px;height:38px;margin:0;border-radius:13px}
-      .bento-card .bento-icon svg{width:19px;height:19px}
-      .bento-card .bento-content{margin-top:6px}
-      .why-grid .spot-card h3{padding-right:62px}
-      .why-grid .spot-card .spot-icon{top:24px;right:18px;width:38px;height:38px;border-radius:13px}
-      .why-grid .spot-card .spot-icon svg{width:19px;height:19px}
-      .team-card{min-height:390px}
-      .team-card p{opacity:1;max-height:180px;transform:none}
+      h1 .hl{white-space:normal}
+      .subtitle{margin-top:20px}
+      .hero-points{margin-top:20px;gap:8px 14px}
+      .hero-cta{margin-top:26px;flex-direction:column;align-items:stretch}
+      .btn{width:100%}
+      .grid4,.spot-grid,.pstack,.founders,.pgrid,.magic-bento-grid{grid-template-columns:1fr}
+      .card{min-height:auto}
+      .spot-wrap{padding:14px}
+      .spot-card{min-height:190px;padding:22px}
+      .magic-bento-grid{padding:10px;gap:10px}
+      .magic-bento-card,.magic-bento-card:nth-child(3),.magic-bento-card:nth-child(4){grid-column:auto;grid-row:auto;min-height:185px;padding:20px}
       .bpanel{padding:34px 22px}
       .bpanel h2{white-space:normal}
       .hero-trust{flex-direction:column;gap:10px}
       .hero-trust p{text-align:center}
-      .foot-in{flex-direction:column;text-align:center}
       .foot-legal{gap:16px}
-    }
-    @media(hover:none){
-      .team-card p{opacity:1;max-height:180px;transform:none}
-      .team-card:hover{transform:none}
-      .av span:hover{transform:none}
     }
     @media(prefers-reduced-motion:reduce){
       html{scroll-behavior:auto}
-      *,*::before,*::after{transition-duration:.001ms!important;animation-duration:.001ms!important}
+      *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
     }
   </style>
 </head>
-<body>
+<body id="top">
+
   <header class="head" id="head">
     <div class="wrap head-in">
-      <a class="logo" href="/" aria-label="Tephra Studios"><img src="/tephra-logo-exact.svg" alt="Tephra Studios"></a>
+      <a class="logo" href="/" aria-label="Tephra Studios"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
       <nav class="menu" aria-label="Navigation">
         <a href="#problem">Problem</a>
-        <a href="#ablauf">System</a>
-        <a href="#passt">Für wen</a>
-        <a href="#warum">Ablauf</a>
-        <a href="#team">Wer wir sind</a>
+        <a href="#ablauf">Ablauf</a>
+        <a href="#warum">Warum Tephra</a>
+        <a href="#leistungen">Ergebnis</a>
+        <a href="#team">Team</a>
         <a href="#faq">Fragen</a>
       </nav>
-      <button class="burger" id="burgerBtn" type="button" aria-label="Menü öffnen"><span></span></button>
+      <button class="burger" type="button" aria-label="Menü öffnen"><span></span></button>
     </div>
   </header>
 
-  <nav class="mpanel" id="mpanel" aria-label="Mobile Navigation">
+  <nav class="mpanel" aria-label="Mobile Navigation">
     <a href="#problem">Problem <span>01</span></a>
-    <a href="#ablauf">System <span>02</span></a>
-    <a href="#passt">Für wen <span>03</span></a>
-    <a href="#warum">Ablauf <span>04</span></a>
-    <a href="#team">Wer wir sind <span>05</span></a>
+    <a href="#ablauf">Ablauf <span>02</span></a>
+    <a href="#warum">Warum Tephra <span>03</span></a>
+    <a href="#leistungen">Ergebnis <span>04</span></a>
+    <a href="#team">Team <span>05</span></a>
     <a href="#faq">Fragen <span>06</span></a>
   </nav>
 
   <main>
+    <!-- HERO -->
     <section class="hero">
-      <div class="wrap hero-in reveal">
-        <p class="eyebrow">Recruiting für österreichische Gastronomie</p>
-        <h1>Gute Leute gibt es.<br>Sie bewerben sich nur<br><span>nicht bei euch.</span></h1>
-        <p class="subtitle">Küche, Service, Bar und Aushilfe entscheiden schnell: Wirkt der Betrieb fair? Ist er organisiert? Passt der Ton? Genau dort setzen wir an.</p>
-        <div class="hero-points">
-          <span>Stellen, die nach eurem Betrieb klingen</span>
-          <span>Bewerbung ohne Lebenslauf-Hürde</span>
-          <span>Ansprache für Leute, die nicht aktiv suchen</span>
-        </div>
+      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="wrap hero-in rv">
+        <span class="eyebrow">Recruiting für österreichisches Handwerk</span>
+        <h1>Eure Außendarstellung <span class="accent">entscheidet,</span> wer sich bewirbt.</h1>
+        <p class="subtitle">Viele Handwerksbetriebe leisten gute Arbeit, aber nach außen sieht man davon zu wenig. Wir bauen euch einen Auftritt, der das ändert.</p>
         <div class="hero-cta">
-          <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span>→</span></a>
+          <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
         </div>
       </div>
     </section>
 
-    <section id="problem" class="pad dark-band">
-      <div class="wrap problem-layout">
-        <div class="problem-intro reveal">
-          <div class="marker"><span class="no">01</span><span class="lbl">Das Problem</span><span class="ln"></span></div>
-          <h2>Warum viele Bewerbungen <span class="accent">ausbleiben.</span></h2>
-          <p class="lead">Viele gute Leute arbeiten bereits. Sie wechseln trotzdem, wenn ein Betrieb online fair, organisiert und glaubwürdig wirkt.</p>
+    <!-- DAS PROBLEM -->
+    <section id="problem" class="pain pad">
+      <div class="wrap">
+        <div class="marker rv"><span class="no">01</span><span class="lbl">Das Problem</span><span class="ln"></span></div>
+        <div class="pain-center rv">
+          <h2>Viele Betriebe wirken <span class="accent">schlechter,</span> als sie sind.</h2>
         </div>
-        <div class="problem-list reveal" data-focus-grid>
-          <article class="problem-item" data-tilt><div class="spot-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><strong>Jobportale kommen oft zu spät.</strong><p>Gute Kräfte schauen selten täglich in Stellenbörsen. Viele reagieren erst, wenn ihnen ein Betrieb außerhalb der Suche auffällt.</p></article>
-          <article class="problem-item" data-tilt><div class="spot-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></svg></div><strong>Anzeigen klingen austauschbar.</strong><p>Gute Bezahlung und ein gutes Team versprechen fast alle. Was zählt, ist der konkrete Grund, warum jemand zu euch wechseln sollte.</p></article>
-          <article class="problem-item" data-tilt><div class="spot-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg></div><strong>Die Bewerbung verlangt zu viel.</strong><p>Am Handy muss der nächste Schritt sofort klar sein. Wenn Interessenten lange Formulare sehen, sind sie oft weg.</p></article>
+        <div class="spot-wrap problem-wrap rv" style="--spot-color:#ff6b6b">
+          <div class="spot-grid problem-grid" aria-label="Probleme im Recruiting">
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 9l6 6M15 9l-6 6"/></svg></span>
+              <div class="spot-copy"><strong>Veraltete Außendarstellung</strong><p>Ein veralteter Auftritt kostet euch Bewerber, bevor das Gespräch überhaupt beginnt.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19M3 3l18 18"/></svg></span>
+              <div class="spot-copy"><strong>Fehlende Sichtbarkeit</strong><p>Wer euch nicht findet, kann sich auch nicht bewerben. Sichtbarkeit ist kein Zufall.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M9 10h6M9 14h4"/></svg></span>
+              <div class="spot-copy"><strong>Unklare Kommunikation</strong><p>Vage Stellenanzeigen ohne echten Mehrwert sprechen niemanden an.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ff6b6b">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5"/><path d="M9 12l2 2 4-4"/></svg></span>
+              <div class="spot-copy"><strong>Komplizierte Bewerbungen</strong><p>Lange Formulare und Hürden schrecken gute Leute ab, bevor sie fertig sind.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+          </div>
+        </div>
+        <div class="psolution rv">
+          <p class="pnote"><b>Genau da setzen wir an:</b> Wir helfen euch, so aufzutreten wie ihr wirklich seid.</p>
+          <div class="chips"><span>Direkt.</span><span>Modern.</span><span>Glaubwürdig.</span></div>
         </div>
       </div>
     </section>
 
+    <!-- ABLAUF -->
     <section id="ablauf" class="pad">
       <div class="wrap">
-        <div class="marker reveal"><span class="no">02</span><span class="lbl">Das System</span><span class="ln"></span></div>
-        <h2 class="reveal">Dahinter steckt kein <span class="accent">Zufall.</span></h2>
-        <p class="lead system-lead reveal">Vier Bausteine, die aufeinander aufbauen, von der Sichtbarkeit bis zur Bewerbung.</p>
-        <div class="bento reveal" data-bento>
-          <article class="bento-card">
-            <div class="bento-label">01 / Verstehen</div>
-            <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></div>
-            <div class="bento-content"><h3>Betrieb verstehen</h3><p>Wir schauen uns Rollen, Arbeitszeiten, Teamstruktur und Wechselgründe an. Ohne diese Details bleibt jede Anzeige flach.</p></div>
+        <div class="marker rv"><span class="no">02</span><span class="lbl">Ablauf</span><span class="ln"></span></div>
+        <h2 class="rv">So funktioniert das.</h2>
+        <div class="grid4 rv">
+          <article class="card">
+            <div class="cc"><small>01</small><strong>Verstehen</strong><p>Wir analysieren euren Betrieb, die offene Stelle und die echten Gründe, warum jemand wechseln würde.</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg></span>
           </article>
-          <article class="bento-card">
-            <div class="bento-label">02 / Positionieren</div>
-            <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg></div>
-            <div class="bento-content"><h3>Arbeitgeberbotschaft</h3><p>Wir bringen auf den Punkt, warum jemand bei euch anfangen oder zu euch wechseln sollte.</p></div>
+          <article class="card">
+            <div class="cc"><small>02</small><strong>Positionieren</strong><p>Wir schärfen eure Arbeitgeberbotschaft: Was macht euch attraktiv? Was unterscheidet euch von anderen?</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2 2 2 0 0 0 3.2-2.4A8 8 0 0 1 10 14"/><path d="M8 6v8"/></svg></span>
           </article>
-          <article class="bento-card">
-            <div class="bento-label">03 / Aufbauen</div>
-            <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"/><path d="M12 18h.01"/></svg></div>
-            <div class="bento-content"><h3>Auftritt & Anzeigen</h3><p>Wir bauen die Ansprache so, dass sie auf Social Media und am Handy funktioniert.</p></div>
+          <article class="card">
+            <div class="cc"><small>03</small><strong>Sichtbar machen</strong><p>Wir bauen starke Recruiting-Creatives und Anzeigen, die Menschen erreichen, die gerade gar nicht aktiv suchen.</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2"/><path d="M12 18h.01"/></svg></span>
           </article>
-          <article class="bento-card">
-            <div class="bento-label">04 / Bewerberweg</div>
-            <div class="bento-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 7 17l-5-5"/><path d="m22 10-7.5 7.5L13 16"/></svg></div>
-            <div class="bento-content"><h3>Kurzer Weg</h3><p>Interessenten melden sich mit wenigen Angaben. Ihr bekommt genug Kontext für den ersten Kontakt.</p></div>
+          <article class="card">
+            <div class="cc"><small>04</small><strong>Optimieren</strong><p>Wir messen, was funktioniert, und verbessern laufend, bis das System trägt.</p></div>
+            <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span>
           </article>
+          <div class="flow" aria-hidden="true"><span style="left:25%"></span><span style="left:50%"></span><span style="left:75%"></span></div>
         </div>
       </div>
     </section>
 
-    <section id="passt" class="pad dark-band">
+    <!-- WARUM TEPHRA -->
+    <section id="warum" class="deliver pad">
       <div class="wrap">
-        <div class="marker reveal"><span class="no">03</span><span class="lbl">Für wen das passt</span><span class="ln"></span></div>
-        <h2 class="reveal">Für Betriebe, die gute Leute brauchen und online <span class="accent">professioneller</span> wirken wollen.</h2>
-        <div class="audience-grid reveal" data-focus-grid>
-          <article class="spot-card has-image" data-tilt><img class="spot-bg" src="/gastronomie/gastro-restaurant.jpg" alt="" aria-hidden="true"><div class="kicker">Restaurants</div><h3>Küche, Service und Aushilfe</h3><p>Für Betriebe, die regelmäßig Personal brauchen und nicht jedes Mal bei null starten wollen.</p></article>
-          <article class="spot-card has-image" data-tilt><img class="spot-bg" src="/gastronomie/gastro-cafe.jpg" alt="" aria-hidden="true"><div class="kicker">Cafés & Bars</div><h3>Team für Stoßzeiten</h3><p>Für Baristas, Barpersonal und Aushilfen, wenn Regionalität, Tempo und verlässliche Rückmeldung zählen.</p></article>
-          <article class="spot-card has-image" data-tilt><img class="spot-bg" src="/gastronomie/gastro-catering.jpg" alt="" aria-hidden="true"><div class="kicker">Hotels & Catering</div><h3>Mehrere Rollen im Blick</h3><p>Für Teams mit Saisonspitzen, Events oder mehreren offenen Stellen gleichzeitig.</p></article>
+        <div class="marker rv"><span class="no">03</span><span class="lbl">Warum Tephra</span><span class="ln"></span></div>
+        <h2 class="rv">Nicht lauter werben. <span class="accent">Deutlicher werden.</span></h2>
+        <div class="spot-wrap rv">
+          <div class="spot-grid" aria-label="Warum Tephra">
+            <article class="spot-card" style="--spot-color:#fff200">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span>
+              <div class="spot-copy"><strong>Wir fragen zuerst</strong><p>Wir fragen zuerst, warum sich jemand bei euch bewerben sollte. Erst dann bauen wir etwas.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ffd84d">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m15 12-8.5 8.5a2.12 2.12 0 1 1-3-3L12 9"/><path d="m17.64 15 3.86-3.86a2.12 2.12 0 0 0-3-3L14.64 11"/><path d="m20 2 2 2"/><path d="m14 8 2 2"/></svg></span>
+              <div class="spot-copy"><strong>Passend zum Betrieb</strong><p>Kein Copy-paste. Jeder Betrieb ist anders. Wir bauen einen Auftritt, der wirklich zu euch passt.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#ffef85">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M11 6a13 13 0 0 0 8.4-2.8A1 1 0 0 1 21 4v12a1 1 0 0 1-1.6.8A13 13 0 0 0 11 14H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2z"/><path d="M6 14a12 12 0 0 0 2.4 7.2"/></svg></span>
+              <div class="spot-copy"><strong>Wir erreichen auch Passive</strong><p>Die besten Fachkräfte suchen oft nicht aktiv. Wir sprechen genau diese Menschen an.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+            <article class="spot-card" style="--spot-color:#fff200">
+              <span class="spot-sweep" aria-hidden="true"></span>
+              <span class="spot-ico" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></span>
+              <div class="spot-copy"><strong>Messbar und ehrlich</strong><p>Keine leeren Versprechen. Wir arbeiten mit Daten und verbessern laufend, was messbar ist.</p></div>
+              <span class="spot-line" aria-hidden="true"></span>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="warum" class="pad">
+    <!-- ERGEBNIS -->
+    <section id="leistungen" class="proc pad">
       <div class="wrap">
-        <div class="marker reveal"><span class="no">04</span><span class="lbl">Ablauf</span><span class="ln"></span></div>
-        <h2 class="reveal">Nicht lauter werben. <span class="accent">Deutlicher werden.</span></h2>
-        <div class="why-grid reveal" data-focus-grid>
-          <article class="spot-card" data-tilt><div class="spot-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></div><div class="kicker">Strategie</div><h3>Wir finden den echten Wechselgrund.</h3><p>Was macht den Job bei euch besser als die nächste Anzeige im Feed? Daraus entsteht die Botschaft.</p></article>
-          <article class="spot-card" data-tilt><div class="spot-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915"/><circle cx="12" cy="12" r="3"/></svg></div><div class="kicker">Umsetzung</div><h3>Der Auftritt passt zum Betrieb.</h3><p>Ein kleines Lokal braucht eine andere Ansprache als ein Hotel oder Caterer. Wir bauen nicht eine Seite für alle.</p></article>
-          <article class="spot-card" data-tilt><div class="spot-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div><div class="kicker">Ansprache</div><h3>Wir erreichen auch Leute, die nicht suchen.</h3><p>Die passende Person scrollt vielleicht gerade. Entscheidend ist, ob die Botschaft glaubwürdig wirkt.</p></article>
-          <article class="spot-card" data-tilt><div class="spot-icon" aria-hidden="true"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 7h6v6"/><path d="m22 7-8.5 8.5-5-5L2 17"/></svg></div><div class="kicker">System</div><h3>Wir verbessern, was messbar ist.</h3><p>Wir schauen, wo Interesse entsteht, wo Leute abspringen und welche Formulierungen besser funktionieren.</p></article>
+        <div class="marker rv"><span class="no">04</span><span class="lbl">Ergebnis</span><span class="ln"></span></div>
+        <h2 class="rv">Am Ende habt ihr etwas in der <span class="accent">Hand.</span></h2>
+        <p class="lead rv">Kein vages Versprechen. Konkrete Dinge, die bei euch bleiben.</p>
+        <div class="pstack rv" data-bento-proc>
+          <article class="pcard">
+            <span class="pno">01</span>
+            <div class="pcc"><strong>Klare Arbeitgeberbotschaft</strong><p>Ihr wisst genau, warum sich eine gute Fachkraft bei euch bewerben sollte. Nicht geraten, sondern erarbeitet.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="verstehenneu01.png" alt="" style="object-position:center 30%"></div>
+          </article>
+          <article class="pcard">
+            <span class="pno">02</span>
+            <div class="pcc"><strong>Fertige Recruiting-Anzeigen</strong><p>Videos, Bilder und Texte, die zu eurem Betrieb passen. Bereit zum Schalten, nichts bleibt bei euch hängen.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="02positonieren.png" alt="" style="object-position:center 55%"></div>
+          </article>
+          <article class="pcard">
+            <span class="pno">03</span>
+            <div class="pcc"><strong>Einfacher Bewerberweg</strong><p>Ein klarer Schritt, der am Handy funktioniert. Kein Formular-Chaos, keine unnötigen Hürden.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="aufbauen03.png" alt="" style="object-position:center 25%"></div>
+          </article>
+          <article class="pcard">
+            <span class="pno">04</span>
+            <div class="pcc"><strong>Laufende Verbesserung</strong><p>Kein einmaliges Setup. Wir messen, was funktioniert, und verbessern laufend auf Datenbasis.</p></div>
+            <div class="pimg" aria-hidden="true"><img src="verbessernneu04.png" alt="" style="object-position:center top"></div>
+          </article>
         </div>
       </div>
     </section>
 
-    <section id="team" class="pad dark-band">
+    <!-- TEAM -->
+    <section id="team" class="team pad">
       <div class="wrap">
-        <div class="marker reveal"><span class="no">05</span><span class="lbl">Wer wir sind</span><span class="ln"></span></div>
-        <h2 class="team-title reveal">Wir sind <span>Tina</span> und <span>Peter</span>.</h2>
-        <div class="team reveal">
-          <article class="team-card" tabindex="0">
-            <div class="team-avatar"><img src="/gastronomie/tina.jpg" alt="Tina Jurcic"></div>
-            <div><div class="role">Strategie &amp; Gestaltung</div><h3>Tina Jurcic</h3><p>Tina sorgt für den ersten Eindruck: ruhig, eigenständig und so konkret, dass Bewerber den Betrieb schnell einordnen können.</p></div>
-          </article>
-          <article class="team-card" tabindex="0">
-            <div class="team-avatar"><img src="/gastronomie/peter.jpg" alt="Peter Strbac"></div>
-            <div><div class="role">Recruiting &amp; Systeme</div><h3>Peter Strbac</h3><p>Peter macht aus Interesse einen kurzen Bewerberweg: klar, mobil und passend zum Alltag im Betrieb.</p></div>
-          </article>
+        <div class="team-grid">
+          <div class="team-intro rv">
+            <div class="marker"><span class="no">05</span><span class="lbl">Team</span><span class="ln"></span></div>
+            <h2>Wer steckt <span class="accent">dahinter?</span></h2>
+            <div class="team-note">
+              <p>Wir sind Peter und Tina aus Wien. Tephra Studios ist unsere Antwort auf das, was wir im Handwerk beobachtet haben: Gute Betriebe, die nach außen nicht so wirken, wie sie wirklich sind.</p>
+            </div>
+            <div class="founders">
+              <article class="founder" tabindex="0">
+                <img src="tina.jpg" alt="Tina Jurcic">
+                <div class="fi"><span>Strategie &amp; Gestaltung</span><h3>Tina Jurcic</h3><p>Tina bringt den gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt klar und professionell.</p></div>
+              </article>
+              <article class="founder" tabindex="0">
+                <img src="peter.jpg" alt="Peter Strbac">
+                <div class="fi"><span>Recruiting &amp; Systeme</span><h3>Peter Strbac</h3><p>Peter kennt den Handwerksalltag aus der Praxis. Was er baut, funktioniert im echten Betrieb.</p></div>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
+    <!-- FAQ -->
     <section id="faq" class="faq pad">
       <div class="wrap">
-        <div class="marker reveal"><span class="no">06</span><span class="lbl">Häufige Fragen</span><span class="ln"></span></div>
-        <h2 class="reveal">Was Betriebe oft <span class="accent">wissen</span> wollen.</h2>
-        <div class="faq-list reveal">
+        <div class="marker rv"><span class="no">06</span><span class="lbl">Häufige Fragen</span><span class="ln"></span></div>
+        <h2 class="rv">Häufige <span class="accent">Fragen.</span></h2>
+        <div class="faq-list rv">
           <details class="fitem">
-            <summary>Was kostet die Zusammenarbeit? <span class="pls" aria-hidden="true"></span></summary>
-            <div class="fans">Das hängt vom Umfang ab. Im Erstgespräch schauen wir uns eure Situation an und nennen euch einen klaren Preis. Kein Kleingedrucktes.</div>
+            <summary>Für wen ist das geeignet? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Für Handwerksbetriebe in Österreich, die passende Fachkräfte gewinnen wollen und bereit sind, an ihrer Außendarstellung zu arbeiten. Am besten passt es für Betriebe mit 5 bis 50 Mitarbeitern.</div>
           </details>
           <details class="fitem">
-            <summary>Wie viel Aufwand bedeutet das für mich? <span class="pls" aria-hidden="true"></span></summary>
-            <div class="fans">So wenig wie möglich. Wir holen die nötigen Infos bei euch ab und kümmern uns dann um Auftritt, Anzeigen und Bewerberweg. Technik ist unser Problem, nicht eures.</div>
+            <summary>Was kostet das? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Das klären wir im Erstgespräch gemeinsam. Kein Standard-Paket, das für alle gleich ist, kein Angebot ohne vorherige Analyse.</div>
           </details>
           <details class="fitem">
-            <summary>Wann sehe ich erste Ergebnisse? <span class="pls" aria-hidden="true"></span></summary>
-            <div class="fans">Der Auftritt steht meist innerhalb weniger Wochen. Wann sich das auf die Bewerbungen auswirkt, hängt von Region, Rolle und Saison ab. Das können wir nicht versprechen, aber wir schauen gemeinsam, was funktioniert.</div>
+            <summary>Wie schnell sehe ich Ergebnisse? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Das hängt von Betrieb, Stelle und Markt ab. Wir geben keine Versprechen, die wir nicht halten können. Wir arbeiten laufend daran, dass das System besser wird.</div>
           </details>
           <details class="fitem">
-            <summary>Muss ich mich mit Technik auskennen? <span class="pls" aria-hidden="true"></span></summary>
-            <div class="fans">Nein. Wir erklären alles in normaler Sprache und bauen die Abläufe so auf, dass sie im Alltag funktionieren.</div>
+            <summary>Müssen wir selbst viel machen? <span class="pls" aria-hidden="true"></span></summary>
+            <div class="fans">Nein. Wir übernehmen den Prozess. Am Anfang stellen wir euch ein paar Fragen, dann läuft das Meiste bei uns.</div>
           </details>
         </div>
       </div>
     </section>
 
-    <section id="kontakt" class="pad booking">
+    <!-- BOOKING -->
+    <section id="calendly" class="booking pad">
       <div class="wrap">
-        <div class="bpanel reveal">
+        <div class="bpanel rv">
           <span class="eyebrow">Nächster Schritt</span>
-          <h2><span>Kostenlose</span> Recruiting-Analyse buchen.</h2>
-          <p>Wir schauen uns zusammen an, wo euer Recruiting gerade steht, und sagen euch ehrlich, was wir sehen.</p>
-          <div class="hero-cta">
-            <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span>→</span></a>
+          <h2>Bereit, mehr passende <span class="accent">Bewerbungen</span> zu bekommen?</h2>
+          <p>Ein kurzes Gespräch reicht, um zu sehen, ob wir zusammenpassen.</p>
+          <div class="hero-cta" style="justify-content:center">
+            <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
           </div>
           <div class="bnote">Unverbindlich · ca. 30 Minuten · ihr entscheidet danach in Ruhe.</div>
-          <div class="hero-trust">
+          <div class="hero-trust" style="justify-content:center">
             <div class="av">
-              <span><img src="/gastronomie/tina.jpg" alt="Tina Jurcic von Tephra Studios"></span>
-              <span><img src="/gastronomie/peter.jpg" alt="Peter Strbac von Tephra Studios"></span>
+              <span><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios"></span>
+              <span><img src="peter.jpg" alt="Peter Strbac von Tephra Studios"></span>
             </div>
             <p><b>Direkt mit Tina &amp; Peter</b></p>
           </div>
@@ -423,27 +698,25 @@
 
   <footer class="footer">
     <div class="wrap foot-in">
-      <a class="logo" href="/" aria-label="Tephra Studios">
-        <img src="/tephra-logo-exact.svg" alt="Tephra Studios">
-      </a>
+      <a class="logo" href="/" aria-label="Tephra Studios"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
       <div class="foot-links">
         <a class="iclink" href="tel:+4368181315304" aria-label="Tephra Studios anrufen">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.8 19.8 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.33 1.77.62 2.61a2 2 0 0 1-.45 2.11L8 9.72a16 16 0 0 0 6.28 6.28l1.28-1.28a2 2 0 0 1 2.11-.45c.84.29 1.71.5 2.61.62A2 2 0 0 1 22 16.92Z"></path></svg>
         </a>
         <a class="iclink" href="https://wa.me/4368181315304" target="_blank" rel="noopener" aria-label="Tephra Studios auf WhatsApp">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.4 12a7.4 7.4 0 0 1-11 6.45L5 19.45l1-3.35A7.4 7.4 0 1 1 19.4 12Z"/><path d="M9.2 8.7c.35-.35.8-.35 1.1-.08l.65.58c.28.24.34.64.14.95l-.34.54c.47.97 1.18 1.68 2.14 2.14l.55-.34c.3-.2.7-.14.94.14l.58.65c.27.3.27.75-.08 1.1-.52.47-1.43.5-2.42.05-1.76-.78-3.03-2.05-3.82-3.82-.45-.98-.42-1.9-.14-2.42Z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19.4 12a7.4 7.4 0 0 1-11 6.45L5 19.45l1-3.35A7.4 7.4 0 1 1 19.4 12Z"></path><path d="M9.2 8.7c.35-.35.8-.35 1.1-.08l.65.58c.28.24.34.64.14.95l-.34.54c.47.97 1.18 1.68 2.14 2.14l.55-.34c.3-.2.7-.14.94.14l.58.65c.27.3.27.75-.08 1.1-.52.47-1.43.5-2.42.05-1.76-.78-3.03-2.05-3.82-3.82-.45-.98-.42-1.9-.14-2.42Z"></path></svg>
         </a>
         <a class="iclink" href="mailto:studio@tephra.at" aria-label="E-Mail an Tephra Studios">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m4 7 8 6 8-6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"></rect><path d="m4 7 8 6 8-6"></path></svg>
         </a>
         <a class="iclink" href="https://www.facebook.com/profile.php?id=61590430296117" target="_blank" rel="noopener" aria-label="Tephra Studios auf Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M13.35 8.3h1.9V5.45h-2.28c-2.25 0-3.52 1.28-3.52 3.55v1.65H7.35v2.9h2.1V19h3.08v-5.45h2.25l.42-2.9h-2.67V9.38c0-.72.3-1.08.82-1.08Z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M13.35 8.3h1.9V5.45h-2.28c-2.25 0-3.52 1.28-3.52 3.55v1.65H7.35v2.9h2.1V19h3.08v-5.45h2.25l.42-2.9h-2.67V9.38c0-.72.3-1.08.82-1.08Z"></path></svg>
         </a>
         <a class="iclink" href="https://www.instagram.com/tephra.studios/" target="_blank" rel="noopener" aria-label="Tephra Studios auf Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1"></circle></svg>
         </a>
         <a class="iclink" href="https://www.linkedin.com/in/peter-strbac-a05355414/" target="_blank" rel="noopener" aria-label="Peter Strbac auf LinkedIn">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M6.7 8.8H3.8V20h2.9V8.8ZM5.25 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM20.2 13.7c0-3-1.6-5.1-4.3-5.1-1.7 0-2.7.9-3.2 1.8V8.8H9.9V20h2.9v-5.9c0-1.6.8-2.7 2.2-2.7 1.3 0 2.1 1 2.1 2.7V20h3.1v-6.3Z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M6.7 8.8H3.8V20h2.9V8.8ZM5.25 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM20.2 13.7c0-3-1.6-5.1-4.3-5.1-1.7 0-2.7.9-3.2 1.8V8.8H9.9V20h2.9v-5.9c0-1.6.8-2.7 2.2-2.7 1.3 0 2.1 1 2.1 2.7V20h3.1v-6.3Z"></path></svg>
         </a>
       </div>
       <div class="foot-tag">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
@@ -456,82 +729,197 @@
   </footer>
 
   <script>
+    // sticky header style on scroll
     const head = document.getElementById("head");
-    const onScroll = () => head.classList.toggle("scrolled", window.scrollY > 24);
+    const bg = document.getElementById("heroBg");
+    // Parallax only on larger pointer-precise screens — avoids scroll jank on phones
+    const allowParallax = window.matchMedia("(min-width:768px) and (hover:hover) and (pointer:fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+    const onScroll = () => {
+      head.classList.toggle("scrolled", window.scrollY > 30);
+      if(allowParallax && bg && window.scrollY < window.innerHeight){
+        bg.style.transform = "scale(1.06) translateY(" + (window.scrollY * 0.18) + "px)";
+      }
+    };
     window.addEventListener("scroll", onScroll, {passive:true});
     onScroll();
 
-    const burger = document.getElementById("burgerBtn");
-    const mpanel = document.getElementById("mpanel");
+    // mobile menu
+    const burger = document.querySelector(".burger");
     if(burger){
       burger.addEventListener("click", () => document.body.classList.toggle("nav-open"));
-      document.querySelectorAll("#mpanel a").forEach(a => a.addEventListener("click", () => document.body.classList.remove("nav-open")));
+      document.querySelectorAll(".mpanel a").forEach(a => a.addEventListener("click", () => document.body.classList.remove("nav-open")));
     }
 
-    const canMove = window.matchMedia("(hover:hover) and (pointer:fine)").matches && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
-    document.querySelectorAll("[data-focus-grid]").forEach(grid => {
-      const cards = Array.from(grid.querySelectorAll("[data-tilt]"));
-      cards.forEach(card => {
-        card.addEventListener("mouseenter", () => cards.forEach(other => { if(other !== card) other.classList.add("is-dimmed"); }));
-        card.addEventListener("mouseleave", () => {
-          cards.forEach(other => other.classList.remove("is-dimmed"));
-          card.style.transform = "";
-          card.style.setProperty("--mx","20%");
-          card.style.setProperty("--my","20%");
-        });
-        card.addEventListener("mousemove", ev => {
-          if(!canMove) return;
-          const r = card.getBoundingClientRect();
-          const x = (ev.clientX - r.left) / r.width;
-          const y = (ev.clientY - r.top) / r.height;
-          card.style.setProperty("--mx",(x * 100) + "%");
-          card.style.setProperty("--my",(y * 100) + "%");
-          card.style.transform = "perspective(900px) rotateX(" + ((y - .5) * -8) + "deg) rotateY(" + ((x - .5) * 8) + "deg)";
-        });
+    // founder bio: tap/click (and keyboard) toggle, important for touch devices without hover
+    document.querySelectorAll(".founder").forEach(card => {
+      card.addEventListener("click", () => card.classList.toggle("open"));
+      card.addEventListener("keydown", e => {
+        if(e.key === "Enter" || e.key === " "){ e.preventDefault(); card.classList.toggle("open"); }
       });
     });
 
+    // Premium card motion for the requested card groups only.
+    const canAnimatePremiumCards = window.matchMedia("(hover:hover) and (pointer:fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+    function attachPremiumCardMotion(gridSelector, cardSelector, settings){
+      const grid = document.querySelector(gridSelector);
+      if(!grid) return;
+      const cards = Array.from(grid.querySelectorAll(cardSelector));
+      if(!cards.length) return;
+
+      const lift = settings.lift || 6;
+      const tilt = settings.tilt || 7;
+      const scale = settings.scale || 1.01;
+      const perspective = settings.perspective || 950;
+      const baseTransform = "perspective(" + perspective + "px) translateY(-" + lift + "px) scale(" + scale + ")";
+
+      const resetCard = card => {
+        card.classList.remove("is-hovered");
+        card.style.transform = "";
+        if(settings.glowX) card.style.setProperty(settings.glowX, settings.resetX || "50%");
+        if(settings.glowY) card.style.setProperty(settings.glowY, settings.resetY || "50%");
+        if(settings.intensity) card.style.setProperty(settings.intensity, "0");
+      };
+
+      grid.addEventListener("mouseleave", () => {
+        grid.classList.remove("has-card-hover");
+        cards.forEach(resetCard);
+      });
+
+      cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+          if(!canAnimatePremiumCards) return;
+          grid.classList.add("has-card-hover");
+          card.classList.add("is-hovered");
+          card.style.transform = baseTransform;
+          if(settings.intensity) card.style.setProperty(settings.intensity, "1");
+        });
+
+        card.addEventListener("mouseleave", () => {
+          if(!canAnimatePremiumCards) return;
+          grid.classList.remove("has-card-hover");
+          resetCard(card);
+        });
+
+        card.addEventListener("mousemove", ev => {
+          if(!canAnimatePremiumCards) return;
+          const r = card.getBoundingClientRect();
+          const x = (ev.clientX - r.left) / r.width;
+          const y = (ev.clientY - r.top) / r.height;
+          const rx = (y - .5) * -tilt;
+          const ry = (x - .5) * tilt;
+          if(settings.glowX) card.style.setProperty(settings.glowX, (x * 100) + "%");
+          if(settings.glowY) card.style.setProperty(settings.glowY, (y * 100) + "%");
+          if(settings.intensity) card.style.setProperty(settings.intensity, "1");
+          card.style.transform = baseTransform + " rotateX(" + rx.toFixed(2) + "deg) rotateY(" + ry.toFixed(2) + "deg)";
+        });
+      });
+    }
+
+    attachPremiumCardMotion("#ablauf .grid4", ".card", {
+      glowX:"--card-glow-x",
+      glowY:"--card-glow-y",
+      intensity:"--card-glow-intensity",
+      tilt:7,
+      scale:1.012
+    });
+    attachPremiumCardMotion("#warum .spot-grid", ".spot-card", {
+      glowX:"--mx",
+      glowY:"--my",
+      resetX:"20%",
+      resetY:"20%",
+      tilt:7,
+      scale:1.012
+    });
+    attachPremiumCardMotion("#leistungen .pstack", ".pcard", {
+      glowX:"--pc-glow-x",
+      glowY:"--pc-glow-y",
+      intensity:"--pc-intensity",
+      tilt:6,
+      scale:1.01
+    });
+
+    // Magic Bento: cursor spotlight, border glow, tilt, magnetism and small click particles
+    const canAnimateCards = window.matchMedia("(hover:hover) and (pointer:fine)").matches
+      && !window.matchMedia("(prefers-reduced-motion:reduce)").matches;
     document.querySelectorAll("[data-bento]").forEach(grid => {
-      const cards = Array.from(grid.querySelectorAll(".bento-card"));
+      const cards = Array.from(grid.querySelectorAll(".magic-bento-card"));
       grid.addEventListener("mousemove", ev => {
         const gr = grid.getBoundingClientRect();
-        grid.style.setProperty("--bento-x",(ev.clientX - gr.left) + "px");
-        grid.style.setProperty("--bento-y",(ev.clientY - gr.top) + "px");
-        grid.style.setProperty("--bento-o","1");
+        grid.style.setProperty("--bento-x", (ev.clientX - gr.left) + "px");
+        grid.style.setProperty("--bento-y", (ev.clientY - gr.top) + "px");
+        grid.style.setProperty("--bento-o", "1");
         cards.forEach(card => {
           const r = card.getBoundingClientRect();
           const x = ev.clientX - r.left;
           const y = ev.clientY - r.top;
-          card.style.setProperty("--glow-x",(x / r.width * 100) + "%");
-          card.style.setProperty("--glow-y",(y / r.height * 100) + "%");
-          card.style.setProperty("--glow-intensity", (x >= 0 && x <= r.width && y >= 0 && y <= r.height ? 1 : .18).toString());
+          const inside = x >= 0 && x <= r.width && y >= 0 && y <= r.height;
+          const cx = r.left + r.width / 2;
+          const cy = r.top + r.height / 2;
+          const distance = Math.hypot(ev.clientX - cx, ev.clientY - cy);
+          const intensity = inside ? 1 : Math.max(0, 1 - distance / 430);
+          card.style.setProperty("--glow-x", (x / r.width * 100) + "%");
+          card.style.setProperty("--glow-y", (y / r.height * 100) + "%");
+          card.style.setProperty("--glow-intensity", intensity.toFixed(2));
         });
       });
       grid.addEventListener("mouseleave", () => {
-        grid.style.setProperty("--bento-o","0");
+        grid.style.setProperty("--bento-o", "0");
         grid.classList.remove("has-hover");
-        cards.forEach(card => { card.classList.remove("is-hovered"); card.style.transform = ""; card.style.setProperty("--glow-intensity","0"); });
+        cards.forEach(card => {
+          card.classList.remove("is-hovered");
+          card.style.transform = "";
+          card.style.setProperty("--glow-intensity", "0");
+        });
       });
       cards.forEach(card => {
-        card.addEventListener("mouseenter", () => { grid.classList.add("has-hover"); card.classList.add("is-hovered"); });
-        card.addEventListener("mouseleave", () => { card.classList.remove("is-hovered"); card.style.transform = ""; });
+        card.addEventListener("mouseenter", () => {
+          grid.classList.add("has-hover");
+          card.classList.add("is-hovered");
+        });
+        card.addEventListener("mouseleave", () => {
+          card.classList.remove("is-hovered");
+          card.style.transform = "";
+        });
         card.addEventListener("mousemove", ev => {
-          if(!canMove) return;
+          if(!canAnimateCards) return;
           const r = card.getBoundingClientRect();
           const x = ev.clientX - r.left;
           const y = ev.clientY - r.top;
-          card.style.transform = "perspective(1000px) rotateX(" + (((y / r.height) - .5) * -9) + "deg) rotateY(" + (((x / r.width) - .5) * 9) + "deg)";
+          const rx = ((y / r.height) - .5) * -10;
+          const ry = ((x / r.width) - .5) * 10;
+          const mx = (x - r.width / 2) * .035;
+          const my = (y - r.height / 2) * .035;
+          card.style.transform = "perspective(1000px) translate(" + mx + "px," + my + "px) rotateX(" + rx + "deg) rotateY(" + ry + "deg)";
+        });
+        card.addEventListener("click", ev => {
+          if(window.matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+          const r = card.getBoundingClientRect();
+          for(let i = 0; i < 10; i++){
+            const p = document.createElement("span");
+            p.className = "magic-particle";
+            p.style.left = (ev.clientX - r.left) + "px";
+            p.style.top = (ev.clientY - r.top) + "px";
+            p.style.setProperty("--px", ((Math.random() - .5) * 120) + "px");
+            p.style.setProperty("--py", ((Math.random() - .5) * 120) + "px");
+            card.appendChild(p);
+            setTimeout(() => p.remove(), 1500);
+          }
         });
       });
     });
 
-    const io = new IntersectionObserver(entries => entries.forEach(entry => {
-      if(entry.isIntersecting){ entry.target.classList.add("in"); io.unobserve(entry.target); }
-    }), {threshold:.14});
-    document.querySelectorAll(".reveal").forEach((el,i) => {
-      el.style.transitionDelay = Math.min(i * 60, 220) + "ms";
+    // reveal on scroll
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
+    }, {threshold:.14});
+    document.querySelectorAll(".rv").forEach((el,i) => {
+      el.style.transitionDelay = Math.min(i*40,200) + "ms";
       io.observe(el);
     });
+
   </script>
 </body>
 </html>
