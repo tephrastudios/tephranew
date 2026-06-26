@@ -217,7 +217,11 @@
       h1{font-size:clamp(29px,8.4vw,40px);line-height:1.04}
       .hero-cta{flex-direction:column}.btn{width:100%}
       .bento,.audience-grid,.why-grid,.team{grid-template-columns:1fr}
-      .bento-card{min-height:210px;gap:24px}
+      .bento-card{min-height:210px;gap:18px;padding:24px 22px}
+      .bento-card .bento-label{padding-right:62px}
+      .bento-card .bento-icon{position:absolute;top:22px;right:18px;width:38px;height:38px;margin:0;border-radius:13px}
+      .bento-card .bento-icon svg{width:19px;height:19px}
+      .bento-card .bento-content{margin-top:6px}
       .why-grid .spot-card h3{padding-right:62px}
       .why-grid .spot-card .spot-icon{top:24px;right:18px;width:38px;height:38px;border-radius:13px}
       .why-grid .spot-card .spot-icon svg{width:19px;height:19px}
@@ -244,7 +248,7 @@
 <body>
   <header class="head" id="head">
     <div class="wrap head-in">
-      <a class="logo" href="index.html" aria-label="Tephra Studios"><img src="tephra-logo-exact.svg" alt="Tephra Studios"></a>
+      <a class="logo" href="/" aria-label="Tephra Studios"><img src="/tephra-logo-exact.svg" alt="Tephra Studios"></a>
       <nav class="menu" aria-label="Navigation">
         <a href="#problem">Problem</a>
         <a href="#ablauf">System</a>
@@ -419,8 +423,8 @@
 
   <footer class="footer">
     <div class="wrap foot-in">
-      <a class="logo" href="index.html" aria-label="Tephra Studios">
-        <img src="tephra-logo-exact.svg" alt="Tephra Studios">
+      <a class="logo" href="/" aria-label="Tephra Studios">
+        <img src="/tephra-logo-exact.svg" alt="Tephra Studios">
       </a>
       <div class="foot-links">
         <a class="iclink" href="tel:+4368181315304" aria-label="Tephra Studios anrufen">
@@ -444,9 +448,9 @@
       </div>
       <div class="foot-tag">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
       <div class="foot-legal">
-        <a href="impressum.html">Impressum</a>
-        <a href="datenschutz.html">Datenschutz</a>
-        <a href="agb.html">AGB</a>
+        <a href="/impressum/">Impressum</a>
+        <a href="/datenschutz/">Datenschutz</a>
+        <a href="/agb/">AGB</a>
       </div>
     </div>
   </footer>
