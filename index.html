@@ -58,25 +58,32 @@
       --mx:20%;--my:20%;--card-image:none;--card-pos:center;
       position:relative;min-height:330px;display:grid;grid-template-rows:auto 1fr;align-content:start;gap:28px;overflow:hidden;
       border:1px solid var(--line);border-radius:24px;padding:28px;text-align:left;color:var(--white);
+      background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.012)),#090a07;
+      transform-style:preserve-3d;will-change:transform,opacity;
+      transition:transform .22s ease,opacity .22s ease,border-color .34s ease,box-shadow .34s ease;
+    }
+    .choice-card::before{
+      content:"";position:absolute;inset:-3px;pointer-events:none;z-index:0;
       background:
-        linear-gradient(112deg,rgba(5,5,5,.82) 0%,rgba(5,5,5,.58) 48%,rgba(5,5,5,.30) 100%),
-        linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.012)),
+        linear-gradient(112deg,rgba(5,5,5,.78) 0%,rgba(5,5,5,.55) 48%,rgba(5,5,5,.28) 100%),
+        radial-gradient(ellipse at 18% 18%,rgba(255,242,0,.12),transparent 64%),
         var(--card-image);
       background-size:cover,cover,cover;
       background-position:center,center,var(--card-pos);
       background-repeat:no-repeat;
-      transform-style:preserve-3d;will-change:transform,opacity;
-      transition:transform .22s ease,opacity .22s ease,border-color .34s ease,box-shadow .34s ease;
+      transform:scale(1.01);
     }
-    .choice-card::before{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse at 18% 18%,rgba(255,242,0,.12),transparent 64%)}
-    .choice-card::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at var(--mx) var(--my),rgba(255,242,0,.24),transparent 62%);transition:opacity .25s ease}
+    .choice-card::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:1;opacity:0;background:radial-gradient(ellipse at var(--mx) var(--my),rgba(255,242,0,.24),transparent 62%);transition:opacity .25s ease}
     .choice-card:hover{border-color:rgba(255,242,0,.34);box-shadow:0 28px 78px rgba(0,0,0,.38)}
     .choice-card:hover::after{opacity:1}
     .choice-card.is-dimmed{opacity:.48;transform:scale(.97)}
     .choice-card.featured{
+      background:linear-gradient(145deg,rgba(255,242,0,.12),rgba(255,255,255,.018)),#090a07;
+    }
+    .choice-card.featured::before{
       background:
-        linear-gradient(112deg,rgba(5,5,5,.78) 0%,rgba(5,5,5,.52) 50%,rgba(255,242,0,.12) 100%),
-        linear-gradient(145deg,rgba(255,242,0,.12),rgba(255,255,255,.018)),
+        linear-gradient(112deg,rgba(5,5,5,.74) 0%,rgba(5,5,5,.50) 50%,rgba(255,242,0,.12) 100%),
+        radial-gradient(ellipse at 18% 18%,rgba(255,242,0,.12),transparent 64%),
         var(--card-image);
       background-size:cover,cover,cover;
       background-position:center,center,var(--card-pos);
@@ -109,6 +116,13 @@
     @media(max-width:760px){
       .head-in{height:80px}.nav-meta span:first-child{display:none}
       .hero{padding:46px 0 56px;min-height:auto}
+      .eyebrow{
+        gap:7px;
+        white-space:nowrap;
+        font-size:clamp(7.2px,2.25vw,9px);
+        letter-spacing:.14em;
+      }
+      .eyebrow::before{width:6px;height:6px;flex:0 0 6px}
       .choice-grid{grid-template-columns:1fr;margin-top:34px}
       .choice-card{min-height:280px;padding:24px;gap:24px}
       .foot-in{flex-direction:column;text-align:center}
