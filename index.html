@@ -55,10 +55,16 @@
     .lead{max-width:580px;margin:24px auto 0;color:var(--muted);font-size:clamp(16px,1.55vw,20px);line-height:1.72}
     .choice-grid{margin-top:46px;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;perspective:900px}
     .choice-card{
-      --mx:20%;--my:20%;
+      --mx:20%;--my:20%;--card-image:none;--card-pos:center;
       position:relative;min-height:330px;display:grid;grid-template-rows:auto 1fr;align-content:start;gap:28px;overflow:hidden;
       border:1px solid var(--line);border-radius:24px;padding:28px;text-align:left;color:var(--white);
-      background:linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
+      background:
+        linear-gradient(112deg,rgba(5,5,5,.82) 0%,rgba(5,5,5,.58) 48%,rgba(5,5,5,.30) 100%),
+        linear-gradient(145deg,rgba(255,255,255,.05),rgba(255,255,255,.012)),
+        var(--card-image);
+      background-size:cover,cover,cover;
+      background-position:center,center,var(--card-pos);
+      background-repeat:no-repeat;
       transform-style:preserve-3d;will-change:transform,opacity;
       transition:transform .22s ease,opacity .22s ease,border-color .34s ease,box-shadow .34s ease;
     }
@@ -67,10 +73,20 @@
     .choice-card:hover{border-color:rgba(255,242,0,.34);box-shadow:0 28px 78px rgba(0,0,0,.38)}
     .choice-card:hover::after{opacity:1}
     .choice-card.is-dimmed{opacity:.48;transform:scale(.97)}
-    .choice-card.featured{background:linear-gradient(145deg,rgba(255,242,0,.12),rgba(255,255,255,.018))}
+    .choice-card.featured{
+      background:
+        linear-gradient(112deg,rgba(5,5,5,.78) 0%,rgba(5,5,5,.52) 50%,rgba(255,242,0,.12) 100%),
+        linear-gradient(145deg,rgba(255,242,0,.12),rgba(255,255,255,.018)),
+        var(--card-image);
+      background-size:cover,cover,cover;
+      background-position:center,center,var(--card-pos);
+      background-repeat:no-repeat;
+    }
+    .choice-card.handwerk-card{--card-image:url("handwerk2.jpg");--card-pos:68% center}
+    .choice-card.gastro-card{--card-image:url("heroserve.jpg");--card-pos:53% center}
     .card-mark{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;width:52px;height:52px;border-radius:16px;background:rgba(255,242,0,.09);border:1px solid rgba(255,242,0,.25);color:var(--accent)}
     .card-mark svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
-    .card-copy{position:relative;z-index:2;display:flex;min-height:0;flex-direction:column;align-items:flex-start}
+    .card-copy{position:relative;z-index:2;display:flex;min-height:0;flex-direction:column;align-items:flex-start;text-shadow:0 2px 18px rgba(0,0,0,.58)}
     .card-label{color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.18em;text-transform:uppercase;margin-bottom:12px}
     .choice-card h2{font-size:clamp(25px,3vw,36px);line-height:1;letter-spacing:-.05em;margin-bottom:14px}
     .choice-card p{color:var(--muted);font-size:15px;line-height:1.66;max-width:31rem}
@@ -119,7 +135,7 @@
       </div>
 
       <section class="choice-grid reveal" data-focus-grid>
-        <a href="/handwerk/" class="choice-card" data-tilt>
+        <a href="/handwerk/" class="choice-card handwerk-card" data-tilt>
           <div class="card-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M13 2 4 14h7l-1 8 10-13h-7z"/></svg>
           </div>
@@ -132,7 +148,7 @@
           </div>
         </a>
 
-        <a href="/gastronomie/" class="choice-card featured" data-tilt>
+        <a href="/gastronomie/" class="choice-card featured gastro-card" data-tilt>
           <div class="card-mark" aria-hidden="true">
             <svg viewBox="0 0 24 24"><path d="M7 2v20M4 2v6a3 3 0 0 0 6 0V2M17 2v20M17 2c2.2 1.8 3 4 3 7 0 2.2-1 4-3 4"/></svg>
           </div>
@@ -173,9 +189,9 @@
       </div>
       <div class="foot-tag">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
       <div class="foot-legal">
-        <a href="/impressum/">Impressum</a>
-        <a href="/datenschutz/">Datenschutz</a>
-        <a href="/agb/">AGB</a>
+        <a href="/impressum/?from=/">Impressum</a>
+        <a href="/datenschutz/?from=/">Datenschutz</a>
+        <a href="/agb/?from=/">AGB</a>
       </div>
     </div>
   </footer>
