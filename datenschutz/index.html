@@ -11,7 +11,7 @@
       --white:#f4efe3;
       --muted:rgba(244,239,227,.72);
       --line:rgba(244,239,227,.13);
-      --accent:#d7ff00;
+      --accent:#fff200;
     }
     *{box-sizing:border-box;margin:0;padding:0}
     body{
@@ -87,10 +87,10 @@
 <body>
   <div class="container">
     <header class="top">
-      <a class="logo" href="index.html" aria-label="Tephra Studios">
-        <img src="tephra-logo-exact.svg" alt="Tephra Studios">
+      <a class="logo" href="/" aria-label="Tephra Studios">
+        <img src="/tephra-logo-exact.svg" alt="Tephra Studios">
       </a>
-      <a class="back" href="index.html">Zurück zur Startseite</a>
+      <a class="back" href="/">Zurück zur Startseite</a>
     </header>
 
     <main>
@@ -140,7 +140,19 @@
 
     <footer>Tephra Studios · Recruiting · Sichtbarkeit · Bewerberprozesse</footer>
   </div>
+  <script>
+    (() => {
+      const allowed = ["/", "/handwerk/", "/gastronomie/"];
+      const from = new URLSearchParams(window.location.search).get("from");
+      const target = allowed.includes(from) ? from : "/";
+
+      document.querySelectorAll("a.logo, a.back").forEach(link => {
+        link.href = target;
+      });
+    })();
+  </script>
 </body>
 </html>
+
 
 
