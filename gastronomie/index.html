@@ -89,8 +89,8 @@
     .dark-band{background:#0a0b0a}
     .two-col{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(34px,5vw,64px);align-items:start}
     .problem-layout{display:block}
-    .problem-intro{max-width:1120px}
-    .problem-intro .lead{max-width:1040px}
+    .problem-intro{max-width:none}
+    .problem-intro .lead{max-width:none;white-space:nowrap}
     .problem-list{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:42px}
     .problem-item{--mx:20%;--my:20%;position:relative;overflow:hidden;min-height:184px;border:1px solid var(--line);border-radius:18px;padding:24px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transform-style:preserve-3d;transition:transform .22s ease,opacity .22s ease,border-color .32s ease,box-shadow .32s ease}
     .problem-item::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 18% 18%,rgba(255,242,0,.1),transparent 64%)}
@@ -201,6 +201,7 @@
       .mpanel a:last-child{border-bottom:none}
       .mpanel a span{color:var(--accent)}
       .two-col{grid-template-columns:1fr}
+      .problem-intro .lead{white-space:normal}
       .problem-list{grid-template-columns:1fr}
       .bento,.audience-grid,.why-grid,.team{grid-template-columns:1fr 1fr}
       .bento-card{gap:30px}
@@ -212,11 +213,14 @@
       .hero-in{padding:112px 0 64px}
       .hero::after{background-position:58% center;opacity:.62}
       .hero .eyebrow{display:inline-flex;align-items:flex-start;justify-content:center;gap:9px;width:auto;max-width:100%;text-align:center;margin-left:auto;margin-right:auto}
-      .hero .eyebrow::before{flex:0 0 auto;margin-top:.52em}
+      .hero .eyebrow::before{flex:0 0 auto;margin-top:.52em;transform:translateX(clamp(30px,10vw,48px))}
       h1{font-size:clamp(29px,8.4vw,40px);line-height:1.04}
       .hero-cta{flex-direction:column}.btn{width:100%}
       .bento,.audience-grid,.why-grid,.team{grid-template-columns:1fr}
       .bento-card{min-height:210px;gap:24px}
+      .why-grid .spot-card h3{padding-right:62px}
+      .why-grid .spot-card .spot-icon{top:24px;right:18px;width:38px;height:38px;border-radius:13px}
+      .why-grid .spot-card .spot-icon svg{width:19px;height:19px}
       .team-card{min-height:390px}
       .team-card p{opacity:1;max-height:180px;transform:none}
       .bpanel{padding:34px 22px}
