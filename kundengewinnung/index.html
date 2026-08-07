@@ -169,6 +169,13 @@
       background:linear-gradient(180deg,rgba(7,8,7,.55),transparent);
     }
     .head.scrolled::after{opacity:1}
+  
+    /* Footer-Navigation (überarbeitet) */
+    .foot-nav{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 20px;max-width:640px}
+    .foot-nav a{font-size:13.5px;font-weight:800;letter-spacing:-.01em;color:rgba(244,239,227,.7);transition:color .25s ease}
+    .foot-nav a:hover,.foot-nav a:focus-visible{color:var(--accent)}
+    .foot-nav.branchen a{font-size:12.5px;font-weight:750;color:var(--soft)}
+    .foot-sep{width:100%;max-width:320px;height:1px;background:var(--line)}
   </style></noscript>
   <style>
     :root{
@@ -497,10 +504,10 @@
     .founder:hover img{transform:scale(1.04)}
     .founder::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(5,5,5,.92))}
     .founder .fi{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px}
-    .founder .fi span{display:block;color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
+    .founder .fi>span{display:block;color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
     .founder .fi h3{font-size:25px;line-height:1;letter-spacing:-.05em}
     .founder .fi p{display:grid;grid-template-rows:0fr;margin-top:0;font-size:13.5px;line-height:1.5;color:rgba(244,239,227,.76);opacity:0;transition:grid-template-rows .3s var(--ease),opacity .25s ease,margin-top .3s var(--ease)}
-    .founder .fi p>span{overflow:hidden;min-height:0}
+    .founder .fi p>span{display:block;overflow:hidden;min-height:0;color:inherit;font:inherit;letter-spacing:inherit;text-transform:none;margin:0}
     .founder{cursor:pointer}
     .founder:hover .fi p,.founder:focus .fi p,.founder.open .fi p{grid-template-rows:1fr;opacity:1;margin-top:12px}
     .team-copy{display:none}
@@ -609,21 +616,18 @@
     /* ============ RELAUNCH 2026: HERO OHNE FOTO ============ */
     .hero-plain::after{
       background:
-        radial-gradient(circle at 50% -10%,rgba(255,242,0,.14),transparent 46%),
-        radial-gradient(circle at 82% 78%,rgba(193,102,66,.13),transparent 40%),
-        radial-gradient(circle at 12% 68%,rgba(255,242,0,.06),transparent 42%),
-        linear-gradient(180deg,#0b0c0a 0%,#070807 62%,#0a0b0a 100%);
+        radial-gradient(ellipse 90% 55% at 50% 0%,rgba(255,242,0,.07),transparent 70%),
+        radial-gradient(ellipse 70% 50% at 78% 82%,rgba(193,102,66,.07),transparent 72%),
+        linear-gradient(180deg,#0c0d0b 0%,#080908 58%,#0a0b0a 100%);
       opacity:1;filter:none;transform:none;
     }
     .hero-plain::before{
-      background:
-        repeating-linear-gradient(115deg,transparent 0 118px,rgba(255,255,255,.022) 118px 119px),
-        radial-gradient(ellipse at 50% 44%,transparent 30%,rgba(7,8,7,.72) 100%);
+      background:radial-gradient(ellipse at 50% 46%,transparent 34%,rgba(7,8,7,.66) 100%);
     }
     .hero-plain .hero-in::before{
-      content:"";position:absolute;left:50%;top:-4%;width:min(760px,92vw);height:340px;
+      content:"";position:absolute;left:50%;top:2%;width:min(680px,88vw);height:300px;
       transform:translateX(-50%);pointer-events:none;z-index:-1;
-      background:radial-gradient(ellipse,rgba(255,242,0,.1),transparent 66%);filter:blur(28px);
+      background:radial-gradient(ellipse,rgba(255,242,0,.055),transparent 68%);filter:blur(34px);
     }
 
     /* ============ NAV DROPDOWN ============ */
@@ -980,7 +984,7 @@
         <div class="hero-cta">
           <a class="btn" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
         </div>
-        <div class="bnote">Unverbindlich, ca. 20 Minuten, kein Verkaufsdruck.</div>
+        <div class="bnote">Unverbindlich, ca. 30 Minuten, kein Verkaufsdruck.</div>
         <div class="bnote2">Kein Termin frei, der passt? <a href="mailto:studio@tephra.at?subject=Erstgespr%C3%A4ch%20Tephra%20Studios">Schreib uns direkt.</a></div>
         <div class="hero-trust">
           <div class="av">
@@ -1027,19 +1031,17 @@
         </a>
       </div>
       <div class="foot-tag">Tephra Studios ist eine Agentur aus Wien für Mitarbeitergewinnung, Kundengewinnung und Websites, für Betriebe in ganz Österreich.</div>
-      <div class="foot-tag">Mitarbeitergewinnung · Kundengewinnung · Website &amp; Auftritt</div>
+      <span class="foot-sep" aria-hidden="true"></span>
       <nav class="foot-nav" aria-label="Leistungen">
         <a href="/mitarbeitergewinnung/">Mitarbeitergewinnung</a>
         <a href="/kundengewinnung/">Kundengewinnung</a>
         <a href="/website/">Website &amp; Auftritt</a>
       </nav>
-      <span class="foot-sep" aria-hidden="true"></span>
-      <nav class="foot-nav" aria-label="Branchen">
-        <a href="/handwerk/">Handwerk, Bau &amp; Industrie</a>
-        <a href="/gastronomie/">Gastronomie &amp; Hotellerie</a>
+      <nav class="foot-nav branchen" aria-label="Branchen">
+        <a href="/handwerk/">Für Handwerksbetriebe</a>
+        <a href="/gastronomie/">Für Gastrobetriebe</a>
       </nav>
-
-      <div class="foot-legal">
+<div class="foot-legal">
         <a href="/impressum/">Impressum</a>
         <a href="/datenschutz/">Datenschutz</a>
         <a href="/agb/">AGB</a>
