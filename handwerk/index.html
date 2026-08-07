@@ -3,18 +3,24 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tephra Studios | Mitarbeiter gewinnen mit System</title>
-  <meta name="description" content="Tephra Studios baut moderne Recruiting- und Markenauftritte für Handwerks-, Bau- und Industriebetriebe. Direkt. Modern. Glaubwürdig." />
-  <link rel="canonical" href="https://tephrastudios.at/" />
+  <title>Recruiting für Handwerksbetriebe in Österreich | Tephra Studios</title>
+  <meta name="description" content="Recruiting für Handwerk, Bau und Industrie in Österreich: Arbeitgeberauftritt, klare Stellenanzeigen und kurzer Bewerbungsweg. Von Tephra Studios aus Wien." />
+  <link rel="canonical" href="https://www.tephrastudios.at/handwerk/" />
   <meta property="og:type" content="website" />
   <meta property="og:locale" content="de_AT" />
   <meta property="og:site_name" content="Tephra Studios" />
-  <meta property="og:title" content="Tephra Studios | Mitarbeiter gewinnen mit System" />
-  <meta property="og:description" content="Moderne Recruiting- und Markenauftritte für Handwerksbetriebe. Damit gute Leute sich bewerben und nicht abspringen." />
-  <meta property="og:url" content="https://tephrastudios.at/" />
-  <meta property="og:image" content="https://tephrastudios.at/handwerk/handwerk2.jpg" />
+  <meta property="og:title" content="Recruiting für Handwerksbetriebe in Österreich | Tephra Studios" />
+  <meta property="og:description" content="Arbeitgeberauftritt, klare Stellenanzeigen und kurzer Bewerbungsweg. Damit gute Leute sich bewerben und nicht abspringen." />
+  <meta property="og:url" content="https://www.tephrastudios.at/handwerk/" />
+  <meta property="og:image" content="https://www.tephrastudios.at/handwerk/og-handwerk.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="/favicon.ico" sizes="32x32" />
+  <link rel="icon" href="/tephra-logo-exact.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
   <link rel="preload" as="image" href="handwerk2.webp" type="image/webp" fetchpriority="high" />
+  <noscript><style>.rv{opacity:1;transform:none}</style></noscript>
   <style>
     :root{
       --black:#070807;
@@ -30,6 +36,8 @@
       --warm:#c16642;
       --radius:24px;
       --ease:cubic-bezier(.16,.84,.28,1);
+      --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;
+      --s8:32px;--s10:40px;--s12:48px;--s16:64px;--s20:80px;
     }
 
     *{box-sizing:border-box;margin:0;padding:0}
@@ -43,7 +51,7 @@
     }
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
-    .wrap{width:min(1180px,calc(100% - 44px));margin:0 auto}
+    .wrap{width:min(1180px,calc(100% - 48px));margin:0 auto}
 
     /* fine dotted grain over everything */
     body::before{
@@ -56,9 +64,9 @@
     .head{
       position:fixed;top:0;left:0;right:0;z-index:80;
       border-bottom:1px solid transparent;
-      transition:background .4s ease,border-color .4s ease,backdrop-filter .4s ease;
+      transition:background .3s ease,border-color .3s ease;
     }
-    .head.scrolled{background:rgba(7,8,7,.72);backdrop-filter:blur(20px);border-color:var(--line)}
+    .head.scrolled{background:rgba(7,8,7,.72);backdrop-filter:blur(20px) saturate(180%);border-color:var(--line)}
     .head-in{position:relative;height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
     .logo img{width:clamp(140px,13vw,196px);height:auto}
     .menu{position:absolute;left:50%;transform:translateX(-50%);display:flex;justify-content:center;gap:clamp(16px,2.4vw,34px);font-size:14px;font-weight:850;color:rgba(244,239,227,.7)}
@@ -68,7 +76,7 @@
     .menu a:hover::after{width:100%}
 
     .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:9px;
+      display:inline-flex;align-items:center;justify-content:center;gap:8px;
       min-height:48px;padding:14px 24px;border-radius:999px;
       border:1px solid transparent;background:#fff200;color:#0a0b0a;
       font-size:14px;font-weight:850;white-space:nowrap;cursor:pointer;
@@ -90,27 +98,27 @@
     .mpanel{display:none}
 
     /* ---------------- HERO ---------------- */
-    .hero{position:relative;z-index:1;min-height:100svh;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);background:#070807}
+    .hero{position:relative;z-index:1;min-height:100svh;display:grid;align-items:center;overflow:hidden;background:#070807}
     .hero::after{content:"";position:absolute;inset:0;z-index:0;background:url("handwerk2.webp") center 52%/cover no-repeat;opacity:.68;filter:saturate(.92) contrast(1.06) brightness(.92);transform:scale(1.015);pointer-events:none}
     .hero::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(7,8,7,.58) 0%,rgba(7,8,7,.38) 38%,rgba(7,8,7,.78) 100%),radial-gradient(circle at 50% 0%,rgba(255,242,0,.16),transparent 36%),radial-gradient(circle at 78% 36%,rgba(193,102,66,.15),transparent 32%),linear-gradient(120deg,transparent 0 58%,rgba(255,255,255,.045) 58.1%,transparent 58.4%);pointer-events:none}
     .hero-bg,.hero-glow{display:none}
-    .hero-in{position:relative;z-index:2;min-width:0;padding:142px 0 86px;text-align:center}
+    .hero-in{position:relative;z-index:2;min-width:0;padding:142px 0 80px;text-align:center}
     .eyebrow{
-      display:inline-flex;align-items:center;gap:9px;color:var(--accent);
-      text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:900;margin-bottom:26px;
+      display:inline-flex;align-items:center;gap:8px;color:var(--accent);
+      text-transform:uppercase;letter-spacing:.2em;font-size:11px;font-weight:900;margin-bottom:24px;
     }
     .eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px rgba(255,242,0,.5)}
     h1{
-      font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.05em;font-weight:920;
+      font-size:clamp(38px,6vw,76px);line-height:.95;letter-spacing:-.045em;font-weight:920;
       max-width:1040px;margin:0 auto;text-wrap:balance;
     }
     h1 .hl{position:relative;color:var(--accent);white-space:nowrap}
-    .subtitle{margin:30px auto 0;max-width:780px;color:var(--muted);font-size:clamp(16px,1.4vw,19px);line-height:1.7}
-    .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 18px;justify-content:center;max-width:100%}
-    .hero-points span{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:720;color:rgba(244,239,227,.78)}
+    .subtitle{margin:32px auto 0;max-width:780px;color:var(--muted);font-size:clamp(16px,1.4vw,19px);line-height:1.7}
+    .hero-points{margin:28px auto 0;display:flex;flex-wrap:wrap;gap:8px 16px;justify-content:center;max-width:100%}
+    .hero-points span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:720;color:rgba(244,239,227,.78)}
     .hero-points span::before{content:"✓";color:var(--accent);font-weight:900;font-size:12px}
-    .hero-cta{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-    .hero-trust{margin-top:34px;display:inline-flex;align-items:center;gap:13px}
+    .hero-cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
+    .hero-trust{margin-top:32px;display:inline-flex;align-items:center;gap:12px}
     .av{display:flex}
     .av span{position:relative;width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--black);box-shadow:0 0 0 1px var(--line2);background:var(--panel2);cursor:pointer;transition:transform .38s var(--ease),box-shadow .38s ease}
     .av span+span{margin-left:-12px}
@@ -127,24 +135,24 @@
     /* ---------------- SECTIONS ---------------- */
     section{position:relative;z-index:2}
     .pad{padding:clamp(72px,9vw,120px) 0}
-    .marker{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+    .marker{display:flex;align-items:center;gap:12px;margin-bottom:24px}
     .marker .no{color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.1em}
     .marker .lbl{font-size:11px;font-weight:900;letter-spacing:.2em;text-transform:uppercase;color:var(--soft)}
     .marker .ln{flex:1;height:1px;background:var(--line)}
-    h2{font-size:clamp(32px,4.6vw,58px);line-height:.98;letter-spacing:-.05em;font-weight:920;text-wrap:balance}
+    h2{font-size:clamp(32px,4.6vw,58px);line-height:.98;letter-spacing:-.04em;font-weight:920;text-wrap:balance}
     .lead{max-width:620px;color:var(--muted);font-size:clamp(16px,1.5vw,19px);line-height:1.7;margin-top:20px}
     .system-lead{max-width:1040px}
 
     /* PAIN */
-    .pain{background:#0a0b0a;border-bottom:1px solid var(--line)}
-    .pain-center{max-width:1120px;margin:18px 0 0;text-align:left}
+    .pain{background:#0a0b0a}
+    .pain-center{max-width:1120px;margin:16px 0 0;text-align:left}
     .pain-center h2{max-width:none;white-space:nowrap;text-wrap:normal}
     .pain-center .lead{max-width:1040px;margin-left:0;margin-right:0}
     .pgrid{max-width:780px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:12px;perspective:900px}
     .pitem{
       --mx:20%;--my:20%;
       position:relative;display:flex;align-items:center;gap:14px;overflow:hidden;
-      border:1px solid var(--line);border-radius:14px;padding:18px 22px;background:rgba(255,255,255,.022);
+      border:1px solid var(--line);border-radius:14px;padding:16px 24px;background:rgba(255,255,255,.022);
       transform-style:preserve-3d;will-change:transform,opacity;
       transition:border-color .35s ease,box-shadow .35s ease,opacity .22s ease,transform .22s ease;
     }
@@ -155,11 +163,11 @@
     .pitem.is-dimmed{opacity:.5;transform:scale(.97)}
     .pitem .x{position:relative;z-index:2;flex:0 0 auto;display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:9px;background:rgba(255,242,0,.08);border:1px solid rgba(255,242,0,.24);color:var(--accent);font-size:17px;line-height:1}
     .pitem strong{position:relative;z-index:2;font-size:16px;font-weight:760;letter-spacing:-.02em;color:rgba(244,239,227,.9)}
-    .psolution{max-width:680px;margin:34px auto 0;text-align:center}
+    .psolution{max-width:680px;margin:32px auto 0;text-align:center}
     .psolution .pnote{color:var(--muted);font-size:16px;line-height:1.7}
     .psolution .pnote b{color:var(--white);font-weight:850}
-    .chips{margin-top:22px;display:flex;gap:9px;flex-wrap:wrap;justify-content:center}
-    .chips span{border:1px solid rgba(255,242,0,.24);background:rgba(255,242,0,.05);color:var(--accent);border-radius:999px;padding:9px 16px;font-size:14px;font-weight:900}
+    .chips{margin-top:24px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+    .chips span{border:1px solid rgba(255,242,0,.24);background:rgba(255,242,0,.05);color:var(--accent);border-radius:999px;padding:8px 16px;font-size:14px;font-weight:900}
 
     /* SYSTEM / cards grid (shared) */
     .grid4{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:40px;perspective:1000px}
@@ -169,7 +177,7 @@
     .card{
       --card-glow-x:50%;--card-glow-y:50%;--card-glow-intensity:0;
       position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:240px;
-      border:1px solid var(--line);border-radius:16px;padding:24px 22px;overflow:hidden;
+      border:1px solid var(--line);border-radius:16px;padding:24px 24px;overflow:hidden;
       background:linear-gradient(135deg,rgba(255,255,255,.045),rgba(255,255,255,.012));
       transform-style:preserve-3d;will-change:transform,opacity;
       transition:transform .38s var(--ease),opacity .28s ease,border-color .35s ease,box-shadow .35s ease;
@@ -182,19 +190,19 @@
     .card small{display:block;color:var(--accent);font-weight:900;letter-spacing:.12em;margin-bottom:20px}
     .card strong{display:block;font-size:22px;line-height:1.1;letter-spacing:-.045em;margin-bottom:12px}
     .card p{color:rgba(244,239,227,.78);font-size:13.5px;line-height:1.58}
-    .card .ico{position:absolute;right:18px;top:18px;width:46px;height:46px;display:grid;place-items:center;padding:11px;border:1px solid rgba(255,242,0,.3);border-radius:13px;background:rgba(255,242,0,.055);color:var(--accent);opacity:1;transition:transform .45s var(--ease),opacity .35s ease,border-color .35s ease,background .35s ease;z-index:3}
+    .card .ico{position:absolute;right:18px;top:18px;width:46px;height:46px;display:grid;place-items:center;padding:12px;border:1px solid rgba(255,242,0,.3);border-radius:13px;background:rgba(255,242,0,.055);color:var(--accent);opacity:1;transition:transform .45s var(--ease),opacity .35s ease,border-color .35s ease,background .35s ease;z-index:3}
     .card .ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
     .card .ico svg *{vector-effect:non-scaling-stroke}
     .card:hover .ico{transform:scale(1.06);opacity:1;border-color:rgba(255,242,0,.58);background:rgba(255,242,0,.1)}
 
     /* DELIVERABLES */
-    .deliver{background:var(--black);border-bottom:1px solid var(--line)}
+    .deliver{background:var(--black)}
     .spot-wrap{
       position:relative;overflow:hidden;border:1px solid var(--line);border-radius:22px;margin-top:48px;
       padding:28px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.014));
       box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
     }
-    .problem-wrap{margin-top:34px}
+    .problem-wrap{margin-top:32px}
     .problem-grid{grid-template-columns:repeat(2,1fr)}
     .spot-wrap::before{
       content:"";position:absolute;inset:0;pointer-events:none;opacity:.18;
@@ -239,18 +247,18 @@
       color:var(--spot-color);
     }
     .spot-ico svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.65;stroke-linecap:round;stroke-linejoin:round}
-    .spot-copy{position:relative;z-index:4;display:flex;flex-direction:column;gap:9px;margin-top:auto}
+    .spot-copy{position:relative;z-index:4;display:flex;flex-direction:column;gap:8px;margin-top:auto}
     .spot-copy strong{font-size:20px;line-height:1.1;letter-spacing:-.04em}
     .spot-copy p{color:rgba(244,239,227,.72);font-size:14px;line-height:1.62;max-width:34rem}
     .spot-line{position:absolute;left:0;bottom:0;width:0;height:2px;border-radius:999px;background:linear-gradient(90deg,var(--spot-color),transparent);transition:width .48s var(--ease);z-index:4}
     .spot-card:hover .spot-line{width:100%}
 
     /* PROCESS */
-    .proc{background:#0a0b0a;border-bottom:1px solid var(--line);overflow:hidden}
+    .proc{background:#0a0b0a;overflow:hidden}
     .pstack{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:48px;perspective:1000px}
     .pcard{
       position:relative;min-height:330px;display:flex;flex-direction:column;gap:24px;
-      border:1px solid var(--line);border-radius:var(--radius);padding:26px 24px 160px;overflow:hidden;
+      border:1px solid var(--line);border-radius:var(--radius);padding:24px 24px 160px;overflow:hidden;
       background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.012));
       transform-style:preserve-3d;will-change:transform,opacity;
       transition:transform .38s var(--ease),opacity .28s ease,border-color .35s ease,box-shadow .35s ease;
@@ -258,9 +266,9 @@
     .pcard{--pc-glow-x:50%;--pc-glow-y:50%;--pc-intensity:0}
     .pcard::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;border-radius:inherit;background:radial-gradient(220px circle at var(--pc-glow-x) var(--pc-glow-y),rgba(255,242,0,calc(var(--pc-intensity)*.18)),transparent 66%)}
     .pcard:hover{transform:translateY(-6px) scale(1.01);border-color:rgba(255,242,0,.34);box-shadow:0 30px 80px rgba(0,0,0,.36)}
-    .pcard .pno{color:var(--accent);font-size:40px;line-height:.8;font-weight:920;letter-spacing:-.08em;position:relative;z-index:3}
+    .pcard .pno{color:var(--accent);font-size:40px;line-height:.85;font-weight:920;letter-spacing:-.04em;position:relative;z-index:3}
     .pcard .pcc{position:relative;z-index:3}
-    .pcard strong{display:block;font-size:24px;letter-spacing:-.045em;margin-bottom:12px}
+    .pcard strong{display:block;font-size:24px;line-height:1.15;letter-spacing:-.045em;margin-bottom:12px}
     .pcard p{color:var(--muted);font-size:14px;line-height:1.6}
     .pcard .pimg{position:absolute;inset:0;z-index:1;overflow:hidden;pointer-events:none}
     .pcard .pimg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.5) saturate(.12) contrast(1.08) brightness(1.55);transform:scale(1.06)}
@@ -288,7 +296,7 @@
     .magic-bento-card{
       --glow-x:50%;--glow-y:50%;--glow-intensity:0;--glow-radius:220px;
       position:relative;z-index:2;display:flex;flex-direction:column;justify-content:space-between;min-height:230px;
-      border:1px solid rgba(244,239,227,.16);border-radius:20px;padding:22px;overflow:hidden;
+      border:1px solid rgba(244,239,227,.16);border-radius:20px;padding:24px;overflow:hidden;
       background:#11130f;transform-style:preserve-3d;will-change:transform;
       transition:border-color .28s ease,box-shadow .28s ease,opacity .25s ease,transform .18s ease;
     }
@@ -327,11 +335,11 @@
     @keyframes magicFloat{0%{opacity:0;transform:translate(0,0) scale(.3)}20%{opacity:1}100%{opacity:0;transform:translate(var(--px),var(--py)) scale(1)}}
 
     /* TEAM */
-    .team{background:var(--black);border-bottom:1px solid var(--line)}
+    .team{background:var(--black)}
     .team-grid{display:block;margin-top:0}
     .team-intro{max-width:660px;margin:0}
     .team-intro h2{font-size:clamp(28px,3.4vw,42px)}
-    .team-note{max-width:760px;margin:22px 0 0;color:var(--muted);font-size:16px;line-height:1.7}
+    .team-note{max-width:760px;margin:24px 0 0;color:var(--muted);font-size:16px;line-height:1.7}
     .team-note p + p{margin-top:12px}
     .team-intro .founders{margin-top:32px}
     .founders{display:grid;grid-template-columns:1fr 1fr;gap:14px}
@@ -340,24 +348,25 @@
     .founder:hover img{transform:scale(1.04)}
     .founder::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(5,5,5,.92))}
     .founder .fi{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:24px}
-    .founder .fi span{display:block;color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:9px}
+    .founder .fi span{display:block;color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.12em;text-transform:uppercase;margin-bottom:8px}
     .founder .fi h3{font-size:25px;line-height:1;letter-spacing:-.05em}
-    .founder .fi p{margin-top:12px;font-size:13.5px;line-height:1.5;color:rgba(244,239,227,.76);max-height:0;opacity:0;overflow:hidden;transition:max-height .5s var(--ease),opacity .35s ease,margin-top .35s ease}
+    .founder .fi p{display:grid;grid-template-rows:0fr;margin-top:0;font-size:13.5px;line-height:1.5;color:rgba(244,239,227,.76);opacity:0;transition:grid-template-rows .3s var(--ease),opacity .25s ease,margin-top .3s var(--ease)}
+    .founder .fi p>span{overflow:hidden;min-height:0}
     .founder{cursor:pointer}
-    .founder:hover .fi p,.founder:focus .fi p,.founder.open .fi p{max-height:200px;opacity:1}
+    .founder:hover .fi p,.founder:focus .fi p,.founder.open .fi p{grid-template-rows:1fr;opacity:1;margin-top:12px}
     .team-copy{display:none}
     .team-copy p{color:rgba(244,239,227,.84);font-size:16px;line-height:1.7}
-    .team-copy .quote{border-left:2px solid var(--accent);padding-left:18px;color:var(--white);font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
+    .team-copy .quote{border-left:2px solid var(--accent);padding-left:16px;color:var(--white);font-size:18px;font-weight:600;line-height:1.5;letter-spacing:-.02em}
     .grid4.has-card-hover .card:not(.is-hovered),
     #leistungen .spot-grid.has-card-hover .spot-card:not(.is-hovered),
     .pstack.has-card-hover .pcard:not(.is-hovered){opacity:.68;transform:scale(.985)}
 
     /* FAQ */
-    .faq{background:#0a0b0a;border-bottom:1px solid var(--line)}
+    .faq{background:#0a0b0a}
     .faq-list{margin-top:44px;display:grid;gap:12px;max-width:880px}
     .fitem{border:1px solid var(--line);border-radius:16px;background:rgba(255,255,255,.024);overflow:hidden;transition:border-color .3s ease}
     .fitem[open]{border-color:rgba(255,242,0,.28)}
-    .fitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:22px 24px;font-size:17px;font-weight:920;letter-spacing:-.02em}
+    .fitem summary{list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:24px 24px;font-size:17px;font-weight:920;letter-spacing:-.02em}
     .fitem summary::-webkit-details-marker{display:none}
     .fitem .pls{flex:0 0 auto;width:22px;height:22px;position:relative}
     .fitem .pls::before,.fitem .pls::after{content:"";position:absolute;top:50%;left:50%;background:var(--accent);transform:translate(-50%,-50%);transition:transform .3s var(--ease)}
@@ -367,28 +376,28 @@
     .fans{padding:0 24px 24px;color:var(--muted);font-size:15px;line-height:1.7}
 
     /* BOOKING */
-    .booking{background:var(--black);border-bottom:1px solid var(--line)}
-    .bpanel{position:relative;max-width:920px;margin:0 auto;border:1px solid var(--line);border-radius:var(--radius);padding:48px 38px;overflow:hidden;text-align:center;background:linear-gradient(135deg,rgba(255,242,0,.07),rgba(255,255,255,.02) 44%,rgba(193,102,66,.07))}
+    .booking{background:var(--black)}
+    .bpanel{position:relative;max-width:920px;margin:0 auto;border:1px solid var(--line);border-radius:var(--radius);padding:48px 40px;overflow:hidden;text-align:center;background:linear-gradient(135deg,rgba(255,242,0,.07),rgba(255,255,255,.02) 44%,rgba(193,102,66,.07))}
     .bpanel::before{content:"";position:absolute;inset:0;background:linear-gradient(135deg,rgba(10,11,10,.2),rgba(10,11,10,.8)),radial-gradient(circle at 84% 86%,rgba(255,242,0,.14),transparent 42%);opacity:.9;pointer-events:none}
     .bpanel>*{position:relative;z-index:2}
-    .bpanel .eyebrow{font-size:10px;letter-spacing:.18em;margin-bottom:18px;color:var(--accent);text-shadow:0 0 18px rgba(255,242,0,.28)}
+    .bpanel .eyebrow{font-size:10px;letter-spacing:.18em;margin-bottom:16px;color:var(--accent);text-shadow:0 0 18px rgba(255,242,0,.28)}
     .bpanel h2{font-size:clamp(30px,3.8vw,48px);white-space:normal}
     .bpanel h2 span{color:var(--accent)}
-    .bpanel p{max-width:540px;margin:18px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
-    .bpanel .hero-cta{margin-top:30px}
+    .bpanel p{max-width:540px;margin:16px auto 0;color:var(--muted);font-size:17px;line-height:1.6}
+    .bpanel .hero-cta{margin-top:32px}
     .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:850;letter-spacing:.01em}
-    .bpanel .hero-trust{margin-top:22px}
+    .bpanel .hero-trust{margin-top:24px}
     .bpanel .hero-trust p{margin:0;max-width:none;text-align:left;color:var(--muted);font-size:13px;line-height:1.4}
     .bpanel .hero-trust p b{font-size:14px;color:rgba(244,239,227,.9);font-weight:920}
 
     /* FOOTER */
-    .footer{border-top:1px solid var(--line);background:#050505;padding:38px 0 34px}
-    .foot-in{display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
-    .foot-links{display:flex;gap:13px;align-items:center}
-    .iclink{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid rgba(255,242,0,.18);border-radius:999px;background:rgba(255,255,255,.025);color:var(--accent);cursor:pointer;transition:transform .3s var(--ease),background .3s ease}
+    .footer{border-top:1px solid var(--line);background:#050505;padding:40px 0 32px}
+    .foot-in{display:flex;flex-direction:column;align-items:center;gap:16px;text-align:center}
+    .foot-links{display:flex;gap:12px;align-items:center}
+    .iclink{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:1px solid rgba(255,242,0,.18);border-radius:999px;background:rgba(255,255,255,.025);color:var(--accent);cursor:pointer;transition:transform .3s var(--ease),background .3s ease}
     .iclink:hover{transform:translateY(-3px);background:rgba(255,242,0,.1)}
-    .iclink svg{width:15px;height:15px;stroke:currentColor}
-    .foot-legal{display:flex;gap:22px;font-size:13px;color:var(--soft)}
+    .iclink svg{width:17px;height:17px;stroke:currentColor}
+    .foot-legal{display:flex;gap:24px;font-size:13px;color:var(--soft)}
     .foot-legal a:hover{color:var(--accent)}
     .foot-tag{font-size:13px;color:var(--soft);font-weight:850;letter-spacing:-.01em}
 
@@ -400,16 +409,16 @@
     .chips span:hover{border-color:rgba(255,242,0,.7);background:rgba(255,242,0,.14);box-shadow:0 0 18px rgba(255,242,0,.22),0 0 6px rgba(255,242,0,.14);transform:translateY(-2px);cursor:default}
 
     /* reveal animation */
-    .rv{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+    .rv{opacity:0;transform:translateY(28px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
     .rv.in{opacity:1;transform:translateY(0)}
 
     /* ---------------- RESPONSIVE ---------------- */
     @media(max-width:980px){
       .menu,.head .btn{display:none}
       .burger{display:inline-flex}
-      .mpanel{display:block;position:fixed;top:84px;left:16px;right:16px;z-index:79;padding:14px;border:1px solid var(--line);border-radius:20px;background:rgba(5,5,5,.92);backdrop-filter:blur(20px);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
+      .mpanel{display:block;position:fixed;top:84px;left:16px;right:16px;z-index:79;padding:14px;border:1px solid var(--line);border-radius:20px;background:rgba(8,9,8,.76);backdrop-filter:blur(24px) saturate(180%);border-top-color:rgba(255,255,255,.1);opacity:0;pointer-events:none;transform:translateY(-8px);transition:opacity .3s var(--ease),transform .3s var(--ease)}
       body.nav-open .mpanel{opacity:1;pointer-events:auto;transform:translateY(0)}
-      .mpanel a{display:flex;justify-content:space-between;padding:14px 6px;border-bottom:1px solid var(--line);font-weight:750;color:rgba(244,239,227,.86)}
+      .mpanel a{display:flex;justify-content:space-between;padding:14px 8px;border-bottom:1px solid var(--line);font-weight:750;color:rgba(244,239,227,.86)}
       .mpanel a span{color:var(--accent)}
       .pain-grid,.team-grid{grid-template-columns:1fr;gap:28px}
       .pain-center h2{white-space:normal;text-wrap:balance}
@@ -421,23 +430,23 @@
       .hero{min-height:100svh}
       .hero::after{background-position:58% center;opacity:.62}
       .hero-in{padding:112px 0 64px}
-      .hero .eyebrow{display:inline-flex;align-items:flex-start;justify-content:center;gap:9px;width:auto;max-width:100%;text-align:center;margin-left:auto;margin-right:auto}
+      .hero .eyebrow{display:inline-flex;align-items:flex-start;justify-content:center;gap:8px;width:auto;max-width:100%;text-align:center;margin-left:auto;margin-right:auto}
       .hero .eyebrow::before{flex:0 0 auto;margin-top:.52em;transform:translateX(clamp(30px,10vw,48px))}
       h1{font-size:clamp(29px,8.4vw,40px);line-height:1.04}
       h1 .hl{white-space:normal}
       .subtitle{margin-top:20px}
       .hero-points{margin-top:20px;gap:8px 14px}
-      .hero-cta{margin-top:26px;flex-direction:column;align-items:stretch}
+      .hero-cta{margin-top:24px;flex-direction:column;align-items:stretch}
       .btn{width:100%}
       .grid4,.spot-grid,.pstack,.founders,.pgrid,.magic-bento-grid{grid-template-columns:1fr}
       .card{min-height:auto}
       .pcard:nth-child(4) .pimg{background:#080908}
       .pcard:nth-child(4) .pimg img{object-fit:cover;object-position:center top!important;transform:scale(.92);transform-origin:center center}
       .spot-wrap{padding:14px}
-      .spot-card{min-height:190px;padding:22px}
+      .spot-card{min-height:190px;padding:24px}
       .magic-bento-grid{padding:10px;gap:10px}
       .magic-bento-card,.magic-bento-card:nth-child(3),.magic-bento-card:nth-child(4){grid-column:auto;grid-row:auto;min-height:185px;padding:20px}
-      .bpanel{padding:34px 22px}
+      .bpanel{padding:32px 24px}
       .bpanel h2{white-space:normal}
       .hero-trust{flex-direction:column;gap:10px}
       .hero-trust p{text-align:center}
@@ -447,7 +456,200 @@
       html{scroll-behavior:auto}
       *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
     }
+
+    /* ============ RELAUNCH 2026: NAV-DROPDOWN ============ */
+    .hasdrop{position:relative}
+    .hasdrop .caret{font-size:9px;opacity:.75}
+    .drop{
+      position:absolute;left:50%;top:calc(100% + 16px);transform:translateX(-50%) translateY(-6px);
+      min-width:238px;padding:8px;border:1px solid var(--line);border-radius:16px;
+      background:#0d0e0c;
+      box-shadow:0 24px 60px rgba(0,0,0,.6);
+      opacity:0;pointer-events:none;transition:opacity .26s var(--ease),transform .26s var(--ease);
+    }
+    .drop::before{content:"";position:absolute;left:0;right:0;top:-16px;height:16px}
+    .drop a{display:block;padding:12px 14px;border-radius:10px;font-size:14px;font-weight:750;color:rgba(244,239,227,.8);transition:background .22s ease,color .22s ease}
+    .drop a:hover{background:rgba(255,242,0,.08);color:var(--accent)}
+    .drop a::after{display:none}
+    .hasdrop:hover .drop,.hasdrop:focus-within .drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+
+    /* ============ RELAUNCH 2026: QUERVERWEISE ============ */
+    .xsell-sec{background:#0a0b0a}
+    .xsell{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:40px}
+    .xcard{position:relative;border:1px solid var(--line);border-radius:18px;padding:24px;overflow:hidden;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.012));transition:border-color .3s ease,transform .35s var(--ease)}
+    .xcard:hover{border-color:rgba(255,242,0,.32);transform:translateY(-4px)}
+    .xcard span{display:block;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.16em;text-transform:uppercase;margin-bottom:12px}
+    .xcard strong{display:block;font-size:21px;letter-spacing:-.04em;margin-bottom:8px}
+    .xcard p{color:rgba(244,239,227,.74);font-size:14.5px;line-height:1.6}
+    .xcard .xarr{display:inline-flex;align-items:center;gap:8px;margin-top:16px;color:var(--accent);font-size:14px;font-weight:900;transition:gap .3s var(--ease)}
+    .xcard:hover .xarr{gap:12px}
+    @media(max-width:980px){.xsell{grid-template-columns:1fr}}
+
+    .backlink-x{display:inline-flex;align-items:center;gap:8px;margin-top:32px;color:var(--soft);font-size:14px;font-weight:850;transition:color .25s ease,gap .3s var(--ease)}
+    .backlink-x:hover{color:var(--accent);gap:12px}
+
+    /* Footer-Navigation (Relaunch 2026) */
+    .foot-nav{display:flex;flex-wrap:wrap;justify-content:center;gap:10px 20px;max-width:760px}
+    .foot-nav a{font-size:13.5px;font-weight:800;color:rgba(244,239,227,.72);transition:color .25s ease}
+    .foot-nav a:hover{color:var(--accent)}
+    .foot-sep{width:100%;max-width:420px;height:1px;background:var(--line);margin:2px 0}
+    /* ============ APPLE-AUDIT FIXES 1-10 (2026-08-07) ============ */
+
+    /* 3 — Press-Feedback auf pointer-down, nicht erst beim Loslassen */
+    .btn:active,.tabbtn:active,.xcard:active,.iclink:active,
+    .fitem summary:active,.founder:active,.drop a:active,.crumbs a:active{
+      transform:scale(.97);transition:transform 100ms ease-out;
+    }
+    .btn:active{filter:brightness(1.02)}
+
+    /* 2 — Primärer CTA bleibt auch am Handy im Header */
+    @media(max-width:980px){
+      .head .btn{display:inline-flex;min-height:40px;padding:10px 16px;font-size:13px}
+      .head .btn .arr{display:none}
+      .burger{margin-left:10px}
+    }
+    @media(max-width:400px){
+      .head .btn{padding:9px 12px;font-size:12px}
+    }
+
+    /* 4 — prefers-reduced-transparency: Glas wird solide */
+    @media(prefers-reduced-transparency:reduce){
+      .head.scrolled,.mpanel,.drop{background:#0b0c0a;backdrop-filter:none}
+    }
+
+    /* 6 — prefers-contrast: definierte Kanten statt Andeutungen */
+    @media(prefers-contrast:more){
+      :root{
+        --line:rgba(244,239,227,.55);
+        --line2:rgba(244,239,227,.8);
+        --muted:rgba(244,239,227,.92);
+        --soft:rgba(244,239,227,.8);
+      }
+      .tabbtn{border-width:2px}
+      .spot-card,.card,.tp-block,.fitem,.xcard,.fit-col{border-color:var(--line)}
+    }
+
+    /* 5 — Reduced Motion heißt gedämpft, nicht unsichtbar */
+    @media(prefers-reduced-motion:reduce){
+      .rv{opacity:1!important;transform:none!important}
+    }
+
+    /* 1 — Zweitweg unter dem Buchungsbutton */
+    .bnote2{margin-top:8px;color:var(--soft);font-size:13px;font-weight:700}
+    .bnote2 a{color:var(--accent);border-bottom:1px solid rgba(255,242,0,.35)}
+    .bnote2 a:hover{border-color:var(--accent)}
+
+    /* 10 — Weiche Scroll-Kante statt harter 1px-Linie unter dem Header */
+    .head{border-bottom:0!important}
+    .head.scrolled{border-color:transparent!important}
+    .head::after{
+      content:"";position:absolute;left:0;right:0;top:100%;height:24px;
+      pointer-events:none;opacity:0;transition:opacity .3s ease;
+      background:linear-gradient(180deg,rgba(7,8,7,.55),transparent);
+    }
+    .head.scrolled::after{opacity:1}
+
   </style>
+  <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@graph": [
+  {
+   "@type": "ProfessionalService",
+   "@id": "https://www.tephrastudios.at/#business",
+   "name": "Tephra Studios",
+   "description": "Recruiting-Agentur aus Wien. Tephra Studios hilft Handwerks- und Gastronomiebetrieben in ganz Österreich, passende Mitarbeiter zu gewinnen: klare Positionierung, sichtbarer Arbeitgeberauftritt, kurzer Bewerbungsweg.",
+   "url": "https://www.tephrastudios.at/",
+   "telephone": "+4368181315304",
+   "email": "studio@tephra.at",
+   "image": "https://www.tephrastudios.at/tephra-logo-exact.svg",
+   "logo": "https://www.tephrastudios.at/tephra-logo-exact.svg",
+   "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Hermann-Glück-Weg 5/1/33",
+    "postalCode": "1120",
+    "addressLocality": "Wien",
+    "addressCountry": "AT"
+   },
+   "areaServed": {
+    "@type": "Country",
+    "name": "Österreich"
+   },
+   "founder": [
+    {
+     "@type": "Person",
+     "name": "Peter Strbac",
+     "jobTitle": "Recruiting & Systeme"
+    },
+    {
+     "@type": "Person",
+     "name": "Tina Jurcic",
+     "jobTitle": "Strategie & Gestaltung"
+    }
+   ],
+   "sameAs": [
+    "https://www.instagram.com/tephra.studios/",
+    "https://www.facebook.com/profile.php?id=61590430296117",
+    "https://www.linkedin.com/in/peter-strbac-a05355414/"
+   ]
+  },
+  {
+   "@type": "FAQPage",
+   "mainEntity": [
+    {
+     "@type": "Question",
+     "name": "Für wen ist das geeignet?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Für Handwerksbetriebe in Österreich, die passende Fachkräfte gewinnen wollen und bereit sind, an ihrer Außendarstellung zu arbeiten. Am besten passt es für Betriebe mit 5 bis 50 Mitarbeitern."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Was kostet das?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Das klären wir im Erstgespräch gemeinsam. Kein Standard-Paket, das für alle gleich ist, kein Angebot ohne vorherige Analyse."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Wie schnell sehe ich Ergebnisse?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Das hängt von Betrieb, Stelle und Markt ab. Wir geben keine Versprechen, die wir nicht halten können. Wir arbeiten laufend daran, dass das System besser wird."
+     }
+    },
+    {
+     "@type": "Question",
+     "name": "Müssen wir selbst viel machen?",
+     "acceptedAnswer": {
+      "@type": "Answer",
+      "text": "Nein. Wir übernehmen den Prozess. Am Anfang stellen wir euch ein paar Fragen, dann läuft das Meiste bei uns."
+     }
+    }
+   ]
+  },
+  {
+   "@type": "BreadcrumbList",
+   "itemListElement": [
+    {
+     "@type": "ListItem",
+     "position": 1,
+     "name": "Startseite",
+     "item": "https://www.tephrastudios.at/"
+    },
+    {
+     "@type": "ListItem",
+     "position": 2,
+     "name": "Recruiting für Handwerksbetriebe",
+     "item": "https://www.tephrastudios.at/handwerk/"
+    }
+   ]
+  }
+ ]
+}
+  </script>
 </head>
 <body id="top">
 
@@ -455,10 +657,17 @@
     <div class="wrap head-in">
       <a class="logo" href="/" aria-label="Tephra Studios"><img src="tephra-logo-exact.svg" alt="Tephra Studios" decoding="async"></a>
       <nav class="menu" aria-label="Navigation">
+        <div class="hasdrop">
+          <a href="#leistungen-alle">Leistungen <span class="caret" aria-hidden="true">▾</span></a>
+          <div class="drop">
+            <a href="/mitarbeitergewinnung/">Mitarbeitergewinnung</a>
+            <a href="/kundengewinnung/">Kundengewinnung</a>
+            <a href="/website/">Website &amp; Auftritt</a>
+          </div>
+        </div>
         <a href="#problem">Problem</a>
         <a href="#system">System</a>
         <a href="#ablauf">Ablauf</a>
-        <a href="#leistungen">Leistungen</a>
         <a href="#team">Team</a>
         <a href="#faq">Fragen</a>
       </nav>
@@ -470,9 +679,11 @@
     <a href="#problem">Problem <span>01</span></a>
     <a href="#system">System <span>02</span></a>
     <a href="#ablauf">Ablauf <span>03</span></a>
-    <a href="#leistungen">Leistungen <span>04</span></a>
-    <a href="#team">Team <span>05</span></a>
-    <a href="#faq">Fragen <span>06</span></a>
+    <a href="#team">Team <span>04</span></a>
+    <a href="#faq">Fragen <span>05</span></a>
+    <a href="/mitarbeitergewinnung/">Mitarbeitergewinnung <span>→</span></a>
+    <a href="/kundengewinnung/">Kundengewinnung <span>→</span></a>
+    <a href="/website/">Website &amp; Auftritt <span>→</span></a>
   </nav>
 
   <main>
@@ -565,22 +776,22 @@
           <article class="pcard">
             <span class="pno">01</span>
             <div class="pcc"><strong>Verstehen</strong><p>Wir analysieren, wo Bewerber bei euch abspringen.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="verstehenneu01.webp" alt="" width="932" height="1400" loading="lazy" decoding="async" style="object-position:center 30%"></div>
+            <div class="pimg" aria-hidden="true"><img src="verstehenneu01.webp" alt="Schritt 1: Analyse, wo Bewerber im Betrieb abspringen" width="932" height="1400" loading="lazy" decoding="async" style="object-position:center 30%"></div>
           </article>
           <article class="pcard">
             <span class="pno">02</span>
             <div class="pcc"><strong>Positionieren</strong><p>Wir schärfen, was euch als Arbeitgeber stark macht.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="02positonieren.webp" alt="" width="788" height="1400" loading="lazy" decoding="async" style="object-position:center 55%"></div>
+            <div class="pimg" aria-hidden="true"><img src="02positonieren.webp" alt="Schritt 2: Positionierung als Arbeitgeber schärfen" width="788" height="1400" loading="lazy" decoding="async" style="object-position:center 55%"></div>
           </article>
           <article class="pcard">
             <span class="pno">03</span>
             <div class="pcc"><strong>Aufbauen</strong><p>Wir bauen Auftritt und Bewerbung auf.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="aufbauen03.webp" alt="" width="1400" height="1050" loading="lazy" decoding="async" style="object-position:center 25%"></div>
+            <div class="pimg" aria-hidden="true"><img src="aufbauen03.webp" alt="Schritt 3: Aufbau von Karriereseite und Bewerbungsweg" width="1400" height="1050" loading="lazy" decoding="async" style="object-position:center 25%"></div>
           </article>
           <article class="pcard">
             <span class="pno">04</span>
             <div class="pcc"><strong>Verbessern</strong><p>Wir messen die Ergebnisse und legen nach.</p></div>
-            <div class="pimg" aria-hidden="true"><img src="verbessernneu04.webp" alt="" width="932" height="1400" loading="lazy" decoding="async" style="object-position:center top"></div>
+            <div class="pimg" aria-hidden="true"><img src="verbessernneu04.webp" alt="Schritt 4: Ergebnisse messen und verbessern" width="932" height="1400" loading="lazy" decoding="async" style="object-position:center top"></div>
           </article>
         </div>
       </div>
@@ -635,12 +846,12 @@
             </div>
             <div class="founders">
               <article class="founder" tabindex="0">
-                <img src="tina.jpg" alt="Tina Jurcic" width="1200" height="886" loading="lazy" decoding="async">
-                <div class="fi"><span>Strategie &amp; Gestaltung</span><h3>Tina Jurcic</h3><p>Tina bringt den gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt klar und professionell.</p></div>
+                <img src="tina.webp" alt="Tina Jurcic" width="900" height="665" loading="lazy" decoding="async">
+                <div class="fi"><span>Strategie &amp; Gestaltung</span><h3>Tina Jurcic</h3><p><span>Tina bringt den gestalterischen Blick aus dem Architekturbereich mit. Dadurch wirkt euer Auftritt klar und professionell.</span></p></div>
               </article>
               <article class="founder" tabindex="0">
-                <img src="peter.jpg" alt="Peter Strbac" width="1200" height="1093" loading="lazy" decoding="async">
-                <div class="fi"><span>Recruiting &amp; Systeme</span><h3>Peter Strbac</h3><p>Peter kennt den Handwerksalltag aus der Praxis. Was er baut, funktioniert im echten Betrieb.</p></div>
+                <img src="peter.webp" alt="Peter Strbac" width="675" height="900" loading="lazy" decoding="async">
+                <div class="fi"><span>Recruiting &amp; Systeme</span><h3>Peter Strbac</h3><p><span>Peter kennt den Handwerksalltag aus der Praxis. Was er baut, funktioniert im echten Betrieb.</span></p></div>
               </article>
             </div>
           </div>
@@ -687,8 +898,8 @@
           <div class="bnote">Unverbindlich · ca. 30 Minuten · ihr entscheidet danach in Ruhe.</div>
           <div class="hero-trust" style="justify-content:center">
             <div class="av">
-              <span><img src="tina.jpg" alt="Tina Jurcic von Tephra Studios" width="1200" height="886" loading="lazy" decoding="async"></span>
-              <span><img src="peter.jpg" alt="Peter Strbac von Tephra Studios" width="1200" height="1093" loading="lazy" decoding="async"></span>
+              <span><img src="tina-av.webp" alt="Tina Jurcic von Tephra Studios" width="96" height="71" loading="lazy" decoding="async"></span>
+              <span><img src="peter-av.webp" alt="Peter Strbac von Tephra Studios" width="72" height="96" loading="lazy" decoding="async"></span>
             </div>
             <p><b>Direkt mit Tina &amp; Peter</b></p>
           </div>
@@ -696,6 +907,34 @@
       </div>
     </section>
   </main>
+
+  
+  <!-- ================= QUERVERWEISE (Relaunch 2026) ================= -->
+  <section class="pad xsell-sec" id="leistungen-alle">
+    <div class="wrap">
+      <div class="marker rv"><span class="no">→</span><span class="lbl">Auch von uns</span><span class="ln"></span></div>
+      <h2 class="rv">Wir machen mehr als <span class="accent">Recruiting</span>.</h2>
+      <p class="lead rv">Diese Seite dreht sich um Mitarbeitergewinnung im Handwerk. Dieselben Leute, die euch Bewerbungen bringen, bauen euch auch die Website oder holen euch neue Aufträge.</p>
+      <div class="xsell rv">
+        <a class="xcard" href="/mitarbeitergewinnung/">
+          <span>Leistung</span><strong>Mitarbeitergewinnung</strong>
+          <p>Bewerbungen von Leuten, die gar nicht gesucht haben. Positionierung, Creatives, Kampagne und ein kurzer Bewerbungsweg.</p>
+          <span class="xarr">Ansehen →</span>
+        </a>
+        <a class="xcard" href="/kundengewinnung/">
+          <span>Leistung</span><strong>Kundengewinnung</strong>
+          <p>Aufträge, die nicht vom Zufall abhängen. Für alle, die von Empfehlungen leben und mehr Kontrolle wollen.</p>
+          <span class="xarr">Ansehen →</span>
+        </a>
+        <a class="xcard" href="/website/">
+          <span>Leistung</span><strong>Website &amp; Auftritt</strong>
+          <p>Eine Seite, die zu eurer Arbeit passt. Schnell, am Handy sauber, bei Google auffindbar.</p>
+          <span class="xarr">Ansehen →</span>
+        </a>
+      </div>
+      <a class="backlink-x" href="/">Alle Leistungen und Branchen auf der Startseite →</a>
+    </div>
+  </section>
 
   <footer class="footer">
     <div class="wrap foot-in">
@@ -720,7 +959,19 @@
           <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" stroke="none" d="M6.7 8.8H3.8V20h2.9V8.8ZM5.25 4a1.7 1.7 0 1 0 0 3.4 1.7 1.7 0 0 0 0-3.4ZM20.2 13.7c0-3-1.6-5.1-4.3-5.1-1.7 0-2.7.9-3.2 1.8V8.8H9.9V20h2.9v-5.9c0-1.6.8-2.7 2.2-2.7 1.3 0 2.1 1 2.1 2.7V20h3.1v-6.3Z"></path></svg>
         </a>
       </div>
+      <div class="foot-tag">Tephra Studios ist eine Recruiting-Agentur aus Wien für Handwerks-, Bau- und Industriebetriebe in ganz Österreich.</div>
       <div class="foot-tag">Recruiting · Sichtbarkeit · Bewerberprozesse</div>
+      <nav class="foot-nav" aria-label="Leistungen">
+        <a href="/mitarbeitergewinnung/">Mitarbeitergewinnung</a>
+        <a href="/kundengewinnung/">Kundengewinnung</a>
+        <a href="/website/">Website &amp; Auftritt</a>
+      </nav>
+      <span class="foot-sep" aria-hidden="true"></span>
+      <nav class="foot-nav" aria-label="Branchen">
+        <a href="/handwerk/">Handwerk, Bau &amp; Industrie</a>
+        <a href="/gastronomie/">Gastronomie &amp; Hotellerie</a>
+      </nav>
+
       <div class="foot-legal">
         <a href="/impressum/">Impressum</a>
         <a href="/datenschutz/">Datenschutz</a>
@@ -917,7 +1168,7 @@
       entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } });
     }, {threshold:.14});
     document.querySelectorAll(".rv").forEach((el,i) => {
-      el.style.transitionDelay = Math.min(i*40,200) + "ms";
+      el.style.transitionDelay = Math.min(i*20,80) + "ms";
       io.observe(el);
     });
 
