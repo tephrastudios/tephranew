@@ -1,0 +1,25 @@
+# Tephra Studios
+# Suchmaschinen und KI-Systeme sind ausdrücklich willkommen.
+# Wir wollen zitiert werden, deshalb blockieren wir keine KI-Crawler.
+
+User-agent: *
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.tephrastudios.at/sitemap.xml
+
+# IndexNow: 832b9129aa00901a6cdfa531a93e9345
