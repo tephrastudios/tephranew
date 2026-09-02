@@ -447,6 +447,27 @@
     .card .ico{position:absolute;right:18px;top:18px;width:46px;height:46px;display:grid;place-items:center;padding:12px;border:1px solid rgba(255,242,0,.3);border-radius:13px;background:rgba(255,242,0,.055);color:var(--accent);opacity:1;transition:transform .45s var(--ease),opacity .35s ease,border-color .35s ease,background .35s ease;z-index:3}
     .card .ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
     .card .ico svg *{vector-effect:non-scaling-stroke}
+
+    /* Tephra-System als nummerierte Schritte, waagrecht mit durchlaufender Linie */
+    .steps{position:relative;margin-top:52px;display:grid;grid-template-columns:repeat(4,1fr);gap:26px}
+    .steps::before{content:"";position:absolute;left:32px;right:32px;top:32px;height:2px;background:var(--line2);opacity:.5}
+    .step{position:relative;text-align:center}
+    .step-num{position:relative;z-index:2;width:64px;height:64px;margin:0 auto 22px;border-radius:50%;background:var(--accent);color:var(--deep);display:grid;place-items:center;font-weight:900;font-size:19px;letter-spacing:-.02em;box-shadow:0 0 0 10px var(--black)}
+    .step-head{display:flex;align-items:center;justify-content:center;gap:9px;margin-bottom:10px}
+    .step-body strong{font-size:20px;letter-spacing:-.03em;line-height:1.15;font-weight:850}
+    .step-ico{display:inline-flex;width:26px;height:26px;padding:5px;border:1px solid rgba(255,242,0,.3);border-radius:8px;background:rgba(255,242,0,.06);color:var(--accent);flex:none}
+    .step-ico svg{width:100%;height:100%;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+    .step-body p{color:var(--soft);font-size:15px;line-height:1.55;max-width:20ch;margin:0 auto}
+    @media(max-width:860px){
+      .steps{grid-template-columns:1fr;gap:0;max-width:520px;margin-left:auto;margin-right:auto}
+      .steps::before{left:27px;right:auto;top:56px;bottom:32px;height:auto;width:2px}
+      .step{display:grid;grid-template-columns:56px 1fr;gap:20px;text-align:left;padding-bottom:34px}
+      .step:last-child{padding-bottom:0}
+      .step-num{width:56px;height:56px;margin:0;font-size:17px;box-shadow:none}
+      .step-head{justify-content:flex-start;margin-bottom:7px}
+      .step-body{padding-top:6px}
+      .step-body p{max-width:none}
+    }
     .card:hover .ico{transform:scale(1.06);opacity:1;border-color:rgba(255,242,0,.58);background:rgba(255,242,0,.1)}
 
     /* DELIVERABLES */
@@ -663,7 +684,14 @@
     .chips span:hover{border-color:rgba(255,242,0,.7);background:rgba(255,242,0,.14);box-shadow:0 0 18px rgba(255,242,0,.22),0 0 6px rgba(255,242,0,.14);transform:translateY(-2px);cursor:default}
 
     /* reveal animation */
-    .rv{opacity:0;transform:translateY(28px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+    .rv{opacity:0;transform:translateY(34px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+    /* ===== Vorhang-Wipe fuer Hero und Kontakt ===== */
+    .wipe-curtain{position:relative;overflow:hidden}
+    .curtain-veil{position:absolute;inset:0;background:var(--black);z-index:30;
+      transform-origin:top;transform:scaleY(1);
+      transition:transform 1.05s cubic-bezier(.76,0,.24,1);pointer-events:none}
+    .curtain-veil.wiped{transform:scaleY(0)}
+
     .rv.in{opacity:1;transform:translateY(0)}
 
     /* ---------------- RESPONSIVE ---------------- */
@@ -789,6 +817,12 @@
       border-bottom:1px solid rgba(255,242,0,.3);padding-bottom:4px;transition:gap .3s var(--ease),border-color .3s ease;
     }
     .tp-link:hover{gap:14px;border-color:var(--accent)}
+    .tp-grid-solo{grid-template-columns:1fr;max-width:660px;margin:0 auto;padding:36px 40px}
+    .tp-block-solo{position:relative;z-index:2}
+    .tp-block-solo p{color:rgba(var(--ink),.76);font-size:14.5px;line-height:1.65}
+    .tp-block-solo .tp-hero{margin-bottom:12px}
+    .tp-block-solo .btn{margin-top:24px}
+    @media(max-width:720px){.tp-grid-solo{max-width:none}}
 
     /* Branchen-Panels */
     .br-body{
@@ -1076,9 +1110,9 @@
       box-shadow:0 0 12px rgba(255,242,0,.45);transform-origin:left center;
       transition:width .08s linear}
     /* Reveal etwas lebendiger */
-    .rv{transform:translateY(26px) scale(.988)}
+    .rv{transform:translateY(32px) scale(.985)}
     .rv.in{transform:translateY(0) scale(1)}
-    .rv{transition:opacity .52s var(--ease),transform .52s var(--ease)}
+    .rv{transition:opacity .68s var(--ease),transform .68s var(--ease)}
     @media(prefers-reduced-motion:reduce){
       .progress{display:none}
       .rv{transform:none!important}
@@ -1350,13 +1384,10 @@
             <a href="/website/">Website &amp; Auftritt</a>
           </div>
         </div>
-        <a href="#problem">Problem</a>
         <a href="#fuerwen">Für wen</a>
-        <a href="#system">System</a>
-        <a href="#ergebnis">Ergebnis</a>
-        <a href="#team">Team</a>
-        <a href="#zusammenarbeit">Ablauf</a>
+        <a href="#problem">Über uns</a>
         <a href="#faq">Fragen</a>
+        <a href="#kontakt">Kontakt</a>
       </nav>
       <a class="btn" data-cta="header" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Erstgespräch vereinbaren <span class="arr">→</span></a>
       <button class="burger" aria-label="Menü öffnen" aria-expanded="false"><span></span></button>
@@ -1367,18 +1398,14 @@
     <a href="/mitarbeitergewinnung/">Mitarbeitergewinnung <span>→</span></a>
     <a href="/kundengewinnung/">Kundengewinnung <span>→</span></a>
     <a href="/website/">Website &amp; Auftritt <span>→</span></a>
-    <a href="#problem">Problem <span>→</span></a>
     <a href="#fuerwen">Für wen <span>→</span></a>
-    <a href="#system">System <span>→</span></a>
-    <a href="#ergebnis">Ergebnis <span>→</span></a>
-    <a href="#team">Team <span>→</span></a>
-    <a href="#zusammenarbeit">Ablauf <span>→</span></a>
+    <a href="#problem">Über uns <span>→</span></a>
     <a href="#faq">Fragen <span>→</span></a>
-    <a href="#kontakt">Erstgespräch <span>→</span></a>
+    <a href="#kontakt">Kontakt <span>→</span></a>
   </nav>
 
   <!-- ================= HERO ================= -->
-  <section class="hero hero-plain">
+  <section class="hero hero-plain wipe-curtain">
     <div class="wrap hero-in">
       <span class="eyebrow">Mitarbeiter, Kunden und Sichtbarkeit für österreichische Betriebe</span>
       <h1>Gute Arbeit reicht nicht,<br>wenn sie <span class="hl">keiner sieht</span>.</h1>
@@ -1450,13 +1477,13 @@
       </div>
       <div class="stats rv">
         <div class="stats-grid">
-          <div class="stat"><b>26 %</b><span>suchen aktiv oder gelegentlich eine neue Stelle</span></div>
-          <div class="stat"><b>33 %</b><span>würden wechseln, wenn sich die passende Gelegenheit ergibt</span></div>
-          <div class="stat"><b>41 %</b><span>für die ein Wechsel kein Thema ist. 2017 waren es noch 82 Prozent</span></div>
+          <div class="stat"><b>9 %</b><span>planen heuer konkret einen Jobwechsel</span></div>
+          <div class="stat"><b>35 %</b><span>sind offen für einen Wechsel, suchen aber nicht aktiv</span></div>
+          <div class="stat"><b>51 %</b><span>wollen langfristig im aktuellen Job bleiben</span></div>
         </div>
-        <p class="stats-note">Ein Jobportal erreicht die ersten 26 Prozent. Die 33 Prozent dazwischen sieht dort niemand.
-        Zahlen aus der <a href="https://www.ey.com/de_de/newsroom/2025/09/ey-jobstudie-2025-karriere-wechselbereitschaft" target="_blank" rel="noopener">EY-Jobstudie 2025</a>,
-        repräsentative Befragung von 1.555 Beschäftigten. Erhoben in Deutschland, für Österreich gibt es keine vergleichbare Erhebung.</p>
+        <p class="stats-note">Ein Jobportal erreicht höchstens die ersten 9 Prozent. Die 35 Prozent dazwischen sieht dort niemand.
+        Zahlen aus der <a href="https://www.leadersnet.at/news/86170,44-prozent-der-oesterreicher-koennten-sich-vorstellen-heuer-den.html" target="_blank" rel="noopener">Xing Wechselwilligkeitsstudie 2025</a>,
+        forsa-Befragung von 1.006 Beschäftigten in Österreich, Jänner 2025.</p>
       </div>
 
     </div>
@@ -1465,9 +1492,9 @@
   <!-- ================= 02 LEISTUNGEN (TABS) ================= -->
   <section class="pad deliver" id="leistungen">
     <div class="wrap">
-      <div class="marker rv"><span class="no">02</span><span class="lbl">Die drei Leistungen ansehen</span><span class="ln"></span></div>
-      <h2 class="rv">Drei Wege, wie wir das <span class="accent">ändern</span>.</h2>
-      <p class="lead rv">Sucht euch aus, wo es bei euch gerade drückt.</p>
+      <div class="marker rv"><span class="no">02</span><span class="lbl">Unsere drei Leistungen</span><span class="ln"></span></div>
+      <h2 class="rv">Wo drückt es bei euch <span class="accent">gerade</span>?</h2>
+      <p class="lead rv">Wählt aus, was euch am meisten fehlt.</p>
 
       <div class="tabs rv" data-tabs>
         <div class="tablist" role="tablist" aria-label="Leistungen">
@@ -1477,99 +1504,36 @@
         </div>
 
         <div class="tabpanel is-active" role="tabpanel" id="tp-recruiting" aria-labelledby="tb-recruiting">
-          <div class="tp-grid">
-            <div class="tp-block">
-              <span class="tp-lbl">Für wen</span>
+          <div class="tp-grid tp-grid-solo">
+            <div class="tp-block-solo">
+              <span class="tp-lbl">Mitarbeitergewinnung</span>
               <p class="tp-hero">Für Betriebe, die gute Leute brauchen und keine passenden Bewerbungen bekommen.</p>
-            </div>
-            <div class="tp-block">
-              <span class="tp-lbl">Das Problem</span>
-              <p>Die Bewerbungen, die kommen, passen nicht. Die Leute, die passen, bewerben sich nicht. Jobportale erreichen nur, wer gerade aktiv sucht, und das sind die wenigsten guten Fachkräfte. Die Besten sind bereits angestellt und schauen nur, wenn sie einen echten Grund sehen.</p>
-            </div>
-            <div class="tp-block">
-              <span class="tp-lbl">Was wir tun</span>
-              <p>Wir finden heraus, warum jemand bei euch anfangen sollte, und machen genau das sichtbar. Über Social Media erreichen wir auch die Leute, die gar nicht suchen. Bewerben dauert dann keine zwei Minuten.</p>
-            </div>
-            <div class="tp-block tp-result">
-              <span class="tp-lbl">Was ihr bekommt</span>
-              <p>Bewerbungen von Leuten, die nicht auf der Suche waren. Einen Prozess, der weiterläuft, auch wenn ihr gerade auf der Baustelle steht.</p>
-              <ul class="tp-list">
-                <li>Eure Arbeitgeberbotschaft, schriftlich</li>
-                <li>Bilder und Videos für die Anzeigen</li>
-                <li>Meta Ads Kampagne, betreut</li>
-                <li>Eine eigene Karriere-Seite</li>
-                <li>Kurzbewerbung am Handy, unter zwei Minuten</li>
-                <li>Vorlagen fürs Nachfassen</li>
-                <li>Monatliche Auswertung mit Zahlen</li>
-                <li>Ein Ansprechpartner, nämlich ich</li>
-              </ul>
+              <p>Die Bewerbungen, die kommen, passen nicht, die Besten sind längst angestellt. Wir finden euren Grund und machen ihn sichtbar, auch bei Leuten, die gar nicht suchen.</p>
+              <a class="btn" href="/mitarbeitergewinnung/">So funktioniert das im Detail <span class="arr">→</span></a>
             </div>
           </div>
-          <a class="tp-link" href="/mitarbeitergewinnung/">So funktioniert das im Detail <span class="arr">→</span></a>
         </div>
 
         <div class="tabpanel" role="tabpanel" id="tp-kunden" aria-labelledby="tb-kunden" hidden>
-          <div class="tp-grid">
-            <div class="tp-block">
-              <span class="tp-lbl">Für wen</span>
+          <div class="tp-grid tp-grid-solo">
+            <div class="tp-block-solo">
+              <span class="tp-lbl">Kundengewinnung</span>
               <p class="tp-hero">Für Betriebe, die von Empfehlungen leben und mehr Kontrolle über ihre Auslastung wollen.</p>
-            </div>
-            <div class="tp-block">
-              <span class="tp-lbl">Das Problem</span>
-              <p>Die Aufträge kommen über Mundpropaganda. Das funktioniert, bis es nicht mehr funktioniert. Ein Monat ist voll, der nächste ist leer, und ihr wisst vorher nie, welcher. Wer noch nie von euch gehört hat, hat auch keinen Grund, bei euch anzufragen.</p>
-            </div>
-            <div class="tp-block">
-              <span class="tp-lbl">Was wir tun</span>
-              <p>Wir schärfen, was euch von der Konkurrenz unterscheidet, und bringen es dorthin, wo eure Kunden ohnehin sind. Aus Interesse wird eine Anfrage, ohne dass jemand ein Formular mit zwanzig Feldern ausfüllen muss.</p>
-            </div>
-            <div class="tp-block tp-result">
-              <span class="tp-lbl">Was ihr bekommt</span>
-              <p>Anfragen, die nicht vom Zufall abhängen. Und die Möglichkeit, Aufträge auszuwählen statt jeden zu nehmen.</p>
-              <ul class="tp-list">
-                <li>Euer geschärftes Angebot, schriftlich</li>
-                <li>Bilder und Videos für den Feed</li>
-                <li>Kampagne in eurer Region</li>
-                <li>Eine Seite, die auf die Anzeige antwortet</li>
-                <li>Ein kurzer Anfrageweg</li>
-                <li>Vorlagen fürs Nachfassen</li>
-                <li>Monatliche Auswertung mit Zahlen</li>
-                <li>Ein Ansprechpartner, nämlich ich</li>
-              </ul>
+              <p>Die Aufträge kommen über Mundpropaganda, bis sie es nicht mehr tun. Wir schärfen, was euch unterscheidet, und bringen es dorthin, wo eure Kunden ohnehin sind.</p>
+              <a class="btn" href="/kundengewinnung/">So funktioniert das im Detail <span class="arr">→</span></a>
             </div>
           </div>
-          <a class="tp-link" href="/kundengewinnung/">So funktioniert das im Detail <span class="arr">→</span></a>
         </div>
 
         <div class="tabpanel" role="tabpanel" id="tp-web" aria-labelledby="tb-web" hidden>
-          <div class="tp-grid">
-            <div class="tp-block">
-              <span class="tp-lbl">Für wen</span>
+          <div class="tp-grid tp-grid-solo">
+            <div class="tp-block-solo">
+              <span class="tp-lbl">Website &amp; Auftritt</span>
               <p class="tp-hero">Für alle, deren Website älter ist als ihr letztes Firmenauto.</p>
-            </div>
-            <div class="tp-block">
-              <span class="tp-lbl">Das Problem</span>
-              <p>Die Seite ist von vorgestern, am Handy kaum lesbar, und bei Google findet euch nur, wer euren Namen schon kennt. Dabei schaut heute jeder zuerst dort nach. Bewerber, Kunden, Lieferanten. Und viele entscheiden schon, bevor sie überhaupt anrufen.</p>
-            </div>
-            <div class="tp-block">
-              <span class="tp-lbl">Was wir tun</span>
-              <p>Wir bauen euch eine Seite, die zeigt, was ihr wirklich könnt. Klare Struktur, ehrliche Texte, sauber am Handy und technisch so gebaut, dass Google euch findet. Von Hand gebaut statt aus einem Baukasten.</p>
-            </div>
-            <div class="tp-block tp-result">
-              <span class="tp-lbl">Was ihr bekommt</span>
-              <p>Einen Auftritt, der zu eurer Arbeit passt. Und eine Seite, auf die ihr Werbung schicken könnt, ohne dass Geld verbrennt.</p>
-              <ul class="tp-list">
-                <li>Die fertige Website, von Hand gebaut</li>
-                <li>Sauber am Handy, nicht nur am Bildschirm</li>
-                <li>SEO-Grundlage, damit Google euch findet</li>
-                <li>Schnelle Ladezeit</li>
-                <li>Impressum, Datenschutz und Cookie-Frage geklärt</li>
-                <li>Übergabe und Erklärung, wie ihr sie nutzt</li>
-                <li>Hosting, Domain und SSL im Betrieb</li>
-                <li>Änderungen später mit Fixpreis vorab</li>
-              </ul>
+              <p>Bei Google findet euch nur, wer euren Namen schon kennt, dabei entscheiden die meisten, bevor sie überhaupt anrufen. Wir bauen euch eine Seite, die zeigt, was ihr wirklich könnt.</p>
+              <a class="btn" href="/website/">So funktioniert das im Detail <span class="arr">→</span></a>
             </div>
           </div>
-          <a class="tp-link" href="/website/">So funktioniert das im Detail <span class="arr">→</span></a>
         </div>
       </div>
     </div>
@@ -1624,41 +1588,49 @@
     <div class="wrap">
       <div class="marker rv"><span class="no">04</span><span class="lbl">Das Tephra-System</span><span class="ln"></span></div>
       <h2 class="rv">Das <span class="accent">Tephra-System</span>.</h2>
-      <p class="lead system-lead rv">Vier Schritte, die aufeinander aufbauen. Dieselbe Reihenfolge bei Mitarbeitern, bei Kunden und bei der Website. Der erste Schritt ist der wichtigste, und den überspringen die meisten.</p>
+      <p class="lead system-lead rv">Vier Schritte, die aufeinander aufbauen. Der erste ist der wichtigste, und den überspringen die meisten.</p>
 
-      <div class="grid4 rv">
-        <article class="card">
-          <div class="cc">
-            <small>01</small>
-            <strong>Verstehen</strong>
-            <p>Wir schauen uns euren Betrieb an, bevor wir irgendetwas bauen. Was macht ihr, was können nur wenige, und warum sollte sich jemand für euch entscheiden. Ohne diesen Schritt bleibt alles Werbung ins Blaue.</p>
+      <div class="steps rv">
+        <div class="step">
+          <span class="step-num">01</span>
+          <div class="step-body">
+            <div class="step-head">
+              <strong>Verstehen</strong>
+              <span class="step-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.6-3.6"></path></svg></span>
+            </div>
+            <p>Erst euren Betrieb verstehen.</p>
           </div>
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.6-3.6"></path></svg></span>
-        </article>
-        <article class="card">
-          <div class="cc">
-            <small>02</small>
-            <strong>Positionieren</strong>
-            <p>Wir bringen auf den Punkt, wofür ihr steht. Nicht schöner, als es ist, sondern deutlicher. Das ist der Unterschied zwischen noch einer Anzeige und genau da will ich hin.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">02</span>
+          <div class="step-body">
+            <div class="step-head">
+              <strong>Positionieren</strong>
+              <span class="step-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></span>
+            </div>
+            <p>Klar sagen, wofür ihr steht.</p>
           </div>
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"></circle><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3M12 19v3M2 12h3M19 12h3"></path></svg></span>
-        </article>
-        <article class="card">
-          <div class="cc">
-            <small>03</small>
-            <strong>Aufbauen</strong>
-            <p>Bilder, Videos, Anzeigen, Zielseite und Formular. Alles, was zwischen dem ersten Blick und der Anfrage steht. So kurz wie möglich, so klar wie nötig.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">03</span>
+          <div class="step-body">
+            <div class="step-head">
+              <strong>Aufbauen</strong>
+              <span class="step-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M3 9h18M8 21h8"></path></svg></span>
+            </div>
+            <p>Bilder, Anzeigen, Zielseite, Formular.</p>
           </div>
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"></rect><path d="M3 9h18M8 21h8"></path></svg></span>
-        </article>
-        <article class="card">
-          <div class="cc">
-            <small>04</small>
-            <strong>Verbessern</strong>
-            <p>Wir messen, was funktioniert, und tauschen aus, was nicht zieht. Jeden Monat. Deshalb wird das System mit der Zeit besser, statt sich abzunutzen.</p>
+        </div>
+        <div class="step">
+          <span class="step-num">04</span>
+          <div class="step-body">
+            <div class="step-head">
+              <strong>Verbessern</strong>
+              <span class="step-ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-6 4 4 5-7 4 5"></path><path d="M3 21h18"></path></svg></span>
+            </div>
+            <p>Jeden Monat nachschärfen.</p>
           </div>
-          <span class="ico"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 17l5-6 4 4 5-7 4 5"></path><path d="M3 21h18"></path></svg></span>
-        </article>
+        </div>
       </div>
     </div>
   </section>
@@ -1669,7 +1641,7 @@
       <div class="marker rv"><span class="no">05</span><span class="lbl">Konkret</span><span class="ln"></span></div>
       <div class="pain-center rv">
         <h2>Am Ende habt ihr etwas in der <span class="accent">Hand</span>.</h2>
-        <p class="lead">Kein Konzept in einer Schublade. Sachen, die laufen.</p>
+        <p class="lead">Kein Ordner, der im Regal verstaubt. Ein roter Faden, der sich durch alles zieht, was ihr nach außen zeigt.</p>
       </div>
 
       <div class="deliverlist rv">
@@ -1835,7 +1807,7 @@
   </section>
 
   <!-- ================= 08 KONTAKT ================= -->
-  <section class="pad booking sec-yellow" id="kontakt">
+  <section class="pad booking sec-yellow wipe-curtain" id="kontakt">
     <div class="wrap">
       <div class="bpanel rv">
         <span class="eyebrow">Nächster Schritt</span>
@@ -1887,16 +1859,6 @@
         <span aria-hidden="true">·</span>
         <span>Mo bis Fr, 9 bis 18 Uhr</span>
       </div>
-      <span class="foot-sep" aria-hidden="true"></span>
-      <nav class="foot-nav" aria-label="Leistungen">
-        <a href="/mitarbeitergewinnung/">Mitarbeitergewinnung</a>
-        <a href="/kundengewinnung/">Kundengewinnung</a>
-        <a href="/website/">Website &amp; Auftritt</a>
-      </nav>
-      <nav class="foot-nav branchen" aria-label="Branchen">
-        <a href="/handwerk/">Für Handwerksbetriebe</a>
-        <a href="/gastronomie/">Für Gastrobetriebe</a>
-      </nav>
 <div class="foot-legal">
         <a href="/impressum/">Impressum</a>
         <a href="/datenschutz/">Datenschutz</a>
@@ -2107,7 +2069,7 @@
     // ============ KARTEN NACHEINANDER EINBLENDEN ============
     (function(){
       if(matchMedia("(prefers-reduced-motion:reduce)").matches) return;
-      const groups = ".spot-grid,.cards,.grid4,.flowsteps,.biostats,.stats-grid,.founders,.xsell,.faq-list,.bento-system";
+      const groups = ".spot-grid,.cards,.grid4,.steps,.flowsteps,.biostats,.stats-grid,.founders,.xsell,.faq-list,.bento-system";
       document.querySelectorAll(groups).forEach(g => {
         const kids = Array.from(g.children).filter(k => k.nodeType === 1 && !k.classList.contains("rv"));
         if(kids.length < 2) return;
@@ -2167,6 +2129,33 @@
     window.addEventListener("hashchange", openFromHash);
     openFromHash();
 
+  
+    // ============ VORHANG-WIPE (Hero + Kontakt) ============
+    (function(){
+      if(matchMedia("(prefers-reduced-motion:reduce)").matches) return;
+      const sections = document.querySelectorAll(".wipe-curtain");
+      if(!sections.length) return;
+      const veils = [];
+      sections.forEach(sec => {
+        const veil = document.createElement("div");
+        veil.className = "curtain-veil";
+        veil.setAttribute("aria-hidden","true");
+        sec.insertBefore(veil, sec.firstChild);
+        veils.push({sec, veil});
+      });
+      const hero = veils.find(v => v.sec.classList.contains("hero"));
+      if(hero){ requestAnimationFrame(() => setTimeout(() => hero.veil.classList.add("wiped"), 260)); }
+      const others = veils.filter(v => v !== hero);
+      if(others.length){
+        const cio = new IntersectionObserver(entries => {
+          entries.forEach(e => {
+            const match = others.find(v => v.sec === e.target);
+            if(match && e.isIntersecting){ match.veil.classList.add("wiped"); cio.unobserve(e.target); }
+          });
+        }, {threshold:.35});
+        others.forEach(v => cio.observe(v.sec));
+      }
+    })();
   </script>
 </body>
 </html>
