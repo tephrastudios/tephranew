@@ -235,7 +235,7 @@
     .hero-points span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;font-weight:720;color:rgba(var(--ink),.78)}
     .hero-points span::before{content:"✓";color:var(--accent);font-weight:900;font-size:12px}
     .hero-cta{margin-top:32px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center}
-    .hero-trust{margin-top:32px;display:inline-flex;align-items:center;gap:12px}
+    .hero-trust{margin-top:32px;display:inline-flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
     .av{display:flex}
     .av span{position:relative;width:42px;height:42px;border-radius:50%;overflow:hidden;border:2px solid var(--black);box-shadow:0 0 0 1px var(--line2);background:var(--panel2);cursor:pointer;transition:transform .38s var(--ease),box-shadow .38s ease}
     .av span+span{margin-left:-12px}
@@ -244,9 +244,10 @@
     .av span:nth-child(2):hover{transform:translateY(-5px) scale(1.1) rotate(2deg)}
     .av span:hover::after{transform:translateX(130%) rotate(8deg)}
     .av img{width:100%;height:100%;object-fit:cover;filter:saturate(.85) contrast(1.04) brightness(.9)}
-    .hero-trust p{text-align:left;line-height:1.4}
+    .hero-trust p{text-align:center;line-height:1.4;max-width:760px}
     .hero-trust p b{display:block;font-size:14px;color:rgba(var(--ink),.9);font-weight:920}
-    .hero-trust p small{font-size:13px;color:var(--muted)}
+    .hero-trust p small{display:block;font-size:13px;color:var(--muted)}
+    .hero-trust p small .trust-meta,.bnote .bnote-meta{display:block;margin-top:2px}
 
 
     /* ---------------- SECTIONS ---------------- */
@@ -526,7 +527,7 @@
     .bpanel .hero-cta{margin-top:32px}
     .bpanel .bnote{margin-top:16px;color:var(--soft);font-size:13px;font-weight:850;letter-spacing:.01em}
     .bpanel .hero-trust{margin-top:24px}
-    .bpanel .hero-trust p{margin:0;max-width:none;text-align:left;color:var(--muted);font-size:13px;line-height:1.4}
+    .bpanel .hero-trust p{margin:0;max-width:760px;text-align:center;color:var(--muted);font-size:13px;line-height:1.4}
     .bpanel .hero-trust p b{font-size:14px;color:rgba(var(--ink),.9);font-weight:920}
 
     /* FOOTER */
@@ -1284,7 +1285,7 @@
       </div>
       <div class="hero-trust">
         <div class="av"><span><img src="peter-av.webp" width="72" height="96" alt="Peter Strbac" loading="eager" decoding="async"></span></div>
-        <p><b>Direkt mit Peter</b><small>Ich schaue mir euren aktuellen Anfrageweg vor dem Gespräch an. Unverbindlich, ca. 30 Minuten.</small></p>
+        <p><b>Direkt mit Peter</b><small>Ich schaue mir euren aktuellen Anfrageweg vor dem Gespräch an.<span class="trust-meta">Unverbindlich, ca. 30 Minuten.</span></small></p>
       </div>
     </div>
   </section>
@@ -1545,7 +1546,7 @@
         <div class="hero-cta">
           <a class="btn" data-cta="final" href="https://calendly.com/studio-tephra" target="_blank" rel="noopener">Euren Anfrageweg prüfen lassen <span class="arr">→</span></a>
         </div>
-        <div class="bnote">Ich schaue mir euren aktuellen Anfrageweg vor dem Gespräch an. Unverbindlich, ca. 30 Minuten.</div>
+        <div class="bnote">Ich schaue mir euren aktuellen Anfrageweg vor dem Gespräch an.<span class="bnote-meta">Unverbindlich, ca. 30 Minuten.</span></div>
         <div class="bnote2">Kein Termin frei, der passt? <a data-cta="mail" href="mailto:studio@tephra.at?subject=Erstgespr%C3%A4ch%20Tephra%20Studios">Schreib mir direkt.</a></div>
         <div class="hero-trust">
           <div class="av">
