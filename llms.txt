@@ -32,7 +32,6 @@ Kein Standardpaket. Struktur: einmaliger Aufbau plus monatliche Betreuung, dazu 
 - [Mitarbeitergewinnung](https://www.tephrastudios.at/mitarbeitergewinnung/): Social Recruiting über Meta Ads, Arbeitgeber-Positionierung und Bewerbungsfunnel
 - [Kundengewinnung](https://www.tephrastudios.at/kundengewinnung/): Angebots-Positionierung, Social Ads und Anfrage-Funnel für planbare Auslastung
 - [Website und Auftritt](https://www.tephrastudios.at/website/): Konzept, Text, Design und Technik inklusive SEO-Grundlage
-- [Handwerksbetriebe](https://www.tephrastudios.at/handwerk/): Branchenseite für Handwerk, Bau und Industrie
 - [Gastronomie](https://www.tephrastudios.at/gastronomie/): Branchenseite für Restaurants, Cafés, Hotels und Catering
 - [Preise](https://www.tephrastudios.at/preise.md): Preismodell in Textform
 - [Impressum](https://www.tephrastudios.at/impressum/)
